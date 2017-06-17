@@ -1,0 +1,581 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		614BF873DE06C9145043FE48 /* Pods_Rattit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F361B6012D8EDE55A8FF743 /* Pods_Rattit.framework */; };
+		6BBA130F33BF310813864C37 /* Pods_RattitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36E614ACE838E16C8F5D85C /* Pods_RattitTests.framework */; };
+		853851301EF4FBF600A8B2B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8538512F1EF4FBF600A8B2B5 /* AppDelegate.swift */; };
+		853851321EF4FBF600A8B2B5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853851311EF4FBF600A8B2B5 /* ViewController.swift */; };
+		853851351EF4FBF600A8B2B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 853851331EF4FBF600A8B2B5 /* Main.storyboard */; };
+		853851381EF4FBF600A8B2B5 /* Rattit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 853851361EF4FBF600A8B2B5 /* Rattit.xcdatamodeld */; };
+		8538513A1EF4FBF600A8B2B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 853851391EF4FBF600A8B2B5 /* Assets.xcassets */; };
+		8538513D1EF4FBF600A8B2B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8538513B1EF4FBF600A8B2B5 /* LaunchScreen.storyboard */; };
+		853851481EF4FBF600A8B2B5 /* RattitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853851471EF4FBF600A8B2B5 /* RattitTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		853851441EF4FBF600A8B2B5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 853851241EF4FBF500A8B2B5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8538512B1EF4FBF600A8B2B5;
+			remoteInfo = Rattit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0F361B6012D8EDE55A8FF743 /* Pods_Rattit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rattit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D1FF0439B7E2EA215D472D2 /* Pods-Rattit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rattit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Rattit/Pods-Rattit.debug.xcconfig"; sourceTree = "<group>"; };
+		8538512C1EF4FBF600A8B2B5 /* Rattit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rattit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8538512F1EF4FBF600A8B2B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		853851311EF4FBF600A8B2B5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		853851341EF4FBF600A8B2B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		853851371EF4FBF600A8B2B5 /* Rattit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Rattit.xcdatamodel; sourceTree = "<group>"; };
+		853851391EF4FBF600A8B2B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8538513C1EF4FBF600A8B2B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		8538513E1EF4FBF600A8B2B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		853851431EF4FBF600A8B2B5 /* RattitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RattitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		853851471EF4FBF600A8B2B5 /* RattitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RattitTests.swift; sourceTree = "<group>"; };
+		853851491EF4FBF600A8B2B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A7FD9D66EAB2321515655810 /* Pods-RattitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RattitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RattitTests/Pods-RattitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D36E614ACE838E16C8F5D85C /* Pods_RattitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RattitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E121460B4EF7B5D2D894C3F5 /* Pods-Rattit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rattit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rattit/Pods-Rattit.release.xcconfig"; sourceTree = "<group>"; };
+		E5603CFEC7D4EDC5CDD41111 /* Pods-RattitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RattitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RattitTests/Pods-RattitTests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		853851291EF4FBF600A8B2B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				614BF873DE06C9145043FE48 /* Pods_Rattit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		853851401EF4FBF600A8B2B5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BBA130F33BF310813864C37 /* Pods_RattitTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		853851231EF4FBF500A8B2B5 = {
+			isa = PBXGroup;
+			children = (
+				8538512E1EF4FBF600A8B2B5 /* Rattit */,
+				853851461EF4FBF600A8B2B5 /* RattitTests */,
+				8538512D1EF4FBF600A8B2B5 /* Products */,
+				CFE9040350056F06E0B6EC95 /* Pods */,
+				BF3990149A4691D3B64C48B9 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		8538512D1EF4FBF600A8B2B5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8538512C1EF4FBF600A8B2B5 /* Rattit.app */,
+				853851431EF4FBF600A8B2B5 /* RattitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8538512E1EF4FBF600A8B2B5 /* Rattit */ = {
+			isa = PBXGroup;
+			children = (
+				8538512F1EF4FBF600A8B2B5 /* AppDelegate.swift */,
+				853851311EF4FBF600A8B2B5 /* ViewController.swift */,
+				853851331EF4FBF600A8B2B5 /* Main.storyboard */,
+				853851391EF4FBF600A8B2B5 /* Assets.xcassets */,
+				8538513B1EF4FBF600A8B2B5 /* LaunchScreen.storyboard */,
+				8538513E1EF4FBF600A8B2B5 /* Info.plist */,
+				853851361EF4FBF600A8B2B5 /* Rattit.xcdatamodeld */,
+			);
+			path = Rattit;
+			sourceTree = "<group>";
+		};
+		853851461EF4FBF600A8B2B5 /* RattitTests */ = {
+			isa = PBXGroup;
+			children = (
+				853851471EF4FBF600A8B2B5 /* RattitTests.swift */,
+				853851491EF4FBF600A8B2B5 /* Info.plist */,
+			);
+			path = RattitTests;
+			sourceTree = "<group>";
+		};
+		BF3990149A4691D3B64C48B9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0F361B6012D8EDE55A8FF743 /* Pods_Rattit.framework */,
+				D36E614ACE838E16C8F5D85C /* Pods_RattitTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CFE9040350056F06E0B6EC95 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2D1FF0439B7E2EA215D472D2 /* Pods-Rattit.debug.xcconfig */,
+				E121460B4EF7B5D2D894C3F5 /* Pods-Rattit.release.xcconfig */,
+				A7FD9D66EAB2321515655810 /* Pods-RattitTests.debug.xcconfig */,
+				E5603CFEC7D4EDC5CDD41111 /* Pods-RattitTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8538512B1EF4FBF600A8B2B5 /* Rattit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8538514C1EF4FBF600A8B2B5 /* Build configuration list for PBXNativeTarget "Rattit" */;
+			buildPhases = (
+				5E076195DA6AB9A527887430 /* [CP] Check Pods Manifest.lock */,
+				853851281EF4FBF600A8B2B5 /* Sources */,
+				853851291EF4FBF600A8B2B5 /* Frameworks */,
+				8538512A1EF4FBF600A8B2B5 /* Resources */,
+				844F74E085922F1DCFD42243 /* [CP] Embed Pods Frameworks */,
+				01C38465792B349296DE5806 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Rattit;
+			productName = Rattit;
+			productReference = 8538512C1EF4FBF600A8B2B5 /* Rattit.app */;
+			productType = "com.apple.product-type.application";
+		};
+		853851421EF4FBF600A8B2B5 /* RattitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8538514F1EF4FBF600A8B2B5 /* Build configuration list for PBXNativeTarget "RattitTests" */;
+			buildPhases = (
+				ED2DDC98483132B22A8AD68B /* [CP] Check Pods Manifest.lock */,
+				8538513F1EF4FBF600A8B2B5 /* Sources */,
+				853851401EF4FBF600A8B2B5 /* Frameworks */,
+				853851411EF4FBF600A8B2B5 /* Resources */,
+				F23BE9315C8A8F48F51EB61A /* [CP] Embed Pods Frameworks */,
+				4120E1436984D2BF3AC3EE4B /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				853851451EF4FBF600A8B2B5 /* PBXTargetDependency */,
+			);
+			name = RattitTests;
+			productName = RattitTests;
+			productReference = 853851431EF4FBF600A8B2B5 /* RattitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		853851241EF4FBF500A8B2B5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = KaileDing;
+				TargetAttributes = {
+					8538512B1EF4FBF600A8B2B5 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = XYNA997C9P;
+						ProvisioningStyle = Automatic;
+					};
+					853851421EF4FBF600A8B2B5 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = XYNA997C9P;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8538512B1EF4FBF600A8B2B5;
+					};
+				};
+			};
+			buildConfigurationList = 853851271EF4FBF500A8B2B5 /* Build configuration list for PBXProject "Rattit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 853851231EF4FBF500A8B2B5;
+			productRefGroup = 8538512D1EF4FBF600A8B2B5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8538512B1EF4FBF600A8B2B5 /* Rattit */,
+				853851421EF4FBF600A8B2B5 /* RattitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8538512A1EF4FBF600A8B2B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8538513D1EF4FBF600A8B2B5 /* LaunchScreen.storyboard in Resources */,
+				8538513A1EF4FBF600A8B2B5 /* Assets.xcassets in Resources */,
+				853851351EF4FBF600A8B2B5 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		853851411EF4FBF600A8B2B5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		01C38465792B349296DE5806 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Rattit/Pods-Rattit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4120E1436984D2BF3AC3EE4B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RattitTests/Pods-RattitTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5E076195DA6AB9A527887430 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		844F74E085922F1DCFD42243 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Rattit/Pods-Rattit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED2DDC98483132B22A8AD68B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F23BE9315C8A8F48F51EB61A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RattitTests/Pods-RattitTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		853851281EF4FBF600A8B2B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				853851321EF4FBF600A8B2B5 /* ViewController.swift in Sources */,
+				853851301EF4FBF600A8B2B5 /* AppDelegate.swift in Sources */,
+				853851381EF4FBF600A8B2B5 /* Rattit.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8538513F1EF4FBF600A8B2B5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				853851481EF4FBF600A8B2B5 /* RattitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		853851451EF4FBF600A8B2B5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8538512B1EF4FBF600A8B2B5 /* Rattit */;
+			targetProxy = 853851441EF4FBF600A8B2B5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		853851331EF4FBF600A8B2B5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				853851341EF4FBF600A8B2B5 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		8538513B1EF4FBF600A8B2B5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8538513C1EF4FBF600A8B2B5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8538514A1EF4FBF600A8B2B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8538514B1EF4FBF600A8B2B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8538514D1EF4FBF600A8B2B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2D1FF0439B7E2EA215D472D2 /* Pods-Rattit.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = XYNA997C9P;
+				INFOPLIST_FILE = Rattit/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.KaileDing.Rattit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		8538514E1EF4FBF600A8B2B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E121460B4EF7B5D2D894C3F5 /* Pods-Rattit.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = XYNA997C9P;
+				INFOPLIST_FILE = Rattit/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.KaileDing.Rattit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		853851501EF4FBF600A8B2B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A7FD9D66EAB2321515655810 /* Pods-RattitTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = XYNA997C9P;
+				INFOPLIST_FILE = RattitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.KaileDing.RattitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Rattit.app/Rattit";
+			};
+			name = Debug;
+		};
+		853851511EF4FBF600A8B2B5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5603CFEC7D4EDC5CDD41111 /* Pods-RattitTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = XYNA997C9P;
+				INFOPLIST_FILE = RattitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.KaileDing.RattitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Rattit.app/Rattit";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		853851271EF4FBF500A8B2B5 /* Build configuration list for PBXProject "Rattit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8538514A1EF4FBF600A8B2B5 /* Debug */,
+				8538514B1EF4FBF600A8B2B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8538514C1EF4FBF600A8B2B5 /* Build configuration list for PBXNativeTarget "Rattit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8538514D1EF4FBF600A8B2B5 /* Debug */,
+				8538514E1EF4FBF600A8B2B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8538514F1EF4FBF600A8B2B5 /* Build configuration list for PBXNativeTarget "RattitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				853851501EF4FBF600A8B2B5 /* Debug */,
+				853851511EF4FBF600A8B2B5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		853851361EF4FBF600A8B2B5 /* Rattit.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				853851371EF4FBF600A8B2B5 /* Rattit.xcdatamodel */,
+			);
+			currentVersion = 853851371EF4FBF600A8B2B5 /* Rattit.xcdatamodel */;
+			path = Rattit.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 853851241EF4FBF500A8B2B5 /* Project object */;
+}

@@ -9,7 +9,10 @@
 import UIKit
 
 class HomeTabBarViewController: UITabBarController, UITabBarControllerDelegate {
-
+    
+    var blurContentEffectView: UIVisualEffectView?
+    var askForSignInView: AskForSignInSignUpView?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,6 +42,25 @@ class HomeTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         self.selectedIndex = 0
         self.delegate = self
         
+        NotificationCenter.default.addObserver(self, selector: #selector(signUpOrSignInSuccess), name: NSNotification.Name(SignInSignUpNotificationName.successfulSignUpWithEmail.rawValue), object: nil)
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let blurContentEffect = UIBlurEffect(style: .dark)
+        self.blurContentEffectView = UIVisualEffectView(effect: blurContentEffect)
+        self.blurContentEffectView?.frame = self.view.bounds
+        
+        if (!UserStateManager.userIsLoggedIn && !UserStateManager.userRefusedToLogin) {
+            self.view.addSubview(self.blurContentEffectView!)
+            
+            self.askForSignInView = AskForSignInSignUpView.instantiateFromXib()
+            self.askForSignInView?.frame = CGRect(x: 0.0, y: (self.view.bounds.height - 226.0), width: self.view.bounds.width, height: 234.0)
+            self.askForSignInView?.askForSignInSignUpDelegate = self
+            self.view.addSubview(self.askForSignInView!)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,4 +79,26 @@ class HomeTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     }
     */
 
+}
+
+extension HomeTabBarViewController: AskForSignInSignUpDelegate {
+    func decidedToContinueWith(continueType: SignInSignUpContinueType) {
+        print("received \(continueType.rawValue) in HomeTabBarViewController. ")
+        if (continueType == .continueAsVisitor) {
+            UserStateManager.userRefusedToLogin = true
+            self.blurContentEffectView?.removeFromSuperview()
+        } else if (continueType == .continueBySigningUp) {
+            let emailSignInVC = UIStoryboard(name: "SignIn", bundle: nil).instantiateViewController(withIdentifier: "EmailSignUpVC") as! EmailSignUpViewController
+            self.present(emailSignInVC, animated: true, completion: nil)
+        }
+    }
+}
+
+extension HomeTabBarViewController {
+    func signUpOrSignInSuccess() {
+        // remove askForSignInView
+        self.askForSignInView?.removeFromSuperview()
+        // remove blurContentEffectView
+        self.blurContentEffectView?.removeFromSuperview()
+    }
 }

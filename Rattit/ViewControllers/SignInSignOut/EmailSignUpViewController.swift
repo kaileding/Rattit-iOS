@@ -49,6 +49,12 @@ class EmailSignUpViewController: UIViewController {
         self.canvasView.layer.masksToBounds = true
         self.canvasView.layer.cornerRadius = 6.0
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.firstNameField.becomeFirstResponder()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -89,6 +95,7 @@ extension EmailSignUpViewController {
     
     func doneButtonPressed() {
         UserStateManager.userIsLoggedIn = true
+        NotificationCenter.default.post(name: NSNotification.Name(SignInSignUpNotificationName.successfulSignUpWithEmail.rawValue), object: nil)
         self.dismiss(animated: true, completion: nil)
     }
     

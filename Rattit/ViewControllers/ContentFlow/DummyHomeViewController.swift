@@ -9,20 +9,26 @@
 import UIKit
 
 class DummyHomeViewController: UIViewController {
-
+    
+    @IBOutlet weak var mainContentView: UIView!
+    @IBOutlet weak var mainContentTable: UITableView!
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let contentFlowNavItemTitleView = Bundle.main.loadNibNamed("ContentFlowNavigationTitleView", owner: self, options: nil)?.first as! UIView
+        self.navigationItem.titleView = contentFlowNavItemTitleView
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if (!UserStateManager.userIsLoggedIn && !UserStateManager.userRefusedToLogin) {
-            let emailSignInVC = UIStoryboard(name: "SignIn", bundle: nil).instantiateViewController(withIdentifier: "EmailSignUpVC") as! EmailSignUpViewController
-            self.present(emailSignInVC, animated: true, completion: nil)
-        }
     }
 
     override func didReceiveMemoryWarning() {

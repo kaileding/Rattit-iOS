@@ -20,12 +20,21 @@
 		853851381EF4FBF600A8B2B5 /* Rattit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 853851361EF4FBF600A8B2B5 /* Rattit.xcdatamodeld */; };
 		8538513A1EF4FBF600A8B2B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 853851391EF4FBF600A8B2B5 /* Assets.xcassets */; };
 		853851481EF4FBF600A8B2B5 /* RattitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853851471EF4FBF600A8B2B5 /* RattitTests.swift */; };
+		853A3D1D1EF69E4C008EA58E /* Moment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A3D1C1EF69E4C008EA58E /* Moment.swift */; };
+		853A3D1F1EF69F1C008EA58E /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A3D1E1EF69F1C008EA58E /* Photo.swift */; };
 		8595649D1EF64C2C000D0BC8 /* ContentFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8595649B1EF64C2C000D0BC8 /* ContentFlow.storyboard */; };
 		859564A01EF64C5E000D0BC8 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8595649E1EF64C5E000D0BC8 /* Search.storyboard */; };
 		859564A31EF64CB2000D0BC8 /* Love.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 859564A11EF64CB2000D0BC8 /* Love.storyboard */; };
 		859564A61EF64CC7000D0BC8 /* Fly.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 859564A41EF64CC7000D0BC8 /* Fly.storyboard */; };
 		859564A91EF64DA0000D0BC8 /* DummyHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859564A81EF64DA0000D0BC8 /* DummyHomeViewController.swift */; };
 		859564AB1EF64E7A000D0BC8 /* HomeTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859564AA1EF64E7A000D0BC8 /* HomeTabBarViewController.swift */; };
+		859564AF1EF6654E000D0BC8 /* MomentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859564AD1EF6654E000D0BC8 /* MomentTableViewCell.swift */; };
+		859564B01EF6654E000D0BC8 /* MomentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 859564AE1EF6654E000D0BC8 /* MomentTableViewCell.xib */; };
+		859564B21EF66608000D0BC8 /* ContentFlowNavigationTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 859564B11EF66608000D0BC8 /* ContentFlowNavigationTitleView.xib */; };
+		859564B41EF675B7000D0BC8 /* AskForSignInSignUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 859564B31EF675B7000D0BC8 /* AskForSignInSignUpView.xib */; };
+		859564B61EF675C7000D0BC8 /* AskForSignInSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859564B51EF675C7000D0BC8 /* AskForSignInSignUpView.swift */; };
+		859564BA1EF68176000D0BC8 /* AskForSignInSignUpDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859564B91EF68176000D0BC8 /* AskForSignInSignUpDelegate.swift */; };
+		859564BE1EF682CF000D0BC8 /* SignInSignOutConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859564BD1EF682CF000D0BC8 /* SignInSignOutConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,12 +64,21 @@
 		853851431EF4FBF600A8B2B5 /* RattitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RattitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		853851471EF4FBF600A8B2B5 /* RattitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RattitTests.swift; sourceTree = "<group>"; };
 		853851491EF4FBF600A8B2B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		853A3D1C1EF69E4C008EA58E /* Moment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Moment.swift; sourceTree = "<group>"; };
+		853A3D1E1EF69F1C008EA58E /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		8595649C1EF64C2C000D0BC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ContentFlow.storyboard; sourceTree = "<group>"; };
 		8595649F1EF64C5E000D0BC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Search.storyboard; sourceTree = "<group>"; };
 		859564A21EF64CB2000D0BC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Love.storyboard; sourceTree = "<group>"; };
 		859564A51EF64CC7000D0BC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Fly.storyboard; sourceTree = "<group>"; };
 		859564A81EF64DA0000D0BC8 /* DummyHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyHomeViewController.swift; sourceTree = "<group>"; };
 		859564AA1EF64E7A000D0BC8 /* HomeTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarViewController.swift; sourceTree = "<group>"; };
+		859564AD1EF6654E000D0BC8 /* MomentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentTableViewCell.swift; sourceTree = "<group>"; };
+		859564AE1EF6654E000D0BC8 /* MomentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MomentTableViewCell.xib; sourceTree = "<group>"; };
+		859564B11EF66608000D0BC8 /* ContentFlowNavigationTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentFlowNavigationTitleView.xib; sourceTree = "<group>"; };
+		859564B31EF675B7000D0BC8 /* AskForSignInSignUpView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AskForSignInSignUpView.xib; sourceTree = "<group>"; };
+		859564B51EF675C7000D0BC8 /* AskForSignInSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskForSignInSignUpView.swift; sourceTree = "<group>"; };
+		859564B91EF68176000D0BC8 /* AskForSignInSignUpDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskForSignInSignUpDelegate.swift; sourceTree = "<group>"; };
+		859564BD1EF682CF000D0BC8 /* SignInSignOutConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInSignOutConstants.swift; sourceTree = "<group>"; };
 		A7FD9D66EAB2321515655810 /* Pods-RattitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RattitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RattitTests/Pods-RattitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D36E614ACE838E16C8F5D85C /* Pods_RattitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RattitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E121460B4EF7B5D2D894C3F5 /* Pods-Rattit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rattit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rattit/Pods-Rattit.release.xcconfig"; sourceTree = "<group>"; };
@@ -130,6 +148,8 @@
 		852C396E1EF5D79300C66C16 /* SignInSignOut */ = {
 			isa = PBXGroup;
 			children = (
+				859564B51EF675C7000D0BC8 /* AskForSignInSignUpView.swift */,
+				859564B31EF675B7000D0BC8 /* AskForSignInSignUpView.xib */,
 				852C39751EF5DD7C00C66C16 /* EmailSignUpViewController.swift */,
 			);
 			path = SignInSignOut;
@@ -175,6 +195,9 @@
 		8538512E1EF4FBF600A8B2B5 /* Rattit */ = {
 			isa = PBXGroup;
 			children = (
+				853A3D1B1EF69E35008EA58E /* Models */,
+				859564BC1EF6829E000D0BC8 /* Constants */,
+				859564B81EF68156000D0BC8 /* Protocols */,
 				852C39771EF5E90700C66C16 /* UserInfo */,
 				852C39601EF5D68700C66C16 /* Storyboards */,
 				852C395F1EF5D67A00C66C16 /* ViewControllers */,
@@ -195,12 +218,40 @@
 			path = RattitTests;
 			sourceTree = "<group>";
 		};
+		853A3D1B1EF69E35008EA58E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				853A3D1C1EF69E4C008EA58E /* Moment.swift */,
+				853A3D1E1EF69F1C008EA58E /* Photo.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		859564A71EF64D54000D0BC8 /* ContentFlow */ = {
 			isa = PBXGroup;
 			children = (
 				859564A81EF64DA0000D0BC8 /* DummyHomeViewController.swift */,
+				859564AD1EF6654E000D0BC8 /* MomentTableViewCell.swift */,
+				859564AE1EF6654E000D0BC8 /* MomentTableViewCell.xib */,
+				859564B11EF66608000D0BC8 /* ContentFlowNavigationTitleView.xib */,
 			);
 			path = ContentFlow;
+			sourceTree = "<group>";
+		};
+		859564B81EF68156000D0BC8 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				859564B91EF68176000D0BC8 /* AskForSignInSignUpDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		859564BC1EF6829E000D0BC8 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				859564BD1EF682CF000D0BC8 /* SignInSignOutConstants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		BF3990149A4691D3B64C48B9 /* Frameworks */ = {
@@ -321,8 +372,11 @@
 				8538513A1EF4FBF600A8B2B5 /* Assets.xcassets in Resources */,
 				859564A31EF64CB2000D0BC8 /* Love.storyboard in Resources */,
 				859564A01EF64C5E000D0BC8 /* Search.storyboard in Resources */,
+				859564B01EF6654E000D0BC8 /* MomentTableViewCell.xib in Resources */,
 				852C397B1EF5ED7E00C66C16 /* LaunchScreen.storyboard in Resources */,
 				852C397A1EF5ED7700C66C16 /* Main.storyboard in Resources */,
+				859564B41EF675B7000D0BC8 /* AskForSignInSignUpView.xib in Resources */,
+				859564B21EF66608000D0BC8 /* ContentFlowNavigationTitleView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,11 +488,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				853A3D1F1EF69F1C008EA58E /* Photo.swift in Sources */,
+				859564BA1EF68176000D0BC8 /* AskForSignInSignUpDelegate.swift in Sources */,
 				859564AB1EF64E7A000D0BC8 /* HomeTabBarViewController.swift in Sources */,
 				859564A91EF64DA0000D0BC8 /* DummyHomeViewController.swift in Sources */,
+				859564AF1EF6654E000D0BC8 /* MomentTableViewCell.swift in Sources */,
 				853851301EF4FBF600A8B2B5 /* AppDelegate.swift in Sources */,
 				853851381EF4FBF600A8B2B5 /* Rattit.xcdatamodeld in Sources */,
+				859564BE1EF682CF000D0BC8 /* SignInSignOutConstants.swift in Sources */,
 				852C39791EF5E95400C66C16 /* UserStateManager.swift in Sources */,
+				859564B61EF675C7000D0BC8 /* AskForSignInSignUpView.swift in Sources */,
+				853A3D1D1EF69E4C008EA58E /* Moment.swift in Sources */,
 				852C39761EF5DD7C00C66C16 /* EmailSignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

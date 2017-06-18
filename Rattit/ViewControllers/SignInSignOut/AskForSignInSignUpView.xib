@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Baskerville.ttc">
+            <string>Baskerville-Italic</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AskForSignInSignUpView" customModule="Rattit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="234"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kW1-Mt-DFM">
+                    <rect key="frame" x="35.5" y="20" width="304" height="36"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="googleLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Kia-Oc-V0A">
+                            <rect key="frame" x="8" y="2" width="32" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="32" id="IIf-Xk-q7R"/>
+                                <constraint firstAttribute="height" constant="32" id="OgC-YH-Bp1"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue With Google" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B6m-AB-Y8E">
+                            <rect key="frame" x="68" y="7" width="168" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.8717489839" green="0.30282711979999999" blue="0.23581030959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="B6m-AB-Y8E" firstAttribute="centerX" secondItem="kW1-Mt-DFM" secondAttribute="centerX" id="Brc-1c-3gX"/>
+                        <constraint firstAttribute="height" constant="36" id="C4a-8n-LqA"/>
+                        <constraint firstItem="B6m-AB-Y8E" firstAttribute="centerY" secondItem="kW1-Mt-DFM" secondAttribute="centerY" id="IQT-8a-wg8"/>
+                        <constraint firstItem="Kia-Oc-V0A" firstAttribute="leading" secondItem="kW1-Mt-DFM" secondAttribute="leading" constant="8" id="V2V-m8-eBH"/>
+                        <constraint firstAttribute="width" constant="304" id="kT4-tE-Vzo"/>
+                        <constraint firstItem="Kia-Oc-V0A" firstAttribute="centerY" secondItem="kW1-Mt-DFM" secondAttribute="centerY" id="knr-4O-Fhi"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="snf-pH-bzl" appends="YES" id="Pzl-Ju-rTW"/>
+                    </connections>
+                </view>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5co-CJ-V5j">
+                    <rect key="frame" x="35.5" y="64" width="304" height="36"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wechatLogo" translatesAutoresizingMaskIntoConstraints="NO" id="WAw-dD-KIf">
+                            <rect key="frame" x="8" y="2" width="32" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="Hki-eJ-JMx"/>
+                                <constraint firstAttribute="width" constant="32" id="eU2-hl-IsR"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue With Wechat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K7I-cD-0iS">
+                            <rect key="frame" x="66" y="8" width="172" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstItem="WAw-dD-KIf" firstAttribute="leading" secondItem="5co-CJ-V5j" secondAttribute="leading" constant="8" id="1l5-32-HSb"/>
+                        <constraint firstItem="K7I-cD-0iS" firstAttribute="centerY" secondItem="5co-CJ-V5j" secondAttribute="centerY" id="4JK-bC-t08"/>
+                        <constraint firstItem="K7I-cD-0iS" firstAttribute="centerX" secondItem="5co-CJ-V5j" secondAttribute="centerX" id="aYs-9J-ilG"/>
+                        <constraint firstAttribute="width" constant="304" id="c9L-yr-72y"/>
+                        <constraint firstItem="WAw-dD-KIf" firstAttribute="centerY" secondItem="5co-CJ-V5j" secondAttribute="centerY" id="hYQ-eO-zsh"/>
+                        <constraint firstAttribute="height" constant="36" id="mto-ak-QHP"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="iWl-nG-clt" appends="YES" id="2j0-5z-OIq"/>
+                    </connections>
+                </view>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UdT-dZ-lco">
+                    <rect key="frame" x="35.5" y="108" width="304" height="36"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emailLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Yhc-ej-F8v">
+                            <rect key="frame" x="8" y="2" width="32" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="g88-YM-Rai"/>
+                                <constraint firstAttribute="width" constant="32" id="kVA-J8-LXI"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue By Signing In" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yfd-J1-wIe">
+                            <rect key="frame" x="65.5" y="7" width="173" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.65824687479999999" blue="0.8976263404" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="304" id="1B8-1B-x2J"/>
+                        <constraint firstItem="Yhc-ej-F8v" firstAttribute="centerY" secondItem="UdT-dZ-lco" secondAttribute="centerY" id="2S6-g9-5dp"/>
+                        <constraint firstAttribute="height" constant="36" id="Ouf-UD-m6T"/>
+                        <constraint firstItem="Yfd-J1-wIe" firstAttribute="centerX" secondItem="UdT-dZ-lco" secondAttribute="centerX" id="fFN-M4-bc3"/>
+                        <constraint firstItem="Yhc-ej-F8v" firstAttribute="leading" secondItem="UdT-dZ-lco" secondAttribute="leading" constant="8" id="fLK-pf-7J6"/>
+                        <constraint firstItem="Yfd-J1-wIe" firstAttribute="centerY" secondItem="UdT-dZ-lco" secondAttribute="centerY" id="oUz-Tk-NSL"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="gFc-lW-oTZ" appends="YES" id="0QR-01-y0O"/>
+                    </connections>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wxf-o2-Nyq">
+                    <rect key="frame" x="35" y="152" width="131" height="30"/>
+                    <state key="normal" title="Sign Up With Email"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="A place to share and appreciate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EZ5-30-8w7">
+                    <rect key="frame" x="98" y="194.5" width="178.5" height="19.5"/>
+                    <fontDescription key="fontDescription" name="Baskerville-Italic" family="Baskerville" pointSize="17"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KaQ-qv-Wmt">
+                    <rect key="frame" x="208" y="152" width="131" height="30"/>
+                    <state key="normal" title="Continue As Visitor"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstItem="UdT-dZ-lco" firstAttribute="top" secondItem="5co-CJ-V5j" secondAttribute="bottom" constant="8" id="3WW-GJ-G9q"/>
+                <constraint firstItem="5co-CJ-V5j" firstAttribute="top" secondItem="kW1-Mt-DFM" secondAttribute="bottom" constant="8" id="6rd-m0-gE1"/>
+                <constraint firstItem="kW1-Mt-DFM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="Azf-Ms-0Kw"/>
+                <constraint firstItem="UdT-dZ-lco" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="IQB-bj-CH4"/>
+                <constraint firstItem="Wxf-o2-Nyq" firstAttribute="leading" secondItem="UdT-dZ-lco" secondAttribute="leading" id="LRJ-9l-8zJ"/>
+                <constraint firstItem="Wxf-o2-Nyq" firstAttribute="top" secondItem="UdT-dZ-lco" secondAttribute="bottom" constant="8" id="Mwe-Lh-drS"/>
+                <constraint firstItem="5co-CJ-V5j" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="PHc-wU-7BF"/>
+                <constraint firstItem="kW1-Mt-DFM" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ag8-tU-F3g"/>
+                <constraint firstItem="EZ5-30-8w7" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="cSr-AF-2eM"/>
+                <constraint firstAttribute="bottom" secondItem="EZ5-30-8w7" secondAttribute="bottom" constant="20" id="g0W-XM-W8t"/>
+                <constraint firstItem="KaQ-qv-Wmt" firstAttribute="trailing" secondItem="UdT-dZ-lco" secondAttribute="trailing" id="l6s-mk-5xi"/>
+                <constraint firstItem="KaQ-qv-Wmt" firstAttribute="top" secondItem="UdT-dZ-lco" secondAttribute="bottom" constant="8" id="zTt-4V-mi0"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="continueAsVisitorButton" destination="KaQ-qv-Wmt" id="Ho3-w7-REt"/>
+                <outlet property="continueBySigningInView" destination="UdT-dZ-lco" id="aAx-XC-hUG"/>
+                <outlet property="continueWithGoogleView" destination="kW1-Mt-DFM" id="S1h-Qp-Buh"/>
+                <outlet property="continueWithWechatView" destination="5co-CJ-V5j" id="yAr-si-Vwb"/>
+                <outlet property="signUpWithEmailButton" destination="Wxf-o2-Nyq" id="nE5-7E-Wff"/>
+            </connections>
+        </view>
+        <tapGestureRecognizer id="snf-pH-bzl">
+            <connections>
+                <action selector="tappedContinueWIthGoogle:" destination="iN0-l3-epB" id="lhr-Y0-uxj"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="iWl-nG-clt">
+            <connections>
+                <action selector="tappedContinueWithWechat:" destination="iN0-l3-epB" id="NH4-pH-hih"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="gFc-lW-oTZ">
+            <connections>
+                <action selector="tappedContinueBySigningIn:" destination="iN0-l3-epB" id="LrD-yG-YFA"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+    <resources>
+        <image name="emailLogo" width="32" height="32"/>
+        <image name="googleLogo" width="32" height="32"/>
+        <image name="wechatLogo" width="32" height="32"/>
+    </resources>
+</document>

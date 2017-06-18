@@ -6,6 +6,9 @@ target 'Rattit' do
   use_frameworks!
 
   # Pods for Rattit
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+
 
   target 'RattitTests' do
     inherit! :search_paths

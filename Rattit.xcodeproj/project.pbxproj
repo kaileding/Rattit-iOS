@@ -9,12 +9,17 @@
 /* Begin PBXBuildFile section */
 		614BF873DE06C9145043FE48 /* Pods_Rattit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F361B6012D8EDE55A8FF743 /* Pods_Rattit.framework */; };
 		6BBA130F33BF310813864C37 /* Pods_RattitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D36E614ACE838E16C8F5D85C /* Pods_RattitTests.framework */; };
+		852C395C1EF5C8F400C66C16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 852C395B1EF5C8E800C66C16 /* GoogleService-Info.plist */; };
+		852C395D1EF5C9C100C66C16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 852C395B1EF5C8E800C66C16 /* GoogleService-Info.plist */; };
+		852C39711EF5D81A00C66C16 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852C396F1EF5D81A00C66C16 /* SignIn.storyboard */; };
+		852C39741EF5DA2300C66C16 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C39731EF5DA2300C66C16 /* HomeViewController.swift */; };
+		852C39761EF5DD7C00C66C16 /* EmailSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C39751EF5DD7C00C66C16 /* EmailSignUpViewController.swift */; };
+		852C39791EF5E95400C66C16 /* UserStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C39781EF5E95400C66C16 /* UserStateManager.swift */; };
+		852C397A1EF5ED7700C66C16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852C396C1EF5D75B00C66C16 /* Main.storyboard */; };
+		852C397B1EF5ED7E00C66C16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852C396A1EF5D75B00C66C16 /* LaunchScreen.storyboard */; };
 		853851301EF4FBF600A8B2B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8538512F1EF4FBF600A8B2B5 /* AppDelegate.swift */; };
-		853851321EF4FBF600A8B2B5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853851311EF4FBF600A8B2B5 /* ViewController.swift */; };
-		853851351EF4FBF600A8B2B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 853851331EF4FBF600A8B2B5 /* Main.storyboard */; };
 		853851381EF4FBF600A8B2B5 /* Rattit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 853851361EF4FBF600A8B2B5 /* Rattit.xcdatamodeld */; };
 		8538513A1EF4FBF600A8B2B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 853851391EF4FBF600A8B2B5 /* Assets.xcassets */; };
-		8538513D1EF4FBF600A8B2B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8538513B1EF4FBF600A8B2B5 /* LaunchScreen.storyboard */; };
 		853851481EF4FBF600A8B2B5 /* RattitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853851471EF4FBF600A8B2B5 /* RattitTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,13 +36,17 @@
 /* Begin PBXFileReference section */
 		0F361B6012D8EDE55A8FF743 /* Pods_Rattit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Rattit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D1FF0439B7E2EA215D472D2 /* Pods-Rattit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rattit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Rattit/Pods-Rattit.debug.xcconfig"; sourceTree = "<group>"; };
+		852C395B1EF5C8E800C66C16 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		852C396B1EF5D75B00C66C16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		852C396D1EF5D75B00C66C16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		852C39701EF5D81A00C66C16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SignIn.storyboard; sourceTree = "<group>"; };
+		852C39731EF5DA2300C66C16 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		852C39751EF5DD7C00C66C16 /* EmailSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignUpViewController.swift; sourceTree = "<group>"; };
+		852C39781EF5E95400C66C16 /* UserStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStateManager.swift; sourceTree = "<group>"; };
 		8538512C1EF4FBF600A8B2B5 /* Rattit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rattit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8538512F1EF4FBF600A8B2B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		853851311EF4FBF600A8B2B5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		853851341EF4FBF600A8B2B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		853851371EF4FBF600A8B2B5 /* Rattit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Rattit.xcdatamodel; sourceTree = "<group>"; };
 		853851391EF4FBF600A8B2B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8538513C1EF4FBF600A8B2B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8538513E1EF4FBF600A8B2B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		853851431EF4FBF600A8B2B5 /* RattitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RattitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		853851471EF4FBF600A8B2B5 /* RattitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RattitTests.swift; sourceTree = "<group>"; };
@@ -68,9 +77,69 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		852C395A1EF5C8CE00C66C16 /* RattitInfo */ = {
+			isa = PBXGroup;
+			children = (
+				852C395B1EF5C8E800C66C16 /* GoogleService-Info.plist */,
+			);
+			name = RattitInfo;
+			sourceTree = "<group>";
+		};
+		852C395F1EF5D67A00C66C16 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				852C39721EF5D9FD00C66C16 /* HomePage */,
+				852C396E1EF5D79300C66C16 /* SignInSignOut */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		852C39601EF5D68700C66C16 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				852C39691EF5D75B00C66C16 /* Base.lproj */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		852C39691EF5D75B00C66C16 /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				852C396A1EF5D75B00C66C16 /* LaunchScreen.storyboard */,
+				852C396C1EF5D75B00C66C16 /* Main.storyboard */,
+				852C396F1EF5D81A00C66C16 /* SignIn.storyboard */,
+			);
+			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+		852C396E1EF5D79300C66C16 /* SignInSignOut */ = {
+			isa = PBXGroup;
+			children = (
+				852C39751EF5DD7C00C66C16 /* EmailSignUpViewController.swift */,
+			);
+			path = SignInSignOut;
+			sourceTree = "<group>";
+		};
+		852C39721EF5D9FD00C66C16 /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				852C39731EF5DA2300C66C16 /* HomeViewController.swift */,
+			);
+			path = HomePage;
+			sourceTree = "<group>";
+		};
+		852C39771EF5E90700C66C16 /* UserInfo */ = {
+			isa = PBXGroup;
+			children = (
+				852C39781EF5E95400C66C16 /* UserStateManager.swift */,
+			);
+			path = UserInfo;
+			sourceTree = "<group>";
+		};
 		853851231EF4FBF500A8B2B5 = {
 			isa = PBXGroup;
 			children = (
+				852C395A1EF5C8CE00C66C16 /* RattitInfo */,
 				8538512E1EF4FBF600A8B2B5 /* Rattit */,
 				853851461EF4FBF600A8B2B5 /* RattitTests */,
 				8538512D1EF4FBF600A8B2B5 /* Products */,
@@ -91,11 +160,11 @@
 		8538512E1EF4FBF600A8B2B5 /* Rattit */ = {
 			isa = PBXGroup;
 			children = (
+				852C39771EF5E90700C66C16 /* UserInfo */,
+				852C39601EF5D68700C66C16 /* Storyboards */,
+				852C395F1EF5D67A00C66C16 /* ViewControllers */,
 				8538512F1EF4FBF600A8B2B5 /* AppDelegate.swift */,
-				853851311EF4FBF600A8B2B5 /* ViewController.swift */,
-				853851331EF4FBF600A8B2B5 /* Main.storyboard */,
 				853851391EF4FBF600A8B2B5 /* Assets.xcassets */,
-				8538513B1EF4FBF600A8B2B5 /* LaunchScreen.storyboard */,
 				8538513E1EF4FBF600A8B2B5 /* Info.plist */,
 				853851361EF4FBF600A8B2B5 /* Rattit.xcdatamodeld */,
 			);
@@ -222,9 +291,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8538513D1EF4FBF600A8B2B5 /* LaunchScreen.storyboard in Resources */,
+				852C395C1EF5C8F400C66C16 /* GoogleService-Info.plist in Resources */,
+				852C39711EF5D81A00C66C16 /* SignIn.storyboard in Resources */,
 				8538513A1EF4FBF600A8B2B5 /* Assets.xcassets in Resources */,
-				853851351EF4FBF600A8B2B5 /* Main.storyboard in Resources */,
+				852C397B1EF5ED7E00C66C16 /* LaunchScreen.storyboard in Resources */,
+				852C397A1EF5ED7700C66C16 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +303,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				852C395D1EF5C9C100C66C16 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,9 +407,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				853851321EF4FBF600A8B2B5 /* ViewController.swift in Sources */,
 				853851301EF4FBF600A8B2B5 /* AppDelegate.swift in Sources */,
 				853851381EF4FBF600A8B2B5 /* Rattit.xcdatamodeld in Sources */,
+				852C39791EF5E95400C66C16 /* UserStateManager.swift in Sources */,
+				852C39741EF5DA2300C66C16 /* HomeViewController.swift in Sources */,
+				852C39761EF5DD7C00C66C16 /* EmailSignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,20 +434,28 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		853851331EF4FBF600A8B2B5 /* Main.storyboard */ = {
+		852C396A1EF5D75B00C66C16 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				853851341EF4FBF600A8B2B5 /* Base */,
+				852C396B1EF5D75B00C66C16 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		852C396C1EF5D75B00C66C16 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				852C396D1EF5D75B00C66C16 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		8538513B1EF4FBF600A8B2B5 /* LaunchScreen.storyboard */ = {
+		852C396F1EF5D81A00C66C16 /* SignIn.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8538513C1EF4FBF600A8B2B5 /* Base */,
+				852C39701EF5D81A00C66C16 /* Base */,
 			);
-			name = LaunchScreen.storyboard;
+			name = SignIn.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -553,6 +635,7 @@
 				8538514E1EF4FBF600A8B2B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8538514F1EF4FBF600A8B2B5 /* Build configuration list for PBXNativeTarget "RattitTests" */ = {
 			isa = XCConfigurationList;
@@ -561,6 +644,7 @@
 				853851511EF4FBF600A8B2B5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

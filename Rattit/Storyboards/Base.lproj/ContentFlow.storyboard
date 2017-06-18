@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Courier.ttc">
+            <string>Courier</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Dummy Home View Controller-->
+        <scene sceneID="6PE-WN-s4B">
+            <objects>
+                <viewController storyboardIdentifier="DummyHomeVC" id="h2f-Xo-BWk" customClass="DummyHomeViewController" customModule="Rattit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vgy-BX-GAQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="pd9-AO-eGB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DCb-1G-txm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rattit" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="COe-fG-GvH">
+                                <rect key="frame" x="16" y="72" width="343" height="196"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="196" id="CSe-FJ-znv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exclusive Attitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8lF-A9-3Qb">
+                                <rect key="frame" x="16" y="290" width="343" height="17"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exclusive Attitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xJ5-kl-sJh">
+                                <rect key="frame" x="16" y="315" width="343" height="17"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exclusive Attitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vn1-Az-XSk">
+                                <rect key="frame" x="16" y="340" width="343" height="17"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exclusive Attitude" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0eG-U3-8sS">
+                                <rect key="frame" x="16" y="365" width="343" height="17"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="COe-fG-GvH" firstAttribute="trailing" secondItem="DCb-1G-txm" secondAttribute="trailingMargin" id="6Ty-e7-0mf"/>
+                            <constraint firstItem="vn1-Az-XSk" firstAttribute="leading" secondItem="DCb-1G-txm" secondAttribute="leadingMargin" id="7hm-au-VRb"/>
+                            <constraint firstItem="vn1-Az-XSk" firstAttribute="trailing" secondItem="DCb-1G-txm" secondAttribute="trailingMargin" id="AdR-5L-dhb"/>
+                            <constraint firstItem="vn1-Az-XSk" firstAttribute="top" secondItem="xJ5-kl-sJh" secondAttribute="bottom" constant="8" id="Ay6-KP-1RX"/>
+                            <constraint firstItem="xJ5-kl-sJh" firstAttribute="trailing" secondItem="DCb-1G-txm" secondAttribute="trailingMargin" id="B2K-vy-HDV"/>
+                            <constraint firstItem="0eG-U3-8sS" firstAttribute="top" secondItem="vn1-Az-XSk" secondAttribute="bottom" constant="8" id="C18-tm-KM7"/>
+                            <constraint firstItem="8lF-A9-3Qb" firstAttribute="leading" secondItem="DCb-1G-txm" secondAttribute="leadingMargin" id="Cl3-Hw-3bf"/>
+                            <constraint firstItem="xJ5-kl-sJh" firstAttribute="leading" secondItem="DCb-1G-txm" secondAttribute="leadingMargin" id="IoS-Sr-hH7"/>
+                            <constraint firstItem="0eG-U3-8sS" firstAttribute="leading" secondItem="DCb-1G-txm" secondAttribute="leadingMargin" id="PzF-9O-dYV"/>
+                            <constraint firstItem="COe-fG-GvH" firstAttribute="top" secondItem="vgy-BX-GAQ" secondAttribute="bottom" constant="8" id="jIf-Fk-xba"/>
+                            <constraint firstItem="8lF-A9-3Qb" firstAttribute="top" secondItem="COe-fG-GvH" secondAttribute="bottom" constant="22" id="kgy-TG-rzm"/>
+                            <constraint firstItem="0eG-U3-8sS" firstAttribute="trailing" secondItem="DCb-1G-txm" secondAttribute="trailingMargin" id="lA9-zJ-e8K"/>
+                            <constraint firstItem="COe-fG-GvH" firstAttribute="leading" secondItem="DCb-1G-txm" secondAttribute="leadingMargin" id="qA0-8f-iJY"/>
+                            <constraint firstItem="xJ5-kl-sJh" firstAttribute="top" secondItem="8lF-A9-3Qb" secondAttribute="bottom" constant="8" id="szx-kw-xSU"/>
+                            <constraint firstItem="8lF-A9-3Qb" firstAttribute="trailing" secondItem="DCb-1G-txm" secondAttribute="trailingMargin" id="wgh-9i-e8f"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="gXE-kB-nL3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BTN-zA-hjG" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="551.20000000000005" y="192.95352323838082"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="H2S-Z9-p4u">
+            <objects>
+                <navigationController storyboardIdentifier="ContentFlowNavigationVC" automaticallyAdjustsScrollViewInsets="NO" id="oEW-4n-U7C" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Zdy-In-v88">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="h2f-Xo-BWk" kind="relationship" relationship="rootViewController" id="kCg-0F-fyB"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TR5-12-aFD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-177" y="193"/>
+        </scene>
+    </scenes>
+</document>

@@ -12,7 +12,6 @@
 		852C395C1EF5C8F400C66C16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 852C395B1EF5C8E800C66C16 /* GoogleService-Info.plist */; };
 		852C395D1EF5C9C100C66C16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 852C395B1EF5C8E800C66C16 /* GoogleService-Info.plist */; };
 		852C39711EF5D81A00C66C16 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852C396F1EF5D81A00C66C16 /* SignIn.storyboard */; };
-		852C39741EF5DA2300C66C16 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C39731EF5DA2300C66C16 /* HomeViewController.swift */; };
 		852C39761EF5DD7C00C66C16 /* EmailSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C39751EF5DD7C00C66C16 /* EmailSignUpViewController.swift */; };
 		852C39791EF5E95400C66C16 /* UserStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C39781EF5E95400C66C16 /* UserStateManager.swift */; };
 		852C397A1EF5ED7700C66C16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852C396C1EF5D75B00C66C16 /* Main.storyboard */; };
@@ -21,6 +20,12 @@
 		853851381EF4FBF600A8B2B5 /* Rattit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 853851361EF4FBF600A8B2B5 /* Rattit.xcdatamodeld */; };
 		8538513A1EF4FBF600A8B2B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 853851391EF4FBF600A8B2B5 /* Assets.xcassets */; };
 		853851481EF4FBF600A8B2B5 /* RattitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853851471EF4FBF600A8B2B5 /* RattitTests.swift */; };
+		8595649D1EF64C2C000D0BC8 /* ContentFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8595649B1EF64C2C000D0BC8 /* ContentFlow.storyboard */; };
+		859564A01EF64C5E000D0BC8 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8595649E1EF64C5E000D0BC8 /* Search.storyboard */; };
+		859564A31EF64CB2000D0BC8 /* Love.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 859564A11EF64CB2000D0BC8 /* Love.storyboard */; };
+		859564A61EF64CC7000D0BC8 /* Fly.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 859564A41EF64CC7000D0BC8 /* Fly.storyboard */; };
+		859564A91EF64DA0000D0BC8 /* DummyHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859564A81EF64DA0000D0BC8 /* DummyHomeViewController.swift */; };
+		859564AB1EF64E7A000D0BC8 /* HomeTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859564AA1EF64E7A000D0BC8 /* HomeTabBarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,7 +45,6 @@
 		852C396B1EF5D75B00C66C16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		852C396D1EF5D75B00C66C16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		852C39701EF5D81A00C66C16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SignIn.storyboard; sourceTree = "<group>"; };
-		852C39731EF5DA2300C66C16 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		852C39751EF5DD7C00C66C16 /* EmailSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignUpViewController.swift; sourceTree = "<group>"; };
 		852C39781EF5E95400C66C16 /* UserStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStateManager.swift; sourceTree = "<group>"; };
 		8538512C1EF4FBF600A8B2B5 /* Rattit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rattit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +55,12 @@
 		853851431EF4FBF600A8B2B5 /* RattitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RattitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		853851471EF4FBF600A8B2B5 /* RattitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RattitTests.swift; sourceTree = "<group>"; };
 		853851491EF4FBF600A8B2B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8595649C1EF64C2C000D0BC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ContentFlow.storyboard; sourceTree = "<group>"; };
+		8595649F1EF64C5E000D0BC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Search.storyboard; sourceTree = "<group>"; };
+		859564A21EF64CB2000D0BC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Love.storyboard; sourceTree = "<group>"; };
+		859564A51EF64CC7000D0BC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Fly.storyboard; sourceTree = "<group>"; };
+		859564A81EF64DA0000D0BC8 /* DummyHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyHomeViewController.swift; sourceTree = "<group>"; };
+		859564AA1EF64E7A000D0BC8 /* HomeTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarViewController.swift; sourceTree = "<group>"; };
 		A7FD9D66EAB2321515655810 /* Pods-RattitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RattitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RattitTests/Pods-RattitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D36E614ACE838E16C8F5D85C /* Pods_RattitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RattitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E121460B4EF7B5D2D894C3F5 /* Pods-Rattit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rattit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rattit/Pods-Rattit.release.xcconfig"; sourceTree = "<group>"; };
@@ -88,6 +98,7 @@
 		852C395F1EF5D67A00C66C16 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				859564A71EF64D54000D0BC8 /* ContentFlow */,
 				852C39721EF5D9FD00C66C16 /* HomePage */,
 				852C396E1EF5D79300C66C16 /* SignInSignOut */,
 			);
@@ -108,6 +119,10 @@
 				852C396A1EF5D75B00C66C16 /* LaunchScreen.storyboard */,
 				852C396C1EF5D75B00C66C16 /* Main.storyboard */,
 				852C396F1EF5D81A00C66C16 /* SignIn.storyboard */,
+				8595649B1EF64C2C000D0BC8 /* ContentFlow.storyboard */,
+				8595649E1EF64C5E000D0BC8 /* Search.storyboard */,
+				859564A11EF64CB2000D0BC8 /* Love.storyboard */,
+				859564A41EF64CC7000D0BC8 /* Fly.storyboard */,
 			);
 			path = Base.lproj;
 			sourceTree = "<group>";
@@ -123,7 +138,7 @@
 		852C39721EF5D9FD00C66C16 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
-				852C39731EF5DA2300C66C16 /* HomeViewController.swift */,
+				859564AA1EF64E7A000D0BC8 /* HomeTabBarViewController.swift */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -178,6 +193,14 @@
 				853851491EF4FBF600A8B2B5 /* Info.plist */,
 			);
 			path = RattitTests;
+			sourceTree = "<group>";
+		};
+		859564A71EF64D54000D0BC8 /* ContentFlow */ = {
+			isa = PBXGroup;
+			children = (
+				859564A81EF64DA0000D0BC8 /* DummyHomeViewController.swift */,
+			);
+			path = ContentFlow;
 			sourceTree = "<group>";
 		};
 		BF3990149A4691D3B64C48B9 /* Frameworks */ = {
@@ -291,9 +314,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				859564A61EF64CC7000D0BC8 /* Fly.storyboard in Resources */,
+				8595649D1EF64C2C000D0BC8 /* ContentFlow.storyboard in Resources */,
 				852C395C1EF5C8F400C66C16 /* GoogleService-Info.plist in Resources */,
 				852C39711EF5D81A00C66C16 /* SignIn.storyboard in Resources */,
 				8538513A1EF4FBF600A8B2B5 /* Assets.xcassets in Resources */,
+				859564A31EF64CB2000D0BC8 /* Love.storyboard in Resources */,
+				859564A01EF64C5E000D0BC8 /* Search.storyboard in Resources */,
 				852C397B1EF5ED7E00C66C16 /* LaunchScreen.storyboard in Resources */,
 				852C397A1EF5ED7700C66C16 /* Main.storyboard in Resources */,
 			);
@@ -407,10 +434,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				859564AB1EF64E7A000D0BC8 /* HomeTabBarViewController.swift in Sources */,
+				859564A91EF64DA0000D0BC8 /* DummyHomeViewController.swift in Sources */,
 				853851301EF4FBF600A8B2B5 /* AppDelegate.swift in Sources */,
 				853851381EF4FBF600A8B2B5 /* Rattit.xcdatamodeld in Sources */,
 				852C39791EF5E95400C66C16 /* UserStateManager.swift in Sources */,
-				852C39741EF5DA2300C66C16 /* HomeViewController.swift in Sources */,
 				852C39761EF5DD7C00C66C16 /* EmailSignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -456,6 +484,38 @@
 				852C39701EF5D81A00C66C16 /* Base */,
 			);
 			name = SignIn.storyboard;
+			sourceTree = "<group>";
+		};
+		8595649B1EF64C2C000D0BC8 /* ContentFlow.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8595649C1EF64C2C000D0BC8 /* Base */,
+			);
+			name = ContentFlow.storyboard;
+			sourceTree = "<group>";
+		};
+		8595649E1EF64C5E000D0BC8 /* Search.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8595649F1EF64C5E000D0BC8 /* Base */,
+			);
+			name = Search.storyboard;
+			sourceTree = "<group>";
+		};
+		859564A11EF64CB2000D0BC8 /* Love.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				859564A21EF64CB2000D0BC8 /* Base */,
+			);
+			name = Love.storyboard;
+			sourceTree = "<group>";
+		};
+		859564A41EF64CC7000D0BC8 /* Fly.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				859564A51EF64CC7000D0BC8 /* Base */,
+			);
+			name = Fly.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

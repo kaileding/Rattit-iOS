@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  DummyHomeViewController.swift
 //  Rattit
 //
 //  Created by DINGKaile on 6/17/17.
@@ -8,12 +8,21 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class DummyHomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if (!UserStateManager.userIsLoggedIn && !UserStateManager.userRefusedToLogin) {
+            let emailSignInVC = UIStoryboard(name: "SignIn", bundle: nil).instantiateViewController(withIdentifier: "EmailSignUpVC") as! EmailSignUpViewController
+            self.present(emailSignInVC, animated: true, completion: nil)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,14 +30,6 @@ class HomeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if (!UserStateManager.userIsLoggedIn && !UserStateManager.userRefusedToLogin) {
-            let emailSignInVC = UIStoryboard(name: "SignIn", bundle: nil).instantiateViewController(withIdentifier: "EmailSignUpViewController") as! EmailSignUpViewController
-            self.present(emailSignInVC, animated: true, completion: nil)
-        }
-    }
 
     /*
     // MARK: - Navigation

@@ -28,17 +28,19 @@ class DummyHomeViewController: UIViewController {
         self.mainContentTable.delegate = self
         let momentCellNib = UINib(nibName: "MomentTableViewCell", bundle: nil)
         self.mainContentTable.register(momentCellNib, forCellReuseIdentifier: "MomentTableViewCell")
-        
+        self.mainContentTable.rowHeight = UITableViewAutomaticDimension
+        self.mainContentTable.estimatedRowHeight = 65.0
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.mainContentTable.rowHeight = UITableViewAutomaticDimension
-        self.mainContentTable.estimatedRowHeight = 65.0
         
-        MomentManager.getLatestMoments {
-            self.mainContentTable.reloadData()
+        MomentManager.getLatestMoments { (hasNewMoments) in
+            print("pulled server, hasNewMoments is \(hasNewMoments)")
+            if (hasNewMoments) {
+                self.mainContentTable.reloadData()
+            }
         }
     }
 
@@ -75,8 +77,12 @@ extension DummyHomeViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        self.mainContentTable.deselectRow(at: indexPath, animated: false)
+        return nil
+    }
+    
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        print("scroll view did end dragging.")
         if (!UserStateManager.userIsLoggedIn && !UserStateManager.userRefusedToLogin && !UserStateManager.showingSignInAlert) {
             NotificationCenter.default.post(name: NSNotification.Name(SignInSignUpNotificationName.needsToSignInOrSignUp.rawValue), object: nil)
             print("Sent out needsToSignInOrSignUp notification.")

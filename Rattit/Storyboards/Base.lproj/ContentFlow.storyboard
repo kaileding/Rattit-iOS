@@ -22,30 +22,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HXz-qq-Duh">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="P7d-7j-4up">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                                        <color key="backgroundColor" red="0.99364992839999999" green="1" blue="0.4826953363" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="tintColor" red="0.99364992839999999" green="1" blue="0.4826953363" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <color key="separatorColor" red="0.99364992839999999" green="1" blue="0.4826953363" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="P7d-7j-4up" secondAttribute="bottom" id="4op-KE-s5w"/>
-                                    <constraint firstItem="P7d-7j-4up" firstAttribute="top" secondItem="HXz-qq-Duh" secondAttribute="top" id="LeY-qa-YVk"/>
+                                    <constraint firstItem="P7d-7j-4up" firstAttribute="top" secondItem="HXz-qq-Duh" secondAttribute="top" id="Hrp-ql-rsG"/>
                                     <constraint firstAttribute="trailing" secondItem="P7d-7j-4up" secondAttribute="trailing" id="VmC-qJ-xs5"/>
                                     <constraint firstItem="P7d-7j-4up" firstAttribute="leading" secondItem="HXz-qq-Duh" secondAttribute="leading" id="f9M-Hh-sC8"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="HXz-qq-Duh" firstAttribute="top" secondItem="vgy-BX-GAQ" secondAttribute="bottom" id="Y0L-rR-o17"/>
+                            <constraint firstItem="HXz-qq-Duh" firstAttribute="top" secondItem="DCb-1G-txm" secondAttribute="top" id="K6I-3p-mhE"/>
                             <constraint firstItem="HXz-qq-Duh" firstAttribute="leading" secondItem="DCb-1G-txm" secondAttribute="leading" id="gmQ-b4-oc9"/>
+                            <constraint firstAttribute="bottom" secondItem="HXz-qq-Duh" secondAttribute="bottom" id="qNa-oO-Y48"/>
                             <constraint firstAttribute="trailing" secondItem="HXz-qq-Duh" secondAttribute="trailing" id="wnw-BV-tDr"/>
-                            <constraint firstItem="pd9-AO-eGB" firstAttribute="top" secondItem="HXz-qq-Duh" secondAttribute="bottom" id="xTS-2r-dcP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gXE-kB-nL3"/>

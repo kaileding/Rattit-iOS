@@ -8,7 +8,7 @@ target 'Rattit' do
   # Pods for Rattit
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
-
+  pod 'Alamofire', '~> 4.4'
 
   target 'RattitTests' do
     inherit! :search_paths

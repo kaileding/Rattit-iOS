@@ -111,7 +111,7 @@ extension EmailSignUpViewController {
         guard let firstName = self.firstNameField.text, !firstName.isEmpty,
             let lastName = self.lastNameField.text, !lastName.isEmpty,
             let email = self.emailField.text, !email.isEmpty,
-            let password = self.passwordField.text, !password.isEmpty
+            let password = self.passwordField.text, password.count > 7
             else {
                 self.doneButton.alpha = 0.3
                 self.doneButton.isEnabled = false

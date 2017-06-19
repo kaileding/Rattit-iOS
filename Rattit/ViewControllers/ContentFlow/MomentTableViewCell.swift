@@ -12,23 +12,21 @@ class MomentTableViewCell: UITableViewCell {
 
     @IBOutlet weak var userImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var momentWordsLabel: UILabel!
     
     var moment: Moment! {
         didSet {
-            
+            self.titleLabel.text = moment.title
+            self.momentWordsLabel.text = moment.words
         }
     }
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        // UI Initialization code
         
-        // load UserImage
-//        self.userImage.image =
-//        self.userNameLabel.text = self.moment.
-        self.momentWordsLabel.text = self.moment.words
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

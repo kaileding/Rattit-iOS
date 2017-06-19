@@ -11,5 +11,6 @@ import Foundation
 class UserStateManager: NSObject {
     static var userIsLoggedIn: Bool = false
     static var userRefusedToLogin: Bool = false
+    static var showingSignInAlert: Bool = false
     
 }

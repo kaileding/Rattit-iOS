@@ -17,11 +17,6 @@ class HomeTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         let contentFlowSB: UIStoryboard = UIStoryboard(name: "ContentFlow", bundle: nil)
         let contentFlowNavVC = contentFlowSB.instantiateViewController(withIdentifier: "ContentFlowNavigationVC") as UIViewController
         contentFlowNavVC.tabBarItem = UITabBarItem(title: "", image: UIImage(named: "contentTab"), tag: 0)
@@ -43,23 +38,27 @@ class HomeTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         self.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(signUpOrSignInSuccess), name: NSNotification.Name(SignInSignUpNotificationName.successfulSignUpWithEmail.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showUpSignInAlert), name: NSNotification.Name(SignInSignUpNotificationName.needsToSignInOrSignUp.rawValue), object: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let blurContentEffect = UIBlurEffect(style: .dark)
-        self.blurContentEffectView = UIVisualEffectView(effect: blurContentEffect)
-        self.blurContentEffectView?.frame = self.view.bounds
-        
-        if (!UserStateManager.userIsLoggedIn && !UserStateManager.userRefusedToLogin) {
-            self.view.addSubview(self.blurContentEffectView!)
-            
+        if (self.blurContentEffectView == nil) {
+            let blurContentEffect = UIBlurEffect(style: .dark)
+            self.blurContentEffectView = UIVisualEffectView(effect: blurContentEffect)
+            self.blurContentEffectView?.alpha = 0.8
+            self.blurContentEffectView?.frame = self.view.bounds
+        }
+        if (self.askForSignInView == nil) {
             self.askForSignInView = AskForSignInSignUpView.instantiateFromXib()
-            self.askForSignInView?.frame = CGRect(x: 0.0, y: (self.view.bounds.height - 226.0), width: self.view.bounds.width, height: 234.0)
+            self.askForSignInView?.frame = CGRect(x: 0.0, y: self.view.bounds.height, width: self.view.bounds.width, height: 234.0)
             self.askForSignInView?.askForSignInSignUpDelegate = self
-            self.view.addSubview(self.askForSignInView!)
         }
     }
 
@@ -95,6 +94,18 @@ extension HomeTabBarViewController: AskForSignInSignUpDelegate {
 }
 
 extension HomeTabBarViewController {
+    func showUpSignInAlert() {
+        if (!UserStateManager.showingSignInAlert) {
+            self.view.addSubview(self.blurContentEffectView!)
+            self.view.addSubview(self.askForSignInView!)
+            UserStateManager.showingSignInAlert = true
+            UIView.animate(withDuration: 0.7, delay: 0.2, usingSpringWithDamping: 0.5, initialSpringVelocity: 2.0, options: .curveEaseInOut, animations: {
+                self.askForSignInView?.center.y -= 226.0
+            }, completion: nil)
+            
+        }
+    }
+    
     func signUpOrSignInSuccess() {
         // remove askForSignInView
         self.askForSignInView?.removeFromSuperview()

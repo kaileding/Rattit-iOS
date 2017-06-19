@@ -9,16 +9,17 @@
 import Foundation
 
 public enum SignInSignUpContinueType: Int {
-    case continueWithGoogle
-    case continueWithWechat
-    case continueBySigningIn
-    case continueBySigningUp
-    case continueAsVisitor
+    case continueWithGoogle = 0
+    case continueWithWechat = 1
+    case continueBySigningIn = 2
+    case continueBySigningUp = 3
+    case continueAsVisitor = 4
 }
 
 public enum SignInSignUpNotificationName: String {
-    case successfulSignUpWithEmail
-    case successfulSignInWithEmail
-    case successfulSignInWithGoogle
-    case successfulSignInWithWechat
+    case needsToSignInOrSignUp = "needsToSignInOrSignUpNotification"
+    case successfulSignUpWithEmail = "SuccessfulSignUpWithEmailNotification"
+    case successfulSignInWithEmail = "SuccessfulSignInWithEmailNotification"
+    case successfulSignInWithGoogle = "SuccessfulSignInWithGoogleNotification"
+    case successfulSignInWithWechat = "SuccessfulSignInWithWechatNotification"
 }

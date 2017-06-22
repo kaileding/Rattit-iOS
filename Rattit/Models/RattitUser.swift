@@ -7,14 +7,15 @@
 //
 
 import Foundation
+//import UIKit
 
-struct RattitUser {
-    var id: String?
+class RattitUser {
+    var id: String? = nil
     var userName: String
     var email: String
     var firstName: String
     var lastName: String
-    var gender: RattitUserGender
+    var gender: RattitUserGender = .untold
     var followerNumber: Int = 0
     var followeeNumber: Int = 0
     var createdAt: Date? = nil
@@ -23,6 +24,8 @@ struct RattitUser {
     var manifesto: String = ""
     var organization: [String] = []
     var avatarUrl: String? = nil
+    
+    // derived fields
     
     init?(dataValue: Any) {
         guard let json = dataValue as? [String: Any],
@@ -34,7 +37,8 @@ struct RattitUser {
             let gender = json["gender"] as? String,
             let followerNumber = json["follower_number"] as? Int,
             let followeeNumber = json["followee_number"] as? Int,
-            let createdAt = json["createdAt"] as? Date
+            let createdAtStr = json["createdAt"] as? String,
+            let createdAt = createdAtStr.utcStringToDate
             else {
                 return nil
         }

@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Dummy Home View Controller-->
+        <!--Home Content View Controller-->
         <scene sceneID="6PE-WN-s4B">
             <objects>
-                <viewController storyboardIdentifier="DummyHomeVC" id="h2f-Xo-BWk" customClass="DummyHomeViewController" customModule="Rattit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DummyHomeVC" id="h2f-Xo-BWk" customClass="HomeContentViewController" customModule="Rattit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vgy-BX-GAQ"/>
                         <viewControllerLayoutGuide type="bottom" id="pd9-AO-eGB"/>

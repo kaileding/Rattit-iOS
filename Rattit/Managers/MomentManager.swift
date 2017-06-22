@@ -12,50 +12,99 @@ import Alamofire
 class MomentManager: NSObject {
     static var downloadedMoments: [Moment] = []
     static var lastMomentCreatedAt: Date? = nil
+    static var lastMomentId: String? = nil
+    static var firstMomentCreatedAt: Date? = nil
+    static var firstMomentId: String? = nil
     static var lastRefreshTime: Date? = nil
+    static var networkService: Network = Network()
     
-    static func getLatestMoments(completion: @escaping (_ hasNewMoments: Bool) -> ()) {
+    static func loadMomentsFromServer(completion: @escaping () -> Void, errorHandler: @escaping (Error) -> Void) {
         
-        request(RATTIT_CONTENT_SERVICE_HOST+RATTIT_CONTENT_SERVICE_VERSION+"/moments",
-                method: .get,
-                parameters: nil,
-                encoding: URLEncoding.default,
-                headers: nil)
-            .validate(statusCode: 200..<300)
-            .validate(contentType: ["application/json"])
-            .responseJSON(queue: utilityQueue, options: .mutableContainers, completionHandler: { (dataResponse) in
+        MomentManager.networkService.callRattitContentService(httpRequest: .GetMoments, completion: { (dataValue) in
+            
+            if let responseBody = dataValue as? [String: Any], let count = responseBody["count"] as? Int, let rows = responseBody["rows"] as? [Any] {
                 
-                switch dataResponse.result {
-                case .success(let value):
-                    if let responseBody = value as? [String: Any], let count = responseBody["count"] as? Int, let rows = responseBody["rows"] as? [Any] {
-                        
-                        print("Got \(count) moments from server.")
-                        var tempMoments: [Moment] = []
+                print("Got \(count) moments from server.")
+                MomentManager.downloadedMoments = []
+                rows.forEach({ (dataValue) in
+                    if let moment = Moment(dataValue: dataValue) {
+                        MomentManager.downloadedMoments.append(moment)
+                        if let momentAuthor = moment.createdByInfo, let authorId = moment.createdBy {
+                            RattitUserManager.cachedUsers[authorId] = momentAuthor
+                        }
+                    }
+                })
+                if let lastMoment = MomentManager.downloadedMoments.first {
+                    MomentManager.lastMomentCreatedAt = lastMoment.createdAt
+                    MomentManager.lastMomentId = lastMoment.id
+                }
+                if let firstMoment = MomentManager.downloadedMoments.last {
+                    MomentManager.firstMomentCreatedAt = firstMoment.createdAt
+                    MomentManager.firstMomentId = firstMoment.id
+                }
+                
+                DispatchQueue.main.async {
+                    MomentManager.lastRefreshTime = Date()
+                    completion()
+                }
+            }
+            
+        }) { (error) in
+            errorHandler(error)
+        }
+        
+    }
+    
+    static func loadMomentsUpdatesFromServer(completion: @escaping (Bool) -> Void, errorHandler: @escaping (Error) -> Void) {
+        
+        if (MomentManager.lastMomentCreatedAt != nil) {
+            
+            MomentManager.networkService.callRattitContentService(httpRequest: .getMomentsNoEarlierThan(timeThreshold: MomentManager.lastMomentCreatedAt!.dateToUtcString), completion: { (dataValue) in
+                
+                if let responseBody = dataValue as? [String: Any], let count = responseBody["count"] as? Int, let rows = responseBody["rows"] as? [Any] {
+                    
+                    print("Got \(count) more moments from server.")
+                    if (count > 0) {
+                        var newMoments: [Moment] = []
                         rows.forEach({ (dataValue) in
                             if let moment = Moment(dataValue: dataValue) {
-                                if (MomentManager.lastMomentCreatedAt == nil
-                                    || (moment.createdAt! > MomentManager.lastMomentCreatedAt!)) {
-                                    tempMoments.append(moment)
+                                if (moment.id != MomentManager.lastMomentId) {
+                                    newMoments.append(moment)
+                                }
+                                if let momentAuthor = moment.createdByInfo, let authorId = moment.createdBy {
+                                    RattitUserManager.cachedUsers[authorId] = momentAuthor
                                 }
                             }
                         })
+                        MomentManager.downloadedMoments.insert(contentsOf: newMoments, at: 0)
+                        if let lastMoment = newMoments.first {
+                            MomentManager.lastMomentId = lastMoment.id
+                            MomentManager.lastMomentCreatedAt = lastMoment.createdAt
+                        }
                         
                         DispatchQueue.main.async {
-                            if (tempMoments.count > 0) {
-                                MomentManager.downloadedMoments.insert(contentsOf: tempMoments, at: 0)
-                                MomentManager.lastMomentCreatedAt = tempMoments.first?.createdAt
-                                completion(true)
-                            } else {
-                                completion(false)
-                            }
+                            MomentManager.lastRefreshTime = Date()
+                            completion(newMoments.count > 0)
+                        }
+                    } else {
+                        DispatchQueue.main.async {
+                            MomentManager.lastRefreshTime = Date()
+                            completion(false)
                         }
                     }
-                    
-                case .failure(let error):
-                    print("HTTP Call got failure: \(error.localizedDescription)")
                 }
                 
+            }, errorHandler: { (error) in
+                errorHandler(error)
             })
+            
+        } else {
+            print("lastMomentCreatedAt = nil, so loadMomentsFromServer() func called.")
+            MomentManager.loadMomentsFromServer(completion: {
+                completion(true)
+            }, errorHandler: errorHandler)
+        }
+        
     }
     
 }

@@ -1,5 +1,5 @@
 //
-//  DummyHomeViewController.swift
+//  HomeContentViewController.swift
 //  Rattit
 //
 //  Created by DINGKaile on 6/17/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DummyHomeViewController: UIViewController {
+class HomeContentViewController: UIViewController {
     
     @IBOutlet weak var mainContentView: UIView!
     @IBOutlet weak var mainContentTable: UITableView!
@@ -35,13 +35,22 @@ class DummyHomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+//        MomentManager.loadMomentsFromServer(completion: {
+//            print("pulled server success.")
+//            self.mainContentTable.reloadData()
+//        }) { (error) in
+//            print("failed to load from server.")
+//        }
         
-        MomentManager.getLatestMoments { (hasNewMoments) in
-            print("pulled server, hasNewMoments is \(hasNewMoments)")
+        MomentManager.loadMomentsUpdatesFromServer(completion: { (hasNewMoments) in
+            print("ViewDidAppear, hasNewMoments = \(hasNewMoments)")
             if (hasNewMoments) {
                 self.mainContentTable.reloadData()
             }
+        }) { (error) in
+            print("viewDidAppear, failed to load from server.")
         }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,7 +71,7 @@ class DummyHomeViewController: UIViewController {
     
 }
 
-extension DummyHomeViewController: UITableViewDataSource, UITableViewDelegate {
+extension HomeContentViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -74,6 +83,7 @@ extension DummyHomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MomentTableViewCell", for: indexPath) as! MomentTableViewCell
         cell.moment = MomentManager.downloadedMoments[indexPath.row]
+        
         return cell
     }
     

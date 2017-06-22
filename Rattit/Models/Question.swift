@@ -1,39 +1,37 @@
 //
-//  Moment.swift
+//  Question.swift
 //  Rattit
 //
-//  Created by DINGKaile on 6/18/17.
+//  Created by DINGKaile on 6/21/17.
 //  Copyright © 2017 KaileDing. All rights reserved.
 //
 
 import Foundation
 
-class Moment: MainContent {
+class Question: MainContent {
     var title: String!
-    var words: String!
     var accessLevel: RattitContentAccessLevel = .levelPublic
-    var likersNumber: Int = 0
-    var admirersNumber: Int = 0
+    var interestsNumber: Int = 0
+    var invitesNumber: Int = 0
     var pitysNumber: Int = 0
     
     // optional fields
+    var words: String? = nil
     var photos: [Photo]? = nil
     var hashTags: [String]? = nil
     var attachmentUrl: String? = nil
     var RattitLocationId: String? = nil
-    var togetherWith: [String]? = []
     
     init?(dataValue: Any) {
         guard let json = dataValue as? [String: Any],
             let id = json["id"] as? String,
             let title = json["title"] as? String,
-            let words = json["words"] as? String,
             let createdBy = json["createdBy"] as? String,
             let createdAtStr = json["createdAt"] as? String,
             let createdAt = createdAtStr.utcStringToDate,
             let accessLevel = json["access_level"] as? String,
-            let likersNumber = json["likers_number"] as? Int,
-            let admirersNumber = json["admirers_number"] as? Int,
+            let interestsNumber = json["interests_number"] as? Int,
+            let invitesNumber = json["invites_number"] as? Int,
             let pitysNumber = json["pitys_number"] as? Int
             else {
                 return nil
@@ -42,12 +40,14 @@ class Moment: MainContent {
         super.init(id: id, createdBy: createdBy, createdAt: createdAt)
         
         self.title = title
-        self.words = words
         self.accessLevel = RattitContentAccessLevel(rawValue: accessLevel) ?? .levelPublic
-        self.likersNumber = likersNumber
-        self.admirersNumber = admirersNumber
+        self.interestsNumber = interestsNumber
+        self.invitesNumber = invitesNumber
         self.pitysNumber = pitysNumber
         
+        if let words = json["words"] as? String {
+            self.words = words
+        }
         if let photosDataValues = json["photos"] as? [Any] {
             var tempPhotos: [Photo] = []
             photosDataValues.forEach { (photoData) in
@@ -66,9 +66,6 @@ class Moment: MainContent {
         if let RattitLocationId = json["location_id"] as? String {
             self.RattitLocationId = RattitLocationId
         }
-        if let togetherWith = json["together_with"] as? [String] {
-            self.togetherWith = togetherWith
-        }
         
         // additional information
         if let rattitUserObj = json["rattit_user"] {
@@ -77,9 +74,8 @@ class Moment: MainContent {
         
     }
     
-    init(title: String, words: String, accessLevel: RattitContentAccessLevel, createdBy: String) {
+    init(title: String, accessLevel: RattitContentAccessLevel, createdBy: String) {
         self.title = title
-        self.words = words
         self.accessLevel = accessLevel
         super.init(id: nil, createdBy: createdBy, createdAt: nil)
     }

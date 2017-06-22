@@ -27,11 +27,16 @@
 		853851481EF4FBF600A8B2B5 /* RattitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853851471EF4FBF600A8B2B5 /* RattitTests.swift */; };
 		853A3D1D1EF69E4C008EA58E /* Moment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A3D1C1EF69E4C008EA58E /* Moment.swift */; };
 		853A3D1F1EF69F1C008EA58E /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 853A3D1E1EF69F1C008EA58E /* Photo.swift */; };
+		8549F0C81EFB844B00385F1E /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8549F0C71EFB844B00385F1E /* DateExtensions.swift */; };
+		8549F0CB1EFB877800385F1E /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8549F0CA1EFB877800385F1E /* Network.swift */; };
+		8549F0CD1EFB878F00385F1E /* CommonRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8549F0CC1EFB878F00385F1E /* CommonRequest.swift */; };
+		8549F0CF1EFBBF5D00385F1E /* RattitErrorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8549F0CE1EFBBF5D00385F1E /* RattitErrorExtensions.swift */; };
+		8549F0D11EFBC78E00385F1E /* GalleryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8549F0D01EFBC78E00385F1E /* GalleryManager.swift */; };
 		8595649D1EF64C2C000D0BC8 /* ContentFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8595649B1EF64C2C000D0BC8 /* ContentFlow.storyboard */; };
 		859564A01EF64C5E000D0BC8 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8595649E1EF64C5E000D0BC8 /* Search.storyboard */; };
 		859564A31EF64CB2000D0BC8 /* Love.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 859564A11EF64CB2000D0BC8 /* Love.storyboard */; };
 		859564A61EF64CC7000D0BC8 /* Fly.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 859564A41EF64CC7000D0BC8 /* Fly.storyboard */; };
-		859564A91EF64DA0000D0BC8 /* DummyHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859564A81EF64DA0000D0BC8 /* DummyHomeViewController.swift */; };
+		859564A91EF64DA0000D0BC8 /* HomeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859564A81EF64DA0000D0BC8 /* HomeContentViewController.swift */; };
 		859564AB1EF64E7A000D0BC8 /* HomeTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859564AA1EF64E7A000D0BC8 /* HomeTabBarViewController.swift */; };
 		859564AF1EF6654E000D0BC8 /* MomentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859564AD1EF6654E000D0BC8 /* MomentTableViewCell.swift */; };
 		859564B01EF6654E000D0BC8 /* MomentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 859564AE1EF6654E000D0BC8 /* MomentTableViewCell.xib */; };
@@ -40,6 +45,14 @@
 		859564B61EF675C7000D0BC8 /* AskForSignInSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859564B51EF675C7000D0BC8 /* AskForSignInSignUpView.swift */; };
 		859564BA1EF68176000D0BC8 /* AskForSignInSignUpDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859564B91EF68176000D0BC8 /* AskForSignInSignUpDelegate.swift */; };
 		859564BE1EF682CF000D0BC8 /* SignInSignOutConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859564BD1EF682CF000D0BC8 /* SignInSignOutConstants.swift */; };
+		85E21A351EFA624C00D4F961 /* MainContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E21A341EFA624C00D4F961 /* MainContent.swift */; };
+		85E21A371EFA668C00D4F961 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E21A361EFA668C00D4F961 /* Question.swift */; };
+		85E21A391EFA6C3900D4F961 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E21A381EFA6C3900D4F961 /* Answer.swift */; };
+		85E21A3B1EFA701400D4F961 /* RattitCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E21A3A1EFA701400D4F961 /* RattitCollection.swift */; };
+		85E21A3D1EFA73E000D4F961 /* CommentForMoment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E21A3C1EFA73E000D4F961 /* CommentForMoment.swift */; };
+		85E21A3F1EFB4C4900D4F961 /* CommentForAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E21A3E1EFB4C4900D4F961 /* CommentForAnswer.swift */; };
+		85E21A411EFB4E7D00D4F961 /* RattitLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E21A401EFB4E7D00D4F961 /* RattitLocation.swift */; };
+		85E21A431EFB5A3400D4F961 /* RattitUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E21A421EFB5A3400D4F961 /* RattitUserManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,11 +89,16 @@
 		853851491EF4FBF600A8B2B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		853A3D1C1EF69E4C008EA58E /* Moment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Moment.swift; sourceTree = "<group>"; };
 		853A3D1E1EF69F1C008EA58E /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		8549F0C71EFB844B00385F1E /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		8549F0CA1EFB877800385F1E /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		8549F0CC1EFB878F00385F1E /* CommonRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonRequest.swift; sourceTree = "<group>"; };
+		8549F0CE1EFBBF5D00385F1E /* RattitErrorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RattitErrorExtensions.swift; sourceTree = "<group>"; };
+		8549F0D01EFBC78E00385F1E /* GalleryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryManager.swift; sourceTree = "<group>"; };
 		8595649C1EF64C2C000D0BC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ContentFlow.storyboard; sourceTree = "<group>"; };
 		8595649F1EF64C5E000D0BC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Search.storyboard; sourceTree = "<group>"; };
 		859564A21EF64CB2000D0BC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Love.storyboard; sourceTree = "<group>"; };
 		859564A51EF64CC7000D0BC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Fly.storyboard; sourceTree = "<group>"; };
-		859564A81EF64DA0000D0BC8 /* DummyHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyHomeViewController.swift; sourceTree = "<group>"; };
+		859564A81EF64DA0000D0BC8 /* HomeContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContentViewController.swift; sourceTree = "<group>"; };
 		859564AA1EF64E7A000D0BC8 /* HomeTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarViewController.swift; sourceTree = "<group>"; };
 		859564AD1EF6654E000D0BC8 /* MomentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentTableViewCell.swift; sourceTree = "<group>"; };
 		859564AE1EF6654E000D0BC8 /* MomentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MomentTableViewCell.xib; sourceTree = "<group>"; };
@@ -89,6 +107,14 @@
 		859564B51EF675C7000D0BC8 /* AskForSignInSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskForSignInSignUpView.swift; sourceTree = "<group>"; };
 		859564B91EF68176000D0BC8 /* AskForSignInSignUpDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskForSignInSignUpDelegate.swift; sourceTree = "<group>"; };
 		859564BD1EF682CF000D0BC8 /* SignInSignOutConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInSignOutConstants.swift; sourceTree = "<group>"; };
+		85E21A341EFA624C00D4F961 /* MainContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContent.swift; sourceTree = "<group>"; };
+		85E21A361EFA668C00D4F961 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		85E21A381EFA6C3900D4F961 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
+		85E21A3A1EFA701400D4F961 /* RattitCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RattitCollection.swift; sourceTree = "<group>"; };
+		85E21A3C1EFA73E000D4F961 /* CommentForMoment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentForMoment.swift; sourceTree = "<group>"; };
+		85E21A3E1EFB4C4900D4F961 /* CommentForAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentForAnswer.swift; sourceTree = "<group>"; };
+		85E21A401EFB4E7D00D4F961 /* RattitLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RattitLocation.swift; sourceTree = "<group>"; };
+		85E21A421EFB5A3400D4F961 /* RattitUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RattitUserManager.swift; sourceTree = "<group>"; };
 		A7FD9D66EAB2321515655810 /* Pods-RattitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RattitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RattitTests/Pods-RattitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D36E614ACE838E16C8F5D85C /* Pods_RattitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RattitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E121460B4EF7B5D2D894C3F5 /* Pods-Rattit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rattit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rattit/Pods-Rattit.release.xcconfig"; sourceTree = "<group>"; };
@@ -118,7 +144,10 @@
 		85023FA51EF7286E00E785FD /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				8549F0C91EFB870000385F1E /* Network */,
 				85023FA61EF728D100E785FD /* MomentManager.swift */,
+				85E21A421EFB5A3400D4F961 /* RattitUserManager.swift */,
+				8549F0D01EFBC78E00385F1E /* GalleryManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -127,6 +156,8 @@
 			isa = PBXGroup;
 			children = (
 				85023FAB1EF76D4700E785FD /* StringExtensions.swift */,
+				8549F0C71EFB844B00385F1E /* DateExtensions.swift */,
+				8549F0CE1EFBBF5D00385F1E /* RattitErrorExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -252,14 +283,30 @@
 				853A3D1C1EF69E4C008EA58E /* Moment.swift */,
 				853A3D1E1EF69F1C008EA58E /* Photo.swift */,
 				85023FA11EF71E7600E785FD /* RattitUser.swift */,
+				85E21A341EFA624C00D4F961 /* MainContent.swift */,
+				85E21A361EFA668C00D4F961 /* Question.swift */,
+				85E21A381EFA6C3900D4F961 /* Answer.swift */,
+				85E21A3A1EFA701400D4F961 /* RattitCollection.swift */,
+				85E21A3C1EFA73E000D4F961 /* CommentForMoment.swift */,
+				85E21A3E1EFB4C4900D4F961 /* CommentForAnswer.swift */,
+				85E21A401EFB4E7D00D4F961 /* RattitLocation.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		8549F0C91EFB870000385F1E /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				8549F0CA1EFB877800385F1E /* Network.swift */,
+				8549F0CC1EFB878F00385F1E /* CommonRequest.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		859564A71EF64D54000D0BC8 /* ContentFlow */ = {
 			isa = PBXGroup;
 			children = (
-				859564A81EF64DA0000D0BC8 /* DummyHomeViewController.swift */,
+				859564A81EF64DA0000D0BC8 /* HomeContentViewController.swift */,
 				859564AD1EF6654E000D0BC8 /* MomentTableViewCell.swift */,
 				859564AE1EF6654E000D0BC8 /* MomentTableViewCell.xib */,
 				859564B11EF66608000D0BC8 /* ContentFlowNavigationTitleView.xib */,
@@ -522,20 +569,33 @@
 				853A3D1F1EF69F1C008EA58E /* Photo.swift in Sources */,
 				859564BA1EF68176000D0BC8 /* AskForSignInSignUpDelegate.swift in Sources */,
 				859564AB1EF64E7A000D0BC8 /* HomeTabBarViewController.swift in Sources */,
-				859564A91EF64DA0000D0BC8 /* DummyHomeViewController.swift in Sources */,
+				859564A91EF64DA0000D0BC8 /* HomeContentViewController.swift in Sources */,
+				85E21A351EFA624C00D4F961 /* MainContent.swift in Sources */,
 				85023FA21EF71E7600E785FD /* RattitUser.swift in Sources */,
+				85E21A3F1EFB4C4900D4F961 /* CommentForAnswer.swift in Sources */,
+				85E21A431EFB5A3400D4F961 /* RattitUserManager.swift in Sources */,
 				859564AF1EF6654E000D0BC8 /* MomentTableViewCell.swift in Sources */,
+				85E21A391EFA6C3900D4F961 /* Answer.swift in Sources */,
 				853851301EF4FBF600A8B2B5 /* AppDelegate.swift in Sources */,
 				85023FA71EF728D100E785FD /* MomentManager.swift in Sources */,
 				85023FA91EF72E2100E785FD /* NetworkConstants.swift in Sources */,
 				85023FA41EF71F2700E785FD /* DataModelConstants.swift in Sources */,
 				853851381EF4FBF600A8B2B5 /* Rattit.xcdatamodeld in Sources */,
+				85E21A3D1EFA73E000D4F961 /* CommentForMoment.swift in Sources */,
 				859564BE1EF682CF000D0BC8 /* SignInSignOutConstants.swift in Sources */,
+				85E21A411EFB4E7D00D4F961 /* RattitLocation.swift in Sources */,
+				8549F0CD1EFB878F00385F1E /* CommonRequest.swift in Sources */,
+				85E21A371EFA668C00D4F961 /* Question.swift in Sources */,
 				852C39791EF5E95400C66C16 /* UserStateManager.swift in Sources */,
 				859564B61EF675C7000D0BC8 /* AskForSignInSignUpView.swift in Sources */,
 				853A3D1D1EF69E4C008EA58E /* Moment.swift in Sources */,
 				852C39761EF5DD7C00C66C16 /* EmailSignUpViewController.swift in Sources */,
+				8549F0D11EFBC78E00385F1E /* GalleryManager.swift in Sources */,
+				8549F0CB1EFB877800385F1E /* Network.swift in Sources */,
+				85E21A3B1EFA701400D4F961 /* RattitCollection.swift in Sources */,
+				8549F0CF1EFBBF5D00385F1E /* RattitErrorExtensions.swift in Sources */,
 				85023FAC1EF76D4700E785FD /* StringExtensions.swift in Sources */,
+				8549F0C81EFB844B00385F1E /* DateExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

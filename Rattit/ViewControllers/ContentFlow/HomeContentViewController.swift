@@ -35,13 +35,6 @@ class HomeContentViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        MomentManager.loadMomentsFromServer(completion: {
-//            print("pulled server success.")
-//            self.mainContentTable.reloadData()
-//        }) { (error) in
-//            print("failed to load from server.")
-//        }
-        
         MomentManager.loadMomentsUpdatesFromServer(completion: { (hasNewMoments) in
             print("ViewDidAppear, hasNewMoments = \(hasNewMoments)")
             if (hasNewMoments) {
@@ -82,7 +75,7 @@ extension HomeContentViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MomentTableViewCell", for: indexPath) as! MomentTableViewCell
-        cell.moment = MomentManager.downloadedMoments[indexPath.row]
+        cell.initializeContent(moment: MomentManager.downloadedMoments[indexPath.row], sideLength: Double(self.view.frame.width))
         
         return cell
     }

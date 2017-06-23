@@ -6,82 +6,19 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MomentTableViewCell" rowHeight="553" id="KGk-i7-Jjw" customClass="MomentTableViewCell" customModule="Rattit" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="553"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MomentTableViewCell" rowHeight="244" id="KGk-i7-Jjw" customClass="MomentTableViewCell" customModule="Rattit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="244"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="552.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="243.5"/>
                 <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="owlAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="EY3-lr-Mv6">
-                        <rect key="frame" x="8" y="8" width="30" height="30"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
-                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="30" id="gL0-xs-PDh"/>
-                            <constraint firstAttribute="height" constant="30" id="wFJ-gS-Xax"/>
-                        </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="userName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdX-bJ-ndl">
-                        <rect key="frame" x="46" y="8" width="66" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qRl-YH-hEs">
-                        <rect key="frame" x="46" y="33" width="313" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="momentWords" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Any-xe-OC9">
-                        <rect key="frame" x="46" y="62" width="313" height="17"/>
-                        <gestureRecognizers/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="timestamp" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W49-36-5Y4">
-                        <rect key="frame" x="307" y="8" width="60" height="15"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                </subviews>
-                <constraints>
-                    <constraint firstItem="Any-xe-OC9" firstAttribute="top" secondItem="qRl-YH-hEs" secondAttribute="bottom" constant="8" id="3Tl-2O-a8J"/>
-                    <constraint firstItem="W49-36-5Y4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="BfT-mO-n1J"/>
-                    <constraint firstItem="qRl-YH-hEs" firstAttribute="leading" secondItem="EY3-lr-Mv6" secondAttribute="trailing" constant="8" id="BtO-ZR-mih"/>
-                    <constraint firstItem="mdX-bJ-ndl" firstAttribute="top" secondItem="EY3-lr-Mv6" secondAttribute="top" id="ChH-Zx-nXr"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Any-xe-OC9" secondAttribute="trailing" constant="8" id="F2D-ia-89w"/>
-                    <constraint firstItem="EY3-lr-Mv6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="JcV-Dw-myn"/>
-                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Any-xe-OC9" secondAttribute="bottom" constant="8" id="Km5-61-LeA"/>
-                    <constraint firstItem="EY3-lr-Mv6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="L4Y-ay-mIY"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="qRl-YH-hEs" secondAttribute="trailing" constant="8" id="N9m-XQ-08B"/>
-                    <constraint firstItem="W49-36-5Y4" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="ODs-FG-VvR"/>
-                    <constraint firstItem="mdX-bJ-ndl" firstAttribute="leading" secondItem="EY3-lr-Mv6" secondAttribute="trailing" constant="8" id="iWE-Jc-S0H"/>
-                    <constraint firstItem="W49-36-5Y4" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mdX-bJ-ndl" secondAttribute="trailing" constant="16" id="p0M-v0-Nk8"/>
-                    <constraint firstItem="qRl-YH-hEs" firstAttribute="top" secondItem="mdX-bJ-ndl" secondAttribute="bottom" constant="8" id="v3s-2k-CnB"/>
-                    <constraint firstItem="Any-xe-OC9" firstAttribute="leading" secondItem="qRl-YH-hEs" secondAttribute="leading" id="zcj-gW-fxo"/>
-                </constraints>
             </tableViewCellContentView>
-            <connections>
-                <outlet property="momentCreatedAtTimeLabel" destination="W49-36-5Y4" id="ujR-gc-Hj3"/>
-                <outlet property="momentWordsLabel" destination="Any-xe-OC9" id="MKg-gp-gwO"/>
-                <outlet property="titleLabel" destination="qRl-YH-hEs" id="A25-eo-bOB"/>
-                <outlet property="userImage" destination="EY3-lr-Mv6" id="YvB-gw-BFd"/>
-                <outlet property="userNameLabel" destination="mdX-bJ-ndl" id="gr3-3v-rve"/>
-            </connections>
-            <point key="canvasLocation" x="-5.5" y="122.5"/>
+            <point key="canvasLocation" x="-5.5" y="277"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="owlAvatar" width="30" height="30"/>
-    </resources>
 </document>

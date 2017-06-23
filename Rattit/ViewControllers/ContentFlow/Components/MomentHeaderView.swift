@@ -15,6 +15,7 @@ class MomentHeaderView: UIView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var timeStampLabel: UILabel!
     
+    @IBOutlet weak var testing_btn: UIButton!
     /*
      // Only override draw() if you perform custom drawing.
      // An empty implementation adversely affects performance during animation.
@@ -25,6 +26,12 @@ class MomentHeaderView: UIView {
     
     static func instantiateFromXib() -> MomentHeaderView {
         let momentHeaderView = Bundle.main.loadNibNamed("MomentHeaderView", owner: self, options: nil)?.first as! MomentHeaderView
+        
+        momentHeaderView.avatarImageView.layer.cornerRadius = 18.0
+        momentHeaderView.avatarImageView.clipsToBounds = true
+        momentHeaderView.titleLabel.numberOfLines = 0
+        
+        momentHeaderView.testing_btn.addTarget(momentHeaderView, action: #selector(testingBtnPressed), for: .touchUpInside)
         
         return momentHeaderView
     }
@@ -48,6 +55,10 @@ class MomentHeaderView: UIView {
         
         self.titleLabel.text = moment.title
         self.timeStampLabel.text = moment.createdAt?.dateToPostTimeDescription
+    }
+    
+    func testingBtnPressed() {
+        print("##--- testing button pressed.")
     }
     
 }

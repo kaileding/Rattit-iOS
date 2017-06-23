@@ -15,27 +15,20 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Cf-FT-Ygk">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwi-0N-bni">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wZv-uI-kUn">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        </imageView>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </view>
+                </scrollView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="3Cf-FT-Ygk" secondAttribute="bottom" id="5g6-JH-rdG"/>
-                <constraint firstItem="3Cf-FT-Ygk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Vqk-6l-GYC"/>
-                <constraint firstAttribute="trailing" secondItem="3Cf-FT-Ygk" secondAttribute="trailing" id="caQ-nR-5CH"/>
-                <constraint firstItem="3Cf-FT-Ygk" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="jXn-fq-axy"/>
+                <constraint firstItem="vwi-0N-bni" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Ere-Id-2IL"/>
+                <constraint firstAttribute="trailing" secondItem="vwi-0N-bni" secondAttribute="trailing" id="JDb-tV-lDq"/>
+                <constraint firstAttribute="bottom" secondItem="vwi-0N-bni" secondAttribute="bottom" id="aYF-VE-I8r"/>
+                <constraint firstItem="vwi-0N-bni" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="nqX-5c-7EL"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="canvasView" destination="3Cf-FT-Ygk" id="F9E-RS-snx"/>
+                <outlet property="scrollView" destination="vwi-0N-bni" id="x2q-vf-Xj1"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="240.5"/>
         </view>

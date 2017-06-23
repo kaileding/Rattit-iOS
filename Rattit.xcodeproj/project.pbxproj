@@ -32,6 +32,12 @@
 		8549F0CD1EFB878F00385F1E /* CommonRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8549F0CC1EFB878F00385F1E /* CommonRequest.swift */; };
 		8549F0CF1EFBBF5D00385F1E /* RattitErrorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8549F0CE1EFBBF5D00385F1E /* RattitErrorExtensions.swift */; };
 		8549F0D11EFBC78E00385F1E /* GalleryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8549F0D01EFBC78E00385F1E /* GalleryManager.swift */; };
+		8549F0D31EFC990600385F1E /* PhotoScrollView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8549F0D21EFC990600385F1E /* PhotoScrollView.xib */; };
+		8549F0D51EFC992400385F1E /* PhotoScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8549F0D41EFC992400385F1E /* PhotoScrollView.swift */; };
+		8549F0D71EFCB66E00385F1E /* MomentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8549F0D61EFCB66E00385F1E /* MomentHeaderView.xib */; };
+		8549F0DA1EFCB85400385F1E /* MomentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8549F0D91EFCB85400385F1E /* MomentHeaderView.swift */; };
+		8549F0DC1EFCCAF900385F1E /* ContentFlowOptionBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8549F0DB1EFCCAF900385F1E /* ContentFlowOptionBar.xib */; };
+		8549F0DE1EFCCB1900385F1E /* ContentFlowOptionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8549F0DD1EFCCB1900385F1E /* ContentFlowOptionBar.swift */; };
 		8595649D1EF64C2C000D0BC8 /* ContentFlow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8595649B1EF64C2C000D0BC8 /* ContentFlow.storyboard */; };
 		859564A01EF64C5E000D0BC8 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8595649E1EF64C5E000D0BC8 /* Search.storyboard */; };
 		859564A31EF64CB2000D0BC8 /* Love.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 859564A11EF64CB2000D0BC8 /* Love.storyboard */; };
@@ -94,6 +100,12 @@
 		8549F0CC1EFB878F00385F1E /* CommonRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonRequest.swift; sourceTree = "<group>"; };
 		8549F0CE1EFBBF5D00385F1E /* RattitErrorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RattitErrorExtensions.swift; sourceTree = "<group>"; };
 		8549F0D01EFBC78E00385F1E /* GalleryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryManager.swift; sourceTree = "<group>"; };
+		8549F0D21EFC990600385F1E /* PhotoScrollView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoScrollView.xib; sourceTree = "<group>"; };
+		8549F0D41EFC992400385F1E /* PhotoScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoScrollView.swift; sourceTree = "<group>"; };
+		8549F0D61EFCB66E00385F1E /* MomentHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MomentHeaderView.xib; sourceTree = "<group>"; };
+		8549F0D91EFCB85400385F1E /* MomentHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentHeaderView.swift; sourceTree = "<group>"; };
+		8549F0DB1EFCCAF900385F1E /* ContentFlowOptionBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentFlowOptionBar.xib; sourceTree = "<group>"; };
+		8549F0DD1EFCCB1900385F1E /* ContentFlowOptionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFlowOptionBar.swift; sourceTree = "<group>"; };
 		8595649C1EF64C2C000D0BC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ContentFlow.storyboard; sourceTree = "<group>"; };
 		8595649F1EF64C5E000D0BC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Search.storyboard; sourceTree = "<group>"; };
 		859564A21EF64CB2000D0BC8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Love.storyboard; sourceTree = "<group>"; };
@@ -303,13 +315,27 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		8549F0D81EFCB67C00385F1E /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				859564B11EF66608000D0BC8 /* ContentFlowNavigationTitleView.xib */,
+				8549F0D41EFC992400385F1E /* PhotoScrollView.swift */,
+				8549F0D21EFC990600385F1E /* PhotoScrollView.xib */,
+				8549F0D91EFCB85400385F1E /* MomentHeaderView.swift */,
+				8549F0D61EFCB66E00385F1E /* MomentHeaderView.xib */,
+				8549F0DD1EFCCB1900385F1E /* ContentFlowOptionBar.swift */,
+				8549F0DB1EFCCAF900385F1E /* ContentFlowOptionBar.xib */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		859564A71EF64D54000D0BC8 /* ContentFlow */ = {
 			isa = PBXGroup;
 			children = (
+				8549F0D81EFCB67C00385F1E /* Components */,
 				859564A81EF64DA0000D0BC8 /* HomeContentViewController.swift */,
 				859564AD1EF6654E000D0BC8 /* MomentTableViewCell.swift */,
 				859564AE1EF6654E000D0BC8 /* MomentTableViewCell.xib */,
-				859564B11EF66608000D0BC8 /* ContentFlowNavigationTitleView.xib */,
 			);
 			path = ContentFlow;
 			sourceTree = "<group>";
@@ -450,11 +476,14 @@
 				8538513A1EF4FBF600A8B2B5 /* Assets.xcassets in Resources */,
 				859564A31EF64CB2000D0BC8 /* Love.storyboard in Resources */,
 				859564A01EF64C5E000D0BC8 /* Search.storyboard in Resources */,
+				8549F0D31EFC990600385F1E /* PhotoScrollView.xib in Resources */,
 				859564B01EF6654E000D0BC8 /* MomentTableViewCell.xib in Resources */,
 				852C397B1EF5ED7E00C66C16 /* LaunchScreen.storyboard in Resources */,
 				852C397A1EF5ED7700C66C16 /* Main.storyboard in Resources */,
+				8549F0D71EFCB66E00385F1E /* MomentHeaderView.xib in Resources */,
 				859564B41EF675B7000D0BC8 /* AskForSignInSignUpView.xib in Resources */,
 				859564B21EF66608000D0BC8 /* ContentFlowNavigationTitleView.xib in Resources */,
+				8549F0DC1EFCCAF900385F1E /* ContentFlowOptionBar.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,12 +600,14 @@
 				859564AB1EF64E7A000D0BC8 /* HomeTabBarViewController.swift in Sources */,
 				859564A91EF64DA0000D0BC8 /* HomeContentViewController.swift in Sources */,
 				85E21A351EFA624C00D4F961 /* MainContent.swift in Sources */,
+				8549F0DA1EFCB85400385F1E /* MomentHeaderView.swift in Sources */,
 				85023FA21EF71E7600E785FD /* RattitUser.swift in Sources */,
 				85E21A3F1EFB4C4900D4F961 /* CommentForAnswer.swift in Sources */,
 				85E21A431EFB5A3400D4F961 /* RattitUserManager.swift in Sources */,
 				859564AF1EF6654E000D0BC8 /* MomentTableViewCell.swift in Sources */,
 				85E21A391EFA6C3900D4F961 /* Answer.swift in Sources */,
 				853851301EF4FBF600A8B2B5 /* AppDelegate.swift in Sources */,
+				8549F0D51EFC992400385F1E /* PhotoScrollView.swift in Sources */,
 				85023FA71EF728D100E785FD /* MomentManager.swift in Sources */,
 				85023FA91EF72E2100E785FD /* NetworkConstants.swift in Sources */,
 				85023FA41EF71F2700E785FD /* DataModelConstants.swift in Sources */,
@@ -586,6 +617,7 @@
 				85E21A411EFB4E7D00D4F961 /* RattitLocation.swift in Sources */,
 				8549F0CD1EFB878F00385F1E /* CommonRequest.swift in Sources */,
 				85E21A371EFA668C00D4F961 /* Question.swift in Sources */,
+				8549F0DE1EFCCB1900385F1E /* ContentFlowOptionBar.swift in Sources */,
 				852C39791EF5E95400C66C16 /* UserStateManager.swift in Sources */,
 				859564B61EF675C7000D0BC8 /* AskForSignInSignUpView.swift in Sources */,
 				853A3D1D1EF69E4C008EA58E /* Moment.swift in Sources */,

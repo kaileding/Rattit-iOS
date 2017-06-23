@@ -15,7 +15,13 @@ class MomentTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var momentWordsLabel: UILabel!
     
-//    var networkService: Network = Network()
+    @IBOutlet weak var momentCreatedAtTimeLabel: UILabel!
+    
+    var imageScrollView: PhotoScrollView? = nil
+    
+    
+    
+    //    var networkService: Network = Network()
     
     var moment: Moment! {
         didSet {
@@ -31,8 +37,20 @@ class MomentTableViewCell: UITableViewCell {
                 self.userNameLabel.text = userName
             }
             
+            self.momentCreatedAtTimeLabel.text = moment.createdAt?.dateToPostTimeDescription
             self.titleLabel.text = moment.title
             self.momentWordsLabel.text = moment.words
+            
+            if let photos = moment.photos, photos.count > 0 {
+                if self.imageScrollView == nil {
+                    
+                } else {
+                    
+                }
+            } else if self.imageScrollView != nil {
+                self.imageScrollView?.removeFromSuperview()
+                self.imageScrollView = nil
+            }
         }
     }
     
@@ -41,7 +59,12 @@ class MomentTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // UI Initialization code
         
-        self.momentWordsLabel.numberOfLines = 3
+        self.userImage.layer.cornerRadius = 15.0
+        self.userImage.clipsToBounds = true
+        
+        self.momentWordsLabel.numberOfLines = 80
+        
+//        self.imageScrollView
         
     }
 

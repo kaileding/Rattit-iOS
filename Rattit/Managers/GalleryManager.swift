@@ -14,7 +14,7 @@ class GalleryManager: NSObject {
     
     static var networkService: Network = Network()
     
-    func getImageFromUrl(imageUrl: String, completion: @escaping (UIImage) -> Void, errorHandler: @escaping (Error) -> Void) {
+    static func getImageFromUrl(imageUrl: String, completion: @escaping (UIImage) -> Void, errorHandler: @escaping (Error) -> Void) {
         
         if let foundImage = GalleryManager.cachedImages[imageUrl] {
             completion(foundImage)

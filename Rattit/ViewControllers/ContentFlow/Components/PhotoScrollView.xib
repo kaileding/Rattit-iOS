@@ -18,16 +18,22 @@
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwi-0N-bni">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                 </scrollView>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="8t3-dc-cog">
+                    <rect key="frame" x="168" y="330" width="39" height="37"/>
+                </pageControl>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="8t3-dc-cog" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="CI2-mg-ya2"/>
                 <constraint firstItem="vwi-0N-bni" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Ere-Id-2IL"/>
                 <constraint firstAttribute="trailing" secondItem="vwi-0N-bni" secondAttribute="trailing" id="JDb-tV-lDq"/>
                 <constraint firstAttribute="bottom" secondItem="vwi-0N-bni" secondAttribute="bottom" id="aYF-VE-I8r"/>
+                <constraint firstAttribute="bottom" secondItem="8t3-dc-cog" secondAttribute="bottom" constant="8" id="fHm-jp-EIM"/>
                 <constraint firstItem="vwi-0N-bni" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="nqX-5c-7EL"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="pageControlIndicator" destination="8t3-dc-cog" id="VTT-cJ-hj4"/>
                 <outlet property="scrollView" destination="vwi-0N-bni" id="x2q-vf-Xj1"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="240.5"/>

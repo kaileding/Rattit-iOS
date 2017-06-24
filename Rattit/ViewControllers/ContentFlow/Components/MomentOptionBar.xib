@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-Book</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="MomentOptionBar" customModule="Rattit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="377" height="38"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMMENT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q9n-2a-peI">
+                    <rect key="frame" x="98" y="10" width="68.5" height="18"/>
+                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LIKE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jlg-Lq-OQW">
+                    <rect key="frame" x="40" y="10" width="26" height="18"/>
+                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="13"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q1J-Hz-1q3">
+                    <rect key="frame" x="74" y="7" width="24" height="24"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comments" translatesAutoresizingMaskIntoConstraints="NO" id="JHy-1u-zLT">
+                            <rect key="frame" x="2" y="2" width="20" height="20"/>
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="DcN-rv-51c"/>
+                                <constraint firstAttribute="width" constant="20" id="IWx-f9-xFp"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Gv-Jr-kI5">
+                            <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <action selector="commentButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="jXM-yC-LPZ"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="JHy-1u-zLT" firstAttribute="centerY" secondItem="Q1J-Hz-1q3" secondAttribute="centerY" id="3Ua-af-079"/>
+                        <constraint firstAttribute="width" constant="24" id="MQs-c1-zin"/>
+                        <constraint firstAttribute="height" constant="24" id="Se2-7H-TCS"/>
+                        <constraint firstItem="JHy-1u-zLT" firstAttribute="centerX" secondItem="Q1J-Hz-1q3" secondAttribute="centerX" id="e8S-EV-bHc"/>
+                    </constraints>
+                </view>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qrR-zr-gBY">
+                    <rect key="frame" x="16" y="7" width="24" height="24"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like" translatesAutoresizingMaskIntoConstraints="NO" id="Up2-hF-pWs">
+                            <rect key="frame" x="2" y="2" width="20" height="20"/>
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="hSH-ck-UFC"/>
+                                <constraint firstAttribute="height" constant="20" id="xdb-ai-T5D"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3x-SP-hs1">
+                            <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <action selector="likeButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="vuE-Fm-QG0"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="24" id="0sF-wz-efh"/>
+                        <constraint firstItem="Up2-hF-pWs" firstAttribute="centerY" secondItem="qrR-zr-gBY" secondAttribute="centerY" id="FHx-HS-0hh"/>
+                        <constraint firstAttribute="height" constant="24" id="L6X-pS-Is7"/>
+                        <constraint firstItem="Up2-hF-pWs" firstAttribute="centerX" secondItem="qrR-zr-gBY" secondAttribute="centerX" id="ooV-0I-reC"/>
+                    </constraints>
+                </view>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dh6-MG-3UD">
+                    <rect key="frame" x="337" y="7" width="24" height="24"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookmark" translatesAutoresizingMaskIntoConstraints="NO" id="5zz-7y-aMy">
+                            <rect key="frame" x="2" y="2" width="20" height="20"/>
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="adM-O4-y7j"/>
+                                <constraint firstAttribute="width" constant="20" id="cBt-sD-PiF"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Mv-vb-4ht">
+                            <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <action selector="bookmarkButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="qzy-Zm-i0E"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="1QB-HG-BPj"/>
+                        <constraint firstItem="5zz-7y-aMy" firstAttribute="centerY" secondItem="Dh6-MG-3UD" secondAttribute="centerY" id="FLR-i8-Vnc"/>
+                        <constraint firstAttribute="width" constant="24" id="bKS-gO-NI5"/>
+                        <constraint firstItem="5zz-7y-aMy" firstAttribute="centerX" secondItem="Dh6-MG-3UD" secondAttribute="centerX" id="mWB-Jj-Njv"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="qrR-zr-gBY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="0m8-67-jcQ"/>
+                <constraint firstItem="Q1J-Hz-1q3" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="9Wg-XX-eSH"/>
+                <constraint firstItem="jlg-Lq-OQW" firstAttribute="centerY" secondItem="qrR-zr-gBY" secondAttribute="centerY" id="A3s-dk-OHF"/>
+                <constraint firstItem="q9n-2a-peI" firstAttribute="centerY" secondItem="Q1J-Hz-1q3" secondAttribute="centerY" id="FON-To-eem"/>
+                <constraint firstAttribute="trailing" secondItem="Dh6-MG-3UD" secondAttribute="trailing" constant="16" id="IVH-SK-tnE"/>
+                <constraint firstItem="Dh6-MG-3UD" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Mt1-hF-Yx7"/>
+                <constraint firstItem="jlg-Lq-OQW" firstAttribute="leading" secondItem="qrR-zr-gBY" secondAttribute="trailing" id="NMO-m5-f9L"/>
+                <constraint firstItem="q9n-2a-peI" firstAttribute="leading" secondItem="Q1J-Hz-1q3" secondAttribute="trailing" id="O7E-7p-C19"/>
+                <constraint firstItem="Q1J-Hz-1q3" firstAttribute="leading" secondItem="jlg-Lq-OQW" secondAttribute="trailing" constant="8" id="Zr3-UI-fvS"/>
+                <constraint firstItem="qrR-zr-gBY" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="nVj-on-Ebc"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="bookmarkImage" destination="5zz-7y-aMy" id="zkd-MS-pTO"/>
+                <outlet property="commentsImage" destination="JHy-1u-zLT" id="ZqD-K5-KtJ"/>
+                <outlet property="commentsTextLabel" destination="q9n-2a-peI" id="Bwz-9S-zoO"/>
+                <outlet property="likeImage" destination="Up2-hF-pWs" id="sjW-FM-9JU"/>
+                <outlet property="likeTextLabel" destination="jlg-Lq-OQW" id="Wja-z0-YZG"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="102"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bookmark" width="46" height="46"/>
+        <image name="comments" width="46" height="46"/>
+        <image name="like" width="46" height="46"/>
+    </resources>
+</document>

@@ -26,21 +26,21 @@ extension Date {
         
         if (timeDiff.year! == 0 && timeDiff.month! == 0 && timeDiff.day! < 7) {
             if (timeDiff.day! > 1) {
-                return "\(timeDiff.day!) days ago"
+                return "\(timeDiff.day!) DAYS AGO"
             } else if (timeDiff.day! == 1) {
-                return "1 day ago"
+                return "1 DAY AGO"
             } else if (timeDiff.hour! > 1) {
-                return "\(timeDiff.hour!) hours ago"
+                return "\(timeDiff.hour!) HOURS AGO"
             } else if (timeDiff.hour! == 1) {
-                return "1 hour ago"
+                return "1 HOUR AGO"
             } else if (timeDiff.minute! > 1) {
-                return "\(timeDiff.minute!) mins ago"
+                return "\(timeDiff.minute!) MINS AGO"
             } else if (timeDiff.minute! == 1) {
-                return "1 min ago"
+                return "1 MIN AGO"
             } else if (timeDiff.second! > 1) {
-                return "\(timeDiff.second!) secs ago"
+                return "\(timeDiff.second!) SECS AGO"
             } else {
-                return "1 sec ago"
+                return "1 SEC AGO"
             }
         } else {
             let dateFormatter = DateFormatter()

@@ -15,7 +15,10 @@ class MomentHeaderView: UIView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var timeStampLabel: UILabel!
     
-    @IBOutlet weak var testing_btn: UIButton!
+    @IBOutlet weak var moreButton: UIButton!
+    let threeDotsImage: UIImage! = UIImage(named: "threeDots")?.withRenderingMode(.alwaysTemplate)
+    let threeSolidDotsImage: UIImage! = UIImage(named: "threeSolidDots")?.withRenderingMode(.alwaysTemplate)
+    
     /*
      // Only override draw() if you perform custom drawing.
      // An empty implementation adversely affects performance during animation.
@@ -31,7 +34,10 @@ class MomentHeaderView: UIView {
         momentHeaderView.avatarImageView.clipsToBounds = true
         momentHeaderView.titleLabel.numberOfLines = 0
         
-        momentHeaderView.testing_btn.addTarget(momentHeaderView, action: #selector(testingBtnPressed), for: .touchUpInside)
+        momentHeaderView.moreButton.setImage(momentHeaderView.threeDotsImage, for: .normal)
+        momentHeaderView.moreButton.setImage(momentHeaderView.threeSolidDotsImage, for: .selected)
+        momentHeaderView.moreButton.tintColor = UIColor.darkGray
+        momentHeaderView.moreButton.addTarget(momentHeaderView, action: #selector(moreButtonPressed), for: .touchUpInside)
         
         return momentHeaderView
     }
@@ -57,7 +63,7 @@ class MomentHeaderView: UIView {
         self.timeStampLabel.text = moment.createdAt?.dateToPostTimeDescription
     }
     
-    func testingBtnPressed() {
+    func moreButtonPressed() {
         print("##--- testing button pressed.")
     }
     

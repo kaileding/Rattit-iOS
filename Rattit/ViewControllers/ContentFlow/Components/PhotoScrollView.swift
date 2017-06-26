@@ -49,6 +49,7 @@ class PhotoScrollView: UIView {
             photos.enumerated().forEach({ (index, photo) in
                 let imageFrame = CGRect(x: Double(index)*sideLength, y: 0.0, width: sideLength, height: sideLength)
                 let photoImageView = UIImageView(frame: imageFrame)
+                photoImageView.contentMode = .scaleAspectFill
                 photoImageView.clipsToBounds = true
                 self.canvasView.addSubview(photoImageView)
                 

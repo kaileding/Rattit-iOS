@@ -50,6 +50,7 @@ class MomentHeaderView: UIView {
                 print("user has no image")
                 self.avatarImageView.image = UIImage(named: "owlAvatar")
             })
+            self.avatarImageView.contentMode = .scaleAspectFill
             
             RattitUserManager.getRattitUserForId(id: createdBy, completion: { (author) in
                 self.userNameLabel.text = author.userName

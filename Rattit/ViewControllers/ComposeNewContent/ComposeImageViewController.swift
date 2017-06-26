@@ -14,7 +14,7 @@ class ComposeImageViewController: UIViewController {
     
     @IBOutlet weak var photoPreviewView: UIView!
     
-    var photocaptureImageView: UIImageView! = UIImageView()
+    var photoCaptureImageView: CapturedPhotoView! = CapturedPhotoView.instantiateFromXib()
     
     @IBOutlet weak var shutterButton: UIButton!
     @IBOutlet weak var rotateCameraButton: UIButton!
@@ -115,7 +115,6 @@ class ComposeImageViewController: UIViewController {
     func initializeCameraPreview() {
         self.avCaptureSession.sessionPreset = AVCaptureSessionPresetMedium
         self.frontCameraDevice = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .front)
-//        self.frontCameraDevice.torchMode
         self.backCameraDevice = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .back)
         do {
             self.frontCameraInput = try AVCaptureDeviceInput(device: self.frontCameraDevice)
@@ -213,7 +212,6 @@ class ComposeImageViewController: UIViewController {
                 self.switchTorchMode(cameraDevice: self.frontCameraDevice!)
             }
         }
-        
     }
     
     func switchTorchMode(cameraDevice: AVCaptureDevice) {
@@ -250,15 +248,25 @@ extension ComposeImageViewController: AVCapturePhotoCaptureDelegate {
         
         if photoSampleBuffer != nil {
             if let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer!, previewPhotoSampleBuffer: nil) {
-                let capturedImage = UIImage(data: imageData)
-                print("success got the image.")
-                
-                self.photocaptureImageView.removeFromSuperview()
-                self.view.addSubview(self.photocaptureImageView)
-                self.photocaptureImageView.frame = self.photoPreviewView.frame
-                self.photocaptureImageView.image = capturedImage
-                self.photocaptureImageView.clipsToBounds = true
-                self.photocaptureImageView.contentMode = .scaleAspectFill
+                if let capturedImage = UIImage(data: imageData) {
+                    print("===== success got the image. image.size is ", capturedImage.size.debugDescription)
+                    
+//                    let rawImageRef: CGImage = capturedImage.cgImage!.cropping(to: CGRect(x: 0.0, y: 0.0, width: capturedImage.size.width, height: capturedImage.size.width))!
+//                    let croppedImage = UIImage(cgImage: rawImageRef, scale: 1.125, orientation: .right)
+//                    print("croppedImage.size is ", croppedImage.size.debugDescription)
+                    
+                    self.photoCaptureImageView.removeFromSuperview()
+                    self.photoPreviewView.addSubview(self.photoCaptureImageView)
+                    self.photoCaptureImageView.translatesAutoresizingMaskIntoConstraints = false
+                    self.photoCaptureImageView.leadingAnchor.constraint(equalTo: self.photoPreviewView.leadingAnchor, constant: 0.0).isActive = true
+                    self.photoCaptureImageView.trailingAnchor.constraint(equalTo: self.photoPreviewView.trailingAnchor, constant: 0.0).isActive = true
+                    self.photoCaptureImageView.topAnchor.constraint(equalTo: self.photoPreviewView.topAnchor, constant: 0.0).isActive = true
+                    self.photoCaptureImageView.bottomAnchor.constraint(equalTo: self.photoPreviewView.bottomAnchor, constant: 0.0).isActive = true
+                    self.photoCaptureImageView.layoutIfNeeded()
+                    self.photoCaptureImageView.initializeContent(image: capturedImage)
+                    self.photoCaptureImageView.sizeToFit()
+                    
+                }
                 
             }
         }

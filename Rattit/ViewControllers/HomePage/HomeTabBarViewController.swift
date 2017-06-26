@@ -40,6 +40,7 @@ class HomeTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(signUpOrSignInSuccess), name: NSNotification.Name(SignInSignUpNotificationName.successfulSignUpWithEmail.rawValue), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showUpSignInAlert), name: NSNotification.Name(SignInSignUpNotificationName.needsToSignInOrSignUp.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showUpComposeImageVC), name: NSNotification.Name(ComposeContentNotificationName.composeImage.rawValue), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -112,5 +113,11 @@ extension HomeTabBarViewController {
         self.askForSignInView?.removeFromSuperview()
         // remove blurContentEffectView
         self.blurContentEffectView?.removeFromSuperview()
+    }
+    
+    func showUpComposeImageVC() {
+        let contentSB = UIStoryboard.init(name: "ContentFlow", bundle: nil)
+        let composeImageNavigationVC = contentSB.instantiateViewController(withIdentifier: "ComposeImageNavigationVC") as UIViewController
+        self.present(composeImageNavigationVC, animated: true, completion: nil)
     }
 }

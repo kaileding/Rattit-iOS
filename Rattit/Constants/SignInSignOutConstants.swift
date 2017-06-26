@@ -17,7 +17,7 @@ public enum SignInSignUpContinueType: Int {
 }
 
 public enum SignInSignUpNotificationName: String {
-    case needsToSignInOrSignUp = "needsToSignInOrSignUpNotification"
+    case needsToSignInOrSignUp = "NeedsToSignInOrSignUpNotification"
     case successfulSignUpWithEmail = "SuccessfulSignUpWithEmailNotification"
     case successfulSignInWithEmail = "SuccessfulSignInWithEmailNotification"
     case successfulSignInWithGoogle = "SuccessfulSignInWithGoogleNotification"

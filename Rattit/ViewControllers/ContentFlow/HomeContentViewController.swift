@@ -15,14 +15,17 @@ class HomeContentViewController: UIViewController {
     
     
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         let contentFlowNavItemTitleView = Bundle.main.loadNibNamed("ContentFlowNavigationTitleView", owner: self, options: nil)?.first as! UIView
         self.navigationItem.titleView = contentFlowNavItemTitleView
+        let contentFlowRightNavBarItemView = ContentFlowRightNavBarItemView.instantiateFromXib()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: contentFlowRightNavBarItemView)
+        let contentFlowLeftNavBarItemView = ContentFlowLeftNavBarItemView.instantiateFromXib()
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: contentFlowLeftNavBarItemView)
+        
         
         self.mainContentTable.dataSource = self
         self.mainContentTable.delegate = self
@@ -91,5 +94,9 @@ extension HomeContentViewController: UITableViewDataSource, UITableViewDelegate 
             print("Sent out needsToSignInOrSignUp notification.")
         }
     }
+    
+}
+
+extension HomeContentViewController {
     
 }

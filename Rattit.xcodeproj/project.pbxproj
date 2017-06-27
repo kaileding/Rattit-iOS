@@ -69,6 +69,7 @@
 		85E21A3F1EFB4C4900D4F961 /* CommentForAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E21A3E1EFB4C4900D4F961 /* CommentForAnswer.swift */; };
 		85E21A411EFB4E7D00D4F961 /* RattitLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E21A401EFB4E7D00D4F961 /* RattitLocation.swift */; };
 		85E21A431EFB5A3400D4F961 /* RattitUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E21A421EFB5A3400D4F961 /* RattitUserManager.swift */; };
+		85F058D51F0260D5008808CE /* ComposeContentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F058D41F0260D5008808CE /* ComposeContentManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +148,7 @@
 		85E21A3E1EFB4C4900D4F961 /* CommentForAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentForAnswer.swift; sourceTree = "<group>"; };
 		85E21A401EFB4E7D00D4F961 /* RattitLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RattitLocation.swift; sourceTree = "<group>"; };
 		85E21A421EFB5A3400D4F961 /* RattitUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RattitUserManager.swift; sourceTree = "<group>"; };
+		85F058D41F0260D5008808CE /* ComposeContentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeContentManager.swift; sourceTree = "<group>"; };
 		A7FD9D66EAB2321515655810 /* Pods-RattitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RattitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RattitTests/Pods-RattitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D36E614ACE838E16C8F5D85C /* Pods_RattitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RattitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E121460B4EF7B5D2D894C3F5 /* Pods-Rattit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rattit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rattit/Pods-Rattit.release.xcconfig"; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				85023FA61EF728D100E785FD /* MomentManager.swift */,
 				85E21A421EFB5A3400D4F961 /* RattitUserManager.swift */,
 				8549F0D01EFBC78E00385F1E /* GalleryManager.swift */,
+				85F058D41F0260D5008808CE /* ComposeContentManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -679,6 +682,7 @@
 				8549F0D11EFBC78E00385F1E /* GalleryManager.swift in Sources */,
 				8549F0CB1EFB877800385F1E /* Network.swift in Sources */,
 				85E21A3B1EFA701400D4F961 /* RattitCollection.swift in Sources */,
+				85F058D51F0260D5008808CE /* ComposeContentManager.swift in Sources */,
 				8582A6461EFE326000483CDD /* ContentFlowRightNavBarItemView.swift in Sources */,
 				8549F0CF1EFBBF5D00385F1E /* RattitErrorExtensions.swift in Sources */,
 				85023FAC1EF76D4700E785FD /* StringExtensions.swift in Sources */,

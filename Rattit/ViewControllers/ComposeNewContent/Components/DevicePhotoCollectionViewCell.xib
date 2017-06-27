@@ -24,13 +24,24 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Lie-et-1y1">
                                 <rect key="frame" x="2" y="2" width="72" height="72"/>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3P5-Tc-cfA">
+                                <rect key="frame" x="40" y="40" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xyT-Xe-DMP">
+                                <rect key="frame" x="0.0" y="0.0" width="76" height="76"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Lie-et-1y1" firstAttribute="leading" secondItem="8Le-es-9Wf" secondAttribute="leading" constant="2" id="3Wg-Yk-uhN"/>
                             <constraint firstAttribute="bottom" secondItem="Lie-et-1y1" secondAttribute="bottom" constant="2" id="Q3f-ay-qn8"/>
                             <constraint firstAttribute="trailing" secondItem="Lie-et-1y1" secondAttribute="trailing" constant="2" id="QEL-wV-g3N"/>
+                            <constraint firstAttribute="bottom" secondItem="xyT-Xe-DMP" secondAttribute="bottom" id="dzl-SR-Hxw"/>
+                            <constraint firstAttribute="trailing" secondItem="xyT-Xe-DMP" secondAttribute="trailing" id="eJF-Mn-AUF"/>
+                            <constraint firstItem="xyT-Xe-DMP" firstAttribute="top" secondItem="8Le-es-9Wf" secondAttribute="top" id="mkK-Ms-3kr"/>
                             <constraint firstItem="Lie-et-1y1" firstAttribute="top" secondItem="8Le-es-9Wf" secondAttribute="top" constant="2" id="nLF-V9-j77"/>
+                            <constraint firstItem="xyT-Xe-DMP" firstAttribute="leading" secondItem="8Le-es-9Wf" secondAttribute="leading" id="xkN-LE-4Ei"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -43,7 +54,9 @@
             </constraints>
             <connections>
                 <outlet property="canvasView" destination="8Le-es-9Wf" id="O4S-aG-dYb"/>
+                <outlet property="checkMarkImageView" destination="3P5-Tc-cfA" id="bFh-2x-gfW"/>
                 <outlet property="photoImageView" destination="Lie-et-1y1" id="Yfp-vm-Bw6"/>
+                <outlet property="photoSurfaceButton" destination="xyT-Xe-DMP" id="bAu-f1-Vme"/>
             </connections>
         </collectionViewCell>
     </objects>

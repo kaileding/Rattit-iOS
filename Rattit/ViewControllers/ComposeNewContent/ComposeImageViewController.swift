@@ -22,7 +22,6 @@ class ComposeImageViewController: UIViewController {
     
     @IBOutlet weak var photoCollectionView: UICollectionView!
     
-    var photoAssetsOnDivece: PHFetchResult<PHAsset>? = nil
     
     var avCaptureSession: AVCaptureSession = AVCaptureSession()
     var stillImageOutput: AVCapturePhotoOutput?
@@ -163,8 +162,11 @@ class ComposeImageViewController: UIViewController {
     func initializePhotoLibrary() {
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-        self.photoAssetsOnDivece = PHAsset.fetchAssets(with: fetchOptions)
-        print("Successfully got ", self.photoAssetsOnDivece!.count, "Assets. ")
+        ComposeContentManager.photoAssetsOnDivece = PHAsset.fetchAssets(with: fetchOptions)
+        print("Successfully got ", ComposeContentManager.photoAssetsOnDivece!.count, "Assets. ")
+        if ComposeContentManager.photoAssetsOnDivece != nil {
+            ComposeContentManager.photosOnDeviceCheckArray = Array.init(repeating: 0, count: ComposeContentManager.photoAssetsOnDivece!.count)
+        }
     }
     
     
@@ -280,8 +282,8 @@ extension ComposeImageViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if self.photoAssetsOnDivece != nil {
-            return self.photoAssetsOnDivece!.count
+        if ComposeContentManager.photoAssetsOnDivece != nil {
+            return ComposeContentManager.photoAssetsOnDivece!.count
         } else {
             return 0
         }
@@ -290,8 +292,9 @@ extension ComposeImageViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cellView = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCollectionCell", for: indexPath) as! DevicePhotoCollectionViewCell
         
-        let assetObj = self.photoAssetsOnDivece!.object(at: indexPath.row)
-        cellView.initializeData(asset: assetObj)
+//        let assetObj = ComposeContentManager.photoAssetsOnDivece!.object(at: indexPath.row)
+//        let checkIndex = ComposeContentManager.photosOnDeviceCheckArray![indexPath.row]
+        cellView.initializeData(assetIndex: indexPath.row)
         
         return cellView
     }

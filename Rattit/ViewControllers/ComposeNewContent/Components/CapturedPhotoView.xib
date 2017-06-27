@@ -18,6 +18,10 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lEq-yO-5AT">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jEo-qa-QxS">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="302-Rk-lke">
                     <rect key="frame" x="16" y="320" width="30" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -41,6 +45,7 @@
                 <outlet property="cancelButton" destination="302-Rk-lke" id="RMV-dk-3qE"/>
                 <outlet property="capturedPhotoImageView" destination="lEq-yO-5AT" id="Lgz-4y-s8o"/>
                 <outlet property="confirmButton" destination="Gfg-QE-UJo" id="c00-Q9-Pop"/>
+                <outlet property="imageSurfaceButton" destination="jEo-qa-QxS" id="xU2-fp-DuY"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="63.5"/>
         </view>

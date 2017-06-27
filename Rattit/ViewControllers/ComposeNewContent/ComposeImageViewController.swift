@@ -113,7 +113,7 @@ class ComposeImageViewController: UIViewController {
     */
     
     func initializeCameraPreview() {
-        self.avCaptureSession.sessionPreset = AVCaptureSessionPresetMedium
+        self.avCaptureSession.sessionPreset = AVCaptureSessionPreset1280x720
         self.frontCameraDevice = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .front)
         self.backCameraDevice = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .back)
         do {

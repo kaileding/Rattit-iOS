@@ -8,11 +8,29 @@
 
 import Foundation
 
-class RattitError: Error {
+struct RattitError: Error {
     var errorInfo: String! = ""
+    var type: String! = ""
     
-    init(message: String) {
+    init(type: String, message: String) {
+        self.type = type
         self.errorInfo = message
+    }
+    
+    static func defultError(message: String) -> RattitError {
+        return RattitError(type: "defaultError", message: message)
+    }
+    
+    static func parseError(message: String) -> RattitError {
+        return RattitError(type: "parseError", message: message)
+    }
+    
+    static func netWorkError(message: String) -> RattitError {
+        return RattitError(type: "networkError", message: message)
+    }
+    
+    static func caseError(message: String) -> RattitError {
+        return RattitError(type: "caseError", message: message)
     }
     
 }

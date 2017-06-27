@@ -19,12 +19,12 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="302-Rk-lke">
-                    <rect key="frame" x="16" y="320" width="35" height="35"/>
+                    <rect key="frame" x="16" y="320" width="30" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" image="crossMark"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gfg-QE-UJo">
-                    <rect key="frame" x="16" y="320" width="35" height="35"/>
+                    <rect key="frame" x="16" y="320" width="30" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" image="checkMark"/>
                 </button>
@@ -46,7 +46,7 @@
         </view>
     </objects>
     <resources>
-        <image name="checkMark" width="35" height="35"/>
-        <image name="crossMark" width="35" height="35"/>
+        <image name="checkMark" width="30" height="30"/>
+        <image name="crossMark" width="30" height="30"/>
     </resources>
 </document>

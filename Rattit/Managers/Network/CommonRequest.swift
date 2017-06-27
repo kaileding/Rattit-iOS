@@ -47,8 +47,17 @@ struct CommonRequest {
         return getMomentsNoLaterThanRequest
     }
     
+    // get details of an user by its ID
     static func getUserWithId(id: String) -> CommonRequest {
         return CommonRequest(urlPath: "/users/\(id)", method: .get)
+    }
+    
+    // get signed AWS-S3 request to upload Image
+    static func getSignedURLToUploadImage(filename: String, fileType: String) -> CommonRequest {
+        var getSignedURLToUploadImageRequest = CommonRequest(urlPath: "/utilities/s3/signedurl", method: .get)
+        getSignedURLToUploadImageRequest.parameters = ["filename": filename,
+                                                       "filetype": fileType]
+        return getSignedURLToUploadImageRequest
     }
 }
 

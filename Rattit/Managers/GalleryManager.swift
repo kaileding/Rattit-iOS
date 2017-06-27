@@ -25,12 +25,38 @@ class GalleryManager: NSObject {
                     GalleryManager.cachedImages[imageUrl] = loadedmage
                     completion(loadedmage)
                 } else {
-                    errorHandler(RattitError(message: "Unable to create UIImage from data."))
+                    errorHandler(RattitError.parseError(message: "Unable to create UIImage from data."))
                 }
                 
             }, errorHandler: { (error) in
                 errorHandler(error)
             })
         }
+    }
+    
+    static func uploadImageToS3(imageName: String, image: UIImage, completion: @escaping () -> Void, errorHandler: @escaping (Error) -> Void) {
+        
+        if let imageData = UIImageJPEGRepresentation(image, 0.8) {
+            GalleryManager.networkService.callRattitContentService(httpRequest: .getSignedURLToUploadImage(filename: imageName+".jpeg", fileType: "jpeg"), completion: { (dataValue) in
+                
+                if let responseBody = dataValue as? [String: String], let signedRequest = responseBody["signedRequestUrl"], let publicUrl = responseBody["publicUrl"] {
+                    
+                    GalleryManager.networkService.callS3ToUploadFile(signedRequest: signedRequest, fileData: imageData, fileType: "jpeg", completion: {
+                        
+                        GalleryManager.cachedImages[publicUrl] = image
+                        completion()
+                    }, errorHandler: { (error) in
+                        errorHandler(error)
+                    })
+                }
+                
+            }) { (error) in
+                errorHandler(error)
+            }
+        } else {
+            errorHandler(RattitError.parseError(message: "Unable to get data from UIImage by UIImageJPEGRepresentation."))
+        }
+        
+        
     }
 }

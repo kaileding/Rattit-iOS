@@ -59,15 +59,15 @@ class CapturedPhotoView: UIView {
         
         let totalWidth = self.frame.width
         print("in initializeContent() func, the self.frame is ", self.frame.debugDescription, ". totalWidth is ", totalWidth, ". capturedPhotoImageView.frame is ", self.capturedPhotoImageView.frame.debugDescription)
-        self.cancelButton.frame = CGRect(x: -40.0, y: (totalWidth-55.0), width: 35.0, height: 35.0)
-        self.confirmButton.frame = CGRect(x: -40.0, y: (totalWidth-55.0), width: 35.0, height: 35.0)
+        self.cancelButton.frame = CGRect(x: -35.0, y: (totalWidth-50.0), width: 30.0, height: 30.0)
+        self.confirmButton.frame = CGRect(x: -35.0, y: (totalWidth-50.0), width: 30.0, height: 30.0)
         let cancelButtonLeadingSpace = 0.5*totalWidth - 45.0
-        let confirmButtonLeadingSpace = 0.5*totalWidth + 10.0
+        let confirmButtonLeadingSpace = 0.5*totalWidth + 15.0
         
         UIView.animate(withDuration: 0.7, delay: 0.1, usingSpringWithDamping: 0.5, initialSpringVelocity: 2.0, options: [.curveEaseIn], animations: {
             
-            self.cancelButton.frame = CGRect(x: cancelButtonLeadingSpace, y: (totalWidth-55.0), width: 35.0, height: 35.0)
-            self.confirmButton.frame = CGRect(x: confirmButtonLeadingSpace, y: (totalWidth-55.0), width: 35.0, height: 35.0)
+            self.cancelButton.frame = CGRect(x: cancelButtonLeadingSpace, y: (totalWidth-50.0), width: 30.0, height: 30.0)
+            self.confirmButton.frame = CGRect(x: confirmButtonLeadingSpace, y: (totalWidth-50.0), width: 30.0, height: 30.0)
             
         }, completion: {(success) in
             print("animation \(success)")
@@ -80,9 +80,32 @@ class CapturedPhotoView: UIView {
     }
     
     func confirmButtonPressed() {
-        print("confirmButtonPressed func.")
-        self.removeFromSuperview()
+        print("confirmButtonPressed func. Prepare to upload image file.")
+        
+        if let photoFile = self.capturedPhotoImageView.image, let photoCGImage = photoFile.cgImage {
+            let photoWidth = photoCGImage.width, photoHeight = photoCGImage.height
+            
+            print("photoCGImage.width is ", photoWidth, "photoCGImage.height is ", photoHeight)
+            let cropRect = (photoWidth < photoHeight) ?
+                CGRect(x: 0, y: Int(0.5*Double(photoHeight-photoWidth)), width: photoWidth, height: photoWidth) :
+                CGRect(x: Int(0.5*Double(photoWidth-photoHeight)), y: 0, width: photoHeight, height: photoHeight)
+                
+            if let croppedCGImage = photoCGImage.cropping(to: cropRect) {
+                let croppedUIImage = UIImage(cgImage: croppedCGImage, scale: 1.0, orientation: photoFile.imageOrientation)
+                print("croppedUIImage.size is ", croppedUIImage.size.debugDescription)
+                
+                GalleryManager.uploadImageToS3(imageName: "captured-\(Date().timeIntervalSinceReferenceDate)", image: croppedUIImage, completion: {
+                    print("Successfully called the GalleryManager.uploadImageToS3 func.")
+                }, errorHandler: { (error) in
+                    print("failed to execute GalleryManager.uploadImageToS3 func.")
+                })
+                
+            }
+        }
+        
+//        self.removeFromSuperview()
     }
+    
     
 
 }

@@ -29,7 +29,7 @@ class RattitUserManager: NSObject {
                     }
                 } else {
                     DispatchQueue.main.async {
-                        errorHandler(RattitError(message: "dataValue unable to be parsed into RattitUser type."))
+                        errorHandler(RattitError.parseError(message: "dataValue unable to be parsed into RattitUser type."))
                     }
                 }
                 
@@ -53,7 +53,7 @@ class RattitUserManager: NSObject {
                             RattitUserManager.cachedAvatars[avatarUrl] = avatarImage
                             completion(avatarImage)
                         } else {
-                            errorHandler(RattitError(message: "Unable to create UIImage from data."))
+                            errorHandler(RattitError.parseError(message: "Unable to create UIImage from data."))
                         }
                         
                     }, errorHandler: { (error) in
@@ -61,7 +61,7 @@ class RattitUserManager: NSObject {
                     })
                 }
             } else {
-                errorHandler(RattitError(message: "The User(id: \(userId)) does not have avatar URL."))
+                errorHandler(RattitError.caseError(message: "The User(id: \(userId)) does not have avatar URL."))
             }
             
         }) { (error) in

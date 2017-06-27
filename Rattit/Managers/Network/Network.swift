@@ -58,7 +58,30 @@ class Network {
                 }
             }
         }
+    }
+    
+    func callS3ToUploadFile(signedRequest: String, fileData: Data, fileType: String, completion: @escaping () -> Void, errorHandler: @escaping (Error) -> Void) {
         
+        upload(fileData,
+               to: signedRequest,
+               method: .put,
+               headers: ["Content-Type": fileType])
+            .uploadProgress(queue: utilityQueue,
+                            closure: { (progress) in
+                                
+//                                print("upload progress: \(progress.fractionCompleted*100.0)%")
+                                
+        }).responseJSON { (jsonResponse) in
+            
+            if let statusCode = jsonResponse.response?.statusCode, statusCode == 200 {
+                print("ok. upload done.")
+                completion()
+            } else {
+                DispatchQueue.main.async {
+                    errorHandler(RattitError.netWorkError(message: "upload to S3 got error response."))
+                }
+            }
+        }
     }
     
 }

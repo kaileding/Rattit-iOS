@@ -133,32 +133,8 @@ class CapturedPhotoView: UIView {
     func confirmButtonPressed() {
         print("confirmButtonPressed func. Prepare to upload image file.")
         
-//        self.uploadImageToServer()
         self.saveImageToDeviceLibrary()
         self.removeFromSuperview()
-    }
-    
-    func uploadImageToServer() {
-        if let photoFile = self.capturedPhotoImageView.image, let photoCGImage = photoFile.cgImage {
-            let photoWidth = photoCGImage.width, photoHeight = photoCGImage.height
-            
-            print("photoCGImage.width is ", photoWidth, "photoCGImage.height is ", photoHeight)
-            let cropRect = (photoWidth < photoHeight) ?
-                CGRect(x: 0, y: Int(0.5*Double(photoHeight-photoWidth)), width: photoWidth, height: photoWidth) :
-                CGRect(x: Int(0.5*Double(photoWidth-photoHeight)), y: 0, width: photoHeight, height: photoHeight)
-            
-            if let croppedCGImage = photoCGImage.cropping(to: cropRect) {
-                let croppedUIImage = UIImage(cgImage: croppedCGImage, scale: 1.0, orientation: photoFile.imageOrientation)
-                print("croppedUIImage.size is ", croppedUIImage.size.debugDescription)
-                
-                GalleryManager.uploadImageToS3(imageName: "captured-\(Date().timeIntervalSinceReferenceDate)", image: croppedUIImage, completion: {
-                    print("Successfully called the GalleryManager.uploadImageToS3 func.")
-                }, errorHandler: { (error) in
-                    print("failed to execute GalleryManager.uploadImageToS3 func.")
-                })
-                
-            }
-        }
     }
     
     func saveImageToDeviceLibrary() {

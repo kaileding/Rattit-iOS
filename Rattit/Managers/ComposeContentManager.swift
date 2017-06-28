@@ -59,6 +59,52 @@ class ComposeContentManager {
         self.composeContentDelegate?.updatePhotoCollectionCells()
     }
     
+    func initializePhotoLibrary() {
+        let fetchOptions = PHFetchOptions()
+        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+        self.photoAssetsOnDivece = PHAsset.fetchAssets(with: fetchOptions)
+        
+        let targetImageSize = CGSize(width: 0.5*320.0, height: 0.5*320.0)
+        self.photoAssetsOnDivece?.enumerateObjects({ (pHAsset, index, pointer) in
+            
+            let parsedImage = ComposeContentManager.phAssetToUIImage(asset: pHAsset, dimension: targetImageSize)
+            self.imageOfPhotosOnDevice.append(parsedImage)
+            
+        })
+        print("Successfully got ", self.photoAssetsOnDivece!.count, "Image assets. ")
+    }
+    
+    func uploadSelectedImagesToServer() {
+        self.indexOfCheckedPhotos.forEach { (indexVal) in
+            let selectedImage = self.imageOfPhotosOnDevice[indexVal]
+            self.uploadOneImageToServer(rawImage: selectedImage)
+        }
+    }
+    
+    func uploadOneImageToServer(rawImage: UIImage) {
+        if let photoCGImage = rawImage.cgImage {
+            let photoWidth = photoCGImage.width, photoHeight = photoCGImage.height
+            
+            print("photoCGImage.width is ", photoWidth, "photoCGImage.height is ", photoHeight)
+            let cropRect = (photoWidth < photoHeight) ?
+                CGRect(x: 0, y: Int(0.5*Double(photoHeight-photoWidth)), width: photoWidth, height: photoWidth) :
+                CGRect(x: Int(0.5*Double(photoWidth-photoHeight)), y: 0, width: photoHeight, height: photoHeight)
+            
+            if let croppedCGImage = photoCGImage.cropping(to: cropRect) {
+                let croppedUIImage = UIImage(cgImage: croppedCGImage, scale: 1.0, orientation: rawImage.imageOrientation)
+                print("croppedUIImage.size is ", croppedUIImage.size.debugDescription)
+                
+                GalleryManager.uploadImageToS3(imageName: "captured-\(Date().timeIntervalSinceReferenceDate)", image: croppedUIImage, completion: {
+                    print("Successfully called the GalleryManager.uploadImageToS3 func.")
+                }, errorHandler: { (error) in
+                    print("failed to execute GalleryManager.uploadImageToS3 func.")
+                })
+                
+            }
+        }
+    }
+    
+    // utilities
     static func phAssetToUIImage(asset: PHAsset, dimension: CGSize) -> UIImage {
         let manager = PHImageManager.default()
         let option = PHImageRequestOptions()
@@ -73,21 +119,6 @@ class ComposeContentManager {
             }
         }
         return resultImage
-    }
-    
-    func initializePhotoLibrary() {
-        let fetchOptions = PHFetchOptions()
-        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-        self.photoAssetsOnDivece = PHAsset.fetchAssets(with: fetchOptions)
-        
-        let targetImageSize = CGSize(width: 0.5*320.0, height: 0.5*320.0)
-        self.photoAssetsOnDivece?.enumerateObjects({ (pHAsset, index, pointer) in
-            
-            let parsedImage = ComposeContentManager.phAssetToUIImage(asset: pHAsset, dimension: targetImageSize)
-            self.imageOfPhotosOnDevice.append(parsedImage)
-            
-        })
-        print("Successfully got ", self.photoAssetsOnDivece!.count, "Image assets. ")
     }
     
 }

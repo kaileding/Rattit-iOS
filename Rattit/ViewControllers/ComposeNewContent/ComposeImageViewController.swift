@@ -45,6 +45,7 @@ class ComposeImageViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.navigationController?.navigationBar.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: 30.0)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelComposingImage))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.plain, target: self, action: #selector(confirmImagePickingAndGoNext))
         
         self.shutterButton.setImage(shutterButtonImage, for: .normal)
         self.shutterButton.tintColor = UIColor.white
@@ -171,6 +172,11 @@ class ComposeImageViewController: UIViewController {
     func cancelComposingImage() {
         print("cancelComposingImage() func called.")
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func confirmImagePickingAndGoNext() {
+        print("confirmImagePickingAndGoNext() func called.")
+        ComposeContentManager.sharedInstance.uploadSelectedImagesToServer()
     }
     
     func shutterButtonPressed() {

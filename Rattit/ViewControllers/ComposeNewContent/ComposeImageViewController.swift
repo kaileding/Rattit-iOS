@@ -31,6 +31,7 @@ class ComposeImageViewController: UIViewController {
     var frontCameraInput: AVCaptureInput? = nil
     var backCameraDevice: AVCaptureDevice? = nil
     var backCameraInput: AVCaptureInput? = nil
+    var captureInitializationDone: Bool = false
     
     
     let shutterButtonImage = UIImage(named: "shutterButton")?.withRenderingMode(.alwaysTemplate)
@@ -48,6 +49,7 @@ class ComposeImageViewController: UIViewController {
         self.navigationController?.navigationBar.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: 30.0)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelComposingImage))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.plain, target: self, action: #selector(confirmImagePickingAndGoNext))
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
         
         self.shutterButton.setImage(shutterButtonImage, for: .normal)
         self.shutterButton.tintColor = UIColor.white
@@ -87,11 +89,15 @@ class ComposeImageViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        self.videoPreviewLayer?.frame = self.photoPreviewView.bounds
-        
-        self.initializeCameraPreview()
-        self.attachCameraInput()
-        self.avCaptureSession.startRunning()
+        if !self.captureInitializationDone {
+            self.initializeCameraPreview()
+            self.attachCameraInput()
+            self.avCaptureSession.startRunning()
+            self.captureInitializationDone = true
+        }
+        if !self.avCaptureSession.isRunning {
+            self.avCaptureSession.startRunning()
+        }
         
         self.photoCollectionView.reloadData()
     }
@@ -179,7 +185,10 @@ class ComposeImageViewController: UIViewController {
     
     func confirmImagePickingAndGoNext() {
         print("confirmImagePickingAndGoNext() func called.")
-        ComposeContentManager.sharedInstance.uploadSelectedImagesToServer()
+        
+//        ComposeContentManager.sharedInstance.uploadSelectedImagesToServer()
+        
+        performSegue(withIdentifier: "FromComposeImageToComposeText", sender: self)
     }
     
     func shutterButtonPressed() {
@@ -301,6 +310,11 @@ extension ComposeImageViewController: UICollectionViewDelegate, UICollectionView
 extension ComposeImageViewController: ComposeContentDelegate {
     func updatePhotoCollectionCells() {
         self.photoCollectionView.reloadData()
+        if ComposeContentManager.sharedInstance.hasAtLeastOneImageChecked() {
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
+        } else {
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
+        }
     }
 }
 

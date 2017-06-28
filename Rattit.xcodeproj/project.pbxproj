@@ -22,6 +22,7 @@
 		852C39791EF5E95400C66C16 /* UserStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C39781EF5E95400C66C16 /* UserStateManager.swift */; };
 		852C397A1EF5ED7700C66C16 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852C396C1EF5D75B00C66C16 /* Main.storyboard */; };
 		852C397B1EF5ED7E00C66C16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852C396A1EF5D75B00C66C16 /* LaunchScreen.storyboard */; };
+		8533DF361F041AD10026C437 /* ComposeTextTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8533DF351F041AD10026C437 /* ComposeTextTableViewController.swift */; };
 		853851301EF4FBF600A8B2B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8538512F1EF4FBF600A8B2B5 /* AppDelegate.swift */; };
 		853851381EF4FBF600A8B2B5 /* Rattit.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 853851361EF4FBF600A8B2B5 /* Rattit.xcdatamodeld */; };
 		8538513A1EF4FBF600A8B2B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 853851391EF4FBF600A8B2B5 /* Assets.xcassets */; };
@@ -98,6 +99,7 @@
 		852C39701EF5D81A00C66C16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = SignIn.storyboard; sourceTree = "<group>"; };
 		852C39751EF5DD7C00C66C16 /* EmailSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignUpViewController.swift; sourceTree = "<group>"; };
 		852C39781EF5E95400C66C16 /* UserStateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStateManager.swift; sourceTree = "<group>"; };
+		8533DF351F041AD10026C437 /* ComposeTextTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeTextTableViewController.swift; sourceTree = "<group>"; };
 		8538512C1EF4FBF600A8B2B5 /* Rattit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rattit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8538512F1EF4FBF600A8B2B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		853851371EF4FBF600A8B2B5 /* Rattit.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Rattit.xcdatamodel; sourceTree = "<group>"; };
@@ -364,6 +366,7 @@
 			children = (
 				855700DE1F00C8150084356E /* Components */,
 				8582A64B1EFE419F00483CDD /* ComposeImageViewController.swift */,
+				8533DF351F041AD10026C437 /* ComposeTextTableViewController.swift */,
 			);
 			path = ComposeNewContent;
 			sourceTree = "<group>";
@@ -662,6 +665,7 @@
 				850779B21F03777D00598D60 /* ComposeContentDelegate.swift in Sources */,
 				8582A64A1EFE3C6D00483CDD /* ContentFlowLeftNavBarItemView.swift in Sources */,
 				85E21A431EFB5A3400D4F961 /* RattitUserManager.swift in Sources */,
+				8533DF361F041AD10026C437 /* ComposeTextTableViewController.swift in Sources */,
 				859564AF1EF6654E000D0BC8 /* MomentTableViewCell.swift in Sources */,
 				85E21A391EFA6C3900D4F961 /* Answer.swift in Sources */,
 				853851301EF4FBF600A8B2B5 /* AppDelegate.swift in Sources */,

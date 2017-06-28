@@ -59,6 +59,10 @@ class ComposeContentManager {
         self.composeContentDelegate?.updatePhotoCollectionCells()
     }
     
+    func hasAtLeastOneImageChecked() -> Bool {
+        return (self.indexOfCheckedPhotos.count > 0)
+    }
+    
     func initializePhotoLibrary() {
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]

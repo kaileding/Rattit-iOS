@@ -14,6 +14,7 @@
 		85023FA71EF728D100E785FD /* MomentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85023FA61EF728D100E785FD /* MomentManager.swift */; };
 		85023FA91EF72E2100E785FD /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85023FA81EF72E2100E785FD /* NetworkConstants.swift */; };
 		85023FAC1EF76D4700E785FD /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85023FAB1EF76D4700E785FD /* StringExtensions.swift */; };
+		850779B21F03777D00598D60 /* ComposeContentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850779B11F03777D00598D60 /* ComposeContentDelegate.swift */; };
 		852C395C1EF5C8F400C66C16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 852C395B1EF5C8E800C66C16 /* GoogleService-Info.plist */; };
 		852C395D1EF5C9C100C66C16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 852C395B1EF5C8E800C66C16 /* GoogleService-Info.plist */; };
 		852C39711EF5D81A00C66C16 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852C396F1EF5D81A00C66C16 /* SignIn.storyboard */; };
@@ -90,6 +91,7 @@
 		85023FA61EF728D100E785FD /* MomentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentManager.swift; sourceTree = "<group>"; };
 		85023FA81EF72E2100E785FD /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
 		85023FAB1EF76D4700E785FD /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		850779B11F03777D00598D60 /* ComposeContentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeContentDelegate.swift; sourceTree = "<group>"; };
 		852C395B1EF5C8E800C66C16 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		852C396B1EF5D75B00C66C16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		852C396D1EF5D75B00C66C16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 			isa = PBXGroup;
 			children = (
 				859564B91EF68176000D0BC8 /* AskForSignInSignUpDelegate.swift */,
+				850779B11F03777D00598D60 /* ComposeContentDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -656,6 +659,7 @@
 				8549F0DA1EFCB85400385F1E /* MomentHeaderView.swift in Sources */,
 				85023FA21EF71E7600E785FD /* RattitUser.swift in Sources */,
 				85E21A3F1EFB4C4900D4F961 /* CommentForAnswer.swift in Sources */,
+				850779B21F03777D00598D60 /* ComposeContentDelegate.swift in Sources */,
 				8582A64A1EFE3C6D00483CDD /* ContentFlowLeftNavBarItemView.swift in Sources */,
 				85E21A431EFB5A3400D4F961 /* RattitUserManager.swift in Sources */,
 				859564AF1EF6654E000D0BC8 /* MomentTableViewCell.swift in Sources */,

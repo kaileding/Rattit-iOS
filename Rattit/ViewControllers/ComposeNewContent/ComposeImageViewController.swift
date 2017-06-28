@@ -62,6 +62,8 @@ class ComposeImageViewController: UIViewController {
         self.photoCollectionView.dataSource = self
         let photoCellNib = UINib(nibName: "DevicePhotoCollectionViewCell", bundle: nil)
         self.photoCollectionView.register(photoCellNib, forCellWithReuseIdentifier: "photoCollectionCell")
+        
+        ComposeContentManager.sharedInstance.composeContentDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -112,7 +114,7 @@ class ComposeImageViewController: UIViewController {
     */
     
     func initializeCameraPreview() {
-        self.avCaptureSession.sessionPreset = AVCaptureSessionPreset1920x1080
+        self.avCaptureSession.sessionPreset = AVCaptureSessionPresetPhoto
         self.frontCameraDevice = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .front)
         self.backCameraDevice = AVCaptureDevice.defaultDevice(withDeviceType: .builtInWideAngleCamera, mediaType: AVMediaTypeVideo, position: .back)
         do {
@@ -148,6 +150,8 @@ class ComposeImageViewController: UIViewController {
                 self.avCaptureSession.addInput(self.backCameraInput!)
                 self.setFlashButtonBasedOnTorchMode(cameraDevice: self.backCameraDevice!)
                 print("--- using rear camera.")
+            } else {
+                print("--- cannot add backCameraInput.")
             }
         } else if (self.isUsingRearCamera == false) && (self.frontCameraInput != nil) && (self.backCameraInput != nil) {
             self.avCaptureSession.removeInput(self.backCameraInput!)
@@ -155,6 +159,8 @@ class ComposeImageViewController: UIViewController {
                 self.avCaptureSession.addInput(self.frontCameraInput!)
                 self.setFlashButtonBasedOnTorchMode(cameraDevice: self.frontCameraDevice!)
                 print("--- using front camera.")
+            } else {
+                print("--- cannot add frontCameraInput.")
             }
         }
     }
@@ -162,10 +168,11 @@ class ComposeImageViewController: UIViewController {
     func initializePhotoLibrary() {
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-        ComposeContentManager.photoAssetsOnDivece = PHAsset.fetchAssets(with: fetchOptions)
-        print("Successfully got ", ComposeContentManager.photoAssetsOnDivece!.count, "Assets. ")
-        if ComposeContentManager.photoAssetsOnDivece != nil {
-            ComposeContentManager.photosOnDeviceCheckArray = Array.init(repeating: 0, count: ComposeContentManager.photoAssetsOnDivece!.count)
+        ComposeContentManager.sharedInstance.photoAssetsOnDivece = PHAsset.fetchAssets(with: fetchOptions)
+        print("Successfully got ", ComposeContentManager.sharedInstance.photoAssetsOnDivece!.count, "Assets. ")
+        if ComposeContentManager.sharedInstance.photoAssetsOnDivece != nil {
+            ComposeContentManager.sharedInstance.indexOfCheckedPhotos = []
+            self.photoCollectionView.reloadData()
         }
     }
     
@@ -253,10 +260,6 @@ extension ComposeImageViewController: AVCapturePhotoCaptureDelegate {
                 if let capturedImage = UIImage(data: imageData) {
                     print("===== success got the image. image.size is ", capturedImage.size.debugDescription)
                     
-//                    let rawImageRef: CGImage = capturedImage.cgImage!.cropping(to: CGRect(x: 0.0, y: 0.0, width: capturedImage.size.width, height: capturedImage.size.width))!
-//                    let croppedImage = UIImage(cgImage: rawImageRef, scale: 1.125, orientation: .right)
-//                    print("croppedImage.size is ", croppedImage.size.debugDescription)
-                    
                     self.photoCaptureImageView.removeFromSuperview()
                     self.photoPreviewView.addSubview(self.photoCaptureImageView)
                     self.photoCaptureImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -282,8 +285,8 @@ extension ComposeImageViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if ComposeContentManager.photoAssetsOnDivece != nil {
-            return ComposeContentManager.photoAssetsOnDivece!.count
+        if ComposeContentManager.sharedInstance.photoAssetsOnDivece != nil {
+            return ComposeContentManager.sharedInstance.photoAssetsOnDivece!.count
         } else {
             return 0
         }
@@ -292,12 +295,18 @@ extension ComposeImageViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cellView = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCollectionCell", for: indexPath) as! DevicePhotoCollectionViewCell
         
-//        let assetObj = ComposeContentManager.photoAssetsOnDivece!.object(at: indexPath.row)
-//        let checkIndex = ComposeContentManager.photosOnDeviceCheckArray![indexPath.row]
         cellView.initializeData(assetIndex: indexPath.row)
         
         return cellView
     }
     
-    
 }
+
+extension ComposeImageViewController: ComposeContentDelegate {
+    func updatePhotoCollectionCells() {
+        self.photoCollectionView.reloadData()
+    }
+}
+
+
+

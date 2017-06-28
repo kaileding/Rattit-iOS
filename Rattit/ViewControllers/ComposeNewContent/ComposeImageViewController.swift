@@ -69,10 +69,11 @@ class ComposeImageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        ComposeContentManager.sharedInstance.indexOfCheckedPhotos = []
+        
         self.initializeCameraPreview()
         self.attachCameraInput()
         self.avCaptureSession.startRunning()
-        self.initializePhotoLibrary()
         
         let photoCollectionFlowLayout = UICollectionViewFlowLayout()
         let totalWidth = self.view.frame.width
@@ -88,7 +89,7 @@ class ComposeImageViewController: UIViewController {
         super.viewDidAppear(animated)
         
         self.videoPreviewLayer?.frame = self.photoPreviewView.bounds
-        
+        self.photoCollectionView.reloadData()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -165,16 +166,6 @@ class ComposeImageViewController: UIViewController {
         }
     }
     
-    func initializePhotoLibrary() {
-        let fetchOptions = PHFetchOptions()
-        fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-        ComposeContentManager.sharedInstance.photoAssetsOnDivece = PHAsset.fetchAssets(with: fetchOptions)
-        print("Successfully got ", ComposeContentManager.sharedInstance.photoAssetsOnDivece!.count, "Assets. ")
-        if ComposeContentManager.sharedInstance.photoAssetsOnDivece != nil {
-            ComposeContentManager.sharedInstance.indexOfCheckedPhotos = []
-            self.photoCollectionView.reloadData()
-        }
-    }
     
     
     func cancelComposingImage() {
@@ -285,11 +276,7 @@ extension ComposeImageViewController: UICollectionViewDelegate, UICollectionView
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if ComposeContentManager.sharedInstance.photoAssetsOnDivece != nil {
-            return ComposeContentManager.sharedInstance.photoAssetsOnDivece!.count
-        } else {
-            return 0
-        }
+        return ComposeContentManager.sharedInstance.imageOfPhotosOnDevice.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -62,6 +62,8 @@ class HomeTabBarViewController: UITabBarController, UITabBarControllerDelegate {
             self.askForSignInView?.frame = CGRect(x: 0.0, y: self.view.bounds.height, width: self.view.bounds.width, height: 234.0)
             self.askForSignInView?.askForSignInSignUpDelegate = self
         }
+        
+        ComposeContentManager.sharedInstance.initializePhotoLibrary()
     }
 
     override func didReceiveMemoryWarning() {

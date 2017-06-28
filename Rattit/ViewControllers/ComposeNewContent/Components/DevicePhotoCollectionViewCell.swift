@@ -41,14 +41,8 @@ class DevicePhotoCollectionViewCell: UICollectionViewCell {
     
     func initializeData(assetIndex: Int) {
         
-        let outWidth = self.frame.width
-        let imageSize = CGSize(width: (outWidth-4.0), height: (outWidth-4.0))
-        
         self.indexOfPhotosInDevice = assetIndex
-        if let asset = ComposeContentManager.sharedInstance.getPhotoAsset(forCell: assetIndex) {
-            let image = self.phAssetToUIImage(asset: asset, dimension: imageSize)
-            self.photoImageView.image = image
-        }
+        self.photoImageView.image = ComposeContentManager.sharedInstance.imageOfPhotosOnDevice[assetIndex]
         self.photoImageView.contentMode = .scaleAspectFill
         self.photoImageView.clipsToBounds = true
         
@@ -77,22 +71,6 @@ class DevicePhotoCollectionViewCell: UICollectionViewCell {
         self.layoutIfNeeded()
     }
     
-    func phAssetToUIImage(asset: PHAsset, dimension: CGSize) -> UIImage {
-        let manager = PHImageManager.default()
-        let option = PHImageRequestOptions()
-        option.isSynchronous = true
-        
-        var resultImage: UIImage = UIImage()
-        manager.requestImage(for: asset, targetSize: dimension, contentMode: .aspectFill, options: option) { (result, info) in
-            if result != nil {
-                resultImage = result!
-            } else {
-                resultImage = UIImage(named: "owlAvatar")!
-            }
-        }
-        return resultImage
-    }
-    
     func photoSurfaceButtonPressed() {
         let width = self.frame.width
         if self.checkedWithIndex == 0 {
@@ -110,7 +88,7 @@ class DevicePhotoCollectionViewCell: UICollectionViewCell {
                 self.indexLabel.isHidden = false
             }, completion: { (success) in
                 print("success: \(success)")
-                ComposeContentManager.sharedInstance.updateOtherPhotoCells()
+                ComposeContentManager.sharedInstance.updateAllPhotoCells()
             })
         } else {
             ComposeContentManager.sharedInstance.uncheckAPhoto(atCell: self.indexOfPhotosInDevice)
@@ -125,7 +103,7 @@ class DevicePhotoCollectionViewCell: UICollectionViewCell {
                 self.checkMarkImageView.tintColor = UIColor.white
                 self.indexLabel.text = "0"
                 self.indexLabel.isHidden = true
-                ComposeContentManager.sharedInstance.updateOtherPhotoCells()
+                ComposeContentManager.sharedInstance.updateAllPhotoCells()
             })
             
         }

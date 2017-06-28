@@ -133,7 +133,7 @@ class CapturedPhotoView: UIView {
     func confirmButtonPressed() {
         print("confirmButtonPressed func. Prepare to upload image file.")
         
-        self.uploadImageToServer()
+//        self.uploadImageToServer()
         self.saveImageToDeviceLibrary()
         self.removeFromSuperview()
     }
@@ -163,6 +163,7 @@ class CapturedPhotoView: UIView {
     
     func saveImageToDeviceLibrary() {
         if let photoFile = self.capturedPhotoImageView.image {
+            ComposeContentManager.sharedInstance.insertNewPhotoToCollection(newImage: photoFile)
             UIImageWriteToSavedPhotosAlbum(photoFile, self, #selector(writeToLibrary), nil)
         }
     }

@@ -43,6 +43,8 @@ class ComposeImageViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.photoPreviewView.backgroundColor = UIColor.darkGray
+        
         self.navigationController?.navigationBar.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: 30.0)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelComposingImage))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.plain, target: self, action: #selector(confirmImagePickingAndGoNext))
@@ -72,10 +74,6 @@ class ComposeImageViewController: UIViewController {
         
         ComposeContentManager.sharedInstance.indexOfCheckedPhotos = []
         
-        self.initializeCameraPreview()
-        self.attachCameraInput()
-        self.avCaptureSession.startRunning()
-        
         let photoCollectionFlowLayout = UICollectionViewFlowLayout()
         let totalWidth = self.view.frame.width
         print("------ in viewWillAppear, totalWidth = \(totalWidth)")
@@ -89,7 +87,12 @@ class ComposeImageViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.videoPreviewLayer?.frame = self.photoPreviewView.bounds
+//        self.videoPreviewLayer?.frame = self.photoPreviewView.bounds
+        
+        self.initializeCameraPreview()
+        self.attachCameraInput()
+        self.avCaptureSession.startRunning()
+        
         self.photoCollectionView.reloadData()
     }
     
@@ -128,7 +131,7 @@ class ComposeImageViewController: UIViewController {
             self.photoPreviewView.layer.masksToBounds = true
             self.photoPreviewView.layer.insertSublayer(self.videoPreviewLayer!, below: self.shutterButton.layer)
             //            self.photoPreviewView.layer.addSublayer(self.videoPreviewLayer!)
-            self.videoPreviewLayer?.frame = self.photoPreviewView.frame
+            self.videoPreviewLayer?.frame = self.photoPreviewView.bounds
             
             self.stillImageOutput = AVCapturePhotoOutput()
             let outputVideoCode = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecJPEG])

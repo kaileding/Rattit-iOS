@@ -78,14 +78,41 @@ class ComposeContentManager {
         print("Successfully got ", self.photoAssetsOnDivece!.count, "Image assets. ")
     }
     
+    func getSelectedImages() -> [UIImage] {
+        var resImags: [UIImage] = []
+        self.indexOfCheckedPhotos.forEach { (index) in
+            resImags.append(self.imageOfPhotosOnDevice[index])
+        }
+        return resImags
+    }
+    
     func uploadSelectedImagesToServer() {
         self.indexOfCheckedPhotos.forEach { (indexVal) in
             let selectedImage = self.imageOfPhotosOnDevice[indexVal]
-            self.uploadOneImageToServer(rawImage: selectedImage)
+            ComposeContentManager.uploadOneImageToServer(rawImage: selectedImage)
         }
     }
     
-    func uploadOneImageToServer(rawImage: UIImage) {
+    
+    
+    // utilities
+    static func phAssetToUIImage(asset: PHAsset, dimension: CGSize) -> UIImage {
+        let manager = PHImageManager.default()
+        let option = PHImageRequestOptions()
+        option.isSynchronous = true
+        
+        var resultImage: UIImage = UIImage()
+        manager.requestImage(for: asset, targetSize: dimension, contentMode: .aspectFill, options: option) { (result, info) in
+            if result != nil {
+                resultImage = result!
+            } else {
+                resultImage = UIImage(named: "owlAvatar")!
+            }
+        }
+        return resultImage
+    }
+    
+    static func uploadOneImageToServer(rawImage: UIImage) {
         if let photoCGImage = rawImage.cgImage {
             let photoWidth = photoCGImage.width, photoHeight = photoCGImage.height
             
@@ -106,23 +133,6 @@ class ComposeContentManager {
                 
             }
         }
-    }
-    
-    // utilities
-    static func phAssetToUIImage(asset: PHAsset, dimension: CGSize) -> UIImage {
-        let manager = PHImageManager.default()
-        let option = PHImageRequestOptions()
-        option.isSynchronous = true
-        
-        var resultImage: UIImage = UIImage()
-        manager.requestImage(for: asset, targetSize: dimension, contentMode: .aspectFill, options: option) { (result, info) in
-            if result != nil {
-                resultImage = result!
-            } else {
-                resultImage = UIImage(named: "owlAvatar")!
-            }
-        }
-        return resultImage
     }
     
 }

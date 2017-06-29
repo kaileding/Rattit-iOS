@@ -84,6 +84,12 @@ class ComposeImageViewController: UIViewController {
         photoCollectionFlowLayout.minimumLineSpacing = 0.0
         photoCollectionFlowLayout.scrollDirection = .vertical
         self.photoCollectionView.setCollectionViewLayout(photoCollectionFlowLayout, animated: false)
+        self.photoCollectionView.reloadData()
+        if ComposeContentManager.sharedInstance.hasAtLeastOneImageChecked() {
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
+        } else {
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -98,8 +104,6 @@ class ComposeImageViewController: UIViewController {
         if !self.avCaptureSession.isRunning {
             self.avCaptureSession.startRunning()
         }
-        
-        self.photoCollectionView.reloadData()
     }
     
     override func viewDidDisappear(_ animated: Bool) {

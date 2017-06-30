@@ -59,5 +59,15 @@ struct CommonRequest {
                                                        "filetype": fileType]
         return getSignedURLToUploadImageRequest
     }
+    
+    // get nearby places from google API
+    static func getNearbyPlacesFromGoogle(latitude: Double, longitude: Double, withinDistance: Double, type: String) -> CommonRequest {
+        var getNearbyPlacesFromGoogleRequest = CommonRequest(urlPath: "/locations/nearby", method: .get)
+        getNearbyPlacesFromGoogleRequest.parameters = ["lat": latitude,
+                                                       "lon": longitude,
+                                                       "radius": withinDistance,
+                                                       "typename": type]
+        return getNearbyPlacesFromGoogleRequest
+    }
 }
 

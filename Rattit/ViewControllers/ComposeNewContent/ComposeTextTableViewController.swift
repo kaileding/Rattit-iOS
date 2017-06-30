@@ -39,6 +39,8 @@ class ComposeTextTableViewController: UITableViewController {
 //        self.navigationItem.titleView = UIView()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: UIBarButtonItemStyle.done, target: self, action: #selector(completeTextAndPost))
         
+        self.wordsTextView.delegate = self
+        
         self.locationIconImageView.image = UIImage(named: "locationIcon")?.withRenderingMode(.alwaysTemplate)
         self.locationIconImageView.tintColor = UIColor.lightGray
         
@@ -48,16 +50,26 @@ class ComposeTextTableViewController: UITableViewController {
         self.shareToIconImageView.image = UIImage(named: "globe")?.withRenderingMode(.alwaysTemplate)
         self.shareToIconImageView.tintColor = UIColor.lightGray
         
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.tableView.tableHeaderView = UIView()
+        
         self.tableView.tableFooterView = UIView()
         self.tableView.backgroundColor = UIColor(red: 0.9255, green: 0.9255, blue: 0.9255, alpha: 1.0)
         
         self.showSelectedImagesOnScrollView()
+        
+        self.wordsTextView.text = "Say something"
+        self.wordsTextView.textColor = UIColor.lightGray
+        
+        RattitLocationManager.sharedInstance.getNearbyPlaces(completion: {
+            print("successfully got nearby places from RattitLocationManager.")
+        }) { (error) in
+            print("Error in getting nearby places from RattitLocationManager. \(error.localizedDescription)")
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -102,6 +114,9 @@ class ComposeTextTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
+        if indexPath.section == 0 && indexPath.row == 1 { // selected Location row
+            performSegue(withIdentifier: "FromComposeTextToLocationPicker", sender: self)
+        }
     }
     
     /*
@@ -185,3 +200,42 @@ class ComposeTextTableViewController: UITableViewController {
 //        print("self.imageScrollView.frame is \(self.imageScrollView.frame.debugDescription)")
     }
 }
+
+
+extension ComposeTextTableViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
+        }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        let currentText = textView.text
+        let newText = currentText?.replacingCharacters(in: Range<String.Index>(range, in: currentText!)!, with: text)
+        
+        if newText!.isEmpty {
+            textView.text = "Say something"
+            textView.textColor = UIColor.lightGray
+            textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
+            
+            return false
+        } else if textView.textColor == UIColor.lightGray && !text.isEmpty {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+        
+        return true
+    }
+    
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
+        }
+    }
+    
+}
+
+
+
+

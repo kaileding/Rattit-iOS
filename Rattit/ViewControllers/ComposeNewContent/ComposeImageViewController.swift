@@ -90,6 +90,8 @@ class ComposeImageViewController: UIViewController {
         } else {
             self.navigationItem.rightBarButtonItem?.isEnabled = false
         }
+        
+        RattitLocationManager.sharedInstance.updateCurrentLocation()
     }
     
     override func viewDidAppear(_ animated: Bool) {

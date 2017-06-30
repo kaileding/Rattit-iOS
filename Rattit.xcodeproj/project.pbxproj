@@ -63,6 +63,9 @@
 		859564B61EF675C7000D0BC8 /* AskForSignInSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859564B51EF675C7000D0BC8 /* AskForSignInSignUpView.swift */; };
 		859564BA1EF68176000D0BC8 /* AskForSignInSignUpDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859564B91EF68176000D0BC8 /* AskForSignInSignUpDelegate.swift */; };
 		859564BE1EF682CF000D0BC8 /* SignInSignOutConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859564BD1EF682CF000D0BC8 /* SignInSignOutConstants.swift */; };
+		859B5F491F060FF0009A8762 /* LocationPickingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859B5F481F060FF0009A8762 /* LocationPickingViewController.swift */; };
+		859B5F4B1F0615AE009A8762 /* GoogleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859B5F4A1F0615AE009A8762 /* GoogleLocation.swift */; };
+		859B5F4D1F061F12009A8762 /* RattitLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859B5F4C1F061F12009A8762 /* RattitLocationManager.swift */; };
 		85E21A351EFA624C00D4F961 /* MainContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E21A341EFA624C00D4F961 /* MainContent.swift */; };
 		85E21A371EFA668C00D4F961 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E21A361EFA668C00D4F961 /* Question.swift */; };
 		85E21A391EFA6C3900D4F961 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E21A381EFA6C3900D4F961 /* Answer.swift */; };
@@ -144,6 +147,9 @@
 		859564B51EF675C7000D0BC8 /* AskForSignInSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskForSignInSignUpView.swift; sourceTree = "<group>"; };
 		859564B91EF68176000D0BC8 /* AskForSignInSignUpDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskForSignInSignUpDelegate.swift; sourceTree = "<group>"; };
 		859564BD1EF682CF000D0BC8 /* SignInSignOutConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInSignOutConstants.swift; sourceTree = "<group>"; };
+		859B5F481F060FF0009A8762 /* LocationPickingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickingViewController.swift; sourceTree = "<group>"; };
+		859B5F4A1F0615AE009A8762 /* GoogleLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleLocation.swift; sourceTree = "<group>"; };
+		859B5F4C1F061F12009A8762 /* RattitLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RattitLocationManager.swift; sourceTree = "<group>"; };
 		85E21A341EFA624C00D4F961 /* MainContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContent.swift; sourceTree = "<group>"; };
 		85E21A361EFA668C00D4F961 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		85E21A381EFA6C3900D4F961 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
@@ -187,6 +193,7 @@
 				85E21A421EFB5A3400D4F961 /* RattitUserManager.swift */,
 				8549F0D01EFBC78E00385F1E /* GalleryManager.swift */,
 				85F058D41F0260D5008808CE /* ComposeContentManager.swift */,
+				859B5F4C1F061F12009A8762 /* RattitLocationManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -330,6 +337,7 @@
 				85E21A3C1EFA73E000D4F961 /* CommentForMoment.swift */,
 				85E21A3E1EFB4C4900D4F961 /* CommentForAnswer.swift */,
 				85E21A401EFB4E7D00D4F961 /* RattitLocation.swift */,
+				859B5F4A1F0615AE009A8762 /* GoogleLocation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -367,6 +375,7 @@
 				855700DE1F00C8150084356E /* Components */,
 				8582A64B1EFE419F00483CDD /* ComposeImageViewController.swift */,
 				8533DF351F041AD10026C437 /* ComposeTextTableViewController.swift */,
+				859B5F481F060FF0009A8762 /* LocationPickingViewController.swift */,
 			);
 			path = ComposeNewContent;
 			sourceTree = "<group>";
@@ -671,6 +680,7 @@
 				853851301EF4FBF600A8B2B5 /* AppDelegate.swift in Sources */,
 				8549F0D51EFC992400385F1E /* PhotoScrollView.swift in Sources */,
 				855700E21F00C8AB0084356E /* CapturedPhotoView.swift in Sources */,
+				859B5F4D1F061F12009A8762 /* RattitLocationManager.swift in Sources */,
 				8582A64C1EFE419F00483CDD /* ComposeImageViewController.swift in Sources */,
 				85023FA71EF728D100E785FD /* MomentManager.swift in Sources */,
 				85023FA91EF72E2100E785FD /* NetworkConstants.swift in Sources */,
@@ -680,6 +690,7 @@
 				85E21A3D1EFA73E000D4F961 /* CommentForMoment.swift in Sources */,
 				859564BE1EF682CF000D0BC8 /* SignInSignOutConstants.swift in Sources */,
 				85E21A411EFB4E7D00D4F961 /* RattitLocation.swift in Sources */,
+				859B5F491F060FF0009A8762 /* LocationPickingViewController.swift in Sources */,
 				8549F0CD1EFB878F00385F1E /* CommonRequest.swift in Sources */,
 				85E21A371EFA668C00D4F961 /* Question.swift in Sources */,
 				8549F0DE1EFCCB1900385F1E /* MomentOptionBar.swift in Sources */,
@@ -690,6 +701,7 @@
 				8549F0D11EFBC78E00385F1E /* GalleryManager.swift in Sources */,
 				8549F0CB1EFB877800385F1E /* Network.swift in Sources */,
 				85E21A3B1EFA701400D4F961 /* RattitCollection.swift in Sources */,
+				859B5F4B1F0615AE009A8762 /* GoogleLocation.swift in Sources */,
 				85F058D51F0260D5008808CE /* ComposeContentManager.swift in Sources */,
 				8582A6461EFE326000483CDD /* ContentFlowRightNavBarItemView.swift in Sources */,
 				8549F0CF1EFBBF5D00385F1E /* RattitErrorExtensions.swift in Sources */,

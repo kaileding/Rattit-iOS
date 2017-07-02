@@ -27,14 +27,10 @@ class ComposeTextTableViewController: UITableViewController {
     @IBOutlet weak var star3ImageView: UIImageView!
     @IBOutlet weak var star4ImageView: UIImageView!
     @IBOutlet weak var star5ImageView: UIImageView!
-    @IBOutlet weak var star1Button: UIButton!
-    @IBOutlet weak var star2Button: UIButton!
-    @IBOutlet weak var star3Button: UIButton!
-    @IBOutlet weak var star4Button: UIButton!
-    @IBOutlet weak var star5Button: UIButton!
     
     let emptyStarImage = UIImage(named: "ratingStar")?.withRenderingMode(.alwaysTemplate)
     let filledStarImage = UIImage(named: "ratingStarFilled")?.withRenderingMode(.alwaysTemplate)
+    var locationRatingValue: Int = 0
     
     @IBOutlet weak var separatorCell: UITableViewCell!
     
@@ -76,16 +72,6 @@ class ComposeTextTableViewController: UITableViewController {
         self.star5ImageView.image = self.emptyStarImage
         self.star5ImageView.tintColor = UIColor(red: 0, green: 0.5098, blue: 0.7882, alpha: 1.0)
         
-        self.star1Button.addTarget(self, action: #selector(star1ButtonPressed), for: .touchDown)
-        self.star1Button.addTarget(self, action: #selector(star1ButtonPressed), for: .allTouchEvents)
-        self.star2Button.addTarget(self, action: #selector(star2ButtonPressed), for: .touchDown)
-        self.star2Button.addTarget(self, action: #selector(star2ButtonPressed), for: .allTouchEvents)
-        self.star3Button.addTarget(self, action: #selector(star3ButtonPressed), for: .touchDown)
-        self.star3Button.addTarget(self, action: #selector(star3ButtonPressed), for: .allTouchEvents)
-        self.star4Button.addTarget(self, action: #selector(star4ButtonPressed), for: .touchDown)
-        self.star4Button.addTarget(self, action: #selector(star4ButtonPressed), for: .allTouchEvents)
-        self.star5Button.addTarget(self, action: #selector(star5ButtonPressed), for: .touchDown)
-        self.star5Button.addTarget(self, action: #selector(star5ButtonPressed), for: .allTouchEvents)
         
         self.togetherWithIconImageView.image = UIImage(named: "togetherWith")?.withRenderingMode(.alwaysTemplate)
         self.togetherWithIconImageView.tintColor = UIColor.lightGray
@@ -122,6 +108,7 @@ class ComposeTextTableViewController: UITableViewController {
             self.locationLabel.text = ComposeContentManager.sharedInstance.pickedPlaceFromGoogle!.name
             self.locationLabelArrowImageView.isHidden = true
         }
+        self.noStarButtonPressed()
         
         self.locationLabelCell.separatorInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, self.view.frame.width)
         self.locationRatingCell.separatorInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, self.view.frame.width)
@@ -138,12 +125,10 @@ class ComposeTextTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return 6
     }
     
@@ -185,27 +170,44 @@ class ComposeTextTableViewController: UITableViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func showSelectedImagesOnScrollView() {
-        self.selectedImages = ComposeContentManager.sharedInstance.getSelectedImages()
-        let imageCount = self.selectedImages.count
-        let canvasFrame = CGRect(x: 0.0, y: 0.0, width: 44.0*Double(imageCount), height: 44.0)
-        let canvasView = UIView(frame: canvasFrame)
+    
+    
+    @IBAction func tapGestureInLocationRatingCell(_ sender: UITapGestureRecognizer) {
+        let tapPoint = sender.location(in: self.locationRatingCell.contentView)
+        let width = self.tableView.frame.width
+//        print("TAP - tapPoint.x = \(tapPoint.x)")
         
-//        print("self.selectedImages.count = \(self.selectedImages.count)")
-//        print("canvasView.frame is \(canvasFrame.debugDescription)")
-        
-        self.selectedImages.enumerated().forEach { (offset, image) in
-            let imageViewFrame = CGRect(x: 44.0*Double(offset)+2.0, y: 2.0, width: 40.0, height: 40.0)
-            let imageView = UIImageView(frame: imageViewFrame)
-            imageView.clipsToBounds = true
-            imageView.contentMode = .scaleAspectFill
-            imageView.image = image
-            canvasView.addSubview(imageView)
+        if tapPoint.x < (0.5*width - 54.0) {
+            self.star1ButtonPressed()
+        } else if tapPoint.x < (0.5*width - 18.0) {
+            self.star2ButtonPressed()
+        } else if tapPoint.x < (0.5*width + 18.0) {
+            self.star3ButtonPressed()
+        } else if tapPoint.x < (0.5*width + 54.0) {
+            self.star4ButtonPressed()
+        } else {
+            self.star5ButtonPressed()
         }
-        self.imageScrollView.contentSize = CGSize(width: 44.0*Double(imageCount), height: 44.0)
-        self.imageScrollView.addSubview(canvasView)
-//        print("self.imageScrollView.frame is \(self.imageScrollView.frame.debugDescription)")
     }
+    
+    @IBAction func panGestureInLocationRatingCell(_ sender: UIPanGestureRecognizer) {
+        let panPoint = sender.location(in: self.locationRatingCell.contentView)
+        let width = self.tableView.frame.width
+//        print("PAN - panPoint.x = \(panPoint.x)")
+        
+        if panPoint.x < (0.5*width - 54.0) {
+            self.star1ButtonPressed()
+        } else if panPoint.x < (0.5*width - 18.0) {
+            self.star2ButtonPressed()
+        } else if panPoint.x < (0.5*width + 18.0) {
+            self.star3ButtonPressed()
+        } else if panPoint.x < (0.5*width + 54.0) {
+            self.star4ButtonPressed()
+        } else {
+            self.star5ButtonPressed()
+        }
+    }
+    
 }
 
 
@@ -245,6 +247,38 @@ extension ComposeTextTableViewController: UITextViewDelegate {
 
 extension ComposeTextTableViewController {
     
+    func showSelectedImagesOnScrollView() {
+        self.selectedImages = ComposeContentManager.sharedInstance.getSelectedImages()
+        let imageCount = self.selectedImages.count
+        let canvasFrame = CGRect(x: 0.0, y: 0.0, width: 44.0*Double(imageCount), height: 44.0)
+        let canvasView = UIView(frame: canvasFrame)
+        
+        //        print("self.selectedImages.count = \(self.selectedImages.count)")
+        //        print("canvasView.frame is \(canvasFrame.debugDescription)")
+        
+        self.selectedImages.enumerated().forEach { (offset, image) in
+            let imageViewFrame = CGRect(x: 44.0*Double(offset)+2.0, y: 2.0, width: 40.0, height: 40.0)
+            let imageView = UIImageView(frame: imageViewFrame)
+            imageView.clipsToBounds = true
+            imageView.contentMode = .scaleAspectFill
+            imageView.image = image
+            canvasView.addSubview(imageView)
+        }
+        self.imageScrollView.contentSize = CGSize(width: 44.0*Double(imageCount), height: 44.0)
+        self.imageScrollView.addSubview(canvasView)
+        //        print("self.imageScrollView.frame is \(self.imageScrollView.frame.debugDescription)")
+    }
+    
+    func noStarButtonPressed() {
+        print("no stars are touched.")
+        self.star1ImageView.image = self.emptyStarImage
+        self.star2ImageView.image = self.emptyStarImage
+        self.star3ImageView.image = self.emptyStarImage
+        self.star4ImageView.image = self.emptyStarImage
+        self.star5ImageView.image = self.emptyStarImage
+        self.locationRatingValue = 0
+    }
+    
     func star1ButtonPressed() {
         print("star-1-ButtonPressed.")
         self.star1ImageView.image = self.filledStarImage
@@ -252,7 +286,7 @@ extension ComposeTextTableViewController {
         self.star3ImageView.image = self.emptyStarImage
         self.star4ImageView.image = self.emptyStarImage
         self.star5ImageView.image = self.emptyStarImage
-        
+        self.locationRatingValue = 1
     }
     
     func star2ButtonPressed() {
@@ -262,7 +296,7 @@ extension ComposeTextTableViewController {
         self.star3ImageView.image = self.emptyStarImage
         self.star4ImageView.image = self.emptyStarImage
         self.star5ImageView.image = self.emptyStarImage
-        
+        self.locationRatingValue = 2
     }
     
     func star3ButtonPressed() {
@@ -272,7 +306,7 @@ extension ComposeTextTableViewController {
         self.star3ImageView.image = self.filledStarImage
         self.star4ImageView.image = self.emptyStarImage
         self.star5ImageView.image = self.emptyStarImage
-        
+        self.locationRatingValue = 3
     }
     
     func star4ButtonPressed() {
@@ -282,7 +316,7 @@ extension ComposeTextTableViewController {
         self.star3ImageView.image = self.filledStarImage
         self.star4ImageView.image = self.filledStarImage
         self.star5ImageView.image = self.emptyStarImage
-        
+        self.locationRatingValue = 4
     }
     
     func star5ButtonPressed() {
@@ -292,9 +326,8 @@ extension ComposeTextTableViewController {
         self.star3ImageView.image = self.filledStarImage
         self.star4ImageView.image = self.filledStarImage
         self.star5ImageView.image = self.filledStarImage
-        
+        self.locationRatingValue = 5
     }
-    
 }
 
 

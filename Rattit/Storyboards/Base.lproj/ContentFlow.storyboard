@@ -281,61 +281,25 @@
                                                         <constraint firstAttribute="width" constant="20" id="UfZ-1g-bxd"/>
                                                     </constraints>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vjy-hb-onX">
-                                                    <rect key="frame" x="0.0" y="0.0" width="133.5" height="43.5"/>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nuw-ic-ng1">
-                                                    <rect key="frame" x="134" y="0.0" width="36" height="43.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="36" id="0tw-8c-aVT"/>
-                                                    </constraints>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DVw-u1-Fd2">
-                                                    <rect key="frame" x="170" y="0.0" width="36" height="43.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="36" id="agg-1G-OYi"/>
-                                                    </constraints>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yU7-7Q-skg">
-                                                    <rect key="frame" x="206" y="0.0" width="36" height="43.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="36" id="fbd-DL-ewl"/>
-                                                    </constraints>
-                                                </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aMa-RW-l1R">
-                                                    <rect key="frame" x="242" y="0.0" width="133" height="43.5"/>
-                                                </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="DVw-u1-Fd2" secondAttribute="bottom" id="0AB-5V-NW7"/>
-                                                <constraint firstItem="Nuw-ic-ng1" firstAttribute="leading" secondItem="vjy-hb-onX" secondAttribute="trailing" id="1QA-bT-0r3"/>
                                                 <constraint firstItem="0hz-t8-L74" firstAttribute="centerY" secondItem="vo5-NR-wjW" secondAttribute="centerY" id="1ZT-qp-Kcv"/>
-                                                <constraint firstItem="DVw-u1-Fd2" firstAttribute="leading" secondItem="Nuw-ic-ng1" secondAttribute="trailing" id="30p-Z7-crF"/>
-                                                <constraint firstItem="DVw-u1-Fd2" firstAttribute="top" secondItem="vo5-NR-wjW" secondAttribute="top" id="4Do-E0-1o2"/>
-                                                <constraint firstItem="vjy-hb-onX" firstAttribute="leading" secondItem="vo5-NR-wjW" secondAttribute="leading" id="4IQ-DE-Rmh"/>
                                                 <constraint firstItem="age-py-DoO" firstAttribute="centerY" secondItem="vo5-NR-wjW" secondAttribute="centerY" id="8Ak-oy-1mc"/>
-                                                <constraint firstAttribute="bottom" secondItem="yU7-7Q-skg" secondAttribute="bottom" id="FCn-hh-tra"/>
-                                                <constraint firstItem="yU7-7Q-skg" firstAttribute="top" secondItem="vo5-NR-wjW" secondAttribute="top" id="Got-vC-AGq"/>
                                                 <constraint firstItem="2G9-Wt-JpB" firstAttribute="centerY" secondItem="vo5-NR-wjW" secondAttribute="centerY" id="MQH-Ef-qhA"/>
-                                                <constraint firstAttribute="bottom" secondItem="aMa-RW-l1R" secondAttribute="bottom" id="N9K-ME-eNA"/>
-                                                <constraint firstItem="yU7-7Q-skg" firstAttribute="leading" secondItem="DVw-u1-Fd2" secondAttribute="trailing" id="Smr-ku-6ke"/>
                                                 <constraint firstItem="2G9-Wt-JpB" firstAttribute="leading" secondItem="age-py-DoO" secondAttribute="trailing" constant="16" id="UlC-D9-H4p"/>
                                                 <constraint firstItem="adH-NJ-hFT" firstAttribute="centerY" secondItem="vo5-NR-wjW" secondAttribute="centerY" id="YLU-rS-bKx"/>
                                                 <constraint firstItem="JQy-Gu-2Qu" firstAttribute="centerY" secondItem="vo5-NR-wjW" secondAttribute="centerY" id="bRu-L1-XQV"/>
-                                                <constraint firstItem="vjy-hb-onX" firstAttribute="top" secondItem="vo5-NR-wjW" secondAttribute="top" id="cou-HC-orG"/>
-                                                <constraint firstAttribute="trailing" secondItem="aMa-RW-l1R" secondAttribute="trailing" id="cvX-KJ-ms0"/>
                                                 <constraint firstItem="JQy-Gu-2Qu" firstAttribute="leading" secondItem="2G9-Wt-JpB" secondAttribute="trailing" constant="16" id="hPE-J3-zUC"/>
-                                                <constraint firstAttribute="bottom" secondItem="vjy-hb-onX" secondAttribute="bottom" id="i6z-RE-Hn2"/>
-                                                <constraint firstItem="aMa-RW-l1R" firstAttribute="leading" secondItem="yU7-7Q-skg" secondAttribute="trailing" id="jWX-eI-ZQz"/>
                                                 <constraint firstItem="0hz-t8-L74" firstAttribute="leading" secondItem="JQy-Gu-2Qu" secondAttribute="trailing" constant="16" id="jtU-uw-Ouv"/>
-                                                <constraint firstAttribute="bottom" secondItem="Nuw-ic-ng1" secondAttribute="bottom" id="pKF-dh-bei"/>
-                                                <constraint firstItem="aMa-RW-l1R" firstAttribute="top" secondItem="vo5-NR-wjW" secondAttribute="top" id="pmq-fI-c1z"/>
                                                 <constraint firstItem="adH-NJ-hFT" firstAttribute="leading" secondItem="0hz-t8-L74" secondAttribute="trailing" constant="16" id="qin-Y5-0tE"/>
                                                 <constraint firstItem="JQy-Gu-2Qu" firstAttribute="centerX" secondItem="vo5-NR-wjW" secondAttribute="centerX" id="sJu-Ui-ZIq"/>
-                                                <constraint firstItem="Nuw-ic-ng1" firstAttribute="top" secondItem="vo5-NR-wjW" secondAttribute="top" id="wQF-GM-f6m"/>
-                                                <constraint firstItem="DVw-u1-Fd2" firstAttribute="centerX" secondItem="vo5-NR-wjW" secondAttribute="centerX" id="wUl-bn-dqx"/>
                                             </constraints>
+                                            <connections>
+                                                <outletCollection property="gestureRecognizers" destination="jT4-jD-xKt" appends="YES" id="85O-af-thd"/>
+                                                <outletCollection property="gestureRecognizers" destination="e2S-kG-QtI" appends="YES" id="VAW-jH-Y4S"/>
+                                            </connections>
                                         </tableViewCellContentView>
+                                        <gestureRecognizers/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="18" id="wlm-9Q-iAq">
                                         <rect key="frame" x="0.0" y="277" width="375" height="18"/>
@@ -431,15 +395,10 @@
                         <outlet property="separatorCell" destination="wlm-9Q-iAq" id="w2A-MA-5C2"/>
                         <outlet property="shareToIconImageView" destination="eZH-DX-nbr" id="l7T-sZ-hus"/>
                         <outlet property="shareToLabel" destination="279-wz-rIV" id="J1f-zM-upY"/>
-                        <outlet property="star1Button" destination="vjy-hb-onX" id="t0z-gb-7Ye"/>
                         <outlet property="star1ImageView" destination="age-py-DoO" id="xf6-Gk-QZM"/>
-                        <outlet property="star2Button" destination="Nuw-ic-ng1" id="2RJ-QG-Io8"/>
                         <outlet property="star2ImageView" destination="2G9-Wt-JpB" id="BZX-Rn-N61"/>
-                        <outlet property="star3Button" destination="DVw-u1-Fd2" id="NeA-EV-EYp"/>
                         <outlet property="star3ImageView" destination="JQy-Gu-2Qu" id="OO0-E8-Paj"/>
-                        <outlet property="star4Button" destination="yU7-7Q-skg" id="4zw-Et-ajL"/>
                         <outlet property="star4ImageView" destination="0hz-t8-L74" id="Uya-e4-xbt"/>
-                        <outlet property="star5Button" destination="aMa-RW-l1R" id="1ID-Ff-UX4"/>
                         <outlet property="star5ImageView" destination="adH-NJ-hFT" id="rIe-mv-xGV"/>
                         <outlet property="titleTextField" destination="PQL-FM-bhX" id="Loe-lC-LHJ"/>
                         <outlet property="togetherWithIconImageView" destination="JhP-oP-Fr7" id="0wB-i3-Kg9"/>
@@ -451,6 +410,18 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="21G-L5-WPD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="e2S-kG-QtI">
+                    <connections>
+                        <action selector="tapGestureInLocationRatingCell:" destination="S4C-lk-MeK" id="8Iz-4Y-Ev7"/>
+                        <outlet property="delegate" destination="vo5-NR-wjW" id="Adq-PT-SoY"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="jT4-jD-xKt">
+                    <connections>
+                        <action selector="panGestureInLocationRatingCell:" destination="S4C-lk-MeK" id="szX-jd-Kfi"/>
+                        <outlet property="delegate" destination="vo5-NR-wjW" id="YVq-8X-lj2"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1704.8" y="957.57121439280365"/>
         </scene>

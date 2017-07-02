@@ -16,6 +16,8 @@ class ComposeContentManager {
     var indexOfCheckedPhotos: [Int] = []
     var composeContentDelegate: ComposeContentDelegate? = nil
     
+    var pickedPlaceFromGoogle: GoogleLocation? = nil
+    
     static let sharedInstance: ComposeContentManager = ComposeContentManager()
     
     func getPhotoAsset(forCell index: Int) -> PHAsset? {

@@ -24,9 +24,10 @@ class ContentFlowRightNavBarItemView: UIView {
         let contentFlowRightNavBarItemView = Bundle.main.loadNibNamed("ContentFlowRightNavBarItemView", owner: self, options: nil)?.first as! ContentFlowRightNavBarItemView
         
         contentFlowRightNavBarItemView.barItemButton.setImage(UIImage(named: "pencil")?.withRenderingMode(.alwaysTemplate), for: UIControlState.normal)
+        contentFlowRightNavBarItemView.barItemButton.imageEdgeInsets = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0)
         contentFlowRightNavBarItemView.barItemButton.tintColor = UIColor(red: 0.26, green: 0.26, blue: 0.26, alpha: 1.0)
-        contentFlowRightNavBarItemView.barItemButton.widthAnchor.constraint(equalToConstant: 30.0).isActive = true
-        contentFlowRightNavBarItemView.barItemButton.heightAnchor.constraint(equalToConstant: 30.0).isActive = true
+        contentFlowRightNavBarItemView.barItemButton.widthAnchor.constraint(equalToConstant: 40.0).isActive = true
+        contentFlowRightNavBarItemView.barItemButton.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
         contentFlowRightNavBarItemView.barItemButton.showsTouchWhenHighlighted = true
         contentFlowRightNavBarItemView.barItemButton.addTarget(contentFlowRightNavBarItemView, action: #selector(barItemButtonPressed), for: .touchUpInside)
         

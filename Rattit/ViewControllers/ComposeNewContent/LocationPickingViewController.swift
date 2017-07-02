@@ -31,10 +31,6 @@ class LocationPickingViewController: UIViewController {
     
     @IBOutlet weak var locationsTable: UITableView!
     
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -44,6 +40,8 @@ class LocationPickingViewController: UIViewController {
         self.locationsTable.delegate = self
         self.locationsTable.estimatedRowHeight = 40.0
         self.locationsTable.rowHeight = UITableViewAutomaticDimension
+        
+        self.navigationItem.title = "Location"
         
     }
     
@@ -73,22 +71,56 @@ class LocationPickingViewController: UIViewController {
 
 extension LocationPickingViewController: UITableViewDataSource, UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return RattitLocationManager.sharedInstance.loadedNearbyPlacesFromGoogle.count
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return 1
+        } else {
+            return RattitLocationManager.sharedInstance.loadedNearbyPlacesFromGoogle.count
+        }
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LocationPickingTableCell", for: indexPath) as! LocationPickingTableCell
-        let loadedlocation = RattitLocationManager.sharedInstance.loadedNearbyPlacesFromGoogle[indexPath.row]
         
-        cell.locationNameLabel.text = loadedlocation.name
-        cell.addressLabel.text = loadedlocation.addressStr
-        cell.distanceLabel.text = RattitLocationManager.sharedInstance.getDistanceFromCurrentLocation(forLocation: loadedlocation.cLocationPoint)
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "HideLocationCell")!
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LocationPickingTableCell", for: indexPath) as! LocationPickingTableCell
+            let loadedlocation = RattitLocationManager.sharedInstance.loadedNearbyPlacesFromGoogle[indexPath.row]
+            
+            cell.locationNameLabel.text = loadedlocation.name
+            cell.addressLabel.text = loadedlocation.addressStr
+            cell.distanceLabel.text = RattitLocationManager.sharedInstance.getDistanceFromCurrentLocation(forLocation: loadedlocation.cLocationPoint)
+            
+            return cell
+        }
         
-        
-        return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.section == 0 {
+            ComposeContentManager.sharedInstance.pickedPlaceFromGoogle = nil
+        } else {
+            ComposeContentManager.sharedInstance.pickedPlaceFromGoogle = RattitLocationManager.sharedInstance.loadedNearbyPlacesFromGoogle[indexPath.row]
+        }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 1 {
+            let headerView = UIView()
+            headerView.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: 15.0)
+            headerView.backgroundColor = UIColor(red: 0.9255, green: 0.9255, blue: 0.9255, alpha: 1.0)
+            return headerView
+        }
+        return nil
+    }
     
 }

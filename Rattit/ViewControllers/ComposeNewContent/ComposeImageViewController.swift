@@ -186,6 +186,7 @@ class ComposeImageViewController: UIViewController {
     
     func cancelComposingImage() {
         print("cancelComposingImage() func called.")
+        ComposeContentManager.sharedInstance.pickedPlaceFromGoogle = nil
         self.dismiss(animated: true, completion: nil)
     }
     

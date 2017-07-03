@@ -31,8 +31,11 @@ class ComposeTextTableViewController: UITableViewController {
     let emptyStarImage = UIImage(named: "ratingStar")?.withRenderingMode(.alwaysTemplate)
     let filledStarImage = UIImage(named: "ratingStarFilled")?.withRenderingMode(.alwaysTemplate)
     var locationRatingValue: Int = 0
+    var ratingValueForLocation: RattitLocation? = nil
     
     @IBOutlet weak var separatorCell: UITableViewCell!
+    
+    @IBOutlet weak var togetherWithCell: UITableViewCell!
     
     @IBOutlet weak var togetherWithIconImageView: UIImageView!
     @IBOutlet weak var togetherWithLabel: UILabel!
@@ -40,11 +43,9 @@ class ComposeTextTableViewController: UITableViewController {
     
     @IBOutlet weak var shareToIconImageView: UIImageView!
     @IBOutlet weak var shareToLabel: UILabel!
+    @IBOutlet weak var shareToLabelArrowImageView: UIImageView!
     
     var selectedImages: [UIImage] = []
-    
-    let locationRatingView: LocationRatingView = LocationRatingView.instantiateFromXib()
-    let stubRatingView: UIView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 266.0, height: 32.0))
     
     
     override func viewDidLoad() {
@@ -80,6 +81,8 @@ class ComposeTextTableViewController: UITableViewController {
         
         self.shareToIconImageView.image = UIImage(named: "globe")?.withRenderingMode(.alwaysTemplate)
         self.shareToIconImageView.tintColor = UIColor.lightGray
+        self.shareToLabelArrowImageView.image = UIImage(named: "downArrow")?.withRenderingMode(.alwaysTemplate)
+        self.shareToLabelArrowImageView.tintColor = UIColor.lightGray
         
     }
     
@@ -99,22 +102,56 @@ class ComposeTextTableViewController: UITableViewController {
             print("Error in getting nearby places from RattitLocationManager. \(error.localizedDescription)")
         }
         
+        RattitUserManager.sharedInstance.getAllRattitUsers(completion: {
+            print("successfully got all available users from RattitLocationManager.")
+        }) { (error) in
+            print("Error in getting all available users from RattitLocationManager. \(error.localizedDescription)")
+        }
+        
         if ComposeContentManager.sharedInstance.pickedPlaceFromGoogle == nil {
             self.locationIconImageView.tintColor = UIColor.lightGray
             self.locationLabel.text = "Location"
             self.locationLabelArrowImageView.isHidden = false
+            self.noStarButtonPressed()
         } else {
             self.locationIconImageView.tintColor = UIColor(red: 0, green: 0.7176, blue: 0.5255, alpha: 1.0)
             self.locationLabel.text = ComposeContentManager.sharedInstance.pickedPlaceFromGoogle!.name
             self.locationLabelArrowImageView.isHidden = true
+            
+            switch ComposeContentManager.sharedInstance.pickedPlaceRatingValue {
+            case 0:
+                self.noStarButtonPressed()
+            case 1:
+                self.star1ButtonPressed()
+            case 2:
+                self.star2ButtonPressed()
+            case 3:
+                self.star3ButtonPressed()
+            case 4:
+                self.star4ButtonPressed()
+            case 5:
+                self.star5ButtonPressed()
+            default:
+                self.noStarButtonPressed()
+            }
         }
-        self.noStarButtonPressed()
         
         self.locationLabelCell.separatorInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, self.view.frame.width)
         self.locationRatingCell.separatorInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, self.view.frame.width)
         self.separatorCell.separatorInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, self.view.frame.width)
         
         self.tableView.reloadData()
+        
+        ComposeContentManager.sharedInstance.imagesOfPickedUsersForTogether.forEach({ (pickedUserImageView) in
+            pickedUserImageView.removeFromSuperview()
+        })
+        ComposeContentManager.sharedInstance.imagesOfPickedUsersForTogether.removeAll()
+        if ComposeContentManager.sharedInstance.pickedUsersForTogether.isEmpty {
+            self.togetherWithLabelArrowImageView.isHidden = false
+        } else {
+            self.togetherWithLabelArrowImageView.isHidden = true
+            self.showSelectedUsersOnTogetherWithCell()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -269,6 +306,30 @@ extension ComposeTextTableViewController {
         //        print("self.imageScrollView.frame is \(self.imageScrollView.frame.debugDescription)")
     }
     
+    func showSelectedUsersOnTogetherWithCell() {
+        let userAvatarStartingX = Double(self.togetherWithLabel.frame.maxX + 8.0)
+        let totalWidth = Double(self.view.frame.width)
+        ComposeContentManager.sharedInstance.pickedUsersForTogether.enumerated().forEach({ (offset, userId) in
+            
+            if (userAvatarStartingX+25.0*Double(offset)+30.0) < totalWidth {
+                
+                let avatarFrame = CGRect(x: userAvatarStartingX+25.0*Double(offset), y: 7.0, width: 30.0, height: 30.0)
+                let userAvatar = UIImageView()
+                self.togetherWithCell.contentView.addSubview(userAvatar)
+                userAvatar.frame = avatarFrame
+                userAvatar.layer.cornerRadius = 15.0
+                userAvatar.clipsToBounds = true
+                userAvatar.contentMode = .scaleAspectFill
+                RattitUserManager.sharedInstance.getRattitUserAvatarImage(userId: userId, completion: { (image) in
+                    userAvatar.image = image
+                }, errorHandler: { (error) in
+                    print("RattitUserManager.getRattitUserAvatarImage failed for userId = \(userId)")
+                })
+                ComposeContentManager.sharedInstance.imagesOfPickedUsersForTogether.append(userAvatar)
+            }
+        })
+    }
+    
     func noStarButtonPressed() {
         print("no stars are touched.")
         self.star1ImageView.image = self.emptyStarImage
@@ -276,7 +337,7 @@ extension ComposeTextTableViewController {
         self.star3ImageView.image = self.emptyStarImage
         self.star4ImageView.image = self.emptyStarImage
         self.star5ImageView.image = self.emptyStarImage
-        self.locationRatingValue = 0
+        ComposeContentManager.sharedInstance.pickedPlaceRatingValue = 0
     }
     
     func star1ButtonPressed() {
@@ -286,7 +347,7 @@ extension ComposeTextTableViewController {
         self.star3ImageView.image = self.emptyStarImage
         self.star4ImageView.image = self.emptyStarImage
         self.star5ImageView.image = self.emptyStarImage
-        self.locationRatingValue = 1
+        ComposeContentManager.sharedInstance.pickedPlaceRatingValue = 1
     }
     
     func star2ButtonPressed() {
@@ -296,7 +357,7 @@ extension ComposeTextTableViewController {
         self.star3ImageView.image = self.emptyStarImage
         self.star4ImageView.image = self.emptyStarImage
         self.star5ImageView.image = self.emptyStarImage
-        self.locationRatingValue = 2
+        ComposeContentManager.sharedInstance.pickedPlaceRatingValue = 2
     }
     
     func star3ButtonPressed() {
@@ -306,7 +367,7 @@ extension ComposeTextTableViewController {
         self.star3ImageView.image = self.filledStarImage
         self.star4ImageView.image = self.emptyStarImage
         self.star5ImageView.image = self.emptyStarImage
-        self.locationRatingValue = 3
+        ComposeContentManager.sharedInstance.pickedPlaceRatingValue = 3
     }
     
     func star4ButtonPressed() {
@@ -316,7 +377,7 @@ extension ComposeTextTableViewController {
         self.star3ImageView.image = self.filledStarImage
         self.star4ImageView.image = self.filledStarImage
         self.star5ImageView.image = self.emptyStarImage
-        self.locationRatingValue = 4
+        ComposeContentManager.sharedInstance.pickedPlaceRatingValue = 4
     }
     
     func star5ButtonPressed() {
@@ -326,7 +387,7 @@ extension ComposeTextTableViewController {
         self.star3ImageView.image = self.filledStarImage
         self.star4ImageView.image = self.filledStarImage
         self.star5ImageView.image = self.filledStarImage
-        self.locationRatingValue = 5
+        ComposeContentManager.sharedInstance.pickedPlaceRatingValue = 5
     }
 }
 

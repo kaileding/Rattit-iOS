@@ -10,20 +10,49 @@ import Foundation
 import UIKit
 
 class RattitUserManager: NSObject {
-    static var cachedUsers: [String: RattitUser] = [:] // id: RattitUser
-    static var cachedAvatars: [String: UIImage] = [:] // url: UIImage
+    var cachedUsers: [String: RattitUser] = [:] // id: RattitUser
+    var cachedAvatars: [String: UIImage] = [:] // url: UIImage
     
-    static var networkService: Network = Network()
+    var lastRefreshTime: Date? = nil
     
-    static func getRattitUserForId(id: String, completion: @escaping (RattitUser) -> Void, errorHandler: @escaping (Error) -> Void) {
+    static let sharedInstance: RattitUserManager = RattitUserManager()
+    
+    func getAllRattitUsers(completion: @escaping () -> Void, errorHandler: @escaping (Error) -> Void) {
         
-        if let foundUser = RattitUserManager.cachedUsers[id] {
+        Network.sharedInstance.callRattitContentService(httpRequest: .GetUsers, completion: { (dataValue) in
+            
+            if let json = dataValue as? [String: Any], let count = json["count"] as? Int, let rows = json["rows"] as? [Any] {
+                print("RattitUserManager.getAllRattitUsers() got \(count) users.")
+                
+                rows.forEach({ (dataValue) in
+                    if let rattitUser = RattitUser(dataValue: dataValue) {
+                        self.cachedUsers[rattitUser.id!] = rattitUser
+                    }
+                })
+                
+                DispatchQueue.main.async {
+                    self.lastRefreshTime = Date()
+                    completion()
+                }
+            } else {
+                DispatchQueue.main.async {
+                    errorHandler(RattitError.parseError(message: "dataValue unable to be parsed into array of users."))
+                }
+            }
+        }, errorHandler: { (error) in
+            errorHandler(error)
+        })
+    }
+    
+    func getRattitUserForId(id: String, completion: @escaping (RattitUser) -> Void, errorHandler: @escaping (Error) -> Void) {
+        
+        if let foundUser = self.cachedUsers[id] {
             completion(foundUser)
         } else {
-            RattitUserManager.networkService.callRattitContentService(httpRequest: .getUserWithId(id: id), completion: { (dataValue) in
+            Network.sharedInstance.callRattitContentService(httpRequest: .getUserWithId(id: id), completion: { (dataValue) in
                 
                 if let parsedUser = RattitUser(dataValue: dataValue) {
-                    RattitUserManager.cachedUsers[id] = parsedUser
+                    self.cachedUsers[id] = parsedUser
                     DispatchQueue.main.async {
                         completion(parsedUser)
                     }
@@ -40,17 +69,17 @@ class RattitUserManager: NSObject {
         
     }
     
-    static func getRattitUserAvatarImage(userId: String, completion: @escaping (UIImage) -> Void, errorHandler: @escaping (Error) -> Void) {
+    func getRattitUserAvatarImage(userId: String, completion: @escaping (UIImage) -> Void, errorHandler: @escaping (Error) -> Void) {
         
-        RattitUserManager.getRattitUserForId(id: userId, completion: { (foundUser) in
+        self.getRattitUserForId(id: userId, completion: { (foundUser) in
             
             if let avatarUrl = foundUser.avatarUrl {
-                if let avatarImage = RattitUserManager.cachedAvatars[avatarUrl] {
+                if let avatarImage = self.cachedAvatars[avatarUrl] {
                     completion(avatarImage)
                 } else {
-                    RattitUserManager.networkService.callS3ToLoadImage(imageUrl: avatarUrl, completion: { (imageData) in
+                    Network.sharedInstance.callS3ToLoadImage(imageUrl: avatarUrl, completion: { (imageData) in
                         if let avatarImage = UIImage(data: imageData) {
-                            RattitUserManager.cachedAvatars[avatarUrl] = avatarImage
+                            self.cachedAvatars[avatarUrl] = avatarImage
                             completion(avatarImage)
                         } else {
                             errorHandler(RattitError.parseError(message: "Unable to create UIImage from data."))

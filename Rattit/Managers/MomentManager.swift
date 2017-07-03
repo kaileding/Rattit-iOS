@@ -30,7 +30,7 @@ class MomentManager: NSObject {
                     if let moment = Moment(dataValue: dataValue) {
                         MomentManager.downloadedMoments.append(moment)
                         if let momentAuthor = moment.createdByInfo, let authorId = moment.createdBy {
-                            RattitUserManager.cachedUsers[authorId] = momentAuthor
+                            RattitUserManager.sharedInstance.cachedUsers[authorId] = momentAuthor
                         }
                     }
                 })
@@ -72,7 +72,7 @@ class MomentManager: NSObject {
                                     newMoments.append(moment)
                                 }
                                 if let momentAuthor = moment.createdByInfo, let authorId = moment.createdBy {
-                                    RattitUserManager.cachedUsers[authorId] = momentAuthor
+                                    RattitUserManager.sharedInstance.cachedUsers[authorId] = momentAuthor
                                 }
                             }
                         })

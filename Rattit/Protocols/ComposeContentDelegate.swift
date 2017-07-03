@@ -8,6 +8,10 @@
 
 import Foundation
 
-protocol ComposeContentDelegate: class {
+protocol ComposeContentUpdateSelectedPhotosDelegate: class {
     func updatePhotoCollectionCells()
+}
+
+protocol ComposeContentUpdateSelectedUsersDelegate: class {
+    func updateSelectedGroup()
 }

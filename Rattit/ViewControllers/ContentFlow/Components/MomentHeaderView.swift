@@ -44,7 +44,7 @@ class MomentHeaderView: UIView {
     
     func initializeData(moment: Moment) {
         if let createdBy = moment.createdBy {
-            RattitUserManager.getRattitUserAvatarImage(userId: createdBy, completion: { (avatarImage) in
+            RattitUserManager.sharedInstance.getRattitUserAvatarImage(userId: createdBy, completion: { (avatarImage) in
                 self.avatarImageView.image = avatarImage
             }, errorHandler: { (error) in
                 print("user has no image")
@@ -52,7 +52,7 @@ class MomentHeaderView: UIView {
             })
             self.avatarImageView.contentMode = .scaleAspectFill
             
-            RattitUserManager.getRattitUserForId(id: createdBy, completion: { (author) in
+            RattitUserManager.sharedInstance.getRattitUserForId(id: createdBy, completion: { (author) in
                 self.userNameLabel.text = author.userName
             }, errorHandler: { (error) in
                 print("user has no username.")

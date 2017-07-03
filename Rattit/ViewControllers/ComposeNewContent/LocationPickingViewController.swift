@@ -105,8 +105,10 @@ extension LocationPickingViewController: UITableViewDataSource, UITableViewDeleg
         
         if indexPath.section == 0 {
             ComposeContentManager.sharedInstance.pickedPlaceFromGoogle = nil
+            ComposeContentManager.sharedInstance.pickedPlaceRatingValue = 0
         } else {
             ComposeContentManager.sharedInstance.pickedPlaceFromGoogle = RattitLocationManager.sharedInstance.loadedNearbyPlacesFromGoogle[indexPath.row]
+            ComposeContentManager.sharedInstance.pickedPlaceRatingValue = 0
         }
         
         tableView.deselectRow(at: indexPath, animated: true)

@@ -42,6 +42,7 @@ class RattitLocationManager: NSObject {
                         self.pageTokenForMoreNearbyPlaces = nextPageToken
                     }
                     
+                    self.loadedNearbyPlacesFromGoogle.removeAll()
                     results.forEach({ (dataValue) in
                         if let googleLocation = GoogleLocation(dataValue: dataValue) {
                             self.loadedNearbyPlacesFromGoogle.append(googleLocation)

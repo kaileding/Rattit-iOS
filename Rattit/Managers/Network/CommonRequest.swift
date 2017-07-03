@@ -31,6 +31,11 @@ struct CommonRequest {
         return CommonRequest(urlPath: "/moments", method: .get)
     }
     
+    // get All Rattit users from server
+    static var GetUsers: CommonRequest {
+        return CommonRequest(urlPath: "/users", method: .get)
+    }
+    
     // get moments published later than some time
     static func getMomentsNoEarlierThan(timeThreshold: String) -> CommonRequest {
         var getMomentsNoEarlierThanRequest = CommonRequest(urlPath: "/moments", method: .get)

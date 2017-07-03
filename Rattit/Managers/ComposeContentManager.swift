@@ -14,9 +14,14 @@ class ComposeContentManager {
     var photoAssetsOnDivece: PHFetchResult<PHAsset>? = nil
     var imageOfPhotosOnDevice: [UIImage] = []
     var indexOfCheckedPhotos: [Int] = []
-    var composeContentDelegate: ComposeContentDelegate? = nil
+    var updateSelectedPhotoDelegate: ComposeContentUpdateSelectedPhotosDelegate? = nil
+    var updateSelectedUsersDelegate: ComposeContentUpdateSelectedUsersDelegate? = nil
     
     var pickedPlaceFromGoogle: GoogleLocation? = nil
+    var pickedPlaceRatingValue: Int = 0
+    var pickedUsersForTogether: [String] = [] // RattitUser ids
+    var uiviewOfPickedUsersForTogether: [PickedUserTogetherWithView] = [] // showing on FindTogetherWithViewController
+    var imagesOfPickedUsersForTogether: [UIImageView] = [] // showing on ComposeTextTableViewController
     
     static let sharedInstance: ComposeContentManager = ComposeContentManager()
     
@@ -49,7 +54,7 @@ class ComposeContentManager {
     }
     
     func updateAllPhotoCells() {
-        self.composeContentDelegate?.updatePhotoCollectionCells()
+        self.updateSelectedPhotoDelegate?.updatePhotoCollectionCells()
     }
     
     func insertNewPhotoToCollection(newImage: UIImage) {
@@ -58,7 +63,7 @@ class ComposeContentManager {
             return (val+1)
         }
         self.indexOfCheckedPhotos.append(0)
-        self.composeContentDelegate?.updatePhotoCollectionCells()
+        self.updateSelectedPhotoDelegate?.updatePhotoCollectionCells()
     }
     
     func hasAtLeastOneImageChecked() -> Bool {
@@ -95,7 +100,19 @@ class ComposeContentManager {
         }
     }
     
+    func removeUserFromSelectedGroup(userId: String) {
+        if let indexVal = self.pickedUsersForTogether.index(of: userId) {
+            self.pickedUsersForTogether.remove(at: indexVal)
+            self.updateSelectedUsersDelegate?.updateSelectedGroup()
+        }
+    }
     
+    func insertNewUserToSelectedGroup(userId: String) {
+        if !self.pickedUsersForTogether.contains(userId) {
+            self.pickedUsersForTogether.append(userId)
+            self.updateSelectedUsersDelegate?.updateSelectedGroup()
+        }
+    }
     
     // utilities
     static func phAssetToUIImage(asset: PHAsset, dimension: CGSize) -> UIImage {

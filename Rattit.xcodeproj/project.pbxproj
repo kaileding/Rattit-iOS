@@ -16,6 +16,9 @@
 		85023FAC1EF76D4700E785FD /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85023FAB1EF76D4700E785FD /* StringExtensions.swift */; };
 		8503D21C1F07871D0053D639 /* FindTogetherWithViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8503D21B1F07871D0053D639 /* FindTogetherWithViewController.swift */; };
 		850779B21F03777D00598D60 /* ComposeContentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850779B11F03777D00598D60 /* ComposeContentDelegate.swift */; };
+		85084F121F0900F6002D3FFF /* FindPeopleChoicesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85084F111F0900F6002D3FFF /* FindPeopleChoicesTableViewCell.swift */; };
+		851FBC611F0A4564000DEB50 /* PickedUserTogetherWithView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851FBC601F0A4564000DEB50 /* PickedUserTogetherWithView.xib */; };
+		851FBC631F0A4580000DEB50 /* PickedUserTogetherWithView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851FBC621F0A4580000DEB50 /* PickedUserTogetherWithView.swift */; };
 		852C395C1EF5C8F400C66C16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 852C395B1EF5C8E800C66C16 /* GoogleService-Info.plist */; };
 		852C395D1EF5C9C100C66C16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 852C395B1EF5C8E800C66C16 /* GoogleService-Info.plist */; };
 		852C39711EF5D81A00C66C16 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852C396F1EF5D81A00C66C16 /* SignIn.storyboard */; };
@@ -76,11 +79,6 @@
 		85E21A411EFB4E7D00D4F961 /* RattitLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E21A401EFB4E7D00D4F961 /* RattitLocation.swift */; };
 		85E21A431EFB5A3400D4F961 /* RattitUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E21A421EFB5A3400D4F961 /* RattitUserManager.swift */; };
 		85F058D51F0260D5008808CE /* ComposeContentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F058D41F0260D5008808CE /* ComposeContentManager.swift */; };
-		85FC7F821F083D690020D2A4 /* ComposeMomentEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FC7F811F083D690020D2A4 /* ComposeMomentEditorView.swift */; };
-		85FC7F841F083D760020D2A4 /* ComposeMomentEditorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85FC7F831F083D760020D2A4 /* ComposeMomentEditorView.xib */; };
-		85FC7F8A1F08500C0020D2A4 /* LocationRatingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85FC7F891F08500C0020D2A4 /* LocationRatingView.xib */; };
-		85FC7F8C1F0850180020D2A4 /* LocationRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FC7F8B1F0850180020D2A4 /* LocationRatingView.swift */; };
-		85FC7F8E1F08D8700020D2A4 /* LocationRatingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85FC7F8D1F08D8700020D2A4 /* LocationRatingTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +101,9 @@
 		85023FAB1EF76D4700E785FD /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		8503D21B1F07871D0053D639 /* FindTogetherWithViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindTogetherWithViewController.swift; sourceTree = "<group>"; };
 		850779B11F03777D00598D60 /* ComposeContentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeContentDelegate.swift; sourceTree = "<group>"; };
+		85084F111F0900F6002D3FFF /* FindPeopleChoicesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPeopleChoicesTableViewCell.swift; sourceTree = "<group>"; };
+		851FBC601F0A4564000DEB50 /* PickedUserTogetherWithView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickedUserTogetherWithView.xib; sourceTree = "<group>"; };
+		851FBC621F0A4580000DEB50 /* PickedUserTogetherWithView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickedUserTogetherWithView.swift; sourceTree = "<group>"; };
 		852C395B1EF5C8E800C66C16 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		852C396B1EF5D75B00C66C16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		852C396D1EF5D75B00C66C16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
@@ -166,11 +167,6 @@
 		85E21A401EFB4E7D00D4F961 /* RattitLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RattitLocation.swift; sourceTree = "<group>"; };
 		85E21A421EFB5A3400D4F961 /* RattitUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RattitUserManager.swift; sourceTree = "<group>"; };
 		85F058D41F0260D5008808CE /* ComposeContentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeContentManager.swift; sourceTree = "<group>"; };
-		85FC7F811F083D690020D2A4 /* ComposeMomentEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeMomentEditorView.swift; sourceTree = "<group>"; };
-		85FC7F831F083D760020D2A4 /* ComposeMomentEditorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComposeMomentEditorView.xib; sourceTree = "<group>"; };
-		85FC7F891F08500C0020D2A4 /* LocationRatingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationRatingView.xib; sourceTree = "<group>"; };
-		85FC7F8B1F0850180020D2A4 /* LocationRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRatingView.swift; sourceTree = "<group>"; };
-		85FC7F8D1F08D8700020D2A4 /* LocationRatingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationRatingTableViewCell.swift; sourceTree = "<group>"; };
 		A7FD9D66EAB2321515655810 /* Pods-RattitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RattitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RattitTests/Pods-RattitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D36E614ACE838E16C8F5D85C /* Pods_RattitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RattitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E121460B4EF7B5D2D894C3F5 /* Pods-Rattit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rattit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rattit/Pods-Rattit.release.xcconfig"; sourceTree = "<group>"; };
@@ -389,7 +385,7 @@
 				8533DF351F041AD10026C437 /* ComposeTextTableViewController.swift */,
 				859B5F481F060FF0009A8762 /* LocationPickingViewController.swift */,
 				8503D21B1F07871D0053D639 /* FindTogetherWithViewController.swift */,
-				85FC7F8D1F08D8700020D2A4 /* LocationRatingTableViewCell.swift */,
+				85084F111F0900F6002D3FFF /* FindPeopleChoicesTableViewCell.swift */,
 			);
 			path = ComposeNewContent;
 			sourceTree = "<group>";
@@ -401,10 +397,8 @@
 				8582A6541F0088BA00483CDD /* DevicePhotoCollectionViewCell.xib */,
 				855700E11F00C8AB0084356E /* CapturedPhotoView.swift */,
 				855700DF1F00C88D0084356E /* CapturedPhotoView.xib */,
-				85FC7F811F083D690020D2A4 /* ComposeMomentEditorView.swift */,
-				85FC7F831F083D760020D2A4 /* ComposeMomentEditorView.xib */,
-				85FC7F8B1F0850180020D2A4 /* LocationRatingView.swift */,
-				85FC7F891F08500C0020D2A4 /* LocationRatingView.xib */,
+				851FBC621F0A4580000DEB50 /* PickedUserTogetherWithView.swift */,
+				851FBC601F0A4564000DEB50 /* PickedUserTogetherWithView.xib */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -551,7 +545,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				85FC7F841F083D760020D2A4 /* ComposeMomentEditorView.xib in Resources */,
 				859564A61EF64CC7000D0BC8 /* Fly.storyboard in Resources */,
 				8582A6561F0088BA00483CDD /* DevicePhotoCollectionViewCell.xib in Resources */,
 				855700E01F00C88D0084356E /* CapturedPhotoView.xib in Resources */,
@@ -563,7 +556,7 @@
 				859564A31EF64CB2000D0BC8 /* Love.storyboard in Resources */,
 				859564A01EF64C5E000D0BC8 /* Search.storyboard in Resources */,
 				8549F0D31EFC990600385F1E /* PhotoScrollView.xib in Resources */,
-				85FC7F8A1F08500C0020D2A4 /* LocationRatingView.xib in Resources */,
+				851FBC611F0A4564000DEB50 /* PickedUserTogetherWithView.xib in Resources */,
 				8582A6441EFE319600483CDD /* ContentFlowRightNavBarItemView.xib in Resources */,
 				859564B01EF6654E000D0BC8 /* MomentTableViewCell.xib in Resources */,
 				852C397B1EF5ED7E00C66C16 /* LaunchScreen.storyboard in Resources */,
@@ -684,17 +677,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				853A3D1F1EF69F1C008EA58E /* Photo.swift in Sources */,
-				85FC7F8E1F08D8700020D2A4 /* LocationRatingTableViewCell.swift in Sources */,
 				859564BA1EF68176000D0BC8 /* AskForSignInSignUpDelegate.swift in Sources */,
 				859564AB1EF64E7A000D0BC8 /* HomeTabBarViewController.swift in Sources */,
 				859564A91EF64DA0000D0BC8 /* HomeContentViewController.swift in Sources */,
 				85E21A351EFA624C00D4F961 /* MainContent.swift in Sources */,
 				8549F0DA1EFCB85400385F1E /* MomentHeaderView.swift in Sources */,
+				851FBC631F0A4580000DEB50 /* PickedUserTogetherWithView.swift in Sources */,
 				85023FA21EF71E7600E785FD /* RattitUser.swift in Sources */,
 				85E21A3F1EFB4C4900D4F961 /* CommentForAnswer.swift in Sources */,
 				850779B21F03777D00598D60 /* ComposeContentDelegate.swift in Sources */,
 				8582A64A1EFE3C6D00483CDD /* ContentFlowLeftNavBarItemView.swift in Sources */,
-				85FC7F821F083D690020D2A4 /* ComposeMomentEditorView.swift in Sources */,
 				85E21A431EFB5A3400D4F961 /* RattitUserManager.swift in Sources */,
 				8503D21C1F07871D0053D639 /* FindTogetherWithViewController.swift in Sources */,
 				8533DF361F041AD10026C437 /* ComposeTextTableViewController.swift in Sources */,
@@ -704,6 +696,7 @@
 				8549F0D51EFC992400385F1E /* PhotoScrollView.swift in Sources */,
 				855700E21F00C8AB0084356E /* CapturedPhotoView.swift in Sources */,
 				859B5F4D1F061F12009A8762 /* RattitLocationManager.swift in Sources */,
+				85084F121F0900F6002D3FFF /* FindPeopleChoicesTableViewCell.swift in Sources */,
 				8582A64C1EFE419F00483CDD /* ComposeImageViewController.swift in Sources */,
 				85023FA71EF728D100E785FD /* MomentManager.swift in Sources */,
 				85023FA91EF72E2100E785FD /* NetworkConstants.swift in Sources */,
@@ -712,7 +705,6 @@
 				853851381EF4FBF600A8B2B5 /* Rattit.xcdatamodeld in Sources */,
 				85E21A3D1EFA73E000D4F961 /* CommentForMoment.swift in Sources */,
 				859564BE1EF682CF000D0BC8 /* SignInSignOutConstants.swift in Sources */,
-				85FC7F8C1F0850180020D2A4 /* LocationRatingView.swift in Sources */,
 				85E21A411EFB4E7D00D4F961 /* RattitLocation.swift in Sources */,
 				859B5F491F060FF0009A8762 /* LocationPickingViewController.swift in Sources */,
 				8549F0CD1EFB878F00385F1E /* CommonRequest.swift in Sources */,

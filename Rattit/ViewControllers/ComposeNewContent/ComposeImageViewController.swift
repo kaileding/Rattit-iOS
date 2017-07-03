@@ -68,7 +68,7 @@ class ComposeImageViewController: UIViewController {
         let photoCellNib = UINib(nibName: "DevicePhotoCollectionViewCell", bundle: nil)
         self.photoCollectionView.register(photoCellNib, forCellWithReuseIdentifier: "photoCollectionCell")
         
-        ComposeContentManager.sharedInstance.composeContentDelegate = self
+        ComposeContentManager.sharedInstance.updateSelectedPhotoDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -314,7 +314,7 @@ extension ComposeImageViewController: UICollectionViewDelegate, UICollectionView
     
 }
 
-extension ComposeImageViewController: ComposeContentDelegate {
+extension ComposeImageViewController: ComposeContentUpdateSelectedPhotosDelegate {
     func updatePhotoCollectionCells() {
         self.photoCollectionView.reloadData()
         if ComposeContentManager.sharedInstance.hasAtLeastOneImageChecked() {

@@ -10,41 +10,45 @@ import Foundation
 import Alamofire
 
 class MomentManager: NSObject {
-    static var downloadedMoments: [Moment] = []
-    static var lastMomentCreatedAt: Date? = nil
-    static var lastMomentId: String? = nil
-    static var firstMomentCreatedAt: Date? = nil
-    static var firstMomentId: String? = nil
-    static var lastRefreshTime: Date? = nil
-    static var networkService: Network = Network()
+    var downloadedMoments: [String: Moment] = [:] // momentId : Moment
+    var displaySequenceOfMoments: [String] = [] // Array of momentId
+    var lastMomentCreatedAt: Date? = nil
+    var lastMomentId: String? = nil
+    var firstMomentCreatedAt: Date? = nil
+    var firstMomentId: String? = nil
+    var lastRefreshTime: Date? = nil
     
-    static func loadMomentsFromServer(completion: @escaping () -> Void, errorHandler: @escaping (Error) -> Void) {
+    static let sharedInstance: MomentManager = MomentManager()
+    
+    func loadMomentsFromServer(completion: @escaping () -> Void, errorHandler: @escaping (Error) -> Void) {
         
-        MomentManager.networkService.callRattitContentService(httpRequest: .GetMoments, completion: { (dataValue) in
+        Network.sharedInstance.callRattitContentService(httpRequest: .GetMoments, completion: { (dataValue) in
             
             if let responseBody = dataValue as? [String: Any], let count = responseBody["count"] as? Int, let rows = responseBody["rows"] as? [Any] {
                 
                 print("Got \(count) moments from server.")
-                MomentManager.downloadedMoments = []
+                self.downloadedMoments.removeAll()
+                self.displaySequenceOfMoments.removeAll()
                 rows.forEach({ (dataValue) in
                     if let moment = Moment(dataValue: dataValue) {
-                        MomentManager.downloadedMoments.append(moment)
+                        self.downloadedMoments[moment.id!] = moment
+                        self.displaySequenceOfMoments.append(moment.id!)
                         if let momentAuthor = moment.createdByInfo, let authorId = moment.createdBy {
                             RattitUserManager.sharedInstance.cachedUsers[authorId] = momentAuthor
                         }
                     }
                 })
-                if let lastMoment = MomentManager.downloadedMoments.first {
-                    MomentManager.lastMomentCreatedAt = lastMoment.createdAt
-                    MomentManager.lastMomentId = lastMoment.id
+                if let lastMomentId = self.displaySequenceOfMoments.first {
+                    self.lastMomentCreatedAt = self.downloadedMoments[lastMomentId]!.createdAt
+                    self.lastMomentId = lastMomentId
                 }
-                if let firstMoment = MomentManager.downloadedMoments.last {
-                    MomentManager.firstMomentCreatedAt = firstMoment.createdAt
-                    MomentManager.firstMomentId = firstMoment.id
+                if let firstMomentId = self.displaySequenceOfMoments.last {
+                    self.firstMomentCreatedAt = self.downloadedMoments[firstMomentId]!.createdAt
+                    self.firstMomentId = firstMomentId
                 }
                 
                 DispatchQueue.main.async {
-                    MomentManager.lastRefreshTime = Date()
+                    self.lastRefreshTime = Date()
                     completion()
                 }
             }
@@ -55,40 +59,41 @@ class MomentManager: NSObject {
         
     }
     
-    static func loadMomentsUpdatesFromServer(completion: @escaping (Bool) -> Void, errorHandler: @escaping (Error) -> Void) {
+    func loadMomentsUpdatesFromServer(completion: @escaping (Bool) -> Void, errorHandler: @escaping (Error) -> Void) {
         
-        if (MomentManager.lastMomentCreatedAt != nil) {
+        if (self.lastMomentCreatedAt != nil) {
             
-            MomentManager.networkService.callRattitContentService(httpRequest: .getMomentsNoEarlierThan(timeThreshold: MomentManager.lastMomentCreatedAt!.dateToUtcString), completion: { (dataValue) in
+            Network.sharedInstance.callRattitContentService(httpRequest: .getMomentsNoEarlierThan(timeThreshold: self.lastMomentCreatedAt!.dateToUtcString), completion: { (dataValue) in
                 
                 if let responseBody = dataValue as? [String: Any], let count = responseBody["count"] as? Int, let rows = responseBody["rows"] as? [Any] {
                     
                     print("Got \(count) more moments from server.")
                     if (count > 0) {
-                        var newMoments: [Moment] = []
+                        var newMoments: [String] = []
                         rows.forEach({ (dataValue) in
                             if let moment = Moment(dataValue: dataValue) {
-                                if (moment.id != MomentManager.lastMomentId) {
-                                    newMoments.append(moment)
+                                self.downloadedMoments[moment.id!] = moment
+                                if (moment.id != self.lastMomentId) {
+                                    newMoments.append(moment.id!)
                                 }
                                 if let momentAuthor = moment.createdByInfo, let authorId = moment.createdBy {
                                     RattitUserManager.sharedInstance.cachedUsers[authorId] = momentAuthor
                                 }
                             }
                         })
-                        MomentManager.downloadedMoments.insert(contentsOf: newMoments, at: 0)
-                        if let lastMoment = newMoments.first {
-                            MomentManager.lastMomentId = lastMoment.id
-                            MomentManager.lastMomentCreatedAt = lastMoment.createdAt
+                        self.displaySequenceOfMoments.insert(contentsOf: newMoments, at: 0)
+                        if let lastMomentId = newMoments.first {
+                            self.lastMomentId = lastMomentId
+                            self.lastMomentCreatedAt = self.downloadedMoments[lastMomentId]!.createdAt
                         }
                         
                         DispatchQueue.main.async {
-                            MomentManager.lastRefreshTime = Date()
+                            self.lastRefreshTime = Date()
                             completion(newMoments.count > 0)
                         }
                     } else {
                         DispatchQueue.main.async {
-                            MomentManager.lastRefreshTime = Date()
+                            self.lastRefreshTime = Date()
                             completion(false)
                         }
                     }
@@ -100,11 +105,29 @@ class MomentManager: NSObject {
             
         } else {
             print("lastMomentCreatedAt = nil, so loadMomentsFromServer() func called.")
-            MomentManager.loadMomentsFromServer(completion: {
+            self.loadMomentsFromServer(completion: {
                 completion(true)
             }, errorHandler: errorHandler)
         }
         
+    }
+    
+    func castVoteToAMoment(momentId: String, voteType: RattitMomentVoteType, commit: Bool, completion: @escaping () -> Void, errorHandler: @escaping () -> Void) {
+        
+        Network.sharedInstance.callRattitContentService(httpRequest: .castVoteToAMoment(momentId: momentId, voteType: voteType, commit: commit), completion: { (dataValue) in
+            
+            if let moment = Moment(dataValue: dataValue) {
+                self.downloadedMoments[moment.id!] = moment
+                DispatchQueue.main.async {
+                    completion()
+                }
+            }
+        }) { (error) in
+            print("Failed to cast vote to moment. Error is \(error.localizedDescription)")
+            DispatchQueue.main.async {
+                errorHandler()
+            }
+        }
     }
     
 }

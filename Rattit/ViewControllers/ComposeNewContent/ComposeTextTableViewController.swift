@@ -251,9 +251,14 @@ class ComposeTextTableViewController: UITableViewController {
     
     
     func completeTextAndPost() {
-        self.dismiss(animated: true, completion: nil)
         
-        ComposeContentManager.sharedInstance.postNewMoment(title: self.titleTextField.text!, words: self.wordsTextView.text)
+        ComposeContentManager.sharedInstance.postNewMoment(title: self.titleTextField.text!, words: self.wordsTextView.text, completion: {
+            
+            self.dismiss(animated: true, completion: nil)
+        }, errorHandler: {
+            
+            self.dismiss(animated: true, completion: nil)
+        })
     }
     
     

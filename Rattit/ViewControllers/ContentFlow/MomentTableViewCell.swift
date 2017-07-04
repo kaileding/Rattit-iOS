@@ -76,8 +76,9 @@ class MomentTableViewCell: UITableViewCell {
     
     func initializeContent(moment: Moment, sideLength: Double) {
         
-        self.momentHeaderView?.initializeData(moment: moment)
+        self.momentHeaderView.initializeData(moment: moment)
         self.momentWordsLabel.text = moment.words
+        self.momentOptionBar.initializeData(moment: moment)
         
         if let photos = moment.photos, photos.count > 0 {
             self.wordsLabelTopToHeaderViewConstraint?.isActive = false

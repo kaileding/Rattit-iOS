@@ -20,3 +20,22 @@ public enum RattitContentAccessLevel: String {
     case levelFollowers = "followers"
     case levelPublic = "public"
 }
+
+public enum RattitMomentVoteType: String {
+    case typeLike = "like"
+    case typeAdmire = "admire"
+    case typePity = "pity"
+}
+
+public enum RattitQuestionVoteType: String {
+    case typeInterest = "interest"
+    case typeInvite = "invite"
+    case typePity = "pity"
+}
+
+public enum RattitAnswerVoteType: String {
+    case typeAgree = "agree"
+    case typeDisagree = "disagree"
+    case typeAdmire = "admire"
+}
+

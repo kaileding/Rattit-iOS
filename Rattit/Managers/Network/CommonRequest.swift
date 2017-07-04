@@ -83,5 +83,14 @@ struct CommonRequest {
         postNewMomentContentRequest.endcoding = JSONEncoding.default
         return postNewMomentContentRequest
     }
+    
+    // cast a vote to a certain moment
+    static func castVoteToAMoment(momentId: String, voteType: RattitMomentVoteType, commit: Bool) -> CommonRequest {
+        var castVoteToAMomentRequest = CommonRequest(urlPath: "/moments/\(momentId)/voters/\(UserStateManager.dummyUserId)", method: .patch)
+        castVoteToAMomentRequest.parameters = ["type": voteType.rawValue,
+                                               "commit": commit]
+        castVoteToAMomentRequest.endcoding = JSONEncoding.default
+        return castVoteToAMomentRequest
+    }
 }
 

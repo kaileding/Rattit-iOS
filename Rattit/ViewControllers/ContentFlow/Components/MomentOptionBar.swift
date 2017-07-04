@@ -54,25 +54,44 @@ class MomentOptionBar: UIView {
     
     func initializeData(moment: Moment) {
         self.momentId = moment.id
+        if moment.likersNumber == 0 {
+            self.likeTextLabel.text = "LIKE"
+        } else {
+            self.likeTextLabel.text = "\(moment.likersNumber)"
+        }
+        
+//        self.
     }
     
     @IBAction func likeButtonPressed(_ sender: UIButton) {
         print("== like button pressed.")
         if self.liked == false {
-            UIView.animate(withDuration: 0.1, animations: {
-                self.likeImage.frame = CGRect(x: 12.0, y: 12.0, width: 0.0, height: 0.0)
-            }, completion: { (success) in
-                self.likeImage.frame = CGRect(x: 12.0, y: 12.0, width: 0.0, height: 0.0)
-                self.likeImage.image = self.reusableLikedImage
-                self.likeImage.tintColor = UIColor.red
-                UIView.animate(withDuration: 0.2, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 2.0, options: [.curveEaseIn], animations: {
-                    self.likeImage.frame = CGRect(x: 2.0, y: 2.0, width: 20.0, height: 20.0)
-                }, completion: nil)
+            MomentManager.sharedInstance.castVoteToAMoment(momentId: self.momentId!, voteType: .typeLike, commit: true, completion: {
+                
+                UIView.animate(withDuration: 0.1, animations: {
+                    self.likeImage.frame = CGRect(x: 12.0, y: 12.0, width: 0.0, height: 0.0)
+                }, completion: { (success) in
+                    self.likeImage.frame = CGRect(x: 12.0, y: 12.0, width: 0.0, height: 0.0)
+                    self.likeImage.image = self.reusableLikedImage
+                    self.likeImage.tintColor = UIColor.red
+                    UIView.animate(withDuration: 0.2, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 2.0, options: [.curveEaseIn], animations: {
+                        self.likeImage.frame = CGRect(x: 2.0, y: 2.0, width: 20.0, height: 20.0)
+                    }, completion: nil)
+                })
+            }, errorHandler: {
+                print("Unable to cast LIKE vote.")
             })
+            
             self.liked = true
         } else {
-            self.likeImage.image = self.reusableLikeImage
-            self.likeImage.tintColor = UIColor.darkGray
+            MomentManager.sharedInstance.castVoteToAMoment(momentId: self.momentId!, voteType: .typeLike, commit: false, completion: {
+                
+                self.likeImage.image = self.reusableLikeImage
+                self.likeImage.tintColor = UIColor.darkGray
+            }, errorHandler: {
+                print("Unable to revoke LIKE vote.")
+            })
+            
             self.liked = false
         }
     }

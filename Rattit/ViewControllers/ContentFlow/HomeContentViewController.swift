@@ -38,7 +38,7 @@ class HomeContentViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        MomentManager.loadMomentsUpdatesFromServer(completion: { (hasNewMoments) in
+        MomentManager.sharedInstance.loadMomentsUpdatesFromServer(completion: { (hasNewMoments) in
             print("ViewDidAppear, hasNewMoments = \(hasNewMoments)")
             if (hasNewMoments) {
                 self.mainContentTable.reloadData()
@@ -73,12 +73,14 @@ extension HomeContentViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return MomentManager.downloadedMoments.count
+        return MomentManager.sharedInstance.displaySequenceOfMoments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MomentTableViewCell", for: indexPath) as! MomentTableViewCell
-        cell.initializeContent(moment: MomentManager.downloadedMoments[indexPath.row], sideLength: Double(self.view.frame.width))
+        
+        let displayMomentId = MomentManager.sharedInstance.displaySequenceOfMoments[indexPath.row]
+        cell.initializeContent(moment: MomentManager.sharedInstance.downloadedMoments[displayMomentId]!, sideLength: Double(self.view.frame.width))
         
         return cell
     }

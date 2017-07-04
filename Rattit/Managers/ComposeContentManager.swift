@@ -110,7 +110,7 @@ class ComposeContentManager {
         }
     }
     
-    func postNewMoment(title: String, words: String) {
+    func postNewMoment(title: String, words: String, completion: @escaping () -> Void, errorHandler: @escaping () -> Void) {
         print("postNewMoment, title=\(title), words=\(words)")
         
         var newMomentDic = [String: Any]()
@@ -144,8 +144,15 @@ class ComposeContentManager {
                     
                     Network.sharedInstance.callRattitContentService(httpRequest: .postNewMomentContent(bodyDic: newMomentDic), completion: { (dataValue) in
                         print("successfully published new moment.")
+                        
+                        DispatchQueue.main.async {
+                            completion()
+                        }
                     }, errorHandler: { (error) in
                         print("publishing new Moment got failure: \(error.localizedDescription)")
+                        DispatchQueue.main.async {
+                            errorHandler()
+                        }
                     })
                 }
                 

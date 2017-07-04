@@ -16,6 +16,7 @@ public enum RattitUserGender: String {
 
 public enum RattitContentAccessLevel: String {
     case levelSelf = "self"
+    case levelFriends = "friends"
     case levelFollowers = "followers"
     case levelPublic = "public"
 }

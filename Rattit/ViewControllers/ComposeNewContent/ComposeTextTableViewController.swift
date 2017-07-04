@@ -44,6 +44,24 @@ class ComposeTextTableViewController: UITableViewController {
     @IBOutlet weak var shareToIconImageView: UIImageView!
     @IBOutlet weak var shareToLabel: UILabel!
     @IBOutlet weak var shareToLabelArrowImageView: UIImageView!
+    @IBOutlet weak var shareToSelectedLabel: UILabel!
+    
+    
+    @IBOutlet weak var shareToAllCell: UITableViewCell!
+    @IBOutlet weak var shareToAllCheckImageView: UIImageView!
+    
+    @IBOutlet weak var shareToFollowersCell: UITableViewCell!
+    @IBOutlet weak var shareToFollowersCheckImageView: UIImageView!
+    
+    @IBOutlet weak var shareToFriendsCell: UITableViewCell!
+    @IBOutlet weak var shareToFriendsCheckImageView: UIImageView!
+    
+    @IBOutlet weak var shareToPrivateCell: UITableViewCell!
+    @IBOutlet weak var shareToPrivateCheckImageView: UIImageView!
+    
+    var shareToOptionsOpen: Bool = false
+    
+    
     
     var selectedImages: [UIImage] = []
     
@@ -63,15 +81,15 @@ class ComposeTextTableViewController: UITableViewController {
         self.locationLabelArrowImageView.tintColor = UIColor.lightGray
         
         self.star1ImageView.image = self.emptyStarImage
-        self.star1ImageView.tintColor = UIColor(red: 0, green: 0.5098, blue: 0.7882, alpha: 1.0)
+        self.star1ImageView.tintColor = UIColor(red: 0.5882, green: 0.4588, blue: 0, alpha: 1.0)
         self.star2ImageView.image = self.emptyStarImage
-        self.star2ImageView.tintColor = UIColor(red: 0, green: 0.5098, blue: 0.7882, alpha: 1.0)
+        self.star2ImageView.tintColor = UIColor(red: 0.5882, green: 0.4588, blue: 0, alpha: 1.0)
         self.star3ImageView.image = self.emptyStarImage
-        self.star3ImageView.tintColor = UIColor(red: 0, green: 0.5098, blue: 0.7882, alpha: 1.0)
+        self.star3ImageView.tintColor = UIColor(red: 0.5882, green: 0.4588, blue: 0, alpha: 1.0)
         self.star4ImageView.image = self.emptyStarImage
-        self.star4ImageView.tintColor = UIColor(red: 0, green: 0.5098, blue: 0.7882, alpha: 1.0)
+        self.star4ImageView.tintColor = UIColor(red: 0.5882, green: 0.4588, blue: 0, alpha: 1.0)
         self.star5ImageView.image = self.emptyStarImage
-        self.star5ImageView.tintColor = UIColor(red: 0, green: 0.5098, blue: 0.7882, alpha: 1.0)
+        self.star5ImageView.tintColor = UIColor(red: 0.5882, green: 0.4588, blue: 0, alpha: 1.0)
         
         
         self.togetherWithIconImageView.image = UIImage(named: "togetherWith")?.withRenderingMode(.alwaysTemplate)
@@ -93,6 +111,13 @@ class ComposeTextTableViewController: UITableViewController {
         
         self.tableView.tableFooterView = UIView()
         self.tableView.backgroundColor = UIColor(red: 0.9255, green: 0.9255, blue: 0.9255, alpha: 1.0)
+        
+        if self.titleTextField.text == nil || self.wordsTextView.textColor == UIColor.lightGray {
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
+        } else {
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
+        }
+        
         
         self.showSelectedImagesOnScrollView()
         
@@ -141,6 +166,7 @@ class ComposeTextTableViewController: UITableViewController {
         self.separatorCell.separatorInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, self.view.frame.width)
         
         self.tableView.reloadData()
+        self.displaySelectedShareToCellAndCollapseOptions()
         
         ComposeContentManager.sharedInstance.imagesOfPickedUsersForTogether.forEach({ (pickedUserImageView) in
             pickedUserImageView.removeFromSuperview()
@@ -148,10 +174,13 @@ class ComposeTextTableViewController: UITableViewController {
         ComposeContentManager.sharedInstance.imagesOfPickedUsersForTogether.removeAll()
         if ComposeContentManager.sharedInstance.pickedUsersForTogether.isEmpty {
             self.togetherWithLabelArrowImageView.isHidden = false
+            self.togetherWithIconImageView.tintColor = UIColor.lightGray
         } else {
             self.togetherWithLabelArrowImageView.isHidden = true
+            self.togetherWithIconImageView.tintColor = UIColor(red: 0, green: 0.5098, blue: 0.7882, alpha: 1.0)
             self.showSelectedUsersOnTogetherWithCell()
         }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -166,7 +195,7 @@ class ComposeTextTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 10
     }
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -185,7 +214,23 @@ class ComposeTextTableViewController: UITableViewController {
         } else if indexPath.row == 4 {
             performSegue(withIdentifier: "FromComposeTextToTogetherWithFinder", sender: self)
         } else if indexPath.row == 5 {
-            
+            if self.shareToOptionsOpen {
+                self.displaySelectedShareToCellAndCollapseOptions()
+            } else {
+                self.openShareToOptions()
+            }
+        } else if indexPath.row == 6 {
+            ComposeContentManager.sharedInstance.shareToLevel = .levelPublic
+            self.displaySelectedShareToCellAndCollapseOptions()
+        } else if indexPath.row == 7 {
+            ComposeContentManager.sharedInstance.shareToLevel = .levelFollowers
+            self.displaySelectedShareToCellAndCollapseOptions()
+        } else if indexPath.row == 8 {
+            ComposeContentManager.sharedInstance.shareToLevel = .levelFriends
+            self.displaySelectedShareToCellAndCollapseOptions()
+        } else if indexPath.row == 9 {
+            ComposeContentManager.sharedInstance.shareToLevel = .levelSelf
+            self.displaySelectedShareToCellAndCollapseOptions()
         }
     }
     
@@ -197,6 +242,8 @@ class ComposeTextTableViewController: UITableViewController {
             return (ComposeContentManager.sharedInstance.pickedPlaceFromGoogle == nil) ? 0.0 : 44.0
         } else if indexPath.row == 3 {
             return 18.0
+        } else if [6, 7, 8, 9].contains(indexPath.row) {
+            return self.shareToOptionsOpen ? 44.0 : 0.0
         } else {
             return 44.0
         }
@@ -205,6 +252,8 @@ class ComposeTextTableViewController: UITableViewController {
     
     func completeTextAndPost() {
         self.dismiss(animated: true, completion: nil)
+        
+        ComposeContentManager.sharedInstance.postNewMoment(title: self.titleTextField.text!, words: self.wordsTextView.text)
     }
     
     
@@ -260,10 +309,17 @@ extension ComposeTextTableViewController: UITextViewDelegate {
         let currentText = textView.text
         let newText = currentText?.replacingCharacters(in: Range<String.Index>(range, in: currentText!)!, with: text)
         
+        if self.titleTextField.text == nil || self.titleTextField.text!.isEmpty {
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
+        } else {
+            self.navigationItem.rightBarButtonItem?.isEnabled = true
+        }
         if newText!.isEmpty {
             textView.text = "Say something"
             textView.textColor = UIColor.lightGray
             textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
+            
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
             
             return false
         } else if textView.textColor == UIColor.lightGray && !text.isEmpty {
@@ -389,6 +445,54 @@ extension ComposeTextTableViewController {
         self.star5ImageView.image = self.filledStarImage
         ComposeContentManager.sharedInstance.pickedPlaceRatingValue = 5
     }
+    
+    func displaySelectedShareToCellAndCollapseOptions() {
+//        print("displaySelectedShareToCellAndCollapseOptions(). ")
+        self.shareToSelectedLabel.isHidden = false
+        self.shareToLabelArrowImageView.isHidden = true
+        switch ComposeContentManager.sharedInstance.shareToLevel {
+        case .levelPublic:
+            self.shareToSelectedLabel.text = "All"
+            self.shareToIconImageView.tintColor = UIColor.black
+        case .levelFollowers:
+            self.shareToSelectedLabel.text = "Followers"
+            self.shareToIconImageView.tintColor = UIColor.black
+        case .levelFriends:
+            self.shareToSelectedLabel.text = "Friends"
+            self.shareToIconImageView.tintColor = UIColor.black
+        case .levelSelf:
+            self.shareToSelectedLabel.text = "Private"
+            self.shareToIconImageView.tintColor = UIColor.lightGray
+        }
+        
+        self.shareToOptionsOpen = false
+        self.tableView.reloadData()
+    }
+    
+    func openShareToOptions() {
+//        print("openShareToOptions(). ")
+        self.shareToSelectedLabel.isHidden = true
+        self.shareToLabelArrowImageView.isHidden = false
+        
+        self.shareToAllCheckImageView.isHidden = true
+        self.shareToFollowersCheckImageView.isHidden = true
+        self.shareToFriendsCheckImageView.isHidden = true
+        self.shareToPrivateCheckImageView.isHidden = true
+        switch ComposeContentManager.sharedInstance.shareToLevel {
+        case .levelPublic:
+            self.shareToAllCheckImageView.isHidden = false
+        case .levelFollowers:
+            self.shareToFollowersCheckImageView.isHidden = false
+        case .levelFriends:
+            self.shareToFriendsCheckImageView.isHidden = false
+        case .levelSelf:
+            self.shareToPrivateCheckImageView.isHidden = false
+        }
+        
+        self.shareToOptionsOpen = true
+        self.tableView.reloadData()
+    }
+    
 }
 
 

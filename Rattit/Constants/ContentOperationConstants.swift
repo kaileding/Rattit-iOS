@@ -12,3 +12,4 @@ public enum ComposeContentNotificationName: String {
     case composeImage = "ComposeImageNotification"
     case composeMoment = "ComposeMomentNotification"
 }
+

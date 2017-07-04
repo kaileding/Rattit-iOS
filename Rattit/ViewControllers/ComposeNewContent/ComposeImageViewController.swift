@@ -193,8 +193,6 @@ class ComposeImageViewController: UIViewController {
     func confirmImagePickingAndGoNext() {
         print("confirmImagePickingAndGoNext() func called.")
         
-//        ComposeContentManager.sharedInstance.uploadSelectedImagesToServer()
-        
         performSegue(withIdentifier: "FromComposeImageToComposeText", sender: self)
     }
     

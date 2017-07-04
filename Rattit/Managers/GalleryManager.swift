@@ -34,12 +34,14 @@ class GalleryManager: NSObject {
         }
     }
     
-    static func uploadImageToS3(imageName: String, image: UIImage, completion: @escaping () -> Void, errorHandler: @escaping (Error) -> Void) {
+    static func uploadImageToS3(imageName: String, image: UIImage, gotImageUrl: @escaping (String) -> Void, completion: @escaping () -> Void, errorHandler: @escaping (Error) -> Void) {
         
         if let imageData = UIImageJPEGRepresentation(image, 0.4) {
             GalleryManager.networkService.callRattitContentService(httpRequest: .getSignedURLToUploadImage(filename: imageName+".jpeg", fileType: "jpeg"), completion: { (dataValue) in
                 
                 if let responseBody = dataValue as? [String: String], let signedRequest = responseBody["signedRequestUrl"], let publicUrl = responseBody["publicUrl"] {
+                    
+                    gotImageUrl(publicUrl)
                     
                     GalleryManager.networkService.callS3ToUploadFile(signedRequest: signedRequest, fileData: imageData, fileType: "jpeg", completion: {
                         

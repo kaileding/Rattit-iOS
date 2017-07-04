@@ -18,7 +18,7 @@ class Network {
         request(httpRequest.baseUrl+httpRequest.urlPath,
                 method: httpRequest.method,
                 parameters: httpRequest.parameters,
-                encoding: URLEncoding.queryString,
+                encoding: httpRequest.endcoding,
                 headers: httpRequest.HTTPHeaders)
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])

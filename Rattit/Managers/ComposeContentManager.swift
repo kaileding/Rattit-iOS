@@ -14,6 +14,7 @@ class ComposeContentManager {
     var photoAssetsOnDivece: PHFetchResult<PHAsset>? = nil
     var imageOfPhotosOnDevice: [UIImage] = []
     var indexOfCheckedPhotos: [Int] = []
+    var publicUrlsOfCheckedPhotos: [[String: Any]] = []
     var updateSelectedPhotoDelegate: ComposeContentUpdateSelectedPhotosDelegate? = nil
     var updateSelectedUsersDelegate: ComposeContentUpdateSelectedUsersDelegate? = nil
     
@@ -22,6 +23,8 @@ class ComposeContentManager {
     var pickedUsersForTogether: [String] = [] // RattitUser ids
     var uiviewOfPickedUsersForTogether: [PickedUserTogetherWithView] = [] // showing on FindTogetherWithViewController
     var imagesOfPickedUsersForTogether: [UIImageView] = [] // showing on ComposeTextTableViewController
+    
+    var shareToLevel: RattitContentAccessLevel = .levelPublic
     
     static let sharedInstance: ComposeContentManager = ComposeContentManager()
     
@@ -93,13 +96,6 @@ class ComposeContentManager {
         return resImags
     }
     
-    func uploadSelectedImagesToServer() {
-        self.indexOfCheckedPhotos.forEach { (indexVal) in
-            let selectedImage = self.imageOfPhotosOnDevice[indexVal]
-            ComposeContentManager.uploadOneImageToServer(rawImage: selectedImage)
-        }
-    }
-    
     func removeUserFromSelectedGroup(userId: String) {
         if let indexVal = self.pickedUsersForTogether.index(of: userId) {
             self.pickedUsersForTogether.remove(at: indexVal)
@@ -112,6 +108,45 @@ class ComposeContentManager {
             self.pickedUsersForTogether.append(userId)
             self.updateSelectedUsersDelegate?.updateSelectedGroup()
         }
+    }
+    
+    func postNewMoment(title: String, words: String) {
+        print("postNewMoment, title=\(title), words=\(words)")
+        
+//        let newMoment = Moment(title: title, words: words, accessLevel: self.shareToLevel, createdBy: "default-iPhone-user")
+        var newMomentDic = [String: Any]()
+        newMomentDic["title"] = title as Any
+        newMomentDic["words"] = words as Any
+        newMomentDic["access_level"] = self.shareToLevel.rawValue as Any
+        newMomentDic["together_with"] = self.pickedUsersForTogether as Any
+        newMomentDic["hash_tags"] = ["iPhoneTesting"] as Any
+        self.publicUrlsOfCheckedPhotos.removeAll()
+        let numberOfCheckedPhotos = self.indexOfCheckedPhotos.count
+        let stubPublicUrlObj: [String: Any] = ["image_url": "",
+                                               "height": 500,
+                                               "width": 500]
+        self.publicUrlsOfCheckedPhotos = Array(repeating: stubPublicUrlObj, count: numberOfCheckedPhotos)
+        self.indexOfCheckedPhotos.enumerated().forEach({ (offset, indexVal) in
+            let imageChosen = self.imageOfPhotosOnDevice[indexVal]
+            ComposeContentManager.uploadOneImageToServer(rawImage: imageChosen, gotImageUrl: { (imageUrl) in
+                
+                self.publicUrlsOfCheckedPhotos[offset]["image_url"] = imageUrl
+                if !self.publicUrlsOfCheckedPhotos.contains(where: { (publicUrlObj) -> Bool in
+                    return (publicUrlObj["image_url"] as! String).count == 0
+                }) {
+                    print("got publicUrls of all checked images.")
+                    newMomentDic["photos"] = self.publicUrlsOfCheckedPhotos as Any
+                    
+                    Network.sharedInstance.callRattitContentService(httpRequest: .postNewMomentContent(bodyDic: newMomentDic), completion: { (dataValue) in
+                        print("successfully published new moment.")
+                    }, errorHandler: { (error) in
+                        print("publishing new Moment got failure: \(error.localizedDescription)")
+                    })
+                }
+                
+            })
+        })
+        
     }
     
     // utilities
@@ -131,7 +166,7 @@ class ComposeContentManager {
         return resultImage
     }
     
-    static func uploadOneImageToServer(rawImage: UIImage) {
+    static func uploadOneImageToServer(rawImage: UIImage, gotImageUrl: @escaping (String) -> Void) {
         if let photoCGImage = rawImage.cgImage {
             let photoWidth = photoCGImage.width, photoHeight = photoCGImage.height
             
@@ -144,7 +179,12 @@ class ComposeContentManager {
                 let croppedUIImage = UIImage(cgImage: croppedCGImage, scale: 1.0, orientation: rawImage.imageOrientation)
                 print("croppedUIImage.size is ", croppedUIImage.size.debugDescription)
                 
-                GalleryManager.uploadImageToS3(imageName: "captured-\(Date().timeIntervalSinceReferenceDate)", image: croppedUIImage, completion: {
+                GalleryManager.uploadImageToS3(imageName: "captured-\(Date().timeIntervalSinceReferenceDate)", image: croppedUIImage, gotImageUrl: { (imageUrl) in
+                    print("Successfully got public URL of image.")
+                    DispatchQueue.main.async {
+                        gotImageUrl(imageUrl)
+                    }
+                }, completion: {
                     print("Successfully called the GalleryManager.uploadImageToS3 func.")
                 }, errorHandler: { (error) in
                     print("failed to execute GalleryManager.uploadImageToS3 func.")

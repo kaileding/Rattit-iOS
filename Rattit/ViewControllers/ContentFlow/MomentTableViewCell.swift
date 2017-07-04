@@ -43,9 +43,9 @@ class MomentTableViewCell: UITableViewCell {
         self.momentWordsLabel.textColor = UIColor.darkText
         self.momentWordsLabel.removeFromSuperview()
         self.contentView.addSubview(self.momentWordsLabel)
-        self.momentWordsLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 0.0).isActive = true
-        self.momentWordsLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 0.0).isActive = true
-        self.wordsLabelTopToHeaderViewConstraint = NSLayoutConstraint(item: self.momentWordsLabel, attribute: .top, relatedBy: .equal, toItem: self.momentHeaderView, attribute: .bottomMargin, multiplier: 1.0, constant: 0.0)
+        self.momentWordsLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 8.0).isActive = true
+        self.momentWordsLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 8.0).isActive = true
+        self.wordsLabelTopToHeaderViewConstraint = NSLayoutConstraint(item: self.momentWordsLabel, attribute: .top, relatedBy: .equal, toItem: self.momentHeaderView, attribute: .bottomMargin, multiplier: 1.0, constant: 10.0)
         
         // setup momentPhotoScrollView
         self.momentPhotoScrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -60,7 +60,11 @@ class MomentTableViewCell: UITableViewCell {
         self.momentOptionBar.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 8.0).isActive = true
         self.momentOptionBar.topAnchor.constraint(equalTo: self.momentWordsLabel.bottomAnchor, constant: 0.0).isActive = true
         self.momentOptionBar.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 0.0).isActive = true
-        self.momentOptionBar.heightAnchor.constraint(equalToConstant: 38.0).isActive = true
+        let momentOptionBarHeightConstraint = self.momentOptionBar.heightAnchor.constraint(equalToConstant: 38.0)
+        momentOptionBarHeightConstraint.priority = 999
+        momentOptionBarHeightConstraint.isActive = true
+        
+//        self.momentOptionBar.heightAnchor.constraint(equalToConstant: 38.0).isActive = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -76,15 +80,16 @@ class MomentTableViewCell: UITableViewCell {
         self.momentWordsLabel.text = moment.words
         
         if let photos = moment.photos, photos.count > 0 {
+            self.wordsLabelTopToHeaderViewConstraint?.isActive = false
+            
             self.momentPhotoScrollView.removeFromSuperview()
             self.contentView.addSubview(self.momentPhotoScrollView)
-            
-            self.wordsLabelTopToHeaderViewConstraint?.isActive = false
             
             let margins = self.contentView.layoutMarginsGuide
             self.momentPhotoScrollView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: -8.0).isActive = true
             self.momentPhotoScrollView.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 8.0).isActive = true
             let aspectRatioConstraint = NSLayoutConstraint(item: self.momentPhotoScrollView, attribute: .width, relatedBy: .equal, toItem: self.momentPhotoScrollView, attribute: .height, multiplier: 1.0, constant: 0.0)
+            aspectRatioConstraint.priority = 999
             aspectRatioConstraint.isActive = true
             
             self.photoScrollViewTopToHeaderViewConstraint?.isActive = true
@@ -95,10 +100,10 @@ class MomentTableViewCell: UITableViewCell {
             
             self.momentPhotoScrollView?.initializeData(photos: photos, sideLength: sideLength)
         } else {
-            self.momentPhotoScrollView.removeFromSuperview()
-            
             self.photoScrollViewTopToHeaderViewConstraint?.isActive = false
             self.photoScrollViewBottomToWordsLabelConstraint?.isActive = false
+            
+            self.momentPhotoScrollView.removeFromSuperview()
             
             self.wordsLabelTopToHeaderViewConstraint?.isActive = true
             

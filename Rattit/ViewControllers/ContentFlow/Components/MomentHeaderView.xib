@@ -67,9 +67,8 @@
                 <constraint firstItem="B4V-qu-Gj4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="5xo-Iy-Ttz"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qiw-zW-Mp2" secondAttribute="trailing" constant="8" id="7c2-cc-SiB"/>
                 <constraint firstItem="qiw-zW-Mp2" firstAttribute="top" secondItem="B4V-qu-Gj4" secondAttribute="bottom" constant="8" id="8tA-jA-Pln"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="B4V-qu-Gj4" secondAttribute="bottom" constant="8" id="ALc-25-Fm9"/>
                 <constraint firstItem="B4V-qu-Gj4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="AhY-kP-vQM"/>
-                <constraint firstAttribute="bottom" secondItem="qiw-zW-Mp2" secondAttribute="bottom" constant="2.5" id="Fpl-Qq-h85"/>
+                <constraint firstAttribute="bottom" secondItem="qiw-zW-Mp2" secondAttribute="bottom" priority="999" constant="2.5" id="Fpl-Qq-h85"/>
                 <constraint firstItem="nvh-wz-RXe" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5Pc-Yq-DS3" secondAttribute="trailing" constant="16" id="Zql-1p-AZL"/>
                 <constraint firstAttribute="trailing" secondItem="nvh-wz-RXe" secondAttribute="trailing" constant="16" id="lAF-Eh-NPi"/>
                 <constraint firstItem="5Pc-Yq-DS3" firstAttribute="leading" secondItem="B4V-qu-Gj4" secondAttribute="trailing" constant="8" id="vQb-15-eQn"/>

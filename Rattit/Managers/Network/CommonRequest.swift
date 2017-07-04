@@ -14,6 +14,7 @@ struct CommonRequest {
     var urlPath: String!
     var method: HTTPMethod!
     var parameters: [String: Any]? = nil
+    var endcoding: URLEncoding = .queryString
     var HTTPHeaders: [String: String]? = nil
     var absoluteUrl: String {
         get {
@@ -73,6 +74,14 @@ struct CommonRequest {
                                                        "radius": withinDistance,
                                                        "typename": type]
         return getNearbyPlacesFromGoogleRequest
+    }
+    
+    // post new moment content
+    static func postNewMomentContent(bodyDic: [String: Any]) -> CommonRequest {
+        var postNewMomentContentRequest = CommonRequest(urlPath: "/moments", method: .post)
+        postNewMomentContentRequest.parameters = bodyDic
+        postNewMomentContentRequest.endcoding = .httpBody
+        return postNewMomentContentRequest
     }
 }
 

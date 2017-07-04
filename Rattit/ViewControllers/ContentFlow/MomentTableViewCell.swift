@@ -50,7 +50,7 @@ class MomentTableViewCell: UITableViewCell {
         // setup momentPhotoScrollView
         self.momentPhotoScrollView.translatesAutoresizingMaskIntoConstraints = false
         self.photoScrollViewTopToHeaderViewConstraint = NSLayoutConstraint(item: self.momentPhotoScrollView, attribute: .top, relatedBy: .equal, toItem: self.momentHeaderView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
-        self.photoScrollViewBottomToWordsLabelConstraint = NSLayoutConstraint(item: self.momentPhotoScrollView, attribute: .bottom, relatedBy: .equal, toItem: self.momentWordsLabel, attribute: .top, multiplier: 1.0, constant: 0.0)
+        self.photoScrollViewBottomToWordsLabelConstraint = NSLayoutConstraint(item: self.momentPhotoScrollView, attribute: .bottom, relatedBy: .equal, toItem: self.momentWordsLabel, attribute: .top, multiplier: 1.0, constant: -8.0)
         
         // setup momentOptionBar
         self.momentOptionBar.translatesAutoresizingMaskIntoConstraints = false

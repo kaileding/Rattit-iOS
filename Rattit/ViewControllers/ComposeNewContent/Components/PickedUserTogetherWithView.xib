@@ -40,7 +40,6 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="Obq-Wt-otZ" firstAttribute="top" secondItem="sFs-iC-yns" secondAttribute="bottom" constant="4" id="BaK-Pz-lEf"/>
                 <constraint firstItem="sFs-iC-yns" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="UZb-2u-7LP"/>

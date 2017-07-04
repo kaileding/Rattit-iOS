@@ -53,4 +53,16 @@ struct GoogleLocation {
         }
     }
     
+    func wrapIntoLocationPostObj() -> [String: Any] {
+        var locationPostObj = [String: Any]()
+        locationPostObj["coordinates"] = ["longitude": self.locPointLongitude,
+                                          "latitude": self.locPointLatitude] as Any
+        locationPostObj["name"] = self.name as Any
+        locationPostObj["icon_url"] = (self.iconUrl ?? NSNull()) as Any
+        locationPostObj["types"] = (self.types ?? [String]()) as Any
+        locationPostObj["google_place_id"] = (self.googlePlaceId ?? NSNull()) as Any
+        
+        return locationPostObj
+    }
+    
 }

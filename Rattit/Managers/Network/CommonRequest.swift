@@ -14,8 +14,8 @@ struct CommonRequest {
     var urlPath: String!
     var method: HTTPMethod!
     var parameters: [String: Any]? = nil
-    var endcoding: URLEncoding = .queryString
-    var HTTPHeaders: [String: String]? = nil
+    var endcoding: ParameterEncoding = URLEncoding.queryString
+    var HTTPHeaders: [String: String]? = ["Content-Type": "application/json"]
     var absoluteUrl: String {
         get {
             return (self.baseUrl + self.urlPath)
@@ -80,7 +80,7 @@ struct CommonRequest {
     static func postNewMomentContent(bodyDic: [String: Any]) -> CommonRequest {
         var postNewMomentContentRequest = CommonRequest(urlPath: "/moments", method: .post)
         postNewMomentContentRequest.parameters = bodyDic
-        postNewMomentContentRequest.endcoding = .httpBody
+        postNewMomentContentRequest.endcoding = JSONEncoding.default
         return postNewMomentContentRequest
     }
 }

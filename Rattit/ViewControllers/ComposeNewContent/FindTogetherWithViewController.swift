@@ -29,7 +29,8 @@ class FindTogetherWithViewController: UIViewController {
         self.findTogetherWithTable.rowHeight = UITableViewAutomaticDimension
         self.findTogetherWithTable.sectionHeaderHeight = 18.0
         let grayTableHeaderView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: 18.0))
-        grayTableHeaderView.backgroundColor = UIColor(red: 0.9255, green: 0.9255, blue: 0.9255, alpha: 1.0)
+        grayTableHeaderView.backgroundColor = UIColor.clear
+//            UIColor(red: 0.9255, green: 0.9255, blue: 0.9255, alpha: 1.0)
         self.findTogetherWithTable.tableHeaderView = grayTableHeaderView
         
         ComposeContentManager.sharedInstance.updateSelectedUsersDelegate = self

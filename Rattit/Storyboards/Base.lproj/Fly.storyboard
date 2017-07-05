@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Fly Home View Controller-->
         <scene sceneID="lxx-T2-kS7">
             <objects>
-                <viewController storyboardIdentifier="FlyHomeVC" id="5L9-T1-kgx" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FlyHomeVC" id="5L9-T1-kgx" customClass="FlyHomeViewController" customModule="Rattit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VWc-Lw-7wm"/>
                         <viewControllerLayoutGuide type="bottom" id="btQ-97-Cjg"/>
@@ -20,9 +20,37 @@
                     <view key="view" contentMode="scaleToFill" id="NAW-Bo-vGu">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dhF-yq-OSA">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uG8-Xz-F3b">
+                                        <rect key="frame" x="0.0" y="160" width="375" height="56"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MXT-34-XxK">
+                                        <rect key="frame" x="0.0" y="237" width="375" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dhF-yq-OSA" firstAttribute="leading" secondItem="NAW-Bo-vGu" secondAttribute="leading" id="dK0-X7-N6t"/>
+                            <constraint firstItem="btQ-97-Cjg" firstAttribute="top" secondItem="dhF-yq-OSA" secondAttribute="bottom" id="eCg-ex-YSb"/>
+                            <constraint firstAttribute="trailing" secondItem="dhF-yq-OSA" secondAttribute="trailing" id="gxc-k2-5oF"/>
+                            <constraint firstItem="dhF-yq-OSA" firstAttribute="top" secondItem="NAW-Bo-vGu" secondAttribute="top" id="qdp-cb-Qci"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FGa-bt-0nX"/>
+                    <connections>
+                        <outlet property="contentDisplayView" destination="MXT-34-XxK" id="Szg-0R-imB"/>
+                        <outlet property="outerScrollView" destination="dhF-yq-OSA" id="efm-ZQ-MGU"/>
+                        <outlet property="slideMenuBarView" destination="uG8-Xz-F3b" id="HWa-HV-D4p"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kDQ-0N-glS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

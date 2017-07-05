@@ -39,3 +39,8 @@ public enum RattitAnswerVoteType: String {
     case typeAdmire = "admire"
 }
 
+public enum RattitUserRelationshipType: String {
+    case followee = "followee"
+    case follower = "follower"
+}
+

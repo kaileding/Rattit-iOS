@@ -98,4 +98,40 @@ class RattitUserManager: NSObject {
         }
     }
     
+    func getFollowersOrFolloweesOfUser(userId: String, relationType: RattitUserRelationshipType, completion: @escaping ([String]) -> Void, errorHandler: @escaping (Error) -> Void) {
+        
+        var contentRequest: CommonRequest
+        switch relationType {
+        case .followee:
+            contentRequest = CommonRequest.getFolloweesOfAUser(userId: userId)
+        case .follower:
+            contentRequest = CommonRequest.getFollowersOfAUser(userId: userId)
+        }
+        
+        Network.sharedInstance.callRattitContentService(httpRequest: contentRequest, completion: { (dataValue) in
+            
+            if let json = dataValue as? [String: Any], let count = json["count"] as? Int, let rows = json["rows"] as? [Any] {
+                print("RattitUserManager.getFollowersOfUser() got \(count) users.")
+                
+                var usersGroup: [String] = []
+                rows.forEach({ (dataValue) in
+                    if let rattitUser = RattitUser(dataValue: dataValue) {
+                        self.cachedUsers[rattitUser.id!] = rattitUser
+                        usersGroup.append(rattitUser.id!)
+                    }
+                })
+                
+                DispatchQueue.main.async {
+                    completion(usersGroup)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    errorHandler(RattitError.parseError(message: "dataValue unable to be parsed into array of users."))
+                }
+            }
+        }) { (error) in
+            errorHandler(error)
+        }
+    }
+    
 }

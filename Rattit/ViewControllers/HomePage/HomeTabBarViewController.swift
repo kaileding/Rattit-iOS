@@ -46,6 +46,7 @@ class HomeTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        UserStateManager.sharedInstance.loadMyCurrentInformation()
     }
     
     override func viewDidAppear(_ animated: Bool) {

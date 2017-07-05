@@ -32,11 +32,6 @@ struct CommonRequest {
         return CommonRequest(urlPath: "/moments", method: .get)
     }
     
-    // get All Rattit users from server
-    static var GetUsers: CommonRequest {
-        return CommonRequest(urlPath: "/users", method: .get)
-    }
-    
     // get moments published later than some time
     static func getMomentsNoEarlierThan(timeThreshold: String) -> CommonRequest {
         var getMomentsNoEarlierThanRequest = CommonRequest(urlPath: "/moments", method: .get)
@@ -51,6 +46,18 @@ struct CommonRequest {
         getMomentsNoLaterThanRequest.parameters = ["date_query_type": "nolater_than",
                                                    "date_query_line": timeThreshold]
         return getMomentsNoLaterThanRequest
+    }
+    
+    // get moments created by a user
+    static func getMomentsCreatedByUser(userId: String) -> CommonRequest {
+        var getMomentsCreatedByUserRequest = CommonRequest(urlPath: "/moments", method: .get)
+        getMomentsCreatedByUserRequest.parameters = ["author_id": userId]
+        return getMomentsCreatedByUserRequest
+    }
+    
+    // get All Rattit users from server
+    static var GetUsers: CommonRequest {
+        return CommonRequest(urlPath: "/users", method: .get)
     }
     
     // get details of an user by its ID
@@ -86,11 +93,22 @@ struct CommonRequest {
     
     // cast a vote to a certain moment
     static func castVoteToAMoment(momentId: String, voteType: RattitMomentVoteType, commit: Bool) -> CommonRequest {
-        var castVoteToAMomentRequest = CommonRequest(urlPath: "/moments/\(momentId)/voters/\(UserStateManager.dummyUserId)", method: .patch)
+        var castVoteToAMomentRequest = CommonRequest(urlPath: "/moments/\(momentId)/voters/\(UserStateManager.sharedInstance.dummyUserId)", method: .patch)
         castVoteToAMomentRequest.parameters = ["type": voteType.rawValue,
                                                "commit": commit]
         castVoteToAMomentRequest.endcoding = JSONEncoding.default
         return castVoteToAMomentRequest
     }
+    
+    // get followers of a user
+    static func getFollowersOfAUser(userId: String) -> CommonRequest {
+        return CommonRequest(urlPath: "/users/\(userId)/followers", method: .get)
+    }
+    
+    // get followees of a user
+    static func getFolloweesOfAUser(userId: String) -> CommonRequest {
+        return CommonRequest(urlPath: "/users/\(userId)/followees", method: .get)
+    }
+    
 }
 

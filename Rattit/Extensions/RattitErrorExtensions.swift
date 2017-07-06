@@ -17,6 +17,10 @@ struct RattitError: Error {
         self.errorInfo = message
     }
     
+    var localizedDescription: String {
+        return self.errorInfo
+    }
+    
     static func defultError(message: String) -> RattitError {
         return RattitError(type: "defaultError", message: message)
     }

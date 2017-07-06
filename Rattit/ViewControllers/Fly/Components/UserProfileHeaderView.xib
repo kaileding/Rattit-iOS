@@ -180,6 +180,7 @@
             <connections>
                 <outlet property="introTitleLabel" destination="50s-7S-GyP" id="M4A-SS-1YT"/>
                 <outlet property="manifestoLabel" destination="SYG-Hm-jaq" id="LxK-OS-SIy"/>
+                <outlet property="numberLabelWrapperView" destination="Ngd-ji-u2D" id="4Km-Ko-CGF"/>
                 <outlet property="numberOfFollowersLabel" destination="drR-wD-QOC" id="QJ5-Cz-520"/>
                 <outlet property="numberOfFollowingLabel" destination="gey-lo-uqe" id="IBh-pR-b6d"/>
                 <outlet property="numberOfFriendsLabel" destination="t3B-Kx-yvy" id="kod-Av-dg4"/>

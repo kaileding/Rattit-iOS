@@ -27,28 +27,28 @@ class UserStateManager: NSObject {
             
             UserStateManager.sharedInstance.dummyUser = rattitUser
         }) { (error) in
-            print("Unable to load user for id = \(self.dummyUserId) as myself.")
+            print("== Unable to load user for id = \(self.dummyUserId) as myself. \(error.localizedDescription)")
         }
         
         RattitUserManager.sharedInstance.getFollowersOrFolloweesOfUser(userId: self.dummyUserId, relationType: .follower, completion: { (userGroup) in
             
             self.dummyMyFollowers = userGroup
         }) { (error) in
-            print("Unable to load followers of mine.")
+            print("== Unable to load followers of mine. \(error.localizedDescription)")
         }
         
         RattitUserManager.sharedInstance.getFollowersOrFolloweesOfUser(userId: self.dummyUserId, relationType: .followee, completion: { (userGroup) in
             
             self.dummyMyFollowees = userGroup
         }) { (error) in
-            print("Unable to load followees of mine.")
+            print("== Unable to load followees of mine. \(error.localizedDescription)")
         }
         
         MomentManager.sharedInstance.getMomentsCreatedByAUser(userId: self.dummyUserId, completion: { (momentGroup) in
             
             self.dummyMyMoments = momentGroup
         }) { (error) in
-            print("Unable to load moments of mine.")
+            print("== Unable to load moments of mine. \(error.localizedDescription)")
         }
     }
     

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SlidingTabMenuBarView" customModule="Rattit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="35"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ovZ-mE-yff">
+                    <rect key="frame" x="0.0" y="0.0" width="125" height="35"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="menuTab1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YxA-8d-n5h">
+                            <rect key="frame" x="24" y="6" width="77" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="YxA-8d-n5h" secondAttribute="bottom" constant="8" id="Edo-P7-9Kz"/>
+                        <constraint firstItem="YxA-8d-n5h" firstAttribute="centerX" secondItem="ovZ-mE-yff" secondAttribute="centerX" id="OHQ-Yg-mKa"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xpa-BF-4Qd">
+                    <rect key="frame" x="125" y="0.0" width="125" height="35"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="menuTab2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZgE-C2-SxR">
+                            <rect key="frame" x="22.5" y="6" width="80" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="ZgE-C2-SxR" secondAttribute="bottom" constant="8" id="Qdb-U4-UGY"/>
+                        <constraint firstItem="ZgE-C2-SxR" firstAttribute="centerX" secondItem="Xpa-BF-4Qd" secondAttribute="centerX" id="e2r-qd-LfK"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yaO-SZ-Vw0">
+                    <rect key="frame" x="250" y="0.0" width="125" height="35"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="menuTab3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYc-Z8-HjI">
+                            <rect key="frame" x="22" y="6" width="80" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="mYc-Z8-HjI" firstAttribute="centerX" secondItem="yaO-SZ-Vw0" secondAttribute="centerX" id="QzM-eA-zeS"/>
+                        <constraint firstAttribute="bottom" secondItem="mYc-Z8-HjI" secondAttribute="bottom" constant="8" id="TbF-VD-9mr"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dQU-KR-0fg">
+                    <rect key="frame" x="20" y="32" width="40" height="3"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="0.0" green="0.65824687479999999" blue="0.8976263404" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Xpa-BF-4Qd" firstAttribute="leading" secondItem="ovZ-mE-yff" secondAttribute="trailing" id="5pB-VT-TKF"/>
+                <constraint firstAttribute="trailing" secondItem="yaO-SZ-Vw0" secondAttribute="trailing" id="8Rs-JW-b0V"/>
+                <constraint firstItem="yaO-SZ-Vw0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Dsy-fm-72Z"/>
+                <constraint firstItem="Xpa-BF-4Qd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="OtA-5i-sbM"/>
+                <constraint firstAttribute="bottom" secondItem="yaO-SZ-Vw0" secondAttribute="bottom" id="bqn-kV-VKq"/>
+                <constraint firstItem="yaO-SZ-Vw0" firstAttribute="width" secondItem="Xpa-BF-4Qd" secondAttribute="width" id="kkR-QV-xbZ"/>
+                <constraint firstAttribute="bottom" secondItem="ovZ-mE-yff" secondAttribute="bottom" id="osM-VZ-RMf"/>
+                <constraint firstItem="ovZ-mE-yff" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ozZ-bH-o3K"/>
+                <constraint firstItem="Xpa-BF-4Qd" firstAttribute="width" secondItem="ovZ-mE-yff" secondAttribute="width" id="seA-Vr-8Lo"/>
+                <constraint firstAttribute="bottom" secondItem="Xpa-BF-4Qd" secondAttribute="bottom" id="tFx-F9-gY6"/>
+                <constraint firstItem="ovZ-mE-yff" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="zcG-ZP-Jha"/>
+                <constraint firstItem="yaO-SZ-Vw0" firstAttribute="leading" secondItem="Xpa-BF-4Qd" secondAttribute="trailing" id="zyC-50-uKj"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="menuTab1Label" destination="YxA-8d-n5h" id="8Jq-jN-5hl"/>
+                <outlet property="menuTab1OutView" destination="ovZ-mE-yff" id="RXH-YM-xjR"/>
+                <outlet property="menuTab2Label" destination="ZgE-C2-SxR" id="Tyw-zN-byv"/>
+                <outlet property="menuTab2OutView" destination="Xpa-BF-4Qd" id="hrM-ni-2qn"/>
+                <outlet property="menuTab3Label" destination="mYc-Z8-HjI" id="j9Z-IP-jRV"/>
+                <outlet property="menuTab3OutView" destination="yaO-SZ-Vw0" id="dQb-w2-8ma"/>
+                <outlet property="slidingBarView" destination="dQU-KR-0fg" id="Sl0-kb-Z1n"/>
+            </connections>
+            <point key="canvasLocation" x="35.5" y="-252.5"/>
+        </view>
+    </objects>
+</document>

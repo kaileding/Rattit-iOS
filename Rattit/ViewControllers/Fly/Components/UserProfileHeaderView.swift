@@ -14,6 +14,8 @@ class UserProfileHeaderView: UIView {
     
     @IBOutlet weak var userFullNameLabel: UILabel!
     
+    @IBOutlet weak var numberLabelWrapperView: UIView!
+    
     @IBOutlet weak var numberOfFollowersLabel: UILabel!
     @IBOutlet weak var numberOfFollowingLabel: UILabel!
     @IBOutlet weak var numberOfFriendsLabel: UILabel!
@@ -28,13 +30,16 @@ class UserProfileHeaderView: UIView {
     static func instantiateFromXib() -> UserProfileHeaderView {
         let userProfileHeaderView = Bundle.main.loadNibNamed("UserProfileHeaderView", owner: self, options: nil)?.first as! UserProfileHeaderView
         
+        userProfileHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        
         userProfileHeaderView.userAvatarImageView.layer.cornerRadius = 38.0
         userProfileHeaderView.userAvatarImageView.clipsToBounds = true
         userProfileHeaderView.userAvatarImageView.contentMode = .scaleAspectFill
         
         userProfileHeaderView.organizationIconImageView.image = UIImage(named: "organization")?.withRenderingMode(.alwaysTemplate)
-        userProfileHeaderView.organizationIconImageView.tintColor = UIColor(red: 0.1294, green: 0.1137, blue: 0, alpha: 1.0)
-        
+        userProfileHeaderView.organizationIconImageView.tintColor = UIColor.lightGray
+//            UIColor(red: 0.1294, green: 0.1137, blue: 0, alpha: 1.0)
+            
         userProfileHeaderView.introTitleLabel.text = "Intro:"
         
         return userProfileHeaderView
@@ -55,7 +60,7 @@ class UserProfileHeaderView: UIView {
             self.numberOfFollowersLabel.text = "\(user.followerNumber)"
             self.numberOfFollowingLabel.text = "\(user.followeeNumber)"
             self.numberOfFriendsLabel.text = "0"
-            self.organizationLabel.text = (user.organization.first == nil) ? "\(user.organization.first!)" : ""
+            self.organizationLabel.text = (user.organization.first != nil) ? "\(user.organization.first!)" : " "
             self.manifestoLabel.text = "\(user.manifesto)"
             
         }) { (error) in
@@ -63,5 +68,11 @@ class UserProfileHeaderView: UIView {
         }
     }
     
+    func displaySubviewFrames() {
+        print("UserProfileHeaderView.userAvatarImageView.frame is \(self.userAvatarImageView.frame.debugDescription)")
+        print("UserProfileHeaderView.userFullNameLabel.frame is \(self.userFullNameLabel.frame.debugDescription)")
+        print("UserProfileHeaderView.numberLabelWrapperView.frame is \(self.numberLabelWrapperView.frame.debugDescription)")
+        
+    }
     
 }

@@ -11,13 +11,13 @@ import UIKit
 class SlidingTabMenuBarView: UIView {
     
     @IBOutlet weak var menuTab1OutView: UIView!
-    @IBOutlet weak var menuTab1Label: UILabel!
+    @IBOutlet weak var menuTab1Button: UIButton!
     
     @IBOutlet weak var menuTab2OutView: UIView!
-    @IBOutlet weak var menuTab2Label: UILabel!
+    @IBOutlet weak var menuTab2Button: UIButton!
     
     @IBOutlet weak var menuTab3OutView: UIView!
-    @IBOutlet weak var menuTab3Label: UILabel!
+    @IBOutlet weak var menuTab3Button: UIButton!
     
     @IBOutlet weak var slidingBarView: UIView!
     
@@ -32,26 +32,41 @@ class SlidingTabMenuBarView: UIView {
     
     var bottomBorderAdded: Bool = false
     
+    var tabMenuButtonHandler: ((Int) -> Void)? = nil
+    
     static func instantiateFromXib() -> SlidingTabMenuBarView {
         let slidingTabMenuBarView = Bundle.main.loadNibNamed("SlidingTabMenuBarView", owner: self, options: nil)?.first as! SlidingTabMenuBarView
         
         slidingTabMenuBarView.translatesAutoresizingMaskIntoConstraints = false
         
-        slidingTabMenuBarView.menuTab1Label.text = "moments"
-        slidingTabMenuBarView.menuTab2Label.text = "questions"
-        slidingTabMenuBarView.menuTab3Label.text = "answers"
+        slidingTabMenuBarView.menuTab1Button.setTitle("moments", for: .normal)
+        slidingTabMenuBarView.menuTab1Button.setTitleColor(UIColor.darkGray, for: .normal)
+        slidingTabMenuBarView.menuTab1Button.setTitleColor(UIColor.lightGray, for: .highlighted)
+        slidingTabMenuBarView.menuTab1Button.tag = 1
+        slidingTabMenuBarView.menuTab2Button.setTitle("questions", for: .normal)
+        slidingTabMenuBarView.menuTab2Button.setTitleColor(UIColor.darkGray, for: .normal)
+        slidingTabMenuBarView.menuTab2Button.setTitleColor(UIColor.lightGray, for: .highlighted)
+        slidingTabMenuBarView.menuTab2Button.tag = 2
+        slidingTabMenuBarView.menuTab3Button.setTitle("answers", for: .normal)
+        slidingTabMenuBarView.menuTab3Button.setTitleColor(UIColor.darkGray, for: .normal)
+        slidingTabMenuBarView.menuTab3Button.setTitleColor(UIColor.lightGray, for: .highlighted)
+        slidingTabMenuBarView.menuTab3Button.tag = 3
+        
+        slidingTabMenuBarView.menuTab1Button.addTarget(slidingTabMenuBarView, action: #selector(tabMenuButtonPressed(sender:)), for: .touchUpInside)
+        slidingTabMenuBarView.menuTab2Button.addTarget(slidingTabMenuBarView, action: #selector(tabMenuButtonPressed(sender:)), for: .touchUpInside)
+        slidingTabMenuBarView.menuTab3Button.addTarget(slidingTabMenuBarView, action: #selector(tabMenuButtonPressed(sender:)), for: .touchUpInside)
         
         return slidingTabMenuBarView
     }
     
     func initializeSliderPostion(pos: Int) {
-        self.sliderPos1Width = self.menuTab1Label.frame.width
-        self.sliderPos2Width = self.menuTab2Label.frame.width
-        self.sliderPos3Width = self.menuTab3Label.frame.width
+        self.sliderPos1Width = self.menuTab1Button.titleLabel!.frame.width
+        self.sliderPos2Width = self.menuTab2Button.titleLabel!.frame.width
+        self.sliderPos3Width = self.menuTab3Button.titleLabel!.frame.width
         self.sliderTopSpacing = self.frame.height - 3.0
-        self.sliderPos1LeadingSpace = self.menuTab1Label.frame.minX + self.menuTab1OutView.frame.minX
-        self.sliderPos2LeadingSpace = self.menuTab2Label.frame.minX + self.menuTab2OutView.frame.minX
-        self.sliderPos3LeadingSpace = self.menuTab3Label.frame.minX + self.menuTab3OutView.frame.minX
+        self.sliderPos1LeadingSpace = self.menuTab1Button.titleLabel!.frame.minX + self.menuTab1OutView.frame.minX
+        self.sliderPos2LeadingSpace = self.menuTab2Button.titleLabel!.frame.minX + self.menuTab2OutView.frame.minX
+        self.sliderPos3LeadingSpace = self.menuTab3Button.titleLabel!.frame.minX + self.menuTab3OutView.frame.minX
             
         self.sliderPositionIndex = pos
         switch pos {
@@ -133,5 +148,18 @@ class SlidingTabMenuBarView: UIView {
             print("animation of sliding bar to pos \(pos) is success: \(success)")
         }
     }
-
+    
+    func setTabMenuTappingHandler(task: @escaping (Int) -> Void) {
+        self.tabMenuButtonHandler = { (menuIndex: Int) in
+            task(menuIndex)
+        }
+    }
+    
+    func tabMenuButtonPressed(sender: UIButton) {
+        print("tabMenuButtonPressed() func called. sender.tag is \(sender.tag)")
+        self.animateSlidingToPos(pos: sender.tag)
+        if self.tabMenuButtonHandler != nil {
+            self.tabMenuButtonHandler!(sender.tag)
+        }
+    }
 }

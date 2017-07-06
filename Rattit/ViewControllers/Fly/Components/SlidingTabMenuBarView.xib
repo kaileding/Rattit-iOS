@@ -18,49 +18,49 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ovZ-mE-yff">
                     <rect key="frame" x="0.0" y="0.0" width="125" height="35"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="menuTab1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YxA-8d-n5h">
-                            <rect key="frame" x="28.5" y="9" width="68.5" height="18"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ta-m9-7Ie">
+                            <rect key="frame" x="0.0" y="0.0" width="125" height="35"/>
+                            <state key="normal" title="menuTab1"/>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="YxA-8d-n5h" secondAttribute="bottom" constant="8" id="Edo-P7-9Kz"/>
-                        <constraint firstItem="YxA-8d-n5h" firstAttribute="centerX" secondItem="ovZ-mE-yff" secondAttribute="centerX" id="OHQ-Yg-mKa"/>
+                        <constraint firstAttribute="bottom" secondItem="6ta-m9-7Ie" secondAttribute="bottom" id="0YO-DG-Dq2"/>
+                        <constraint firstItem="6ta-m9-7Ie" firstAttribute="top" secondItem="ovZ-mE-yff" secondAttribute="top" id="Bb4-dT-5ZZ"/>
+                        <constraint firstItem="6ta-m9-7Ie" firstAttribute="leading" secondItem="ovZ-mE-yff" secondAttribute="leading" id="L7S-Iz-Ooz"/>
+                        <constraint firstAttribute="trailing" secondItem="6ta-m9-7Ie" secondAttribute="trailing" id="TcV-fd-En8"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xpa-BF-4Qd">
                     <rect key="frame" x="125" y="0.0" width="125" height="35"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="menuTab2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZgE-C2-SxR">
-                            <rect key="frame" x="27" y="9" width="71" height="18"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yvW-e3-AMy">
+                            <rect key="frame" x="0.0" y="0.0" width="125" height="35"/>
+                            <state key="normal" title="menuTab2"/>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="ZgE-C2-SxR" secondAttribute="bottom" constant="8" id="Qdb-U4-UGY"/>
-                        <constraint firstItem="ZgE-C2-SxR" firstAttribute="centerX" secondItem="Xpa-BF-4Qd" secondAttribute="centerX" id="e2r-qd-LfK"/>
+                        <constraint firstItem="yvW-e3-AMy" firstAttribute="top" secondItem="Xpa-BF-4Qd" secondAttribute="top" id="4Wv-H1-daO"/>
+                        <constraint firstAttribute="bottom" secondItem="yvW-e3-AMy" secondAttribute="bottom" id="8Dn-ez-aCu"/>
+                        <constraint firstItem="yvW-e3-AMy" firstAttribute="leading" secondItem="Xpa-BF-4Qd" secondAttribute="leading" id="suw-81-PCX"/>
+                        <constraint firstAttribute="trailing" secondItem="yvW-e3-AMy" secondAttribute="trailing" id="zn8-by-E88"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yaO-SZ-Vw0">
                     <rect key="frame" x="250" y="0.0" width="125" height="35"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="menuTab3" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mYc-Z8-HjI">
-                            <rect key="frame" x="27" y="9" width="71" height="18"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYV-g7-Vmd">
+                            <rect key="frame" x="0.0" y="0.0" width="125" height="35"/>
+                            <state key="normal" title="menuTab3"/>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="mYc-Z8-HjI" firstAttribute="centerX" secondItem="yaO-SZ-Vw0" secondAttribute="centerX" id="QzM-eA-zeS"/>
-                        <constraint firstAttribute="bottom" secondItem="mYc-Z8-HjI" secondAttribute="bottom" constant="8" id="TbF-VD-9mr"/>
+                        <constraint firstItem="AYV-g7-Vmd" firstAttribute="top" secondItem="yaO-SZ-Vw0" secondAttribute="top" id="9SS-TV-Sq6"/>
+                        <constraint firstItem="AYV-g7-Vmd" firstAttribute="leading" secondItem="yaO-SZ-Vw0" secondAttribute="leading" id="FFS-C8-mAU"/>
+                        <constraint firstAttribute="bottom" secondItem="AYV-g7-Vmd" secondAttribute="bottom" id="fZO-oh-k5V"/>
+                        <constraint firstAttribute="trailing" secondItem="AYV-g7-Vmd" secondAttribute="trailing" id="vbT-nr-oiU"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dQU-KR-0fg">
@@ -86,11 +86,11 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="menuTab1Label" destination="YxA-8d-n5h" id="8Jq-jN-5hl"/>
+                <outlet property="menuTab1Button" destination="6ta-m9-7Ie" id="Nhh-Dr-AAr"/>
                 <outlet property="menuTab1OutView" destination="ovZ-mE-yff" id="RXH-YM-xjR"/>
-                <outlet property="menuTab2Label" destination="ZgE-C2-SxR" id="Tyw-zN-byv"/>
+                <outlet property="menuTab2Button" destination="yvW-e3-AMy" id="mk3-X6-MlS"/>
                 <outlet property="menuTab2OutView" destination="Xpa-BF-4Qd" id="hrM-ni-2qn"/>
-                <outlet property="menuTab3Label" destination="mYc-Z8-HjI" id="j9Z-IP-jRV"/>
+                <outlet property="menuTab3Button" destination="AYV-g7-Vmd" id="ZzK-sO-ldd"/>
                 <outlet property="menuTab3OutView" destination="yaO-SZ-Vw0" id="dQb-w2-8ma"/>
                 <outlet property="slidingBarView" destination="dQU-KR-0fg" id="Sl0-kb-Z1n"/>
             </connections>

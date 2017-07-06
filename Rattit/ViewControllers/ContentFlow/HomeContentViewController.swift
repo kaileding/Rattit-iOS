@@ -21,10 +21,18 @@ class HomeContentViewController: UIViewController {
         // Do any additional setup after loading the view.
         let contentFlowNavItemTitleView = Bundle.main.loadNibNamed("ContentFlowNavigationTitleView", owner: self, options: nil)?.first as! UIView
         self.navigationItem.titleView = contentFlowNavItemTitleView
-        let contentFlowRightNavBarItemView = ContentFlowRightNavBarItemView.instantiateFromXib()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: contentFlowRightNavBarItemView)
-        let contentFlowLeftNavBarItemView = ContentFlowLeftNavBarItemView.instantiateFromXib()
+        
+        let contentFlowLeftNavBarItemView = ReusableNavBarItemView.instantiateFromXib(buttonImageName: "camera")
+        contentFlowLeftNavBarItemView.setButtonExecutionBlock {
+            self.leftBarButtonPressed()
+        }
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: contentFlowLeftNavBarItemView)
+        
+        let contentFlowRightNavBarItemView = ReusableNavBarItemView.instantiateFromXib(buttonImageName: "pencil")
+        contentFlowRightNavBarItemView.setButtonExecutionBlock {
+            self.rightBarButtonPressed()
+        }
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: contentFlowRightNavBarItemView)
         
         
         self.mainContentTable.dataSource = self
@@ -100,5 +108,23 @@ extension HomeContentViewController: UITableViewDataSource, UITableViewDelegate 
 }
 
 extension HomeContentViewController {
+    func leftBarButtonPressed() {
+        print("--- yes! leftBarButtonPressed() func called.")
+        
+        if (!UserStateManager.userIsLoggedIn && !UserStateManager.userRefusedToLogin && !UserStateManager.showingSignInAlert) {
+            NotificationCenter.default.post(name: NSNotification.Name(SignInSignUpNotificationName.needsToSignInOrSignUp.rawValue), object: nil)
+            print("Sent out needsToSignInOrSignUp notification.")
+        } else if UserStateManager.userIsLoggedIn || UserStateManager.userRefusedToLogin {
+            NotificationCenter.default.post(name: NSNotification.Name(ComposeContentNotificationName.composeImage.rawValue), object: nil, userInfo: nil)
+        }
+    }
     
+    func rightBarButtonPressed() {
+        print("--- yes! rightBarButtonPressed() func called.")
+        
+        if (!UserStateManager.userIsLoggedIn && !UserStateManager.userRefusedToLogin && !UserStateManager.showingSignInAlert) {
+            NotificationCenter.default.post(name: NSNotification.Name(SignInSignUpNotificationName.needsToSignInOrSignUp.rawValue), object: nil)
+            print("Sent out needsToSignInOrSignUp notification.")
+        }
+    }
 }

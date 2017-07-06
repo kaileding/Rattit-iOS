@@ -30,6 +30,8 @@ class SlidingTabMenuBarView: UIView {
     var sliderPos3LeadingSpace: CGFloat = 0.0
     var sliderPositionIndex: Int = 1 // 1, 2 or 3
     
+    var bottomBorderAdded: Bool = false
+    
     static func instantiateFromXib() -> SlidingTabMenuBarView {
         let slidingTabMenuBarView = Bundle.main.loadNibNamed("SlidingTabMenuBarView", owner: self, options: nil)?.first as! SlidingTabMenuBarView
         
@@ -63,6 +65,13 @@ class SlidingTabMenuBarView: UIView {
             break
         }
         
+        if !self.bottomBorderAdded {
+            let bottomBorder = CALayer()
+            bottomBorder.frame = CGRect(x: 0.0, y: self.frame.height, width: self.frame.width, height: 0.3)
+            bottomBorder.backgroundColor = UIColor.lightGray.cgColor
+            self.layer.addSublayer(bottomBorder)
+            self.bottomBorderAdded = true
+        }
     }
     
     func moveSlider(ratio: CGFloat) {

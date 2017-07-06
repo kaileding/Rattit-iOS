@@ -24,6 +24,12 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let flyHomePageRightBarButtonItemView = ReusableNavBarItemView.instantiateFromXib(buttonImageName: "settingIcon")
+        flyHomePageRightBarButtonItemView.setButtonExecutionBlock {
+            self.rightBarButtonPressed()
+        }
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: flyHomePageRightBarButtonItemView)
+        
         self.outerScrollView.translatesAutoresizingMaskIntoConstraints = false
         self.outerScrollView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0.0).isActive = true
         self.outerScrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0.0).isActive = true
@@ -36,7 +42,7 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
         if self.contentDisplayView == nil {
             self.contentDisplayView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 50.0, height: 44.0))
             self.contentDisplayView!.translatesAutoresizingMaskIntoConstraints = false
-            self.contentDisplayView!.backgroundColor = UIColor.cyan
+//            self.contentDisplayView!.backgroundColor = UIColor.cyan
             self.contentDisplayView?.addGestureRecognizer(hSwipeRecognizer)
         }
         self.outerScrollView.addSubview(self.userProfileHeaderView)
@@ -87,11 +93,11 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        print("self.outerScrollView.frame is ", self.outerScrollView.frame.debugDescription)
-        print("self.outerScrollView.contentSize is ", self.outerScrollView.contentSize.debugDescription)
-        print("self.userProfileHeaderView.frame is ", self.userProfileHeaderView.frame.debugDescription)
-        print("self.slideMenuBarView.frame is ", self.slideMenuBarView.frame.debugDescription)
-        print("self.contentDisplayView.frame is ", self.contentDisplayView!.frame.debugDescription)
+//        print("self.outerScrollView.frame is ", self.outerScrollView.frame.debugDescription)
+//        print("self.outerScrollView.contentSize is ", self.outerScrollView.contentSize.debugDescription)
+//        print("self.userProfileHeaderView.frame is ", self.userProfileHeaderView.frame.debugDescription)
+//        print("self.slideMenuBarView.frame is ", self.slideMenuBarView.frame.debugDescription)
+//        print("self.contentDisplayView.frame is ", self.contentDisplayView!.frame.debugDescription)
 //        self.userProfileHeaderView.displaySubviewFrames()
     }
 
@@ -111,17 +117,22 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     */
     
+}
+
+extension FlyHomeViewController {
+    
+    // PanGestureRecognizer function
     func hSwipeGestureRecognized(gestureRecognizer: UIPanGestureRecognizer) {
         let translation = gestureRecognizer.translation(in: self.contentDisplayView!)
         let velocity = gestureRecognizer.velocity(in: self.contentDisplayView)
         
         let displacementX = self.hSwipeStartPoint.x - translation.x
-//        let displacementY = self.hSwipeStartPoint.y - translation.y
+        //        let displacementY = self.hSwipeStartPoint.y - translation.y
         if gestureRecognizer.state == UIGestureRecognizerState.began {
             self.hSwipeStartPoint = translation
             self.enableHSwipe = (abs(velocity.x) > abs(velocity.y))
         } else if gestureRecognizer.state == UIGestureRecognizerState.changed {
-//            print("Disaplacement: dx=\(displacementX), dy=\(displacementY)")
+            //            print("Disaplacement: dx=\(displacementX), dy=\(displacementY)")
             if self.enableHSwipe {
                 let ratio = displacementX/(self.view.frame.width)
                 self.slideMenuBarView.moveSlider(ratio: ratio)
@@ -150,6 +161,12 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
             }
         }
     }
+    
+    // rightBarButtonPressed funciton
+    func rightBarButtonPressed() {
+        print("--- yes! rightBarButtonPressed() func.")
+    }
+    
     
     func continueSlideToLeft() {
         self.currentPageIndex -= 1

@@ -11,6 +11,7 @@ import UIKit
 class UserProfileHeaderView: UIView {
     
     @IBOutlet weak var userAvatarImageView: UIImageView!
+    @IBOutlet weak var userAvatarButton: UIButton!
     
     @IBOutlet weak var userFullNameLabel: UILabel!
     
@@ -20,11 +21,20 @@ class UserProfileHeaderView: UIView {
     @IBOutlet weak var numberOfFollowingLabel: UILabel!
     @IBOutlet weak var numberOfFriendsLabel: UILabel!
     
+    @IBOutlet weak var followersButton: UIButton!
+    @IBOutlet weak var followingButton: UIButton!
+    @IBOutlet weak var friendsButton: UIButton!
+    
     @IBOutlet weak var organizationIconImageView: UIImageView!
     @IBOutlet weak var organizationLabel: UILabel!
     
     @IBOutlet weak var introTitleLabel: UILabel!
     @IBOutlet weak var manifestoLabel: UILabel!
+    
+    var imageTappingHandler: (() -> Void)? = nil
+    var followerViewTappingHandler: (() -> Void)? = nil
+    var followingViewTappingHandler: (() -> Void)? = nil
+    var friendsViewTappingHandler: (() -> Void)? = nil
     
     
     static func instantiateFromXib() -> UserProfileHeaderView {
@@ -37,10 +47,15 @@ class UserProfileHeaderView: UIView {
         userProfileHeaderView.userAvatarImageView.contentMode = .scaleAspectFill
         
         userProfileHeaderView.organizationIconImageView.image = UIImage(named: "organization")?.withRenderingMode(.alwaysTemplate)
-        userProfileHeaderView.organizationIconImageView.tintColor = UIColor.lightGray
+        userProfileHeaderView.organizationIconImageView.tintColor = UIColor.darkGray
 //            UIColor(red: 0.1294, green: 0.1137, blue: 0, alpha: 1.0)
             
         userProfileHeaderView.introTitleLabel.text = "Intro:"
+        
+        userProfileHeaderView.userAvatarButton.addTarget(userProfileHeaderView, action: #selector(avatarImageTapped), for: .touchUpInside)
+        userProfileHeaderView.followersButton.addTarget(userProfileHeaderView, action: #selector(followerViewTapped), for: .touchUpInside)
+        userProfileHeaderView.followingButton.addTarget(userProfileHeaderView, action: #selector(followingViewTapped), for: .touchUpInside)
+        userProfileHeaderView.friendsButton.addTarget(userProfileHeaderView, action: #selector(friendsViewTapped), for: .touchUpInside)
         
         return userProfileHeaderView
     }
@@ -75,4 +90,55 @@ class UserProfileHeaderView: UIView {
         
     }
     
+    func setHandlerForImageTappig(task: @escaping () -> Void) {
+        self.imageTappingHandler = {
+            task()
+        }
+    }
+    
+    func setHandlerForFollowerViewTapping(task: @escaping () -> Void) {
+        self.followerViewTappingHandler = {
+            task()
+        }
+    }
+    
+    func setHandlerForFollowingViewTapping(task: @escaping () -> Void) {
+        self.followingViewTappingHandler = {
+            task()
+        }
+    }
+    
+    func setHandlerForFriendsViewTapping(task: @escaping () -> Void) {
+        self.friendsViewTappingHandler = {
+            task()
+        }
+    }
+    
+    func avatarImageTapped() {
+        print("avatarImageTapped() func.")
+        if self.imageTappingHandler != nil {
+            self.imageTappingHandler!()
+        }
+    }
+    
+    func followerViewTapped() {
+        print("followerViewTapped() func.")
+        if self.followerViewTappingHandler != nil {
+            self.followerViewTappingHandler!()
+        }
+    }
+    
+    func followingViewTapped() {
+        print("followingViewTapped() func.")
+        if self.followingViewTappingHandler != nil {
+            self.followingViewTappingHandler!()
+        }
+    }
+    
+    func friendsViewTapped() {
+        print("friendsViewTapped() func.")
+        if self.friendsViewTappingHandler != nil {
+            self.friendsViewTappingHandler!()
+        }
+    }
 }

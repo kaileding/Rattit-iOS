@@ -30,8 +30,9 @@ class FindTogetherWithViewController: UIViewController {
         self.findTogetherWithTable.sectionHeaderHeight = 18.0
         let grayTableHeaderView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: 18.0))
         grayTableHeaderView.backgroundColor = UIColor.clear
-//            UIColor(red: 0.9255, green: 0.9255, blue: 0.9255, alpha: 1.0)
         self.findTogetherWithTable.tableHeaderView = grayTableHeaderView
+        let userCellNib = UINib(nibName: "ReusableUserTableViewCell", bundle: nil)
+        self.findTogetherWithTable.register(userCellNib, forCellReuseIdentifier: "ReusableUserTableViewCell")
         
         ComposeContentManager.sharedInstance.updateSelectedUsersDelegate = self
     }
@@ -69,7 +70,7 @@ class FindTogetherWithViewController: UIViewController {
 
 }
 
-extension FindTogetherWithViewController: UITableViewDataSource, UITableViewDelegate {
+extension FindTogetherWithViewController: UITableViewDataSource, UITableViewDelegate, ReusableUserCellDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -81,9 +82,9 @@ extension FindTogetherWithViewController: UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "FindPeopleChoicesTableViewCell") as! FindPeopleChoicesTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableUserTableViewCell") as! ReusableUserTableViewCell
         let userToShow = Array(RattitUserManager.sharedInstance.cachedUsers.values)[indexPath.row]
-        cell.initializeData(user: userToShow)
+        cell.initializeData(userId: userToShow.id!, isFollowing: (indexPath.row / 2 == 0), parentVC: self)
         return cell
     }
     
@@ -105,6 +106,14 @@ extension FindTogetherWithViewController: UITableViewDataSource, UITableViewDele
             }
         }
         return nil
+    }
+    
+    func tappedUserAvatarOfCell(userId: String) {
+        print("tappedUserAvatarOfCell delegate func called.")
+    }
+    
+    func tappedFollowButtonOfCell(userId: String, toFollow: Bool) {
+        print("tappedFollowButtonOfCell delegate func called.")
     }
     
 }

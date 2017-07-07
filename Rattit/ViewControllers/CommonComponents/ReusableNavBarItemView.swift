@@ -27,7 +27,7 @@ class ReusableNavBarItemView: UIView {
         
         reusableNavBarItemView.barItemButton.setImage(UIImage(named: buttonImageName)?.withRenderingMode(.alwaysTemplate), for: UIControlState.normal)
         reusableNavBarItemView.barItemButton.imageEdgeInsets = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0)
-        reusableNavBarItemView.barItemButton.tintColor = UIColor(red: 0.26, green: 0.26, blue: 0.26, alpha: 1.0)
+        reusableNavBarItemView.barItemButton.tintColor = RattitStyleColors.navBarItemBlack
         reusableNavBarItemView.barItemButton.widthAnchor.constraint(equalToConstant: 40.0).isActive = true
         reusableNavBarItemView.barItemButton.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
         reusableNavBarItemView.barItemButton.showsTouchWhenHighlighted = true

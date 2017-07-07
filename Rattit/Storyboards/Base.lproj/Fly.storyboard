@@ -31,11 +31,45 @@
                     <navigationItem key="navigationItem" id="FGa-bt-0nX"/>
                     <connections>
                         <outlet property="outerScrollView" destination="dhF-yq-OSA" id="efm-ZQ-MGU"/>
+                        <segue destination="Dbc-lM-HeZ" kind="show" identifier="FlyHomeToFollowView" id="xlY-P4-82v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kDQ-0N-glS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="456.80000000000001" y="169.56521739130437"/>
+        </scene>
+        <!--Follower Following View Controller-->
+        <scene sceneID="qSQ-ZS-o6D">
+            <objects>
+                <viewController id="Dbc-lM-HeZ" customClass="FollowerFollowingViewController" customModule="Rattit" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mwB-aY-hsg"/>
+                        <viewControllerLayoutGuide type="bottom" id="wpI-PG-ipZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PYH-Pn-uhl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="94" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PcQ-D6-TjM">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wpI-PG-ipZ" firstAttribute="top" secondItem="PcQ-D6-TjM" secondAttribute="bottom" id="1ra-FD-gWO"/>
+                            <constraint firstItem="PcQ-D6-TjM" firstAttribute="leading" secondItem="PYH-Pn-uhl" secondAttribute="leading" id="4gr-CK-WT5"/>
+                            <constraint firstAttribute="trailing" secondItem="PcQ-D6-TjM" secondAttribute="trailing" id="K03-3H-9Qy"/>
+                            <constraint firstItem="PcQ-D6-TjM" firstAttribute="top" secondItem="PYH-Pn-uhl" secondAttribute="top" id="ULn-pb-Hfj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contentTableView" destination="PcQ-D6-TjM" id="cGh-Hm-UbN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e5C-o3-1ds" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1356" y="169.56521739130437"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="S2I-hI-QvQ">

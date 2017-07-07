@@ -81,15 +81,15 @@ class ComposeTextTableViewController: UITableViewController {
         self.locationLabelArrowImageView.tintColor = UIColor.lightGray
         
         self.star1ImageView.image = self.emptyStarImage
-        self.star1ImageView.tintColor = UIColor(red: 0.5882, green: 0.4588, blue: 0, alpha: 1.0)
+        self.star1ImageView.tintColor = RattitStyleColors.ratingStarGold
         self.star2ImageView.image = self.emptyStarImage
-        self.star2ImageView.tintColor = UIColor(red: 0.5882, green: 0.4588, blue: 0, alpha: 1.0)
+        self.star2ImageView.tintColor = RattitStyleColors.ratingStarGold
         self.star3ImageView.image = self.emptyStarImage
-        self.star3ImageView.tintColor = UIColor(red: 0.5882, green: 0.4588, blue: 0, alpha: 1.0)
+        self.star3ImageView.tintColor = RattitStyleColors.ratingStarGold
         self.star4ImageView.image = self.emptyStarImage
-        self.star4ImageView.tintColor = UIColor(red: 0.5882, green: 0.4588, blue: 0, alpha: 1.0)
+        self.star4ImageView.tintColor = RattitStyleColors.ratingStarGold
         self.star5ImageView.image = self.emptyStarImage
-        self.star5ImageView.tintColor = UIColor(red: 0.5882, green: 0.4588, blue: 0, alpha: 1.0)
+        self.star5ImageView.tintColor = RattitStyleColors.ratingStarGold
         
         
         self.togetherWithIconImageView.image = UIImage(named: "togetherWith")?.withRenderingMode(.alwaysTemplate)
@@ -110,7 +110,7 @@ class ComposeTextTableViewController: UITableViewController {
         self.tableView.tableHeaderView = UIView()
         
         self.tableView.tableFooterView = UIView()
-        self.tableView.backgroundColor = UIColor(red: 0.9255, green: 0.9255, blue: 0.9255, alpha: 1.0)
+        self.tableView.backgroundColor = RattitStyleColors.backgroundGray
         
         if self.titleTextField.text == nil || self.wordsTextView.textColor == UIColor.lightGray {
             self.navigationItem.rightBarButtonItem?.isEnabled = false

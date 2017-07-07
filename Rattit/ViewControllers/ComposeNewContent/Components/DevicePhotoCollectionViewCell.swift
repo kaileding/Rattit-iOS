@@ -53,7 +53,7 @@ class DevicePhotoCollectionViewCell: UICollectionViewCell {
             self.indexLabel.isHidden = true
         } else {
             self.checkMarkImageView.image = self.checkedImage
-            self.checkMarkImageView.tintColor = UIColor(red: 0, green: 0.5569, blue: 0.2039, alpha: 1.0)
+            self.checkMarkImageView.tintColor = RattitStyleColors.checkGreen
             self.indexLabel.isHidden = false
             self.indexLabel.text = "\(self.checkedWithIndex)"
         }
@@ -79,7 +79,7 @@ class DevicePhotoCollectionViewCell: UICollectionViewCell {
             
             
             self.checkMarkImageView.image = self.checkedImage
-            self.checkMarkImageView.tintColor = UIColor(red: 0, green: 0.5569, blue: 0.2039, alpha: 1.0)
+            self.checkMarkImageView.tintColor = RattitStyleColors.checkGreen
             self.checkMarkImageView.frame = CGRect(x: (width-17.0), y: (width-17.0), width: 0.0, height: 0.0)
             self.indexLabel.text = "\(self.self.checkedWithIndex)"
             self.indexLabel.isHidden = true

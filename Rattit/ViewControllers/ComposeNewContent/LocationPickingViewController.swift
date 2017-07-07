@@ -119,7 +119,7 @@ extension LocationPickingViewController: UITableViewDataSource, UITableViewDeleg
         if section == 1 {
             let headerView = UIView()
             headerView.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: 15.0)
-            headerView.backgroundColor = UIColor(red: 0.9255, green: 0.9255, blue: 0.9255, alpha: 1.0)
+            headerView.backgroundColor = RattitStyleColors.backgroundGray
             return headerView
         }
         return nil

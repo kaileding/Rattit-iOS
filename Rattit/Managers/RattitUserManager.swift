@@ -106,6 +106,8 @@ class RattitUserManager: NSObject {
             contentRequest = CommonRequest.getFolloweesOfAUser(userId: userId)
         case .follower:
             contentRequest = CommonRequest.getFollowersOfAUser(userId: userId)
+        case .friends:
+            contentRequest = CommonRequest.getFollowersOfAUser(userId: userId) // Need to change.
         }
         
         Network.sharedInstance.callRattitContentService(httpRequest: contentRequest, completion: { (dataValue) in

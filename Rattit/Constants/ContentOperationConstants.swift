@@ -13,3 +13,8 @@ public enum ComposeContentNotificationName: String {
     case composeMoment = "ComposeMomentNotification"
 }
 
+public enum followVCContentType: Int {
+    case follower
+    case following
+    case friends
+}

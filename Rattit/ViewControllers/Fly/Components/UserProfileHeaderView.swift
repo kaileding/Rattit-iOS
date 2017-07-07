@@ -48,7 +48,6 @@ class UserProfileHeaderView: UIView {
         
         userProfileHeaderView.organizationIconImageView.image = UIImage(named: "organization")?.withRenderingMode(.alwaysTemplate)
         userProfileHeaderView.organizationIconImageView.tintColor = UIColor.darkGray
-//            UIColor(red: 0.1294, green: 0.1137, blue: 0, alpha: 1.0)
             
         userProfileHeaderView.introTitleLabel.text = "Intro:"
         

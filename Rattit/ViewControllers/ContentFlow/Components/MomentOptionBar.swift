@@ -108,7 +108,7 @@ class MomentOptionBar: UIView {
             }, completion: { (success) in
                 self.bookmarkImage.frame = CGRect(x: 12.0, y: 12.0, width: 0.0, height: 0.0)
                 self.bookmarkImage.image = self.reusableBookmarkedImage
-                self.bookmarkImage.tintColor = UIColor(red: 0.11, green: 0.27, blue: 0.53, alpha: 1.0)
+                self.bookmarkImage.tintColor = RattitStyleColors.bookmarkDarkBlue
                 UIView.animate(withDuration: 0.2, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 2.0, options: [.curveEaseIn], animations: {
                     self.bookmarkImage.frame = CGRect(x: 2.0, y: 2.0, width: 20.0, height: 20.0)
                 }, completion: nil)

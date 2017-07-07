@@ -16,9 +16,13 @@
 		85023FAC1EF76D4700E785FD /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85023FAB1EF76D4700E785FD /* StringExtensions.swift */; };
 		8503D21C1F07871D0053D639 /* FindTogetherWithViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8503D21B1F07871D0053D639 /* FindTogetherWithViewController.swift */; };
 		850779B21F03777D00598D60 /* ComposeContentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850779B11F03777D00598D60 /* ComposeContentDelegate.swift */; };
-		85084F121F0900F6002D3FFF /* FindPeopleChoicesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85084F111F0900F6002D3FFF /* FindPeopleChoicesTableViewCell.swift */; };
 		851FBC611F0A4564000DEB50 /* PickedUserTogetherWithView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851FBC601F0A4564000DEB50 /* PickedUserTogetherWithView.xib */; };
 		851FBC631F0A4580000DEB50 /* PickedUserTogetherWithView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851FBC621F0A4580000DEB50 /* PickedUserTogetherWithView.swift */; };
+		852113F01F0F5E7800830F13 /* FollowerFollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852113EF1F0F5E7800830F13 /* FollowerFollowingViewController.swift */; };
+		852113F41F0F7E7500830F13 /* StyleConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852113F31F0F7E7500830F13 /* StyleConstants.swift */; };
+		852113F71F0F89FA00830F13 /* ReusableUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852113F51F0F89FA00830F13 /* ReusableUserTableViewCell.swift */; };
+		852113F81F0F89FA00830F13 /* ReusableUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 852113F61F0F89FA00830F13 /* ReusableUserTableViewCell.xib */; };
+		852113FA1F0F952000830F13 /* ReusableUserCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852113F91F0F952000830F13 /* ReusableUserCellDelegate.swift */; };
 		852C395C1EF5C8F400C66C16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 852C395B1EF5C8E800C66C16 /* GoogleService-Info.plist */; };
 		852C395D1EF5C9C100C66C16 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 852C395B1EF5C8E800C66C16 /* GoogleService-Info.plist */; };
 		852C39711EF5D81A00C66C16 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 852C396F1EF5D81A00C66C16 /* SignIn.storyboard */; };
@@ -104,9 +108,13 @@
 		85023FAB1EF76D4700E785FD /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		8503D21B1F07871D0053D639 /* FindTogetherWithViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindTogetherWithViewController.swift; sourceTree = "<group>"; };
 		850779B11F03777D00598D60 /* ComposeContentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeContentDelegate.swift; sourceTree = "<group>"; };
-		85084F111F0900F6002D3FFF /* FindPeopleChoicesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindPeopleChoicesTableViewCell.swift; sourceTree = "<group>"; };
 		851FBC601F0A4564000DEB50 /* PickedUserTogetherWithView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickedUserTogetherWithView.xib; sourceTree = "<group>"; };
 		851FBC621F0A4580000DEB50 /* PickedUserTogetherWithView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickedUserTogetherWithView.swift; sourceTree = "<group>"; };
+		852113EF1F0F5E7800830F13 /* FollowerFollowingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerFollowingViewController.swift; sourceTree = "<group>"; };
+		852113F31F0F7E7500830F13 /* StyleConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleConstants.swift; sourceTree = "<group>"; };
+		852113F51F0F89FA00830F13 /* ReusableUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableUserTableViewCell.swift; sourceTree = "<group>"; };
+		852113F61F0F89FA00830F13 /* ReusableUserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusableUserTableViewCell.xib; sourceTree = "<group>"; };
+		852113F91F0F952000830F13 /* ReusableUserCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableUserCellDelegate.swift; sourceTree = "<group>"; };
 		852C395B1EF5C8E800C66C16 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		852C396B1EF5D75B00C66C16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		852C396D1EF5D75B00C66C16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
@@ -386,6 +394,8 @@
 			children = (
 				8582A6451EFE326000483CDD /* ReusableNavBarItemView.swift */,
 				8582A6431EFE319600483CDD /* ReusableNavBarItemView.xib */,
+				852113F51F0F89FA00830F13 /* ReusableUserTableViewCell.swift */,
+				852113F61F0F89FA00830F13 /* ReusableUserTableViewCell.xib */,
 			);
 			path = CommonComponents;
 			sourceTree = "<group>";
@@ -398,7 +408,6 @@
 				8533DF351F041AD10026C437 /* ComposeTextTableViewController.swift */,
 				859B5F481F060FF0009A8762 /* LocationPickingViewController.swift */,
 				8503D21B1F07871D0053D639 /* FindTogetherWithViewController.swift */,
-				85084F111F0900F6002D3FFF /* FindPeopleChoicesTableViewCell.swift */,
 			);
 			path = ComposeNewContent;
 			sourceTree = "<group>";
@@ -421,6 +430,7 @@
 			children = (
 				8587D1C11F0C9FEE009D18E9 /* Components */,
 				8587D1BF1F0C512B009D18E9 /* FlyHomeViewController.swift */,
+				852113EF1F0F5E7800830F13 /* FollowerFollowingViewController.swift */,
 			);
 			path = Fly;
 			sourceTree = "<group>";
@@ -452,6 +462,7 @@
 			children = (
 				859564B91EF68176000D0BC8 /* AskForSignInSignUpDelegate.swift */,
 				850779B11F03777D00598D60 /* ComposeContentDelegate.swift */,
+				852113F91F0F952000830F13 /* ReusableUserCellDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -463,6 +474,7 @@
 				85023FA31EF71F2700E785FD /* DataModelConstants.swift */,
 				85023FA81EF72E2100E785FD /* NetworkConstants.swift */,
 				8582A64D1EFF30FF00483CDD /* ContentOperationConstants.swift */,
+				852113F31F0F7E7500830F13 /* StyleConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -595,6 +607,7 @@
 				852C397B1EF5ED7E00C66C16 /* LaunchScreen.storyboard in Resources */,
 				852C397A1EF5ED7700C66C16 /* Main.storyboard in Resources */,
 				8549F0D71EFCB66E00385F1E /* MomentHeaderView.xib in Resources */,
+				852113F81F0F89FA00830F13 /* ReusableUserTableViewCell.xib in Resources */,
 				859564B41EF675B7000D0BC8 /* AskForSignInSignUpView.xib in Resources */,
 				8587D1C51F0CA03C009D18E9 /* UserProfileHeaderView.xib in Resources */,
 				859564B21EF66608000D0BC8 /* ContentFlowNavigationTitleView.xib in Resources */,
@@ -713,6 +726,7 @@
 				853A3D1F1EF69F1C008EA58E /* Photo.swift in Sources */,
 				859564BA1EF68176000D0BC8 /* AskForSignInSignUpDelegate.swift in Sources */,
 				859564AB1EF64E7A000D0BC8 /* HomeTabBarViewController.swift in Sources */,
+				852113F01F0F5E7800830F13 /* FollowerFollowingViewController.swift in Sources */,
 				859564A91EF64DA0000D0BC8 /* HomeContentViewController.swift in Sources */,
 				85E21A351EFA624C00D4F961 /* MainContent.swift in Sources */,
 				8549F0DA1EFCB85400385F1E /* MomentHeaderView.swift in Sources */,
@@ -725,14 +739,15 @@
 				8503D21C1F07871D0053D639 /* FindTogetherWithViewController.swift in Sources */,
 				8533DF361F041AD10026C437 /* ComposeTextTableViewController.swift in Sources */,
 				859564AF1EF6654E000D0BC8 /* MomentTableViewCell.swift in Sources */,
+				852113F71F0F89FA00830F13 /* ReusableUserTableViewCell.swift in Sources */,
 				85E21A391EFA6C3900D4F961 /* Answer.swift in Sources */,
 				8587D1C31F0CA02F009D18E9 /* UserProfileHeaderView.swift in Sources */,
 				853851301EF4FBF600A8B2B5 /* AppDelegate.swift in Sources */,
 				8587D1C01F0C512B009D18E9 /* FlyHomeViewController.swift in Sources */,
 				8549F0D51EFC992400385F1E /* PhotoScrollView.swift in Sources */,
 				855700E21F00C8AB0084356E /* CapturedPhotoView.swift in Sources */,
+				852113F41F0F7E7500830F13 /* StyleConstants.swift in Sources */,
 				859B5F4D1F061F12009A8762 /* RattitLocationManager.swift in Sources */,
-				85084F121F0900F6002D3FFF /* FindPeopleChoicesTableViewCell.swift in Sources */,
 				8582A64C1EFE419F00483CDD /* ComposeImageViewController.swift in Sources */,
 				85023FA71EF728D100E785FD /* MomentManager.swift in Sources */,
 				85023FA91EF72E2100E785FD /* NetworkConstants.swift in Sources */,
@@ -750,6 +765,7 @@
 				859564B61EF675C7000D0BC8 /* AskForSignInSignUpView.swift in Sources */,
 				853A3D1D1EF69E4C008EA58E /* Moment.swift in Sources */,
 				852C39761EF5DD7C00C66C16 /* EmailSignUpViewController.swift in Sources */,
+				852113FA1F0F952000830F13 /* ReusableUserCellDelegate.swift in Sources */,
 				8549F0D11EFBC78E00385F1E /* GalleryManager.swift in Sources */,
 				8549F0CB1EFB877800385F1E /* Network.swift in Sources */,
 				85E21A3B1EFA701400D4F961 /* RattitCollection.swift in Sources */,

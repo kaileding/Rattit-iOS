@@ -34,6 +34,12 @@ class SlidingTabMenuBarView: UIView {
     
     var tabMenuButtonHandler: ((Int) -> Void)? = nil
     
+//    override func awakeFromNib() {
+//        let slidingTabMenuBarView = Bundle.main.loadNibNamed("SlidingTabMenuBarView", owner: self, options: nil)?.first as! UIView
+//
+//        self.addSubview(slidingTabMenuBarView)
+//    }
+    
     static func instantiateFromXib() -> SlidingTabMenuBarView {
         let slidingTabMenuBarView = Bundle.main.loadNibNamed("SlidingTabMenuBarView", owner: self, options: nil)?.first as! SlidingTabMenuBarView
         

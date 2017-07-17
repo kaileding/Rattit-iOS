@@ -10,11 +10,12 @@ import UIKit
 
 class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
     
-    @IBOutlet weak var outerScrollView: UIScrollView!
+    @IBOutlet weak var outerVisibleView: UIView!
     
     var userProfileHeaderView: UserProfileHeaderView = UserProfileHeaderView.instantiateFromXib()
     var slideMenuBarView: SlidingTabMenuBarView = SlidingTabMenuBarView.instantiateFromXib()
-    var contentDisplayView: UIView? = nil
+    var contentDisplayView: UIView = UIView()
+    var contentViews: [ContentDisplayTableView] = []
     
     // horizontal swipe
     var hSwipeStartPoint: CGPoint = CGPoint(x: 0.0, y: 0.0)
@@ -39,32 +40,19 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
         }
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: flyHomePageRightBarButtonItemView)
         
-        
-        self.outerScrollView.translatesAutoresizingMaskIntoConstraints = false
-        self.outerScrollView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0.0).isActive = true
-        self.outerScrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 0.0).isActive = true
-        self.outerScrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: 0.0).isActive = true
-        self.outerScrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0.0).isActive = true
-        
         let hSwipeRecognizer = UIPanGestureRecognizer(target: self, action: #selector(hSwipeGestureRecognized(gestureRecognizer:)))
         hSwipeRecognizer.delegate = self
         let vSwipeRecognizer = UIPanGestureRecognizer(target: self, action: #selector(vSwipeGestureRecognized(gestureRecognizer:)))
         vSwipeRecognizer.delegate = self
-        //        self.outerScrollView.addGestureRecognizer(vSwipeRecognizer)
         
-        if self.contentDisplayView == nil {
-            self.contentDisplayView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 50.0, height: 44.0))
-            self.contentDisplayView!.translatesAutoresizingMaskIntoConstraints = false
-//            self.contentDisplayView!.backgroundColor = UIColor.cyan
-            self.contentDisplayView?.addGestureRecognizer(hSwipeRecognizer)
-//            self.contentDisplayView?.addGestureRecognizer(vSwipeRecognizer)
-        }
+        self.contentDisplayView.translatesAutoresizingMaskIntoConstraints = false
+//        self.contentDisplayView.backgroundColor = UIColor.cyan
+        self.contentDisplayView.addGestureRecognizer(hSwipeRecognizer)
         self.userProfileHeaderView.addGestureRecognizer(vSwipeRecognizer)
-//        self.slideMenuBarView.addGestureRecognizer(vSwipeRecognizer)
         
-        self.outerScrollView.addSubview(self.userProfileHeaderView)
-        self.outerScrollView.addSubview(self.slideMenuBarView)
-        self.outerScrollView.addSubview(self.contentDisplayView!)
+        self.outerVisibleView.addSubview(self.userProfileHeaderView)
+        self.outerVisibleView.addSubview(self.slideMenuBarView)
+        self.outerVisibleView.addSubview(self.contentDisplayView)
         
         self.userProfileHeaderView.setHandlerForFollowerViewTapping {
             self.segueDestContentType = .follower
@@ -79,18 +67,36 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
             self.performSegue(withIdentifier: "FlyHomeToFollowView", sender: self)
         }
         
-        self.profileHeaderTopContraint = self.userProfileHeaderView.topAnchor.constraint(equalTo: self.outerScrollView.topAnchor, constant: 0.0)
+        self.profileHeaderTopContraint = self.userProfileHeaderView.topAnchor.constraint(equalTo: self.outerVisibleView.topAnchor, constant: 0.0)
         self.profileHeaderTopContraint.isActive = true
-//        self.userProfileHeaderView.topAnchor.constraint(equalTo: self.outerScrollView.topAnchor, constant: 0.0).isActive = true
-        self.userProfileHeaderView.leadingAnchor.constraint(equalTo: self.outerScrollView.leadingAnchor, constant: 0.0).isActive = true
-        self.userProfileHeaderView.trailingAnchor.constraint(equalTo: self.outerScrollView.trailingAnchor, constant: 0.0).isActive = true
-        self.userProfileHeaderView.widthAnchor.constraint(equalTo: self.outerScrollView.widthAnchor, constant: 0.0).isActive = true
+        self.userProfileHeaderView.leadingAnchor.constraint(equalTo: self.outerVisibleView.leadingAnchor, constant: 0.0).isActive = true
+        self.userProfileHeaderView.trailingAnchor.constraint(equalTo: self.outerVisibleView.trailingAnchor, constant: 0.0).isActive = true
+        self.userProfileHeaderView.widthAnchor.constraint(equalTo: self.outerVisibleView.widthAnchor, constant: 0.0).isActive = true
+        
+        self.slideMenuBarView.setTabMenuTappingHandler { (destinationIndex) in
+            self.contentDisplayViewJumpToIndex(index: destinationIndex)
+        }
         
         self.slideMenuBarView.topAnchor.constraint(equalTo: self.userProfileHeaderView.bottomAnchor, constant: 0.0).isActive = true
-        self.slideMenuBarView.leadingAnchor.constraint(equalTo: self.outerScrollView.leadingAnchor, constant: 0.0).isActive = true
-        self.slideMenuBarView.trailingAnchor.constraint(equalTo: self.outerScrollView.trailingAnchor, constant: 0.0).isActive = true
-        self.slideMenuBarView.widthAnchor.constraint(equalTo: self.outerScrollView.widthAnchor, constant: 0.0).isActive = true
+        self.slideMenuBarView.leadingAnchor.constraint(equalTo: self.outerVisibleView.leadingAnchor, constant: 0.0).isActive = true
+        self.slideMenuBarView.trailingAnchor.constraint(equalTo: self.outerVisibleView.trailingAnchor, constant: 0.0).isActive = true
+        self.slideMenuBarView.widthAnchor.constraint(equalTo: self.outerVisibleView.widthAnchor, constant: 0.0).isActive = true
         self.slideMenuBarView.heightAnchor.constraint(equalToConstant: 35.0).isActive = true
+        
+        self.contentDisplayView.topAnchor.constraint(equalTo: self.slideMenuBarView.bottomAnchor, constant: 0.0).isActive = true
+        self.contentDisplayView.leadingAnchor.constraint(equalTo: self.outerVisibleView.leadingAnchor, constant: 0.0).isActive = true
+        self.contentDisplayView.trailingAnchor.constraint(equalTo: self.outerVisibleView.trailingAnchor, constant: 0.0).isActive = true
+        self.contentDisplayView.bottomAnchor.constraint(equalTo: self.outerVisibleView.bottomAnchor, constant: 0.0).isActive = true
+        
+        let contentView1 = ContentDisplayTableView.instantiateFromXib()
+        contentView1.initializeData(backgroundColor: UIColor(red: 0.2235, green: 0.5882, blue: 0, alpha: 1.0))
+        let contentView2 = ContentDisplayTableView.instantiateFromXib()
+        contentView2.initializeData(backgroundColor: UIColor(red: 0, green: 0.6, blue: 0.5373, alpha: 1.0))
+        let contentView3 = ContentDisplayTableView.instantiateFromXib()
+        contentView3.initializeData(backgroundColor: UIColor(red: 0.5569, green: 0, blue: 0.5412, alpha: 1.0))
+        self.contentViews.append(contentView1)
+        self.contentViews.append(contentView2)
+        self.contentViews.append(contentView3)
         
         self.currentPageIndex = 1
     }
@@ -107,18 +113,9 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         self.userProfileHeaderView.initializeData(userId: UserStateManager.sharedInstance.dummyUserId)
         self.userProfileHeaderView.sizeToFit()
-        self.outerScrollView.layoutIfNeeded()
+        self.outerVisibleView.layoutIfNeeded()
         self.view.layoutIfNeeded()
         self.profileHeaderHeight = self.userProfileHeaderView.frame.height
-        
-        let totalWidth = self.view.frame.width
-        let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        let navBarHeight = self.navigationController?.navigationBar.frame.height
-        let tabBarHeight = self.tabBarController?.tabBar.frame.height
-        let profileHeaderHeight = self.userProfileHeaderView.frame.height
-        self.outerScrollView.contentSize = CGSize(width: totalWidth, height: (self.outerScrollView.bounds.height-statusBarHeight-navBarHeight!-tabBarHeight!))
-        let outerScrollHeight = self.outerScrollView.contentSize.height
-        self.contentDisplayView?.frame = CGRect(x: 0.0, y: (profileHeaderHeight+35.0), width: totalWidth, height: (outerScrollHeight-35.0-profileHeaderHeight))
         
         self.slideMenuBarView.initializeSliderPostion(pos: self.currentPageIndex)
     }
@@ -126,12 +123,11 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        print("self.outerScrollView.frame is ", self.outerScrollView.frame.debugDescription)
-//        print("self.outerScrollView.contentSize is ", self.outerScrollView.contentSize.debugDescription)
-//        print("self.userProfileHeaderView.frame is ", self.userProfileHeaderView.frame.debugDescription)
-//        print("self.slideMenuBarView.frame is ", self.slideMenuBarView.frame.debugDescription)
-//        print("self.contentDisplayView.frame is ", self.contentDisplayView!.frame.debugDescription)
-//        self.userProfileHeaderView.displaySubviewFrames()
+        print("self.view.frame is ", self.view.frame.debugDescription)
+        print("self.outerVisibleView.frame is ", self.outerVisibleView.frame.debugDescription)
+        print("self.userProfileHeaderView.frame is ", self.userProfileHeaderView.frame.debugDescription)
+        print("self.slideMenuBarView.frame is ", self.slideMenuBarView.frame.debugDescription)
+        print("self.contentDisplayView.frame is ", self.contentDisplayView.frame.debugDescription)
     }
 
     override func didReceiveMemoryWarning() {
@@ -150,7 +146,6 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
             self.navigationItem.backBarButtonItem = backItem
         }
     }
- 
     
 }
 
@@ -158,7 +153,7 @@ extension FlyHomeViewController {
     
     // PanGestureRecognizer function
     func hSwipeGestureRecognized(gestureRecognizer: UIPanGestureRecognizer) {
-        let translation = gestureRecognizer.translation(in: self.contentDisplayView!)
+        let translation = gestureRecognizer.translation(in: self.contentDisplayView)
         let velocity = gestureRecognizer.velocity(in: self.contentDisplayView)
         
         let displacementX = self.hSwipeStartPoint.x - translation.x
@@ -199,7 +194,7 @@ extension FlyHomeViewController {
     }
     
     func vSwipeGestureRecognized(gestureRecognizer: UIPanGestureRecognizer) {
-        let translation = gestureRecognizer.translation(in: self.contentDisplayView!)
+        let translation = gestureRecognizer.translation(in: self.contentDisplayView)
         let velocity = gestureRecognizer.velocity(in: self.contentDisplayView)
         
 //        let displacementX = self.hSwipeStartPoint.x - translation.x
@@ -210,7 +205,7 @@ extension FlyHomeViewController {
         } else if gestureRecognizer.state == UIGestureRecognizerState.changed {
 //            print("Disaplacement: dx=\(displacementX), dy=\(displacementY)")
             if self.enableVSwipe {
-                print("self.enableVSwipe is true.")
+//                print("self.enableVSwipe is true.")
                 if (displacementY <= 0 && displacementY >= -self.profileHeaderHeight && !self.currentHeaderStateIsTop) {
                     self.profileHeaderTopContraint.constant = displacementY
                 } else if (displacementY >= 0 && displacementY <= self.profileHeaderHeight && self.currentHeaderStateIsTop) {
@@ -245,6 +240,11 @@ extension FlyHomeViewController {
     
     func slideContentDisplayView(ratio: CGFloat) {
         
+    }
+    
+    func contentDisplayViewJumpToIndex(index: Int) {
+        self.currentPageIndex = index
+        print("contentDisplayView swipe animation done, arrive at \(self.currentPageIndex)")
     }
     
     func continueHorizontalSliding(step: Int) {

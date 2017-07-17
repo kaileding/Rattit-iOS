@@ -36,6 +36,11 @@ class UserProfileHeaderView: UIView {
     var followingViewTappingHandler: (() -> Void)? = nil
     var friendsViewTappingHandler: (() -> Void)? = nil
     
+//    override func awakeFromNib() {
+//        let userProfileHeaderView = Bundle.main.loadNibNamed("UserProfileHeaderView", owner: self, options: nil)?.first as! UIView
+//        
+//        self.addSubview(userProfileHeaderView)
+//    }
     
     static func instantiateFromXib() -> UserProfileHeaderView {
         let userProfileHeaderView = Bundle.main.loadNibNamed("UserProfileHeaderView", owner: self, options: nil)?.first as! UserProfileHeaderView

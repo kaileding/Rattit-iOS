@@ -21,16 +21,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dhF-yq-OSA">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H1P-pE-8Ms">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </scrollView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="btQ-97-Cjg" firstAttribute="top" secondItem="H1P-pE-8Ms" secondAttribute="bottom" id="XXv-cL-lts"/>
+                            <constraint firstItem="H1P-pE-8Ms" firstAttribute="leading" secondItem="NAW-Bo-vGu" secondAttribute="leading" id="g4J-hQ-Glo"/>
+                            <constraint firstAttribute="trailing" secondItem="H1P-pE-8Ms" secondAttribute="trailing" id="iPl-vv-Dqg"/>
+                            <constraint firstItem="H1P-pE-8Ms" firstAttribute="top" secondItem="VWc-Lw-7wm" secondAttribute="bottom" id="w5F-4I-wqp"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FGa-bt-0nX"/>
                     <connections>
-                        <outlet property="outerScrollView" destination="dhF-yq-OSA" id="efm-ZQ-MGU"/>
+                        <outlet property="outerVisibleView" destination="H1P-pE-8Ms" id="fKk-ca-lhT"/>
                         <segue destination="Dbc-lM-HeZ" kind="show" identifier="FlyHomeToFollowView" id="xlY-P4-82v"/>
                     </connections>
                 </viewController>

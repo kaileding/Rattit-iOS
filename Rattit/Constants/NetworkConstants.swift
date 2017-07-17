@@ -10,7 +10,7 @@ import Foundation
 
 let utilityQueue = DispatchQueue.global(qos: .utility)
 
-let RATTIT_CONTENT_SERVICE_HOST: String = "http://ec2-34-212-5-16.us-west-2.compute.amazonaws.com"
+let RATTIT_CONTENT_SERVICE_HOST: String = "http://ec2-35-166-21-23.us-west-2.compute.amazonaws.com"
 let RATTIT_CONTENT_SERVICE_VERSION: String = "/api/v1"
 
 

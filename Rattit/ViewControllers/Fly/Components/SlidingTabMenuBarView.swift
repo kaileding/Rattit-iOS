@@ -34,11 +34,35 @@ class SlidingTabMenuBarView: UIView {
     
     var tabMenuButtonHandler: ((Int) -> Void)? = nil
     
-//    override func awakeFromNib() {
-//        let slidingTabMenuBarView = Bundle.main.loadNibNamed("SlidingTabMenuBarView", owner: self, options: nil)?.first as! UIView
-//
-//        self.addSubview(slidingTabMenuBarView)
-//    }
+    override func awakeFromNib() {
+        let slidingTabMenuBarView = Bundle.main.loadNibNamed("SlidingTabMenuBarView", owner: self, options: nil)?.first as! UIView
+        
+        slidingTabMenuBarView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.menuTab1Button.setTitle("moments", for: .normal)
+        self.menuTab1Button.setTitleColor(UIColor.darkGray, for: .normal)
+        self.menuTab1Button.setTitleColor(UIColor.lightGray, for: .highlighted)
+        self.menuTab1Button.tag = 1
+        self.menuTab2Button.setTitle("questions", for: .normal)
+        self.menuTab2Button.setTitleColor(UIColor.darkGray, for: .normal)
+        self.menuTab2Button.setTitleColor(UIColor.lightGray, for: .highlighted)
+        self.menuTab2Button.tag = 2
+        self.menuTab3Button.setTitle("answers", for: .normal)
+        self.menuTab3Button.setTitleColor(UIColor.darkGray, for: .normal)
+        self.menuTab3Button.setTitleColor(UIColor.lightGray, for: .highlighted)
+        self.menuTab3Button.tag = 3
+        
+        self.menuTab1Button.addTarget(self, action: #selector(tabMenuButtonPressed(sender:)), for: .touchUpInside)
+        self.menuTab2Button.addTarget(self, action: #selector(tabMenuButtonPressed(sender:)), for: .touchUpInside)
+        self.menuTab3Button.addTarget(self, action: #selector(tabMenuButtonPressed(sender:)), for: .touchUpInside)
+        
+        self.addSubview(slidingTabMenuBarView)
+        
+        slidingTabMenuBarView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0.0).isActive = true
+        slidingTabMenuBarView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0.0).isActive = true
+        slidingTabMenuBarView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0.0).isActive = true
+        slidingTabMenuBarView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0.0).isActive = true
+    }
     
     static func instantiateFromXib() -> SlidingTabMenuBarView {
         let slidingTabMenuBarView = Bundle.main.loadNibNamed("SlidingTabMenuBarView", owner: self, options: nil)?.first as! SlidingTabMenuBarView
@@ -137,8 +161,8 @@ class SlidingTabMenuBarView: UIView {
     
     func animateSlidingToPos(pos: Int) {
         self.sliderPositionIndex = pos
-        UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 5.0, options: .beginFromCurrentState, animations: {
-            
+        
+        UIView.animate(withDuration: 0.4, animations: {
             switch pos {
             case 1:
                 self.slidingBarView.frame = CGRect(x: self.sliderPos1LeadingSpace, y: self.sliderTopSpacing, width: self.sliderPos1Width, height: 3.0)
@@ -149,10 +173,26 @@ class SlidingTabMenuBarView: UIView {
             default:
                 break
             }
-            
         }) { (success) in
             print("animation of sliding bar to pos \(pos) is success: \(success)")
         }
+        
+//        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 5.0, options: .beginFromCurrentState, animations: {
+//
+//            switch pos {
+//            case 1:
+//                self.slidingBarView.frame = CGRect(x: self.sliderPos1LeadingSpace, y: self.sliderTopSpacing, width: self.sliderPos1Width, height: 3.0)
+//            case 2:
+//                self.slidingBarView.frame = CGRect(x: self.sliderPos2LeadingSpace, y: self.sliderTopSpacing, width: self.sliderPos2Width, height: 3.0)
+//            case 3:
+//                self.slidingBarView.frame = CGRect(x: self.sliderPos3LeadingSpace, y: self.sliderTopSpacing, width: self.sliderPos3Width, height: 3.0)
+//            default:
+//                break
+//            }
+//
+//        }) { (success) in
+//            print("animation of sliding bar to pos \(pos) is success: \(success)")
+//        }
     }
     
     func setTabMenuTappingHandler(task: @escaping (Int) -> Void) {

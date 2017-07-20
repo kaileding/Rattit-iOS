@@ -110,5 +110,10 @@ struct CommonRequest {
         return CommonRequest(urlPath: "/users/\(userId)/followees", method: .get)
     }
     
+    // get friends of a user
+    static func getFriendsOfAUser(userId: String) -> CommonRequest {
+        return CommonRequest(urlPath: "/users/\(userId)/friends", method: .get)
+    }
+    
 }
 

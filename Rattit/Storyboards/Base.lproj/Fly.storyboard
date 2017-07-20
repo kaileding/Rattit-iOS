@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,7 +24,52 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H1P-pE-8Ms">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zjJ-zN-Uib" customClass="UserProfileHeaderView" customModule="Rattit" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="157"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="157" id="r0B-28-0oM"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vRD-hY-GBW" customClass="SlidingTabMenuBarView" customModule="Rattit" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="157" width="375" height="35"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="bCK-ba-RFj"/>
+                                        </constraints>
+                                    </view>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="75L-V4-bd3">
+                                        <rect key="frame" x="0.0" y="192" width="375" height="411"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wv2-gL-RPK">
+                                                <rect key="frame" x="0.0" y="0.0" width="1125" height="411"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="wv2-gL-RPK" firstAttribute="width" secondItem="75L-V4-bd3" secondAttribute="width" multiplier="3" id="GdQ-tC-u7e"/>
+                                            <constraint firstAttribute="bottom" secondItem="wv2-gL-RPK" secondAttribute="bottom" id="Sjn-hj-Ecx"/>
+                                            <constraint firstAttribute="trailing" secondItem="wv2-gL-RPK" secondAttribute="trailing" id="dxy-m5-XLP"/>
+                                            <constraint firstItem="wv2-gL-RPK" firstAttribute="leading" secondItem="75L-V4-bd3" secondAttribute="leading" id="hys-UL-EhQ"/>
+                                            <constraint firstItem="wv2-gL-RPK" firstAttribute="top" secondItem="75L-V4-bd3" secondAttribute="top" id="n7h-62-Pv4"/>
+                                            <constraint firstItem="wv2-gL-RPK" firstAttribute="height" secondItem="75L-V4-bd3" secondAttribute="height" id="t5p-FB-Ll2"/>
+                                        </constraints>
+                                    </scrollView>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="vRD-hY-GBW" firstAttribute="leading" secondItem="H1P-pE-8Ms" secondAttribute="leading" id="036-MX-Ecy"/>
+                                    <constraint firstItem="vRD-hY-GBW" firstAttribute="top" secondItem="zjJ-zN-Uib" secondAttribute="bottom" id="1er-7L-nwn"/>
+                                    <constraint firstItem="zjJ-zN-Uib" firstAttribute="top" secondItem="H1P-pE-8Ms" secondAttribute="top" id="Hmd-oo-Mhn"/>
+                                    <constraint firstItem="zjJ-zN-Uib" firstAttribute="leading" secondItem="H1P-pE-8Ms" secondAttribute="leading" id="Lft-Sl-eFH"/>
+                                    <constraint firstAttribute="bottom" secondItem="75L-V4-bd3" secondAttribute="bottom" id="WH0-Ae-4cH"/>
+                                    <constraint firstItem="75L-V4-bd3" firstAttribute="leading" secondItem="H1P-pE-8Ms" secondAttribute="leading" id="ab0-ha-YDR"/>
+                                    <constraint firstAttribute="trailing" secondItem="vRD-hY-GBW" secondAttribute="trailing" id="bft-Ot-ols"/>
+                                    <constraint firstAttribute="trailing" secondItem="zjJ-zN-Uib" secondAttribute="trailing" id="ebB-Zo-4l3"/>
+                                    <constraint firstAttribute="trailing" secondItem="75L-V4-bd3" secondAttribute="trailing" id="ecE-b0-GZt"/>
+                                    <constraint firstItem="75L-V4-bd3" firstAttribute="top" secondItem="vRD-hY-GBW" secondAttribute="bottom" id="ecl-tA-Uss"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -36,7 +82,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="FGa-bt-0nX"/>
                     <connections>
+                        <outlet property="contentScrollCanvasView" destination="wv2-gL-RPK" id="nVG-Mc-4UF"/>
+                        <outlet property="contentScrollView" destination="75L-V4-bd3" id="9BT-Gv-ZRe"/>
                         <outlet property="outerVisibleView" destination="H1P-pE-8Ms" id="fKk-ca-lhT"/>
+                        <outlet property="profileHeaderTopConstraint" destination="Hmd-oo-Mhn" id="iIW-wp-YSb"/>
+                        <outlet property="slidingTabMenuBarView" destination="vRD-hY-GBW" id="cw9-Z9-d8F"/>
+                        <outlet property="userProfileHeaderView" destination="zjJ-zN-Uib" id="77C-VH-0c4"/>
                         <segue destination="Dbc-lM-HeZ" kind="show" identifier="FlyHomeToFollowView" id="xlY-P4-82v"/>
                     </connections>
                 </viewController>

@@ -49,7 +49,7 @@ class FollowerFollowingViewController: UIViewController {
         }
         
         let selfUser = UserStateManager.sharedInstance.dummyUser
-        RattitUserManager.sharedInstance.getFollowersOrFolloweesOfUser(userId: selfUser!.id!, relationType: self.contentType, completion: { (userGroupIds) in
+        RattitUserManager.sharedInstance.getFollowersOrFolloweesOfUser(userId: selfUser!.id!, relationType: self.contentType, completion: { (totalNum, userGroupIds) in
             
             self.usersList = userGroupIds
             self.contentTableView.reloadData()

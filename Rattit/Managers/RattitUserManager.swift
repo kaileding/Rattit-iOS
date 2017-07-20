@@ -98,7 +98,7 @@ class RattitUserManager: NSObject {
         }
     }
     
-    func getFollowersOrFolloweesOfUser(userId: String, relationType: RattitUserRelationshipType, completion: @escaping ([String]) -> Void, errorHandler: @escaping (Error) -> Void) {
+    func getFollowersOrFolloweesOfUser(userId: String, relationType: RattitUserRelationshipType, completion: @escaping (Int, [String]) -> Void, errorHandler: @escaping (Error) -> Void) {
         
         var contentRequest: CommonRequest
         switch relationType {
@@ -107,7 +107,7 @@ class RattitUserManager: NSObject {
         case .follower:
             contentRequest = CommonRequest.getFollowersOfAUser(userId: userId)
         case .friends:
-            contentRequest = CommonRequest.getFollowersOfAUser(userId: userId) // Need to change.
+            contentRequest = CommonRequest.getFriendsOfAUser(userId: userId)
         }
         
         Network.sharedInstance.callRattitContentService(httpRequest: contentRequest, completion: { (dataValue) in
@@ -124,7 +124,7 @@ class RattitUserManager: NSObject {
                 })
                 
                 DispatchQueue.main.async {
-                    completion(usersGroup)
+                    completion(count, usersGroup)
                 }
             } else {
                 DispatchQueue.main.async {

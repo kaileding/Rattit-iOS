@@ -36,11 +36,32 @@ class UserProfileHeaderView: UIView {
     var followingViewTappingHandler: (() -> Void)? = nil
     var friendsViewTappingHandler: (() -> Void)? = nil
     
-//    override func awakeFromNib() {
-//        let userProfileHeaderView = Bundle.main.loadNibNamed("UserProfileHeaderView", owner: self, options: nil)?.first as! UIView
-//        
-//        self.addSubview(userProfileHeaderView)
-//    }
+    override func awakeFromNib() {
+        let userProfileHeaderView = Bundle.main.loadNibNamed("UserProfileHeaderView", owner: self, options: nil)?.first as! UIView
+        
+        userProfileHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        
+        self.userAvatarImageView.layer.cornerRadius = 38.0
+        self.userAvatarImageView.clipsToBounds = true
+        self.userAvatarImageView.contentMode = .scaleAspectFill
+        
+        self.organizationIconImageView.image = UIImage(named: "organization")?.withRenderingMode(.alwaysTemplate)
+        self.organizationIconImageView.tintColor = UIColor.darkGray
+        
+        self.introTitleLabel.text = "Intro:"
+        
+        self.userAvatarButton.addTarget(self, action: #selector(avatarImageTapped), for: .touchUpInside)
+        self.followersButton.addTarget(self, action: #selector(followerViewTapped), for: .touchUpInside)
+        self.followingButton.addTarget(self, action: #selector(followingViewTapped), for: .touchUpInside)
+        self.friendsButton.addTarget(self, action: #selector(friendsViewTapped), for: .touchUpInside)
+        
+        self.addSubview(userProfileHeaderView)
+        
+        userProfileHeaderView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0.0).isActive = true
+        userProfileHeaderView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0.0).isActive = true
+        userProfileHeaderView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0.0).isActive = true
+        userProfileHeaderView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0.0).isActive = true
+    }
     
     static func instantiateFromXib() -> UserProfileHeaderView {
         let userProfileHeaderView = Bundle.main.loadNibNamed("UserProfileHeaderView", owner: self, options: nil)?.first as! UserProfileHeaderView
@@ -78,13 +99,19 @@ class UserProfileHeaderView: UIView {
             self.userFullNameLabel.text = "\(user.lastName.uppercased()), \(user.firstName)"
             self.numberOfFollowersLabel.text = "\(user.followerNumber)"
             self.numberOfFollowingLabel.text = "\(user.followeeNumber)"
-            self.numberOfFriendsLabel.text = "0"
             self.organizationLabel.text = (user.organization.first != nil) ? "\(user.organization.first!)" : " "
             self.manifestoLabel.text = "\(user.manifesto)"
             
         }) { (error) in
             print("Unable to get user for id = \(userId)")
         }
+        
+        RattitUserManager.sharedInstance.getFollowersOrFolloweesOfUser(userId: userId, relationType: .friends, completion: { (totalNum, userGroup) in
+            self.numberOfFriendsLabel.text = "\(totalNum)"
+        }, errorHandler: { (error) in
+            print("Unable to get friends for userId = \(userId)")
+        })
+        
     }
     
     func displaySubviewFrames() {

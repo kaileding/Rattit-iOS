@@ -16,6 +16,7 @@
 		85023FAC1EF76D4700E785FD /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85023FAB1EF76D4700E785FD /* StringExtensions.swift */; };
 		8503D21C1F07871D0053D639 /* FindTogetherWithViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8503D21B1F07871D0053D639 /* FindTogetherWithViewController.swift */; };
 		850779B21F03777D00598D60 /* ComposeContentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850779B11F03777D00598D60 /* ComposeContentDelegate.swift */; };
+		850DE9191F1D620300808814 /* SwipableTablesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850DE9181F1D620300808814 /* SwipableTablesCollectionViewCell.swift */; };
 		851FBC611F0A4564000DEB50 /* PickedUserTogetherWithView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851FBC601F0A4564000DEB50 /* PickedUserTogetherWithView.xib */; };
 		851FBC631F0A4580000DEB50 /* PickedUserTogetherWithView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851FBC621F0A4580000DEB50 /* PickedUserTogetherWithView.swift */; };
 		852113F01F0F5E7800830F13 /* FollowerFollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852113EF1F0F5E7800830F13 /* FollowerFollowingViewController.swift */; };
@@ -110,6 +111,7 @@
 		85023FAB1EF76D4700E785FD /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		8503D21B1F07871D0053D639 /* FindTogetherWithViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindTogetherWithViewController.swift; sourceTree = "<group>"; };
 		850779B11F03777D00598D60 /* ComposeContentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeContentDelegate.swift; sourceTree = "<group>"; };
+		850DE9181F1D620300808814 /* SwipableTablesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipableTablesCollectionViewCell.swift; sourceTree = "<group>"; };
 		851FBC601F0A4564000DEB50 /* PickedUserTogetherWithView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickedUserTogetherWithView.xib; sourceTree = "<group>"; };
 		851FBC621F0A4580000DEB50 /* PickedUserTogetherWithView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickedUserTogetherWithView.swift; sourceTree = "<group>"; };
 		852113EF1F0F5E7800830F13 /* FollowerFollowingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerFollowingViewController.swift; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 				8587D1C11F0C9FEE009D18E9 /* Components */,
 				8587D1BF1F0C512B009D18E9 /* FlyHomeViewController.swift */,
 				852113EF1F0F5E7800830F13 /* FollowerFollowingViewController.swift */,
+				850DE9181F1D620300808814 /* SwipableTablesCollectionViewCell.swift */,
 			);
 			path = Fly;
 			sourceTree = "<group>";
@@ -739,6 +742,7 @@
 				8549F0DA1EFCB85400385F1E /* MomentHeaderView.swift in Sources */,
 				851FBC631F0A4580000DEB50 /* PickedUserTogetherWithView.swift in Sources */,
 				85023FA21EF71E7600E785FD /* RattitUser.swift in Sources */,
+				850DE9191F1D620300808814 /* SwipableTablesCollectionViewCell.swift in Sources */,
 				85E21A3F1EFB4C4900D4F961 /* CommentForAnswer.swift in Sources */,
 				850779B21F03777D00598D60 /* ComposeContentDelegate.swift in Sources */,
 				85E21A431EFB5A3400D4F961 /* RattitUserManager.swift in Sources */,

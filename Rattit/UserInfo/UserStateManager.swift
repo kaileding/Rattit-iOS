@@ -17,6 +17,7 @@ class UserStateManager: NSObject {
     var dummyUser: RattitUser? = nil
     var dummyMyFollowers: [String] = [] // array of userIds
     var dummyMyFollowees: [String] = [] // array of userIds
+    var dummyMyFriends: [String] = [] // array of userIds
     var dummyMyMoments: [String] = [] // array of momentIds
     
     static let sharedInstance: UserStateManager = UserStateManager()
@@ -30,18 +31,25 @@ class UserStateManager: NSObject {
             print("== Unable to load user for id = \(self.dummyUserId) as myself. \(error.localizedDescription)")
         }
         
-        RattitUserManager.sharedInstance.getFollowersOrFolloweesOfUser(userId: self.dummyUserId, relationType: .follower, completion: { (userGroup) in
+        RattitUserManager.sharedInstance.getFollowersOrFolloweesOfUser(userId: self.dummyUserId, relationType: .follower, completion: { (totalNum, userGroup) in
             
             self.dummyMyFollowers = userGroup
         }) { (error) in
             print("== Unable to load followers of mine. \(error.localizedDescription)")
         }
         
-        RattitUserManager.sharedInstance.getFollowersOrFolloweesOfUser(userId: self.dummyUserId, relationType: .followee, completion: { (userGroup) in
+        RattitUserManager.sharedInstance.getFollowersOrFolloweesOfUser(userId: self.dummyUserId, relationType: .followee, completion: { (totalNum, userGroup) in
             
             self.dummyMyFollowees = userGroup
         }) { (error) in
             print("== Unable to load followees of mine. \(error.localizedDescription)")
+        }
+        
+        RattitUserManager.sharedInstance.getFollowersOrFolloweesOfUser(userId: self.dummyUserId, relationType: .friends, completion: { (totalNum, userGroup) in
+            
+            self.dummyMyFriends = userGroup
+        }) { (error) in
+            print("== Unable to load friends of mine. \(error.localizedDescription)")
         }
         
         MomentManager.sharedInstance.getMomentsCreatedByAUser(userId: self.dummyUserId, completion: { (momentGroup) in

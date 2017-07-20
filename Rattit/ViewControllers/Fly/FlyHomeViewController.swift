@@ -15,11 +15,6 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var slidingTabMenuBarView: SlidingTabMenuBarView!
     @IBOutlet weak var contentCanvasView: UIView!
     
-    let contentTableView1Tag: Int = 101
-    let contentTableView2Tag: Int = 102
-    let contentTableView3Tag: Int = 103
-    
-    var contentViewBGColors: [UIColor] = []
     var contentTableView1: ContentDisplayTableView = ContentDisplayTableView.instantiateFromXib()
     var contentTableView2: ContentDisplayTableView = ContentDisplayTableView.instantiateFromXib()
     var contentTableView3: ContentDisplayTableView = ContentDisplayTableView.instantiateFromXib()
@@ -71,9 +66,9 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.contentCanvasView.translatesAutoresizingMaskIntoConstraints = false
         self.setConstraintsToContentViews()
         
-        self.contentViewBGColors.append(UIColor(red: 0.2235, green: 0.5882, blue: 0, alpha: 1.0))
-        self.contentViewBGColors.append(UIColor(red: 0, green: 0.6, blue: 0.5373, alpha: 1.0))
-        self.contentViewBGColors.append(UIColor(red: 0.5569, green: 0, blue: 0.5412, alpha: 1.0))
+        self.contentTableView1.parentVC = self
+        self.contentTableView2.parentVC = self
+        self.contentTableView3.parentVC = self
         
         self.currentPageIndex = 1
     }
@@ -137,9 +132,18 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
     
 }
 
-extension FlyHomeViewController: UIScrollViewDelegate {
-    
-    
+extension FlyHomeViewController {
+    func resizeTableHeaderViewHeight(step: CGFloat) {
+        let targetConstantVal = self.profileHeaderTopConstraint.constant - step
+//        print("targetConstantVal = \(targetConstantVal)")
+        if targetConstantVal < -self.profileHeaderHeight {
+            self.profileHeaderTopConstraint.constant = -self.profileHeaderHeight
+        } else if targetConstantVal > 0 {
+            self.profileHeaderTopConstraint.constant = 0
+        } else {
+            self.profileHeaderTopConstraint.constant = targetConstantVal
+        }
+    }
 }
 
 extension FlyHomeViewController {

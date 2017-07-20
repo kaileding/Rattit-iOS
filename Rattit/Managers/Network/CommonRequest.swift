@@ -15,7 +15,7 @@ struct CommonRequest {
     var method: HTTPMethod!
     var parameters: [String: Any]? = nil
     var endcoding: ParameterEncoding = URLEncoding.queryString
-    var HTTPHeaders: [String: String]? = ["Content-Type": "application/json"]
+    var HTTPHeaders: [String: String] = ["Content-Type": "application/json"]
     var absoluteUrl: String {
         get {
             return (self.baseUrl + self.urlPath)
@@ -88,6 +88,7 @@ struct CommonRequest {
         var postNewMomentContentRequest = CommonRequest(urlPath: "/moments", method: .post)
         postNewMomentContentRequest.parameters = bodyDic
         postNewMomentContentRequest.endcoding = JSONEncoding.default
+        postNewMomentContentRequest.HTTPHeaders["user_id"] = UserStateManager.sharedInstance.dummyUserId
         return postNewMomentContentRequest
     }
     

@@ -15,6 +15,8 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var slidingTabMenuBarView: SlidingTabMenuBarView!
     @IBOutlet weak var contentCanvasView: UIView!
     
+    var flyHomeViewNavBarTitleView: FlyHomeViewNavBarTitleView = FlyHomeViewNavBarTitleView.instantiateFromXib()
+    
     var contentTableView1: ContentDisplayTableView = ContentDisplayTableView.instantiateFromXib()
     var contentTableView2: ContentDisplayTableView = ContentDisplayTableView.instantiateFromXib()
     var contentTableView3: ContentDisplayTableView = ContentDisplayTableView.instantiateFromXib()
@@ -36,6 +38,7 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.navigationItem.titleView = self.flyHomeViewNavBarTitleView
         let flyHomePageRightBarButtonItemView = ReusableNavBarItemView.instantiateFromXib(buttonImageName: "settingIcon")
         flyHomePageRightBarButtonItemView.setButtonExecutionBlock {
             self.rightBarButtonPressed()
@@ -75,10 +78,12 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
         super.viewWillAppear(animated)
         
         let selfUser = UserStateManager.sharedInstance.dummyUser
-        if let userName = selfUser?.userName {
-            self.navigationItem.title = "@"+userName
+        if let validUser = selfUser {
+            self.flyHomeViewNavBarTitleView.initializeData(userName: "@"+validUser.userName, firstName: validUser.firstName)
+//            self.navigationItem.title = "@"+validUser.userName
         } else {
-            self.navigationItem.title = "Rattit"
+            self.flyHomeViewNavBarTitleView.initializeData(userName: "Rattit", firstName: "Rattit")
+//            self.navigationItem.title = "Rattit"
         }
         
         self.userProfileHeaderView.initializeData(userId: UserStateManager.sharedInstance.dummyUserId)
@@ -220,17 +225,23 @@ extension FlyHomeViewController {
     
     func resizeTableHeaderViewHeight(step: CGFloat) {
         let targetConstantVal = self.profileHeaderTopConstraint.constant - step
+        let targetRatio = targetConstantVal / (self.profileHeaderHeight)
         //        print("targetConstantVal = \(targetConstantVal)")
         if targetConstantVal < -self.profileHeaderHeight {
             self.profileHeaderTopConstraint.constant = -self.profileHeaderHeight
+            self.flyHomeViewNavBarTitleView.slideTitleViews(ratio: -1)
         } else if targetConstantVal > 0 {
             self.profileHeaderTopConstraint.constant = 0
+            self.flyHomeViewNavBarTitleView.slideTitleViews(ratio: 0)
         } else {
             self.profileHeaderTopConstraint.constant = targetConstantVal
+            self.flyHomeViewNavBarTitleView.slideTitleViews(ratio: targetRatio)
         }
     }
     
     func continueVerticalSliding() {
+        self.flyHomeViewNavBarTitleView.continueVerticalSliding()
+        
         if self.profileHeaderTopConstraint.constant < -0.5*self.profileHeaderHeight
             && self.profileHeaderTopConstraint.constant > -self.profileHeaderHeight {
             

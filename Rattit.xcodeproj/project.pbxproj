@@ -79,6 +79,8 @@
 		859B5F4D1F061F12009A8762 /* RattitLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859B5F4C1F061F12009A8762 /* RattitLocationManager.swift */; };
 		85AC86C91F1D2DFA0093D9A3 /* ContentDisplayTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AC86C81F1D2DFA0093D9A3 /* ContentDisplayTableView.swift */; };
 		85AC86CB1F1D2E440093D9A3 /* ContentDisplayTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85AC86CA1F1D2E440093D9A3 /* ContentDisplayTableView.xib */; };
+		85C16E3B1F21347300D609DE /* FlyHomeViewNavBarTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C16E3A1F21347300D609DE /* FlyHomeViewNavBarTitleView.swift */; };
+		85C16E3D1F21349100D609DE /* FlyHomeViewNavBarTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C16E3C1F21349100D609DE /* FlyHomeViewNavBarTitleView.xib */; };
 		85E21A351EFA624C00D4F961 /* MainContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E21A341EFA624C00D4F961 /* MainContent.swift */; };
 		85E21A371EFA668C00D4F961 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E21A361EFA668C00D4F961 /* Question.swift */; };
 		85E21A391EFA6C3900D4F961 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E21A381EFA6C3900D4F961 /* Answer.swift */; };
@@ -176,6 +178,8 @@
 		859B5F4C1F061F12009A8762 /* RattitLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RattitLocationManager.swift; sourceTree = "<group>"; };
 		85AC86C81F1D2DFA0093D9A3 /* ContentDisplayTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDisplayTableView.swift; sourceTree = "<group>"; };
 		85AC86CA1F1D2E440093D9A3 /* ContentDisplayTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentDisplayTableView.xib; sourceTree = "<group>"; };
+		85C16E3A1F21347300D609DE /* FlyHomeViewNavBarTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlyHomeViewNavBarTitleView.swift; sourceTree = "<group>"; };
+		85C16E3C1F21349100D609DE /* FlyHomeViewNavBarTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlyHomeViewNavBarTitleView.xib; sourceTree = "<group>"; };
 		85E21A341EFA624C00D4F961 /* MainContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContent.swift; sourceTree = "<group>"; };
 		85E21A361EFA668C00D4F961 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		85E21A381EFA6C3900D4F961 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
@@ -448,6 +452,8 @@
 				85541E241F0CE45400EC91A7 /* SlidingTabMenuBarView.xib */,
 				85AC86C81F1D2DFA0093D9A3 /* ContentDisplayTableView.swift */,
 				85AC86CA1F1D2E440093D9A3 /* ContentDisplayTableView.xib */,
+				85C16E3A1F21347300D609DE /* FlyHomeViewNavBarTitleView.swift */,
+				85C16E3C1F21349100D609DE /* FlyHomeViewNavBarTitleView.xib */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -609,6 +615,7 @@
 				8549F0D31EFC990600385F1E /* PhotoScrollView.xib in Resources */,
 				851FBC611F0A4564000DEB50 /* PickedUserTogetherWithView.xib in Resources */,
 				8582A6441EFE319600483CDD /* ReusableNavBarItemView.xib in Resources */,
+				85C16E3D1F21349100D609DE /* FlyHomeViewNavBarTitleView.xib in Resources */,
 				85AC86CB1F1D2E440093D9A3 /* ContentDisplayTableView.xib in Resources */,
 				859564B01EF6654E000D0BC8 /* MomentTableViewCell.xib in Resources */,
 				852C397B1EF5ED7E00C66C16 /* LaunchScreen.storyboard in Resources */,
@@ -737,6 +744,7 @@
 				859564A91EF64DA0000D0BC8 /* HomeContentViewController.swift in Sources */,
 				85E21A351EFA624C00D4F961 /* MainContent.swift in Sources */,
 				8549F0DA1EFCB85400385F1E /* MomentHeaderView.swift in Sources */,
+				85C16E3B1F21347300D609DE /* FlyHomeViewNavBarTitleView.swift in Sources */,
 				851FBC631F0A4580000DEB50 /* PickedUserTogetherWithView.swift in Sources */,
 				85023FA21EF71E7600E785FD /* RattitUser.swift in Sources */,
 				85E21A3F1EFB4C4900D4F961 /* CommentForAnswer.swift in Sources */,

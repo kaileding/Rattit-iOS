@@ -85,5 +85,17 @@ class ContentDisplayTableView: UIView, UITableViewDelegate, UITableViewDataSourc
         
         self.lastScrollOffset = scrollView.contentOffset
     }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if self.parentVC != nil {
+            self.parentVC!.continueVerticalSliding()
+        }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate && self.parentVC != nil {
+            self.parentVC!.continueVerticalSliding()
+        }
+    }
 
 }

@@ -29,8 +29,6 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
     // vertical swipe
     @IBOutlet weak var profileHeaderTopConstraint: NSLayoutConstraint!
     var profileHeaderHeight: CGFloat = 0.0
-    var enableVSwipe: Bool = false // true if initial abs(velocity.x) < abs(velocity.y)
-    var currentHeaderStateIsTop: Bool = false // true if profileHeaderView is hidden at the top
     
     var segueDestContentType: RattitUserRelationshipType = .follower
     
@@ -133,20 +131,6 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
 }
 
 extension FlyHomeViewController {
-    func resizeTableHeaderViewHeight(step: CGFloat) {
-        let targetConstantVal = self.profileHeaderTopConstraint.constant - step
-//        print("targetConstantVal = \(targetConstantVal)")
-        if targetConstantVal < -self.profileHeaderHeight {
-            self.profileHeaderTopConstraint.constant = -self.profileHeaderHeight
-        } else if targetConstantVal > 0 {
-            self.profileHeaderTopConstraint.constant = 0
-        } else {
-            self.profileHeaderTopConstraint.constant = targetConstantVal
-        }
-    }
-}
-
-extension FlyHomeViewController {
     
     // rightBarButtonPressed funciton
     func rightBarButtonPressed() {
@@ -234,16 +218,36 @@ extension FlyHomeViewController {
         })
     }
     
-    func continueVerticalSliding(destinationIsTop: Bool) {
-        print("continueVerticalSliding(destinationIstop: \(destinationIsTop))")
-        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut, animations: {
-            if destinationIsTop {
+    func resizeTableHeaderViewHeight(step: CGFloat) {
+        let targetConstantVal = self.profileHeaderTopConstraint.constant - step
+        //        print("targetConstantVal = \(targetConstantVal)")
+        if targetConstantVal < -self.profileHeaderHeight {
+            self.profileHeaderTopConstraint.constant = -self.profileHeaderHeight
+        } else if targetConstantVal > 0 {
+            self.profileHeaderTopConstraint.constant = 0
+        } else {
+            self.profileHeaderTopConstraint.constant = targetConstantVal
+        }
+    }
+    
+    func continueVerticalSliding() {
+        if self.profileHeaderTopConstraint.constant < -0.5*self.profileHeaderHeight
+            && self.profileHeaderTopConstraint.constant > -self.profileHeaderHeight {
+            
+            UIView.animate(withDuration: 0.2, delay: 0.0, options: .beginFromCurrentState, animations: {
+                
                 self.profileHeaderTopConstraint.constant = -self.profileHeaderHeight
-            } else {
-                self.profileHeaderTopConstraint.constant = 0.0
-            }
-        }, completion: nil)
-        self.currentHeaderStateIsTop = destinationIsTop
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        } else if self.profileHeaderTopConstraint.constant >= -0.5*self.profileHeaderHeight
+            && self.profileHeaderTopConstraint.constant < 0 {
+            
+            UIView.animate(withDuration: 0.2, delay: 0.0, options: .beginFromCurrentState, animations: {
+                
+                self.profileHeaderTopConstraint.constant = 0
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
     }
     
     func setConstraintsToContentViews() {

@@ -29,15 +29,15 @@ class MomentManager: NSObject {
                 print("Got \(count) moments from server.")
                 self.downloadedMoments.removeAll()
                 self.displaySequenceOfMoments.removeAll()
-                rows.forEach({ (dataValue) in
-                    if let moment = Moment(dataValue: dataValue) {
+                for rowValue in rows {
+                    if let moment = Moment(dataValue: rowValue) {
                         self.downloadedMoments[moment.id!] = moment
                         self.displaySequenceOfMoments.append(moment.id!)
                         if let momentAuthor = moment.createdByInfo, let authorId = moment.createdBy {
                             RattitUserManager.sharedInstance.cachedUsers[authorId] = momentAuthor
                         }
                     }
-                })
+                }
                 if let lastMomentId = self.displaySequenceOfMoments.first {
                     self.lastMomentCreatedAt = self.downloadedMoments[lastMomentId]!.createdAt
                     self.lastMomentId = lastMomentId

@@ -71,6 +71,8 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         self.contentScrollView.delegate = self
         self.contentScrollView.tag = contentScrollViewTag
+        self.contentScrollView.bounces = false
+        self.contentScrollCanvasView.translatesAutoresizingMaskIntoConstraints = false
         self.contentScrollCanvasView.addSubview(self.contentTableView1)
         self.contentScrollCanvasView.addSubview(self.contentTableView2)
         self.contentScrollCanvasView.addSubview(self.contentTableView3)
@@ -112,7 +114,7 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.contentTableView1.initializeData(backgroundColor: UIColor(red: 0.2235, green: 0.5882, blue: 0, alpha: 1.0))
         self.contentTableView2.initializeData(backgroundColor: UIColor(red: 0, green: 0.6, blue: 0.5373, alpha: 1.0))
         self.contentTableView3.initializeData(backgroundColor: UIColor(red: 0.5569, green: 0, blue: 0.5412, alpha: 1.0))
-        self.contentScrollView.layoutIfNeeded()
+//        self.contentScrollView.layoutIfNeeded()
         
         print("\n in viewWillAppear:")
         print("self.contentTableView1.frame is ", self.contentTableView1.frame.debugDescription)

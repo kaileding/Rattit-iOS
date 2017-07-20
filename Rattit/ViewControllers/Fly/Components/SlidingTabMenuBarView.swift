@@ -176,38 +176,7 @@ class SlidingTabMenuBarView: UIView {
         }, completion: { (success) in
             print("animation of sliding bar to pos \(pos) is success: \(success)")
         })
-            
-//            .animate(withDuration: 0.4, animations: {
-//            switch pos {
-//            case 1:
-//                self.slidingBarView.frame = CGRect(x: self.sliderPos1LeadingSpace, y: self.sliderTopSpacing, width: self.sliderPos1Width, height: 3.0)
-//            case 2:
-//                self.slidingBarView.frame = CGRect(x: self.sliderPos2LeadingSpace, y: self.sliderTopSpacing, width: self.sliderPos2Width, height: 3.0)
-//            case 3:
-//                self.slidingBarView.frame = CGRect(x: self.sliderPos3LeadingSpace, y: self.sliderTopSpacing, width: self.sliderPos3Width, height: 3.0)
-//            default:
-//                break
-//            }
-//        }) { (success) in
-//            print("animation of sliding bar to pos \(pos) is success: \(success)")
-//        }
         
-//        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 5.0, options: .beginFromCurrentState, animations: {
-//
-//            switch pos {
-//            case 1:
-//                self.slidingBarView.frame = CGRect(x: self.sliderPos1LeadingSpace, y: self.sliderTopSpacing, width: self.sliderPos1Width, height: 3.0)
-//            case 2:
-//                self.slidingBarView.frame = CGRect(x: self.sliderPos2LeadingSpace, y: self.sliderTopSpacing, width: self.sliderPos2Width, height: 3.0)
-//            case 3:
-//                self.slidingBarView.frame = CGRect(x: self.sliderPos3LeadingSpace, y: self.sliderTopSpacing, width: self.sliderPos3Width, height: 3.0)
-//            default:
-//                break
-//            }
-//
-//        }) { (success) in
-//            print("animation of sliding bar to pos \(pos) is success: \(success)")
-//        }
     }
     
     func setTabMenuTappingHandler(task: @escaping (Int) -> Void) {

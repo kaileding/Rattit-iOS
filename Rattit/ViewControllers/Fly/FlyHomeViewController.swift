@@ -28,11 +28,8 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
     var hSwipeStartPoint: CGPoint = CGPoint(x: 0.0, y: 0.0)
     var enableHSwipe: Bool = false // true if initial abs(velocity.x) > abs(velocity.y)
     var currentPageIndex: Int = 1 // 1, 2 or 3
-    var currentContentViewPointer: UIView!
-    var currentContentViewLeadingConstraint: NSLayoutConstraint!
-    var nextContentViewPointer: UIView? = nil
-    var stableContentOffset: CGFloat = 0.0
-    var notDriveSliderByCollectionView: Bool = false
+    var firstContentViewLeadingConstraint: NSLayoutConstraint!
+    var firstContentViewLeadingConstraintStartConstant: CGFloat = 0.0
     
     // vertical swipe
     @IBOutlet weak var profileHeaderTopConstraint: NSLayoutConstraint!
@@ -72,7 +69,7 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
         hSwipeRecognizer.delegate = self
         self.contentCanvasView.addGestureRecognizer(hSwipeRecognizer)
         self.contentCanvasView.translatesAutoresizingMaskIntoConstraints = false
-        self.setConstraintsToContentView(contentView: self.contentTableView1)
+        self.setConstraintsToContentViews()
         
         self.contentViewBGColors.append(UIColor(red: 0.2235, green: 0.5882, blue: 0, alpha: 1.0))
         self.contentViewBGColors.append(UIColor(red: 0, green: 0.6, blue: 0.5373, alpha: 1.0))
@@ -102,11 +99,6 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
         self.contentTableView1.initializeData(backgroundColor: UIColor(red: 0.2235, green: 0.5882, blue: 0, alpha: 1.0))
         self.contentTableView2.initializeData(backgroundColor: UIColor(red: 0, green: 0.6, blue: 0.5373, alpha: 1.0))
         self.contentTableView3.initializeData(backgroundColor: UIColor(red: 0.5569, green: 0, blue: 0.5412, alpha: 1.0))
-        
-        print("\n in viewWillAppear:")
-        print("self.contentTableView1.frame is ", self.contentTableView1.frame.debugDescription)
-        print("self.contentTableView2.frame is ", self.contentTableView2.frame.debugDescription)
-        print("self.contentTableView3.frame is ", self.contentTableView3.frame.debugDescription)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -115,8 +107,8 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
         print("\n in ViewDidAppear:")
         print("self.view.frame is ", self.view.frame.debugDescription)
         print("self.outerVisibleView.frame is ", self.outerVisibleView.frame.debugDescription)
-//        print("self.userProfileHeaderView.frame is ", self.userProfileHeaderView.frame.debugDescription)
-//        print("self.slideMenuBarView.frame is ", self.slidingTabMenuBarView.frame.debugDescription)
+        print("self.userProfileHeaderView.frame is ", self.userProfileHeaderView.frame.debugDescription)
+        print("self.slideMenuBarView.frame is ", self.slidingTabMenuBarView.frame.debugDescription)
         
         print("self.currentPageIndex is ", self.currentPageIndex)
         
@@ -167,7 +159,6 @@ extension FlyHomeViewController {
         if gestureRecognizer.state == UIGestureRecognizerState.began {
             self.hSwipeStartPoint = translation
             self.enableHSwipe = (abs(velocity.x) > abs(velocity.y))
-            self.prepareContentTransition(toRight: (velocity.x<0))
         } else if gestureRecognizer.state == UIGestureRecognizerState.changed {
             //            print("Disaplacement: dx=\(displacementX), dy=\(displacementY)")
             if self.enableHSwipe {
@@ -200,39 +191,11 @@ extension FlyHomeViewController {
         }
     }
     
-    func prepareContentTransition(toRight: Bool) {
-        print("prepareContentTransition(toRight: \(toRight))")
-        if !self.enableHSwipe { return }
-        if toRight {
-            switch self.currentPageIndex {
-            case 1:
-                self.nextContentViewPointer = self.contentTableView2
-            case 2:
-                self.nextContentViewPointer = self.contentTableView3
-            default:
-                self.nextContentViewPointer = nil
-            }
-        } else {
-            switch self.currentPageIndex {
-            case 2:
-                self.nextContentViewPointer = self.contentTableView1
-                self.contentCanvasView.addSubview(self.nextContentViewPointer!)
-            case 3:
-                self.nextContentViewPointer = self.contentTableView2
-                self.contentCanvasView.addSubview(self.nextContentViewPointer!)
-            default:
-                self.nextContentViewPointer = nil
-            }
-        }
-        if self.nextContentViewPointer != nil {
-            self.setConstraintsToNextContentView(contentView: self.nextContentViewPointer!, atRight: toRight)
-        }
-    }
-    
     func slideContentDisplayView(ratio: CGFloat) {
-        if self.nextContentViewPointer != nil {
-            let absDistance = ratio*(self.view.frame.width)
-            self.currentContentViewLeadingConstraint.constant = -absDistance
+        let absDistance = ratio*(self.view.frame.width)
+        let targetConstantVal = self.firstContentViewLeadingConstraintStartConstant - absDistance
+        if targetConstantVal < 0 && targetConstantVal > -2.0*(self.view.frame.width) {
+            self.firstContentViewLeadingConstraint.constant = targetConstantVal
         }
     }
     
@@ -244,31 +207,27 @@ extension FlyHomeViewController {
             self.currentPageIndex = 3
         }
         self.slidingTabMenuBarView.animateSlidingToPos(pos: self.currentPageIndex)
-        
-        if self.nextContentViewPointer != nil {
-            UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseInOut, animations: {
-                if step > 0 {
-                    self.currentContentViewLeadingConstraint.constant = -self.view.frame.width
-                } else if step < 0 {
-                    self.currentContentViewLeadingConstraint.constant = self.view.frame.width
-                } else {
-                    self.currentContentViewLeadingConstraint.constant = 0.0
-                }
-                self.contentCanvasView.layoutIfNeeded()
-            }, completion: { (success) in
-                self.currentContentViewPointer.removeFromSuperview()
-                self.setConstraintsToContentView(contentView: self.nextContentViewPointer!)
-            })
-        }
+        self.contentDisplayViewJumpToIndex(index: self.currentPageIndex)
     }
     
     func contentDisplayViewJumpToIndex(index: Int) {
         self.currentPageIndex = index
-        self.notDriveSliderByCollectionView = true
-//        let screenWidth = self.view.frame.width
-//        let tagetRect = CGRect(x: CGFloat(index-1)*screenWidth, y: 0.0, width: screenWidth, height: self.contentScrollView.frame.height)
-//        self.contentScrollView.scrollRectToVisible(tagetRect, animated: true)
-        print("contentDisplayView swipe animation done, arrive at \(self.currentPageIndex)")
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: .curveEaseInOut, animations: {
+            switch self.currentPageIndex {
+            case 1:
+                self.firstContentViewLeadingConstraint.constant = 0.0
+            case 2:
+                self.firstContentViewLeadingConstraint.constant = -self.view.frame.width
+            case 3:
+                self.firstContentViewLeadingConstraint.constant = -2.0*self.view.frame.width
+            default:
+                break
+            }
+            self.contentCanvasView.layoutIfNeeded()
+        }, completion: { (success) in
+            self.firstContentViewLeadingConstraintStartConstant = self.firstContentViewLeadingConstraint.constant
+            print("contentView continueHorizontalSliding animation complete success: \(success). Arrive at \(self.currentPageIndex)")
+        })
     }
     
     func continueVerticalSliding(destinationIsTop: Bool) {
@@ -283,33 +242,30 @@ extension FlyHomeViewController {
         self.currentHeaderStateIsTop = destinationIsTop
     }
     
-    func setConstraintsToContentView(contentView: UIView) {
-        contentView.removeFromSuperview()
-        self.contentCanvasView.addSubview(contentView)
-        contentView.translatesAutoresizingMaskIntoConstraints = false
+    func setConstraintsToContentViews() {
+        self.contentTableView1.removeFromSuperview()
+        self.contentTableView2.removeFromSuperview()
+        self.contentTableView3.removeFromSuperview()
+        self.contentTableView1.translatesAutoresizingMaskIntoConstraints = false
+        self.contentTableView2.translatesAutoresizingMaskIntoConstraints = false
+        self.contentTableView3.translatesAutoresizingMaskIntoConstraints = false
+        self.contentCanvasView.addSubview(self.contentTableView1)
+        self.contentCanvasView.addSubview(self.contentTableView2)
+        self.contentCanvasView.addSubview(self.contentTableView3)
         
-        contentView.widthAnchor.constraint(equalTo: self.contentCanvasView.widthAnchor, constant: 0.0).isActive = true
-        contentView.heightAnchor.constraint(equalTo: self.contentCanvasView.heightAnchor, constant: 0.0).isActive = true
-        contentView.topAnchor.constraint(equalTo: self.contentCanvasView.topAnchor, constant: 0.0).isActive = true
+        let tablesHSpacing = NSLayoutConstraint.constraints(withVisualFormat: "H:[t1(==t2)]-0-[t2]-0-[t3(==t2)]", options: .alignAllCenterY, metrics: nil, views: ["t1": self.contentTableView1, "t2": self.contentTableView2, "t3": self.contentTableView3])
+        let tablesVSpacing1 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[t1]-0-|", metrics: nil, views: ["t1": self.contentTableView1])
+        let tablesVSpacing2 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[t2]-0-|", metrics: nil, views: ["t2": self.contentTableView2])
+        let tablesVSpacing3 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[t3]-0-|", metrics: nil, views: ["t3": self.contentTableView3])
+        NSLayoutConstraint.activate(tablesHSpacing)
+        NSLayoutConstraint.activate(tablesVSpacing1)
+        NSLayoutConstraint.activate(tablesVSpacing2)
+        NSLayoutConstraint.activate(tablesVSpacing3)
+        self.contentTableView1.widthAnchor.constraint(equalTo: self.contentCanvasView.widthAnchor, constant: 0.0).isActive = true
         
-        self.currentContentViewLeadingConstraint = contentView.leadingAnchor.constraint(equalTo: self.contentCanvasView.leadingAnchor, constant: 0.0)
-        self.currentContentViewLeadingConstraint.isActive = true
-        self.currentContentViewPointer = contentView
-    }
-    
-    func setConstraintsToNextContentView(contentView: UIView, atRight: Bool) {
-        contentView.removeFromSuperview()
-        self.contentCanvasView.addSubview(contentView)
-        contentView.translatesAutoresizingMaskIntoConstraints = false
-        
-        contentView.widthAnchor.constraint(equalTo: self.contentCanvasView.widthAnchor, constant: 0.0).isActive = true
-        contentView.heightAnchor.constraint(equalTo: self.contentCanvasView.heightAnchor, constant: 0.0).isActive = true
-        contentView.topAnchor.constraint(equalTo: self.contentCanvasView.topAnchor, constant: 0.0).isActive = true
-        if atRight {
-            contentView.leadingAnchor.constraint(equalTo: self.currentContentViewPointer.trailingAnchor, constant: 0.0).isActive = true
-        } else {
-            contentView.trailingAnchor.constraint(equalTo: self.currentContentViewPointer.leadingAnchor, constant: 0.0).isActive = true
-        }
+        self.firstContentViewLeadingConstraint = self.contentTableView1.leadingAnchor.constraint(equalTo: self.contentCanvasView.leadingAnchor, constant: 0.0)
+        self.firstContentViewLeadingConstraintStartConstant = 0.0
+        self.firstContentViewLeadingConstraint.isActive = true
     }
     
 }

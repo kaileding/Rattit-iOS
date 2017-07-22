@@ -46,13 +46,16 @@ class HomeContentViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        MomentManager.sharedInstance.loadMomentsUpdatesFromServer(completion: { (hasNewMoments) in
-            print("ViewDidAppear, hasNewMoments = \(hasNewMoments)")
-            if (hasNewMoments) {
-                self.mainContentTable.reloadData()
+        if !UserStateManager.initialContentLoaded {
+            MomentManager.sharedInstance.loadMomentsUpdatesFromServer(completion: { (hasNewMoments) in
+                print("ViewDidAppear, hasNewMoments = \(hasNewMoments)")
+                if (hasNewMoments) {
+                    UserStateManager.initialContentLoaded = true
+                    self.mainContentTable.reloadData()
+                }
+            }) { (error) in
+                print("viewDidAppear, failed to load from server.")
             }
-        }) { (error) in
-            print("viewDidAppear, failed to load from server.")
         }
         
     }
@@ -115,7 +118,7 @@ extension HomeContentViewController {
             NotificationCenter.default.post(name: NSNotification.Name(SignInSignUpNotificationName.needsToSignInOrSignUp.rawValue), object: nil)
             print("Sent out needsToSignInOrSignUp notification.")
         } else if UserStateManager.userIsLoggedIn || UserStateManager.userRefusedToLogin {
-            NotificationCenter.default.post(name: NSNotification.Name(ComposeContentNotificationName.composeImage.rawValue), object: nil, userInfo: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(ContentOperationNotificationName.composeImage.rawValue), object: nil, userInfo: nil)
         }
     }
     

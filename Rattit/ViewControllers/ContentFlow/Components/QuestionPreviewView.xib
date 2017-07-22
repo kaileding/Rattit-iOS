@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="QuestionPreviewView" customModule="Rattit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="198"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2TG-j5-l3D">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="2TG-j5-l3D" secondAttribute="height" multiplier="3:1" id="mzo-EJ-WU1"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sA-PC-uYc">
+                    <rect key="frame" x="116" y="133" width="42" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="2TG-j5-l3D" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="QEX-PT-jYN"/>
+                <constraint firstItem="2TG-j5-l3D" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="h5S-7f-Abd"/>
+                <constraint firstAttribute="trailing" secondItem="2TG-j5-l3D" secondAttribute="trailing" id="i3D-fE-0pb"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="backgroundImageView" destination="2TG-j5-l3D" id="s4M-Il-Ch9"/>
+                <outlet property="contentPreviewLabel" destination="5sA-PC-uYc" id="2U7-YV-BNG"/>
+            </connections>
+            <point key="canvasLocation" x="35.5" y="152"/>
+        </view>
+    </objects>
+</document>

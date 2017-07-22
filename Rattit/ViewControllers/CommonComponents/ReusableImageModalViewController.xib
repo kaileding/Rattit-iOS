@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReusableImageModalViewController" customModule="Rattit" customModuleProvider="target">
+            <connections>
+                <outlet property="canvasView" destination="0s4-wJ-cpV" id="NIr-KL-VkD"/>
+                <outlet property="canvasViewWidthConstraint" destination="kd1-lP-TMp" id="n2g-lU-1FU"/>
+                <outlet property="imageScrollView" destination="flA-1C-s9G" id="Gof-aB-glo"/>
+                <outlet property="pageControlIndicator" destination="emm-of-02k" id="jHs-F0-Hv3"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="flA-1C-s9G">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0s4-wJ-cpV">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="375" id="kd1-lP-TMp"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstItem="0s4-wJ-cpV" firstAttribute="top" secondItem="flA-1C-s9G" secondAttribute="top" id="5iZ-AL-D4t"/>
+                        <constraint firstItem="0s4-wJ-cpV" firstAttribute="height" secondItem="flA-1C-s9G" secondAttribute="height" id="ZJu-i0-Eqa"/>
+                        <constraint firstAttribute="bottom" secondItem="0s4-wJ-cpV" secondAttribute="bottom" id="dCS-od-yuD"/>
+                        <constraint firstItem="0s4-wJ-cpV" firstAttribute="leading" secondItem="flA-1C-s9G" secondAttribute="leading" id="icF-7k-H38"/>
+                        <constraint firstAttribute="trailing" secondItem="0s4-wJ-cpV" secondAttribute="trailing" id="qti-PD-9Wp"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="azg-WH-vYA" appends="YES" id="mgU-wq-dnM"/>
+                        <outletCollection property="gestureRecognizers" destination="tBP-HT-2Ob" appends="YES" id="DZx-Tu-jDN"/>
+                    </connections>
+                </scrollView>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="emm-of-02k">
+                    <rect key="frame" x="168" y="614" width="39" height="37"/>
+                </pageControl>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="emm-of-02k" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="BGU-Pk-OMM"/>
+                <constraint firstAttribute="bottom" secondItem="flA-1C-s9G" secondAttribute="bottom" id="BcS-mw-Cfe"/>
+                <constraint firstItem="flA-1C-s9G" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Sia-FO-QkR"/>
+                <constraint firstItem="flA-1C-s9G" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lg6-s9-8Wi"/>
+                <constraint firstAttribute="bottom" secondItem="emm-of-02k" secondAttribute="bottom" constant="16" id="lkh-ym-2l6"/>
+                <constraint firstAttribute="trailing" secondItem="flA-1C-s9G" secondAttribute="trailing" id="sBI-Bk-9H8"/>
+            </constraints>
+        </view>
+        <pinchGestureRecognizer id="azg-WH-vYA">
+            <connections>
+                <action selector="pinchGestureRecognized:" destination="-1" id="9TF-rG-aDR"/>
+            </connections>
+        </pinchGestureRecognizer>
+        <tapGestureRecognizer id="tBP-HT-2Ob">
+            <connections>
+                <action selector="tapGestureRecognized:" destination="-1" id="bEU-hk-Pmp"/>
+            </connections>
+        </tapGestureRecognizer>
+    </objects>
+</document>

@@ -15,39 +15,38 @@ class PhotoScrollView: UIView {
     
     @IBOutlet weak var pageControlIndicator: UIPageControl!
     
+    var savedPhotos: [Photo]? = nil
     var savedSideLength: Double? = nil
     
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
+    var currentIndex: Int = 0
     
     static func instantiateFromXib() -> PhotoScrollView {
         let photoScrollView = Bundle.main.loadNibNamed("PhotoScrollView", owner: self, options: nil)?.first as! PhotoScrollView
+        
         photoScrollView.scrollView.addSubview(photoScrollView.canvasView)
         photoScrollView.pageControlIndicator.hidesForSinglePage = true
         photoScrollView.scrollView.delegate = photoScrollView
+        let tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: photoScrollView, action: #selector(tappedImage))
+        photoScrollView.addGestureRecognizer(tapGestureRecognizer)
         
         return photoScrollView
     }
     
     
     func initializeData(photos: [Photo], sideLength: Double) {
+        self.savedPhotos = photos
         self.savedSideLength = sideLength
         self.pageControlIndicator.numberOfPages = photos.count
         
         if photos.count > 0 {
-            self.canvasView.frame = CGRect(x: 0.0, y: 0.0, width: (sideLength*Double(photos.count)), height: sideLength)
+            self.canvasView.frame = CGRect(x: 0.0, y: 0.0, width: (sideLength*Double(photos.count)), height: 0.6*sideLength)
             self.canvasView.subviews.forEach({ (subview) in
                 subview.removeFromSuperview()
             })
             self.scrollView.contentSize = self.canvasView.frame.size
             
             photos.enumerated().forEach({ (index, photo) in
-                let imageFrame = CGRect(x: Double(index)*sideLength, y: 0.0, width: sideLength, height: sideLength)
+                let imageFrame = CGRect(x: Double(index)*sideLength, y: 0.0, width: sideLength, height: 0.6*sideLength)
                 let photoImageView = UIImageView(frame: imageFrame)
                 photoImageView.contentMode = .scaleAspectFill
                 photoImageView.clipsToBounds = true
@@ -66,6 +65,13 @@ class PhotoScrollView: UIView {
         }
     }
     
+    func tappedImage() {
+        if self.savedPhotos != nil {
+            let modalContentInfo = ObjectForShowImagesModal(photos: self.savedPhotos!, startIndex: self.currentIndex)
+            NotificationCenter.default.post(name: NSNotification.Name(ContentOperationNotificationName.showImagesModal.rawValue), object: modalContentInfo, userInfo: nil)
+        }
+    }
+    
 }
 
 extension PhotoScrollView: UIScrollViewDelegate {
@@ -75,6 +81,7 @@ extension PhotoScrollView: UIScrollViewDelegate {
         if let sideLength = self.savedSideLength {
             let multiple = (offsetVal / sideLength)
             let floorVal = floor(multiple)
+            self.currentIndex = Int(floorVal)
             
             if multiple == floorVal {
                 self.pageControlIndicator.isHidden = true

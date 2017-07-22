@@ -86,6 +86,8 @@ class ComposeContentManager {
             
         })
         print("Successfully got ", self.photoAssetsOnDivece!.count, "Image assets. ")
+        UserStateManager.devicePhotoLibraryLoaded = true
+        
     }
     
     func getSelectedImages() -> [UIImage] {

@@ -8,9 +8,10 @@
 
 import Foundation
 
-public enum ComposeContentNotificationName: String {
+public enum ContentOperationNotificationName: String {
     case composeImage = "ComposeImageNotification"
     case composeMoment = "ComposeMomentNotification"
+    case showImagesModal = "ShowModalToDisplayArrayOfImagesNotification"
 }
 
 public enum followVCContentType: Int {
@@ -18,3 +19,5 @@ public enum followVCContentType: Int {
     case following
     case friends
 }
+
+

@@ -40,13 +40,17 @@ class HomeTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(signUpOrSignInSuccess), name: NSNotification.Name(SignInSignUpNotificationName.successfulSignUpWithEmail.rawValue), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showUpSignInAlert), name: NSNotification.Name(SignInSignUpNotificationName.needsToSignInOrSignUp.rawValue), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(showUpComposeImageVC), name: NSNotification.Name(ComposeContentNotificationName.composeImage.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showUpComposeImageVC), name: NSNotification.Name(ContentOperationNotificationName.composeImage.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showImagesModalVC(_:)), name: NSNotification.Name(ContentOperationNotificationName.showImagesModal.rawValue), object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        UserStateManager.sharedInstance.loadMyCurrentInformation()
+        if !UserStateManager.sharedInstance.dummyUserInfoLoaded {
+            
+            UserStateManager.sharedInstance.loadMyCurrentInformation()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -64,7 +68,9 @@ class HomeTabBarViewController: UITabBarController, UITabBarControllerDelegate {
             self.askForSignInView?.askForSignInSignUpDelegate = self
         }
         
-        ComposeContentManager.sharedInstance.initializePhotoLibrary()
+        if !UserStateManager.devicePhotoLibraryLoaded {
+            ComposeContentManager.sharedInstance.initializePhotoLibrary()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -123,4 +129,16 @@ extension HomeTabBarViewController {
         let composeImageNavigationVC = contentSB.instantiateViewController(withIdentifier: "ComposeImageNavigationVC") as UIViewController
         self.present(composeImageNavigationVC, animated: true, completion: nil)
     }
+    
+    func showImagesModalVC(_ notification: NSNotification) {
+        if let object = notification.object as? ObjectForShowImagesModal {
+            let imagesModalVC = ReusableImageModalViewController(nibName: "ReusableImageModalViewController", bundle: nil)
+            imagesModalVC.photos = object.photos
+            imagesModalVC.startIndex = object.startIndex
+            imagesModalVC.screenWidth = self.view.frame.width
+            imagesModalVC.screenHeight = self.view.frame.height
+            self.present(imagesModalVC, animated: false, completion: nil)
+        }
+    }
+    
 }

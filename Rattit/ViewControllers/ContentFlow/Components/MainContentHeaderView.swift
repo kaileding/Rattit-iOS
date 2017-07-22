@@ -1,5 +1,5 @@
 //
-//  MomentHeaderView.swift
+//  MainContentHeaderView.swift
 //  Rattit
 //
 //  Created by DINGKaile on 6/22/17.
@@ -8,42 +8,35 @@
 
 import UIKit
 
-class MomentHeaderView: UIView {
+class MainContentHeaderView: UIView {
     
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var timeStampLabel: UILabel!
+    @IBOutlet weak var ActionLabel: UILabel!
     
     @IBOutlet weak var moreButton: UIButton!
     let threeDotsImage: UIImage! = UIImage(named: "threeDots")?.withRenderingMode(.alwaysTemplate)
     let threeSolidDotsImage: UIImage! = UIImage(named: "threeSolidDots")?.withRenderingMode(.alwaysTemplate)
     
-    /*
-     // Only override draw() if you perform custom drawing.
-     // An empty implementation adversely affects performance during animation.
-     override func draw(_ rect: CGRect) {
-     // Drawing code
-     }
-     */
     
-    static func instantiateFromXib() -> MomentHeaderView {
-        let momentHeaderView = Bundle.main.loadNibNamed("MomentHeaderView", owner: self, options: nil)?.first as! MomentHeaderView
+    static func instantiateFromXib() -> MainContentHeaderView {
+        let mainContentHeaderView = Bundle.main.loadNibNamed("MainContentHeaderView", owner: self, options: nil)?.first as! MainContentHeaderView
         
-        momentHeaderView.avatarImageView.layer.cornerRadius = 18.0
-        momentHeaderView.avatarImageView.clipsToBounds = true
-        momentHeaderView.titleLabel.numberOfLines = 0
+        mainContentHeaderView.avatarImageView.layer.cornerRadius = 18.0
+        mainContentHeaderView.avatarImageView.clipsToBounds = true
+        mainContentHeaderView.ActionLabel.text = ""
         
-        momentHeaderView.moreButton.setImage(momentHeaderView.threeDotsImage, for: .normal)
-        momentHeaderView.moreButton.setImage(momentHeaderView.threeSolidDotsImage, for: .selected)
-        momentHeaderView.moreButton.tintColor = UIColor.darkGray
-        momentHeaderView.moreButton.addTarget(momentHeaderView, action: #selector(moreButtonPressed), for: .touchUpInside)
+        mainContentHeaderView.moreButton.setImage(mainContentHeaderView.threeDotsImage, for: .normal)
+        mainContentHeaderView.moreButton.setImage(mainContentHeaderView.threeSolidDotsImage, for: .selected)
+        mainContentHeaderView.moreButton.tintColor = UIColor.darkGray
+        mainContentHeaderView.moreButton.addTarget(mainContentHeaderView, action: #selector(moreButtonPressed), for: .touchUpInside)
         
-        return momentHeaderView
+        return mainContentHeaderView
     }
     
-    func initializeData(moment: Moment) {
-        if let createdBy = moment.createdBy {
+    func initializeData(mainContent: MainContent) {
+        if let createdBy = mainContent.createdBy {
             RattitUserManager.sharedInstance.getRattitUserAvatarImage(userId: createdBy, completion: { (avatarImage) in
                 self.avatarImageView.image = avatarImage
             }, errorHandler: { (error) in
@@ -60,8 +53,7 @@ class MomentHeaderView: UIView {
             })
         }
         
-        self.titleLabel.text = moment.title
-        self.timeStampLabel.text = moment.createdAt?.dateToPostTimeDescription
+        self.timeStampLabel.text = mainContent.createdAt?.dateToPostTimeDescription
     }
     
     func moreButtonPressed() {

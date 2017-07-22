@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ContentTitleWordsView" customModule="Rattit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KdI-kD-6cf">
+                    <rect key="frame" x="16" y="4" width="42" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQK-4v-r7D">
+                    <rect key="frame" x="16" y="29.5" width="39.5" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="GQK-4v-r7D" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="49K-0i-pgK"/>
+                <constraint firstItem="GQK-4v-r7D" firstAttribute="top" secondItem="KdI-kD-6cf" secondAttribute="bottom" constant="6" id="IEB-1o-rSn"/>
+                <constraint firstItem="KdI-kD-6cf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="IFe-ZG-2Jk"/>
+                <constraint firstItem="KdI-kD-6cf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="4" id="KFm-WD-OeI"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GQK-4v-r7D" secondAttribute="trailing" constant="8" id="ZrX-rR-g0e"/>
+                <constraint firstAttribute="bottom" secondItem="GQK-4v-r7D" secondAttribute="bottom" constant="4" id="eTH-cz-iBC"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KdI-kD-6cf" secondAttribute="trailing" constant="8" id="gTF-Of-Wiw"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="titleLabel" destination="KdI-kD-6cf" id="wj4-Yf-sfS"/>
+                <outlet property="wordsLabel" destination="GQK-4v-r7D" id="S1Z-cH-Lva"/>
+            </connections>
+            <point key="canvasLocation" x="35.5" y="-242.5"/>
+        </view>
+    </objects>
+</document>

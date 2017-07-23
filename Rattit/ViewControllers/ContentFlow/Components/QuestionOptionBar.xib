@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="QuestionOptionBar" customModule="Rattit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="38"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9CE-QF-Kfe">
+                    <rect key="frame" x="27" y="9" width="42" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3MA-YV-GKy">
+                    <rect key="frame" x="335" y="7" width="24" height="24"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bookmark" translatesAutoresizingMaskIntoConstraints="NO" id="OsY-CJ-g3b">
+                            <rect key="frame" x="2" y="2" width="20" height="20"/>
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="c6f-0T-YRO"/>
+                                <constraint firstAttribute="height" constant="20" id="rB9-Gt-aA7"/>
+                            </constraints>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nl3-Ac-Wal">
+                            <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <action selector="bookmarkImagePressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="wer-bz-oJ8"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="OsY-CJ-g3b" firstAttribute="centerY" secondItem="3MA-YV-GKy" secondAttribute="centerY" id="Bb7-ER-YkL"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="G04-vK-iQZ"/>
+                        <constraint firstAttribute="height" constant="24" id="Ivm-X9-qpe"/>
+                        <constraint firstAttribute="width" constant="24" id="LJl-LE-Pj4"/>
+                        <constraint firstItem="OsY-CJ-g3b" firstAttribute="centerX" secondItem="3MA-YV-GKy" secondAttribute="centerX" id="LaS-9N-C9J"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="Yne-1R-rTu"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="3MA-YV-GKy" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="hKJ-qc-b7M"/>
+                <constraint firstAttribute="trailing" secondItem="3MA-YV-GKy" secondAttribute="trailing" constant="16" id="uhX-TS-mfE"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="bookmarkImage" destination="OsY-CJ-g3b" id="EDl-s1-wDC"/>
+            </connections>
+            <point key="canvasLocation" x="35.5" y="-248.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="bookmark" width="46" height="46"/>
+    </resources>
+</document>

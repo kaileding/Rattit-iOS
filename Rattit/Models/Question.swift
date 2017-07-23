@@ -9,6 +9,11 @@
 import Foundation
 
 class Question: MainContent {
+    var id: String?
+    var createdBy: String?
+    var createdAt: Date?
+    var createdByInfo: RattitUser?
+    
     var title: String!
     var accessLevel: RattitContentAccessLevel = .levelPublic
     var interestsNumber: Int = 0
@@ -22,7 +27,11 @@ class Question: MainContent {
     var attachmentUrl: String? = nil
     var RattitLocationId: String? = nil
     
-    init?(dataValue: Any) {
+//    static func parseFromJson(dataValue: Any) -> MainContent? {
+//        return Question(dataValue: dataValue)
+//    }
+    
+    required init?(dataValue: Any) {
         guard let json = dataValue as? [String: Any],
             let id = json["id"] as? String,
             let title = json["title"] as? String,
@@ -37,7 +46,9 @@ class Question: MainContent {
                 return nil
         }
         
-        super.init(id: id, createdBy: createdBy, createdAt: createdAt)
+        self.id = id
+        self.createdBy = createdBy
+        self.createdAt = createdAt
         
         self.title = title
         self.accessLevel = RattitContentAccessLevel(rawValue: accessLevel) ?? .levelPublic
@@ -77,6 +88,8 @@ class Question: MainContent {
     init(title: String, accessLevel: RattitContentAccessLevel, createdBy: String) {
         self.title = title
         self.accessLevel = accessLevel
-        super.init(id: nil, createdBy: createdBy, createdAt: nil)
+        self.id = nil
+        self.createdBy = createdBy
+        self.createdAt = nil
     }
 }

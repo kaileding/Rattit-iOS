@@ -10,7 +10,7 @@ import Foundation
 
 class UserStateManager: NSObject {
     static var userIsLoggedIn: Bool = false
-    static var userRefusedToLogin: Bool = false
+    static var userRefusedToLogin: Bool = true
     static var showingSignInAlert: Bool = false
     static var initialContentLoaded: Bool = false
     static var devicePhotoLibraryLoaded: Bool = false

@@ -134,7 +134,7 @@ extension HomeTabBarViewController {
         if let object = notification.object as? ObjectForShowImagesModal {
             let imagesModalVC = ReusableImageModalViewController(nibName: "ReusableImageModalViewController", bundle: nil)
             imagesModalVC.photos = object.photos
-            imagesModalVC.startIndex = object.startIndex
+            imagesModalVC.startIndex = min(object.startIndex, object.photos.count)
             imagesModalVC.screenWidth = self.view.frame.width
             imagesModalVC.screenHeight = self.view.frame.height
             self.present(imagesModalVC, animated: false, completion: nil)

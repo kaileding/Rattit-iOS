@@ -9,6 +9,11 @@
 import Foundation
 
 class Moment: MainContent {
+    var id: String?
+    var createdBy: String?
+    var createdAt: Date?
+    var createdByInfo: RattitUser?
+    
     var title: String!
     var words: String!
     var accessLevel: RattitContentAccessLevel = .levelPublic
@@ -23,7 +28,11 @@ class Moment: MainContent {
     var RattitLocationId: String? = nil
     var togetherWith: [String]? = []
     
-    init?(dataValue: Any) {
+//    static func parseFromJson(dataValue: Any) -> MainContent? {
+//        return Moment(dataValue: dataValue)
+//    }
+    
+    required init?(dataValue: Any) {
         guard let json = dataValue as? [String: Any],
             let id = json["id"] as? String,
             let title = json["title"] as? String,
@@ -39,7 +48,9 @@ class Moment: MainContent {
                 return nil
         }
         
-        super.init(id: id, createdBy: createdBy, createdAt: createdAt)
+        self.id = id
+        self.createdBy = createdBy
+        self.createdAt = createdAt
         
         self.title = title
         self.words = words
@@ -77,10 +88,14 @@ class Moment: MainContent {
         
     }
     
+    
+    
     init(title: String, words: String, accessLevel: RattitContentAccessLevel, createdBy: String) {
         self.title = title
         self.words = words
         self.accessLevel = accessLevel
-        super.init(id: nil, createdBy: createdBy, createdAt: nil)
+        self.id = nil
+        self.createdBy = createdBy
+        self.createdAt = nil
     }
 }

@@ -9,6 +9,11 @@
 import Foundation
 
 class Answer: MainContent {
+    var id: String?
+    var createdBy: String?
+    var createdAt: Date?
+    var createdByInfo: RattitUser?
+    
     var forQuestion: String!
     var words: String!
     var agreeNumber: Int = 0
@@ -21,7 +26,11 @@ class Answer: MainContent {
     var hashTags: [String]? = nil
     var attachmentUrl: String? = nil
     
-    init?(dataValue: Any) {
+//    static func parseFromJson(dataValue: Any) -> MainContent? {
+//        return Answer(dataValue: dataValue)
+//    }
+    
+    required init?(dataValue: Any) {
         guard let json = dataValue as? [String: Any],
             let id = json["id"] as? String,
             let forQuestion = json["for_question"] as? String,
@@ -37,7 +46,9 @@ class Answer: MainContent {
                 return nil
         }
         
-        super.init(id: id, createdBy: createdBy, createdAt: createdAt)
+        self.id = id
+        self.createdBy = createdBy
+        self.createdAt = createdAt
         
         self.forQuestion = forQuestion
         self.words = words
@@ -72,6 +83,8 @@ class Answer: MainContent {
     init(forQuestion: String, words: String, createdBy: String) {
         self.forQuestion = forQuestion
         self.words = words
-        super.init(id: nil, createdBy: createdBy, createdAt: nil)
+        self.id = nil
+        self.createdBy = createdBy
+        self.createdAt = nil
     }
 }

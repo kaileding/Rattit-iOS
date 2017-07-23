@@ -72,7 +72,7 @@ class MomentTableViewCell: UITableViewCell {
     
     func initializeContent(moment: Moment, sideLength: Double) {
         
-        self.momentHeaderView.initializeData(mainContent: moment as MainContent)
+        self.momentHeaderView.initializeData(mainContent: moment as MainContent, actionStr: "shared")
         self.momentTitleWordsView.initializeData(title: moment.title, words: moment.words)
         self.momentOptionBar.initializeData(moment: moment)
         

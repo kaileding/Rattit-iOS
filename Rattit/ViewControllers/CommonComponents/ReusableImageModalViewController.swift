@@ -8,24 +8,28 @@
 
 import UIKit
 
-class ReusableImageModalViewController: UIViewController {
+class ReusableImageModalViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var imageScrollView: UIScrollView!
     @IBOutlet weak var canvasView: UIView!
     @IBOutlet weak var pageControlIndicator: UIPageControl!
     
-    
-    
     @IBOutlet weak var canvasViewWidthConstraint: NSLayoutConstraint!
     
     var screenWidth: CGFloat = 0.0
     var screenHeight: CGFloat = 0.0
+    var screenSize: CGSize {
+        get {
+            return CGSize(width: self.screenWidth, height: self.screenHeight)
+        }
+    }
     var photos: [Photo] = []
+    var startIndex: Int = 0
     var singleScrollViews: [UIScrollView] = []
     var photoImages: [UIImageView] = []
-    var startIndex: Int = 0
     var currentIndex: Int = 0
     
+    let pinchGestureRecognizer: UIPinchGestureRecognizer! = UIPinchGestureRecognizer()
     var currentSingleScrollView: UIScrollView? = nil
     var currentImageView: UIImageView? = nil
     var startScaleImageViewSize: CGSize? = nil
@@ -40,6 +44,8 @@ class ReusableImageModalViewController: UIViewController {
         
         self.pageControlIndicator.hidesForSinglePage = true
         self.imageScrollView.delegate = self
+        self.pinchGestureRecognizer.addTarget(self, action: #selector(pinchGestureRecognized(_:)))
+        self.pinchGestureRecognizer.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,10 +58,17 @@ class ReusableImageModalViewController: UIViewController {
         super.viewDidAppear(animated)
         
         self.scrollToStartImage()
-//        print("viewDidAppear() func called.")
-//        print("self.photos.count is ", self.photos.count, ", self.view.frame is ", self.view.frame.debugDescription)
-//        print("self.imageScrollView.contentSize is ", self.imageScrollView.contentSize)
-//        print("self.canvasView.frame is ", self.canvasView.frame.debugDescription)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        get {
+            return true
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,7 +76,7 @@ class ReusableImageModalViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func pinchGestureRecognized(_ sender: UIPinchGestureRecognizer) {
+    func pinchGestureRecognized(_ sender: UIPinchGestureRecognizer) {
         
         if sender.state == UIGestureRecognizerState.began
             && sender.numberOfTouches == 2 {
@@ -81,7 +94,7 @@ class ReusableImageModalViewController: UIViewController {
                 self.startScaleFingerPosInImageView = sender.location(in: imageView)
                 self.startScaleFingerPosInScrollView = sender.location(in: scrollView)
                 
-                print("self.startScaleFingerPosInImageView is ", self.startScaleFingerPosInImageView!.debugDescription, ", self.startScaleFingerPosInScrollView is ", self.startScaleFingerPosInScrollView!.debugDescription)
+//                print("self.startScaleFingerPosInImageView is ", self.startScaleFingerPosInImageView!.debugDescription, ", self.startScaleFingerPosInScrollView is ", self.startScaleFingerPosInScrollView!.debugDescription)
             }
         } else if sender.state == UIGestureRecognizerState.changed
             && sender.numberOfTouches == 2
@@ -101,21 +114,28 @@ class ReusableImageModalViewController: UIViewController {
             && self.currentImageView != nil
             && self.currentSingleScrollView != nil  {
             
-            if self.currentImageView!.frame.width < self.screenWidth {
+            if self.currentImageView!.smallerThanRect(rectSize: self.screenSize) {
                 UIView.animate(withDuration: 0.2, animations: {
-                    self.currentImageView!.frame = CGRect(x: 0.0, y: 0.0, width: self.screenWidth, height: self.screenHeight)
-                    self.currentSingleScrollView!.contentSize = CGSize(width: self.screenWidth, height: self.screenHeight)
+                    
+                    self.currentImageView!.fitIntoRect(rectSize: self.screenSize)
+                    self.currentSingleScrollView!.contentSize = self.screenSize
                 })
             } else {
-                self.currentSingleScrollView!.contentSize = self.currentImageView!.frame.size
+//                print("self.singleScrollView.contentOffset", self.currentSingleScrollView!.contentOffset)
+//                print("self.currentImageView.frame is ", self.currentImageView!.frame.debugDescription)
+                
                 let scrollOffset = self.currentSingleScrollView!.contentOffset
                 let finalOrigin = self.currentImageView!.frame.origin
                 let rectToShow = CGRect(x: scrollOffset.x-finalOrigin.x, y: scrollOffset.y-finalOrigin.y, width: self.screenWidth, height: self.screenHeight)
-                self.currentImageView!.frame = CGRect(origin: CGPoint.zero, size: self.currentSingleScrollView!.contentSize)
+                
+                self.currentSingleScrollView!.contentSize = self.currentImageView!.getCoverSize(minSize: self.screenSize)
+                self.currentImageView!.moveIntoContentOfScrollView(minSize: self.screenSize)
+                
+//                print("self.singleScrollView.contentSize is ", self.currentSingleScrollView!.contentSize.debugDescription)
+//                print("self.currentImageView.frame is ", self.currentImageView!.frame.debugDescription)
+                
                 self.currentSingleScrollView!.scrollRectToVisible(rectToShow, animated: false)
             }
-            
-            self.currentImageView = nil
             self.currentSingleScrollView = nil
             self.startScaleFingerPosInImageView = nil
             self.startScaleFingerPosInScrollView = nil
@@ -147,6 +167,7 @@ extension ReusableImageModalViewController {
                 singleImageScrollView.showsVerticalScrollIndicator = false
                 singleImageScrollView.showsHorizontalScrollIndicator = false
                 let photoImageView = UIImageView(frame: CGRect(x: 0.0, y: 0.0, width: self.screenWidth, height: self.screenHeight))
+                photoImageView.isUserInteractionEnabled = true
                 photoImageView.backgroundColor = UIColor.clear
                 photoImageView.contentMode = .scaleAspectFit
                 photoImageView.clipsToBounds = true
@@ -158,9 +179,11 @@ extension ReusableImageModalViewController {
                 
                 GalleryManager.getImageFromUrl(imageUrl: photo.imageUrl, completion: { (image) in
                     photoImageView.image = image
+                    photoImageView.fitIntoRect(rectSize: self.screenSize)
                 }, errorHandler: { (error) in
                     print("Unable to get photo.")
                     photoImageView.image = UIImage(named: "lazyOwl")
+                    photoImageView.fitIntoRect(rectSize: self.screenSize)
                 })
             })
             
@@ -174,6 +197,8 @@ extension ReusableImageModalViewController {
         print("startRectToShow is ", startRectToShow.debugDescription)
         self.imageScrollView.scrollRectToVisible(startRectToShow, animated: false)
         self.currentIndex = self.startIndex
+        self.currentImageView = self.photoImages[self.currentIndex]
+        self.currentImageView?.addGestureRecognizer(self.pinchGestureRecognizer)
     }
 }
 
@@ -183,9 +208,13 @@ extension ReusableImageModalViewController: UIScrollViewDelegate {
         let offsetVal = scrollView.contentOffset.x
         let multiple = (offsetVal / self.screenWidth)
         let floorVal = floor(multiple)
-        self.currentIndex = Int(floorVal)
         
-        if (multiple - floorVal) < 0.2 {
+        if multiple == floorVal {
+            self.currentImageView?.removeGestureRecognizer(self.pinchGestureRecognizer)
+            self.currentIndex = Int(floorVal)
+            self.currentImageView = self.photoImages[self.currentIndex]
+            self.currentImageView?.addGestureRecognizer(self.pinchGestureRecognizer)
+        } else if (multiple - floorVal) < 0.2 {
             self.pageControlIndicator.currentPage = Int(floorVal)
         } else if (multiple - floorVal) > 0.8 {
             self.pageControlIndicator.currentPage = Int(floorVal+1)

@@ -17,14 +17,19 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2TG-j5-l3D">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="125"/>
+                    <rect key="frame" x="0.0" y="33.5" width="375" height="125"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="2TG-j5-l3D" secondAttribute="height" multiplier="3:1" id="mzo-EJ-WU1"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sA-PC-uYc">
-                    <rect key="frame" x="116" y="133" width="42" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title of Question?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T4p-fh-App">
+                    <rect key="frame" x="16" y="8" width="133.5" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Question Explanation" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sA-PC-uYc">
+                    <rect key="frame" x="16" y="147" width="162" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -32,14 +37,22 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="2TG-j5-l3D" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="QEX-PT-jYN"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5sA-PC-uYc" secondAttribute="trailing" constant="16" id="AD7-qb-L5m"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="2TG-j5-l3D" secondAttribute="bottom" constant="8" id="C3w-bI-7er"/>
+                <constraint firstItem="5sA-PC-uYc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="DUs-p8-4Y2"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="5sA-PC-uYc" secondAttribute="bottom" constant="8" id="Es7-js-RK5"/>
+                <constraint firstItem="T4p-fh-App" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="YuF-CB-KUd"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="T4p-fh-App" secondAttribute="trailing" constant="16" id="aNA-bM-G1b"/>
+                <constraint firstItem="T4p-fh-App" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="gAe-K9-nZP"/>
                 <constraint firstItem="2TG-j5-l3D" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="h5S-7f-Abd"/>
                 <constraint firstAttribute="trailing" secondItem="2TG-j5-l3D" secondAttribute="trailing" id="i3D-fE-0pb"/>
+                <constraint firstItem="2TG-j5-l3D" firstAttribute="top" secondItem="T4p-fh-App" secondAttribute="bottom" constant="6" id="idu-v9-KLF"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="backgroundImageView" destination="2TG-j5-l3D" id="s4M-Il-Ch9"/>
                 <outlet property="contentPreviewLabel" destination="5sA-PC-uYc" id="2U7-YV-BNG"/>
+                <outlet property="questionTitleLabel" destination="T4p-fh-App" id="fIT-qB-Ve2"/>
             </connections>
             <point key="canvasLocation" x="35.5" y="152"/>
         </view>

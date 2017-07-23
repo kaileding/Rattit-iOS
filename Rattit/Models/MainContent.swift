@@ -8,17 +8,20 @@
 
 import Foundation
 
-class MainContent {
-    var id: String? = nil
-    var createdBy: String? = nil
-    var createdAt: Date? = nil
+protocol MainContent {
+    var id: String? { get }
+    var createdBy: String? { get }
+    var createdAt: Date? { get }
     
     // optional fields
-    var createdByInfo: RattitUser? = nil
+    var createdByInfo: RattitUser? { get }
     
-    init(id: String?, createdBy: String, createdAt: Date?) {
-        self.id = id
-        self.createdBy = createdBy
-        self.createdAt = createdAt
-    }
+//    init(id: String?, createdBy: String, createdAt: Date?) {
+//        self.id = id
+//        self.createdBy = createdBy
+//        self.createdAt = createdAt
+//    }
+    
+    init?(dataValue: Any)
+//    static func parseFromJson(dataValue: Any) -> MainContent?
 }

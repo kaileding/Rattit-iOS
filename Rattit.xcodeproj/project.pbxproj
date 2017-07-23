@@ -101,6 +101,13 @@
 		85E21A411EFB4E7D00D4F961 /* RattitLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E21A401EFB4E7D00D4F961 /* RattitLocation.swift */; };
 		85E21A431EFB5A3400D4F961 /* RattitUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E21A421EFB5A3400D4F961 /* RattitUserManager.swift */; };
 		85F058D51F0260D5008808CE /* ComposeContentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F058D41F0260D5008808CE /* ComposeContentManager.swift */; };
+		85F5C2071F2412F9007F0E8C /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F5C2061F2412F9007F0E8C /* UIImageViewExtensions.swift */; };
+		85F5C2091F245A3D007F0E8C /* QuestionOptionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F5C2081F245A3D007F0E8C /* QuestionOptionBar.swift */; };
+		85F5C20B1F245A49007F0E8C /* QuestionOptionBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85F5C20A1F245A49007F0E8C /* QuestionOptionBar.xib */; };
+		85F5C20D1F245F96007F0E8C /* QuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F5C20C1F245F96007F0E8C /* QuestionManager.swift */; };
+		85F5C20F1F248242007F0E8C /* AnswerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F5C20E1F248242007F0E8C /* AnswerManager.swift */; };
+		85F5C2111F2482C9007F0E8C /* DataFlowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F5C2101F2482C9007F0E8C /* DataFlowManager.swift */; };
+		85F5C2131F248558007F0E8C /* BaseContentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F5C2121F248558007F0E8C /* BaseContentManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -211,6 +218,13 @@
 		85E21A401EFB4E7D00D4F961 /* RattitLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RattitLocation.swift; sourceTree = "<group>"; };
 		85E21A421EFB5A3400D4F961 /* RattitUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RattitUserManager.swift; sourceTree = "<group>"; };
 		85F058D41F0260D5008808CE /* ComposeContentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeContentManager.swift; sourceTree = "<group>"; };
+		85F5C2061F2412F9007F0E8C /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
+		85F5C2081F245A3D007F0E8C /* QuestionOptionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionOptionBar.swift; sourceTree = "<group>"; };
+		85F5C20A1F245A49007F0E8C /* QuestionOptionBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionOptionBar.xib; sourceTree = "<group>"; };
+		85F5C20C1F245F96007F0E8C /* QuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionManager.swift; sourceTree = "<group>"; };
+		85F5C20E1F248242007F0E8C /* AnswerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerManager.swift; sourceTree = "<group>"; };
+		85F5C2101F2482C9007F0E8C /* DataFlowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFlowManager.swift; sourceTree = "<group>"; };
+		85F5C2121F248558007F0E8C /* BaseContentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseContentManager.swift; sourceTree = "<group>"; };
 		A7FD9D66EAB2321515655810 /* Pods-RattitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RattitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RattitTests/Pods-RattitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D36E614ACE838E16C8F5D85C /* Pods_RattitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RattitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E121460B4EF7B5D2D894C3F5 /* Pods-Rattit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rattit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rattit/Pods-Rattit.release.xcconfig"; sourceTree = "<group>"; };
@@ -246,6 +260,10 @@
 				8549F0D01EFBC78E00385F1E /* GalleryManager.swift */,
 				85F058D41F0260D5008808CE /* ComposeContentManager.swift */,
 				859B5F4C1F061F12009A8762 /* RattitLocationManager.swift */,
+				85F5C20C1F245F96007F0E8C /* QuestionManager.swift */,
+				85F5C20E1F248242007F0E8C /* AnswerManager.swift */,
+				85F5C2101F2482C9007F0E8C /* DataFlowManager.swift */,
+				85F5C2121F248558007F0E8C /* BaseContentManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -256,6 +274,7 @@
 				85023FAB1EF76D4700E785FD /* StringExtensions.swift */,
 				8549F0C71EFB844B00385F1E /* DateExtensions.swift */,
 				8549F0CE1EFBBF5D00385F1E /* RattitErrorExtensions.swift */,
+				85F5C2061F2412F9007F0E8C /* UIImageViewExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -420,6 +439,8 @@
 				858773A91F2298FE004BFE27 /* QuestionPreviewView.xib */,
 				858773AD1F22A2CC004BFE27 /* ContentTitleWordsView.swift */,
 				858773AF1F22A2DB004BFE27 /* ContentTitleWordsView.xib */,
+				85F5C2081F245A3D007F0E8C /* QuestionOptionBar.swift */,
+				85F5C20A1F245A49007F0E8C /* QuestionOptionBar.xib */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -643,6 +664,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85F5C20B1F245A49007F0E8C /* QuestionOptionBar.xib in Resources */,
 				85541E251F0CE45400EC91A7 /* SlidingTabMenuBarView.xib in Resources */,
 				859564A61EF64CC7000D0BC8 /* Fly.storyboard in Resources */,
 				8582A6561F0088BA00483CDD /* DevicePhotoCollectionViewCell.xib in Resources */,
@@ -786,6 +808,7 @@
 				853A3D1F1EF69F1C008EA58E /* Photo.swift in Sources */,
 				859564BA1EF68176000D0BC8 /* AskForSignInSignUpDelegate.swift in Sources */,
 				859564AB1EF64E7A000D0BC8 /* HomeTabBarViewController.swift in Sources */,
+				85F5C20D1F245F96007F0E8C /* QuestionManager.swift in Sources */,
 				858773A81F2298F4004BFE27 /* QuestionPreviewView.swift in Sources */,
 				852113F01F0F5E7800830F13 /* FollowerFollowingViewController.swift in Sources */,
 				859564A91EF64DA0000D0BC8 /* HomeContentViewController.swift in Sources */,
@@ -797,6 +820,7 @@
 				85E21A3F1EFB4C4900D4F961 /* CommentForAnswer.swift in Sources */,
 				850779B21F03777D00598D60 /* ComposeContentDelegate.swift in Sources */,
 				858773AE1F22A2CC004BFE27 /* ContentTitleWordsView.swift in Sources */,
+				85F5C2111F2482C9007F0E8C /* DataFlowManager.swift in Sources */,
 				85E21A431EFB5A3400D4F961 /* RattitUserManager.swift in Sources */,
 				85541E271F0CE46000EC91A7 /* SlidingTabMenuBarView.swift in Sources */,
 				8503D21C1F07871D0053D639 /* FindTogetherWithViewController.swift in Sources */,
@@ -812,6 +836,7 @@
 				855700E21F00C8AB0084356E /* CapturedPhotoView.swift in Sources */,
 				852113F41F0F7E7500830F13 /* StyleConstants.swift in Sources */,
 				859B5F4D1F061F12009A8762 /* RattitLocationManager.swift in Sources */,
+				85F5C20F1F248242007F0E8C /* AnswerManager.swift in Sources */,
 				858773BB1F22F81E004BFE27 /* NotificationObjects.swift in Sources */,
 				8582A64C1EFE419F00483CDD /* ComposeImageViewController.swift in Sources */,
 				85023FA71EF728D100E785FD /* MomentManager.swift in Sources */,
@@ -837,10 +862,13 @@
 				8549F0D11EFBC78E00385F1E /* GalleryManager.swift in Sources */,
 				8549F0CB1EFB877800385F1E /* Network.swift in Sources */,
 				85E21A3B1EFA701400D4F961 /* RattitCollection.swift in Sources */,
+				85F5C2131F248558007F0E8C /* BaseContentManager.swift in Sources */,
 				859B5F4B1F0615AE009A8762 /* GoogleLocation.swift in Sources */,
 				85F058D51F0260D5008808CE /* ComposeContentManager.swift in Sources */,
+				85F5C2091F245A3D007F0E8C /* QuestionOptionBar.swift in Sources */,
 				8582A6461EFE326000483CDD /* ReusableNavBarItemView.swift in Sources */,
 				8549F0CF1EFBBF5D00385F1E /* RattitErrorExtensions.swift in Sources */,
+				85F5C2071F2412F9007F0E8C /* UIImageViewExtensions.swift in Sources */,
 				85023FAC1EF76D4700E785FD /* StringExtensions.swift in Sources */,
 				8582A6551F0088BA00483CDD /* DevicePhotoCollectionViewCell.swift in Sources */,
 				8549F0C81EFB844B00385F1E /* DateExtensions.swift in Sources */,

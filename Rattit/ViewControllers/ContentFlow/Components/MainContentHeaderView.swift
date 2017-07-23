@@ -35,7 +35,7 @@ class MainContentHeaderView: UIView {
         return mainContentHeaderView
     }
     
-    func initializeData(mainContent: MainContent) {
+    func initializeData(mainContent: MainContent, actionStr: String) {
         if let createdBy = mainContent.createdBy {
             RattitUserManager.sharedInstance.getRattitUserAvatarImage(userId: createdBy, completion: { (avatarImage) in
                 self.avatarImageView.image = avatarImage
@@ -46,7 +46,7 @@ class MainContentHeaderView: UIView {
             self.avatarImageView.contentMode = .scaleAspectFill
             
             RattitUserManager.sharedInstance.getRattitUserForId(id: createdBy, completion: { (author) in
-                self.userNameLabel.text = author.userName
+                self.userNameLabel.text = "@"+author.userName
             }, errorHandler: { (error) in
                 print("user has no username.")
                 self.userNameLabel.text = "alien"
@@ -54,6 +54,7 @@ class MainContentHeaderView: UIView {
         }
         
         self.timeStampLabel.text = mainContent.createdAt?.dateToPostTimeDescription
+        self.ActionLabel.text = actionStr
     }
     
     func moreButtonPressed() {

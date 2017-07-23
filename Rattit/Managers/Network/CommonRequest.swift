@@ -32,6 +32,16 @@ struct CommonRequest {
         return CommonRequest(urlPath: "/moments", method: .get)
     }
     
+    // get All questions from content_service
+    static var GetQuestions: CommonRequest {
+        return CommonRequest(urlPath: "/questions", method: .get)
+    }
+    
+    // get All answers from content_service
+    static var GetAnswers: CommonRequest {
+        return CommonRequest(urlPath: "/answers", method: .get)
+    }
+    
     // get moments published later than some time
     static func getMomentsNoEarlierThan(timeThreshold: String) -> CommonRequest {
         var getMomentsNoEarlierThanRequest = CommonRequest(urlPath: "/moments", method: .get)
@@ -48,11 +58,57 @@ struct CommonRequest {
         return getMomentsNoLaterThanRequest
     }
     
+    // get questions published later than some time
+    static func getQuestionsNoEarlierThan(timeThreshold: String) -> CommonRequest {
+        var getQuestionsNoEarlierThanRequest = CommonRequest(urlPath: "/questions", method: .get)
+        getQuestionsNoEarlierThanRequest.parameters = ["date_query_type": "noearlier_than",
+                                                     "date_query_line": timeThreshold]
+        return getQuestionsNoEarlierThanRequest
+    }
+    
+    // get questions published earlier than some time
+    static func getQuestionsNoLaterThan(timeThreshold: String) -> CommonRequest {
+        var getQuestionsNoLaterThanRequest = CommonRequest(urlPath: "/questions", method: .get)
+        getQuestionsNoLaterThanRequest.parameters = ["date_query_type": "nolater_than",
+                                                   "date_query_line": timeThreshold]
+        return getQuestionsNoLaterThanRequest
+    }
+    
+    // get answers published later than some time
+    static func getAnswersNoEarlierThan(timeThreshold: String) -> CommonRequest {
+        var getAnswersNoEarlierThanRequest = CommonRequest(urlPath: "/answers", method: .get)
+        getAnswersNoEarlierThanRequest.parameters = ["date_query_type": "noearlier_than",
+                                                       "date_query_line": timeThreshold]
+        return getAnswersNoEarlierThanRequest
+    }
+    
+    // get answers published earlier than some time
+    static func getAnswersNoLaterThan(timeThreshold: String) -> CommonRequest {
+        var getAnswersNoLaterThanRequest = CommonRequest(urlPath: "/answers", method: .get)
+        getAnswersNoLaterThanRequest.parameters = ["date_query_type": "nolater_than",
+                                                     "date_query_line": timeThreshold]
+        return getAnswersNoLaterThanRequest
+    }
+    
     // get moments created by a user
     static func getMomentsCreatedByUser(userId: String) -> CommonRequest {
         var getMomentsCreatedByUserRequest = CommonRequest(urlPath: "/moments", method: .get)
         getMomentsCreatedByUserRequest.parameters = ["author_id": userId]
         return getMomentsCreatedByUserRequest
+    }
+    
+    // get questions created by a user
+    static func getQuestionsCreatedByUser(userId: String) -> CommonRequest {
+        var getQuestionsCreatedByUserRequest = CommonRequest(urlPath: "/questions", method: .get)
+        getQuestionsCreatedByUserRequest.parameters = ["author_id": userId]
+        return getQuestionsCreatedByUserRequest
+    }
+    
+    // get answers created by a user
+    static func getAnswersCreatedByUser(userId: String) -> CommonRequest {
+        var getAnswersCreatedByUserRequest = CommonRequest(urlPath: "/answers", method: .get)
+        getAnswersCreatedByUserRequest.parameters = ["author_id": userId]
+        return getAnswersCreatedByUserRequest
     }
     
     // get All Rattit users from server
@@ -99,6 +155,24 @@ struct CommonRequest {
                                                "commit": commit]
         castVoteToAMomentRequest.endcoding = JSONEncoding.default
         return castVoteToAMomentRequest
+    }
+    
+    // cast a vote to a certain question
+    static func castVoteToAQuestion(questionId: String, voteType: RattitQuestionVoteType, commit: Bool) -> CommonRequest {
+        var castVoteToAQuestionRequest = CommonRequest(urlPath: "/questions/\(questionId)/voters/\(UserStateManager.sharedInstance.dummyUserId)", method: .patch)
+        castVoteToAQuestionRequest.parameters = ["type": voteType.rawValue,
+                                               "commit": commit]
+        castVoteToAQuestionRequest.endcoding = JSONEncoding.default
+        return castVoteToAQuestionRequest
+    }
+    
+    // cast a vote to a certain answer
+    static func castVoteToAnAnswer(answerId: String, voteType: RattitAnswerVoteType, commit: Bool) -> CommonRequest {
+        var castVoteToAnAnswerRequest = CommonRequest(urlPath: "/answers/\(answerId)/voters/\(UserStateManager.sharedInstance.dummyUserId)", method: .patch)
+        castVoteToAnAnswerRequest.parameters = ["type": voteType.rawValue,
+                                               "commit": commit]
+        castVoteToAnAnswerRequest.endcoding = JSONEncoding.default
+        return castVoteToAnAnswerRequest
     }
     
     // get followers of a user

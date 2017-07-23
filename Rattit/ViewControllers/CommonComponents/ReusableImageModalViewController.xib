@@ -43,7 +43,6 @@
                         <constraint firstAttribute="trailing" secondItem="0s4-wJ-cpV" secondAttribute="trailing" id="qti-PD-9Wp"/>
                     </constraints>
                     <connections>
-                        <outletCollection property="gestureRecognizers" destination="azg-WH-vYA" appends="YES" id="mgU-wq-dnM"/>
                         <outletCollection property="gestureRecognizers" destination="tBP-HT-2Ob" appends="YES" id="DZx-Tu-jDN"/>
                     </connections>
                 </scrollView>
@@ -61,11 +60,6 @@
                 <constraint firstAttribute="trailing" secondItem="flA-1C-s9G" secondAttribute="trailing" id="sBI-Bk-9H8"/>
             </constraints>
         </view>
-        <pinchGestureRecognizer id="azg-WH-vYA">
-            <connections>
-                <action selector="pinchGestureRecognized:" destination="-1" id="9TF-rG-aDR"/>
-            </connections>
-        </pinchGestureRecognizer>
         <tapGestureRecognizer id="tBP-HT-2Ob">
             <connections>
                 <action selector="tapGestureRecognized:" destination="-1" id="bEU-hk-Pmp"/>

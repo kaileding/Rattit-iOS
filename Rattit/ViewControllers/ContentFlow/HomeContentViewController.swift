@@ -84,14 +84,14 @@ extension HomeContentViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return MomentManager.sharedInstance.displaySequenceOfMoments.count
+        return MomentManager.sharedInstance.displaySequenceOfContents.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MomentTableViewCell", for: indexPath) as! MomentTableViewCell
         
-        let displayMomentId = MomentManager.sharedInstance.displaySequenceOfMoments[indexPath.row]
-        cell.initializeContent(moment: MomentManager.sharedInstance.downloadedMoments[displayMomentId]!, sideLength: Double(self.view.frame.width))
+        let displayMomentId = MomentManager.sharedInstance.displaySequenceOfContents[indexPath.row]
+        cell.initializeContent(moment: MomentManager.sharedInstance.downloadedContents[displayMomentId]!, sideLength: Double(self.view.frame.width))
         
         return cell
     }

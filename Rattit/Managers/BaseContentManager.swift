@@ -119,7 +119,7 @@ class BaseContentManager<T: MainContent>: NSObject {
         
     }
     
-    func getContentsCreatedByAUser(userId: String, completion: @escaping ([String]) -> Void, errorHandler: @escaping (Error) -> Void) {
+    func getContentsCreatedByAUser(completion: @escaping ([String]) -> Void, errorHandler: @escaping (Error) -> Void) {
         
         Network.sharedInstance.callRattitContentService(httpRequest: self.getContentsCreatedByUserRequest, completion: { (dataValue) in
             

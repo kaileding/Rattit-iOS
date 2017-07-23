@@ -56,7 +56,7 @@ class ContentDisplayTableView: UIView, UITableViewDelegate, UITableViewDataSourc
         let cell = tableView.dequeueReusableCell(withIdentifier: "MomentTableViewCell", for: indexPath) as! MomentTableViewCell
         
         let displayMomentId = UserStateManager.sharedInstance.dummyMyMoments[indexPath.row]
-        cell.initializeContent(moment: MomentManager.sharedInstance.downloadedMoments[displayMomentId]!, sideLength: Double(self.frame.width))
+        cell.initializeContent(moment: MomentManager.sharedInstance.downloadedContents[displayMomentId]!, sideLength: Double(self.frame.width))
         
         print("tableView(:cellForRowAt:) func. self.frame.width is \(self.frame.width)")
         

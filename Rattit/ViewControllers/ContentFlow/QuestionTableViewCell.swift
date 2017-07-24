@@ -59,7 +59,7 @@ class QuestionTableViewCell: UITableViewCell {
     
     func initializeContent(question: Question, sideLength: Double) {
         
-        self.questionHeaderView.initializeData(mainContent: question as MainContent, actionStr: "shared")
+        self.questionHeaderView.initializeData(mainContent: question as MainContent, actionStr: "asked")
         let questionPhoto = question.photos?.first
         self.questionPreviewView.initializeData(title: question.title, words: question.words, photo: questionPhoto)
         self.questionOptionBar.initializeData(question: question)

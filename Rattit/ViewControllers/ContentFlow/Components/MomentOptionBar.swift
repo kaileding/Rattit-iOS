@@ -28,13 +28,6 @@ class MomentOptionBar: UIView {
     
     var momentId: String? = nil
     
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
     
     static func instantiateFromXib() -> MomentOptionBar {
         let momentOptionBar = Bundle.main.loadNibNamed("MomentOptionBar", owner: self, options: nil)?.first as! MomentOptionBar

@@ -12,6 +12,7 @@ protocol MainContent {
     var id: String? { get }
     var createdBy: String? { get }
     var createdAt: Date? { get }
+    var dataFlowContentUnit: DataFlowContentUnit? { get }
     
     // optional fields
     var createdByInfo: RattitUser? { get }

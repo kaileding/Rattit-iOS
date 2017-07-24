@@ -21,6 +21,12 @@ public enum RattitContentAccessLevel: String {
     case levelPublic = "public"
 }
 
+public enum RattitContentType: String {
+    case moment = "moment"
+    case question = "question"
+    case answer = "answer"
+}
+
 public enum RattitMomentVoteType: String {
     case typeLike = "like"
     case typeAdmire = "admire"

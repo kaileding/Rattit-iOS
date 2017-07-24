@@ -13,6 +13,7 @@ class Moment: MainContent {
     var createdBy: String?
     var createdAt: Date?
     var createdByInfo: RattitUser?
+    var dataFlowContentUnit: DataFlowContentUnit?
     
     var title: String!
     var words: String!
@@ -51,6 +52,7 @@ class Moment: MainContent {
         self.id = id
         self.createdBy = createdBy
         self.createdAt = createdAt
+        self.dataFlowContentUnit = DataFlowContentUnit(contentType: .moment, id: id, createdAt: createdAt)
         
         self.title = title
         self.words = words
@@ -89,7 +91,6 @@ class Moment: MainContent {
     }
     
     
-    
     init(title: String, words: String, accessLevel: RattitContentAccessLevel, createdBy: String) {
         self.title = title
         self.words = words
@@ -97,5 +98,6 @@ class Moment: MainContent {
         self.id = nil
         self.createdBy = createdBy
         self.createdAt = nil
+        self.dataFlowContentUnit = nil
     }
 }

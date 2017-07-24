@@ -52,6 +52,10 @@
 		85541E271F0CE46000EC91A7 /* SlidingTabMenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85541E261F0CE46000EC91A7 /* SlidingTabMenuBarView.swift */; };
 		855700E01F00C88D0084356E /* CapturedPhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855700DF1F00C88D0084356E /* CapturedPhotoView.xib */; };
 		855700E21F00C8AB0084356E /* CapturedPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855700E11F00C8AB0084356E /* CapturedPhotoView.swift */; };
+		856A82411F257B9F00D59ED6 /* AnswerOptionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856A82401F257B9F00D59ED6 /* AnswerOptionBar.swift */; };
+		856A82431F257BAC00D59ED6 /* AnswerOptionBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 856A82421F257BAC00D59ED6 /* AnswerOptionBar.xib */; };
+		856A82451F25BB1400D59ED6 /* AnswerPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856A82441F25BB1400D59ED6 /* AnswerPreviewView.swift */; };
+		856A82471F25BB2300D59ED6 /* AnswerPreviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 856A82461F25BB2300D59ED6 /* AnswerPreviewView.xib */; };
 		8582A6441EFE319600483CDD /* ReusableNavBarItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8582A6431EFE319600483CDD /* ReusableNavBarItemView.xib */; };
 		8582A6461EFE326000483CDD /* ReusableNavBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582A6451EFE326000483CDD /* ReusableNavBarItemView.swift */; };
 		8582A64C1EFE419F00483CDD /* ComposeImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582A64B1EFE419F00483CDD /* ComposeImageViewController.swift */; };
@@ -108,6 +112,7 @@
 		85F5C20F1F248242007F0E8C /* AnswerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F5C20E1F248242007F0E8C /* AnswerManager.swift */; };
 		85F5C2111F2482C9007F0E8C /* DataFlowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F5C2101F2482C9007F0E8C /* DataFlowManager.swift */; };
 		85F5C2131F248558007F0E8C /* BaseContentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F5C2121F248558007F0E8C /* BaseContentManager.swift */; };
+		85F5C2151F24AA9A007F0E8C /* DataFlowObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F5C2141F24AA9A007F0E8C /* DataFlowObjects.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,6 +174,10 @@
 		85541E261F0CE46000EC91A7 /* SlidingTabMenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingTabMenuBarView.swift; sourceTree = "<group>"; };
 		855700DF1F00C88D0084356E /* CapturedPhotoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CapturedPhotoView.xib; sourceTree = "<group>"; };
 		855700E11F00C8AB0084356E /* CapturedPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturedPhotoView.swift; sourceTree = "<group>"; };
+		856A82401F257B9F00D59ED6 /* AnswerOptionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerOptionBar.swift; sourceTree = "<group>"; };
+		856A82421F257BAC00D59ED6 /* AnswerOptionBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerOptionBar.xib; sourceTree = "<group>"; };
+		856A82441F25BB1400D59ED6 /* AnswerPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerPreviewView.swift; sourceTree = "<group>"; };
+		856A82461F25BB2300D59ED6 /* AnswerPreviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerPreviewView.xib; sourceTree = "<group>"; };
 		8582A6431EFE319600483CDD /* ReusableNavBarItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusableNavBarItemView.xib; sourceTree = "<group>"; };
 		8582A6451EFE326000483CDD /* ReusableNavBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableNavBarItemView.swift; sourceTree = "<group>"; };
 		8582A64B1EFE419F00483CDD /* ComposeImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeImageViewController.swift; sourceTree = "<group>"; };
@@ -225,6 +234,7 @@
 		85F5C20E1F248242007F0E8C /* AnswerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerManager.swift; sourceTree = "<group>"; };
 		85F5C2101F2482C9007F0E8C /* DataFlowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFlowManager.swift; sourceTree = "<group>"; };
 		85F5C2121F248558007F0E8C /* BaseContentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseContentManager.swift; sourceTree = "<group>"; };
+		85F5C2141F24AA9A007F0E8C /* DataFlowObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFlowObjects.swift; sourceTree = "<group>"; };
 		A7FD9D66EAB2321515655810 /* Pods-RattitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RattitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RattitTests/Pods-RattitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D36E614ACE838E16C8F5D85C /* Pods_RattitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RattitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E121460B4EF7B5D2D894C3F5 /* Pods-Rattit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Rattit.release.xcconfig"; path = "Pods/Target Support Files/Pods-Rattit/Pods-Rattit.release.xcconfig"; sourceTree = "<group>"; };
@@ -255,15 +265,15 @@
 			isa = PBXGroup;
 			children = (
 				8549F0C91EFB870000385F1E /* Network */,
+				85F5C2121F248558007F0E8C /* BaseContentManager.swift */,
 				85023FA61EF728D100E785FD /* MomentManager.swift */,
+				85F5C20C1F245F96007F0E8C /* QuestionManager.swift */,
+				85F5C20E1F248242007F0E8C /* AnswerManager.swift */,
 				85E21A421EFB5A3400D4F961 /* RattitUserManager.swift */,
 				8549F0D01EFBC78E00385F1E /* GalleryManager.swift */,
 				85F058D41F0260D5008808CE /* ComposeContentManager.swift */,
 				859B5F4C1F061F12009A8762 /* RattitLocationManager.swift */,
-				85F5C20C1F245F96007F0E8C /* QuestionManager.swift */,
-				85F5C20E1F248242007F0E8C /* AnswerManager.swift */,
 				85F5C2101F2482C9007F0E8C /* DataFlowManager.swift */,
-				85F5C2121F248558007F0E8C /* BaseContentManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -441,6 +451,10 @@
 				858773AF1F22A2DB004BFE27 /* ContentTitleWordsView.xib */,
 				85F5C2081F245A3D007F0E8C /* QuestionOptionBar.swift */,
 				85F5C20A1F245A49007F0E8C /* QuestionOptionBar.xib */,
+				856A82401F257B9F00D59ED6 /* AnswerOptionBar.swift */,
+				856A82421F257BAC00D59ED6 /* AnswerOptionBar.xib */,
+				856A82441F25BB1400D59ED6 /* AnswerPreviewView.swift */,
+				856A82461F25BB2300D59ED6 /* AnswerPreviewView.xib */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -487,6 +501,7 @@
 			isa = PBXGroup;
 			children = (
 				858773BA1F22F81E004BFE27 /* NotificationObjects.swift */,
+				85F5C2141F24AA9A007F0E8C /* DataFlowObjects.swift */,
 			);
 			path = DataWrappers;
 			sourceTree = "<group>";
@@ -683,6 +698,8 @@
 				85AC86CB1F1D2E440093D9A3 /* ContentDisplayTableView.xib in Resources */,
 				859564B01EF6654E000D0BC8 /* MomentTableViewCell.xib in Resources */,
 				852C397B1EF5ED7E00C66C16 /* LaunchScreen.storyboard in Resources */,
+				856A82471F25BB2300D59ED6 /* AnswerPreviewView.xib in Resources */,
+				856A82431F257BAC00D59ED6 /* AnswerOptionBar.xib in Resources */,
 				858773B81F22D8E2004BFE27 /* ReusableImageModalViewController.xib in Resources */,
 				852C397A1EF5ED7700C66C16 /* Main.storyboard in Resources */,
 				8549F0D71EFCB66E00385F1E /* MainContentHeaderView.xib in Resources */,
@@ -810,6 +827,7 @@
 				859564AB1EF64E7A000D0BC8 /* HomeTabBarViewController.swift in Sources */,
 				85F5C20D1F245F96007F0E8C /* QuestionManager.swift in Sources */,
 				858773A81F2298F4004BFE27 /* QuestionPreviewView.swift in Sources */,
+				856A82451F25BB1400D59ED6 /* AnswerPreviewView.swift in Sources */,
 				852113F01F0F5E7800830F13 /* FollowerFollowingViewController.swift in Sources */,
 				859564A91EF64DA0000D0BC8 /* HomeContentViewController.swift in Sources */,
 				85E21A351EFA624C00D4F961 /* MainContent.swift in Sources */,
@@ -817,6 +835,7 @@
 				85C16E3B1F21347300D609DE /* FlyHomeViewNavBarTitleView.swift in Sources */,
 				851FBC631F0A4580000DEB50 /* PickedUserTogetherWithView.swift in Sources */,
 				85023FA21EF71E7600E785FD /* RattitUser.swift in Sources */,
+				856A82411F257B9F00D59ED6 /* AnswerOptionBar.swift in Sources */,
 				85E21A3F1EFB4C4900D4F961 /* CommentForAnswer.swift in Sources */,
 				850779B21F03777D00598D60 /* ComposeContentDelegate.swift in Sources */,
 				858773AE1F22A2CC004BFE27 /* ContentTitleWordsView.swift in Sources */,
@@ -849,6 +868,7 @@
 				85E21A411EFB4E7D00D4F961 /* RattitLocation.swift in Sources */,
 				85AC86C91F1D2DFA0093D9A3 /* ContentDisplayTableView.swift in Sources */,
 				859B5F491F060FF0009A8762 /* LocationPickingViewController.swift in Sources */,
+				85F5C2151F24AA9A007F0E8C /* DataFlowObjects.swift in Sources */,
 				8549F0CD1EFB878F00385F1E /* CommonRequest.swift in Sources */,
 				85E21A371EFA668C00D4F961 /* Question.swift in Sources */,
 				8549F0DE1EFCCB1900385F1E /* MomentOptionBar.swift in Sources */,

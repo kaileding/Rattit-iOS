@@ -33,9 +33,8 @@
                                 <constraint firstAttribute="height" constant="20" id="rB9-Gt-aA7"/>
                             </constraints>
                         </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nl3-Ac-Wal">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nl3-Ac-Wal">
                             <rect key="frame" x="0.0" y="0.0" width="24" height="24"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <connections>
                                 <action selector="bookmarkImagePressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="wer-bz-oJ8"/>
                             </connections>
@@ -43,12 +42,14 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="nl3-Ac-Wal" secondAttribute="trailing" id="BEw-Ow-ynl"/>
                         <constraint firstItem="OsY-CJ-g3b" firstAttribute="centerY" secondItem="3MA-YV-GKy" secondAttribute="centerY" id="Bb7-ER-YkL"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="G04-vK-iQZ"/>
+                        <constraint firstItem="nl3-Ac-Wal" firstAttribute="top" secondItem="3MA-YV-GKy" secondAttribute="top" id="Frx-Xr-Z2g"/>
                         <constraint firstAttribute="height" constant="24" id="Ivm-X9-qpe"/>
                         <constraint firstAttribute="width" constant="24" id="LJl-LE-Pj4"/>
                         <constraint firstItem="OsY-CJ-g3b" firstAttribute="centerX" secondItem="3MA-YV-GKy" secondAttribute="centerX" id="LaS-9N-C9J"/>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="Yne-1R-rTu"/>
+                        <constraint firstAttribute="bottom" secondItem="nl3-Ac-Wal" secondAttribute="bottom" id="jnR-fe-MyR"/>
+                        <constraint firstItem="nl3-Ac-Wal" firstAttribute="leading" secondItem="3MA-YV-GKy" secondAttribute="leading" id="p9e-R3-kKc"/>
                     </constraints>
                 </view>
             </subviews>

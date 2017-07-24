@@ -11,7 +11,7 @@ import Alamofire
 
 class BaseContentManager<T: MainContent>: NSObject {
     var downloadedContents: [String: T] = [:] // contentId : ContentT
-    var displaySequenceOfContents: [String] = [] // Array of contentId
+    var displaySequenceOfContents: [DataFlowContentUnit] = [] // Array of DataFlowContentUnit
     var lastContentCreatedAt: Date? = nil
     var lastContentId: String? = nil
     var firstContentCreatedAt: Date? = nil
@@ -35,17 +35,17 @@ class BaseContentManager<T: MainContent>: NSObject {
                 for rowValue in rows {
                     if let content = T(dataValue: rowValue) {
                         self.downloadedContents[content.id!] = content
-                        self.displaySequenceOfContents.append(content.id!)
+                        self.displaySequenceOfContents.append(content.dataFlowContentUnit!)
                         if let contentAuthor = content.createdByInfo, let authorId = content.createdBy {
                             RattitUserManager.sharedInstance.cachedUsers[authorId] = contentAuthor
                         }
                     }
                 }
-                if let lastContentId = self.displaySequenceOfContents.first {
+                if let lastContentId = self.displaySequenceOfContents.first?.id {
                     self.lastContentCreatedAt = self.downloadedContents[lastContentId]!.createdAt
                     self.lastContentId = lastContentId
                 }
-                if let firstContentId = self.displaySequenceOfContents.last {
+                if let firstContentId = self.displaySequenceOfContents.last?.id {
                     self.firstContentCreatedAt = self.downloadedContents[firstContentId]!.createdAt
                     self.firstContentId = firstContentId
                 }
@@ -76,12 +76,12 @@ class BaseContentManager<T: MainContent>: NSObject {
                     
                     print("Got \(count) more content units from server.")
                     if (count > 0) {
-                        var newContents: [String] = []
+                        var newContents: [DataFlowContentUnit] = []
                         rows.forEach({ (dataValue) in
                             if let content = T(dataValue: dataValue) {
                                 self.downloadedContents[content.id!] = content
                                 if (content.id != self.lastContentId) {
-                                    newContents.append(content.id!)
+                                    newContents.append(content.dataFlowContentUnit!)
                                 }
                                 if let contentAuthor = content.createdByInfo, let authorId = content.createdBy {
                                     RattitUserManager.sharedInstance.cachedUsers[authorId] = contentAuthor
@@ -89,7 +89,7 @@ class BaseContentManager<T: MainContent>: NSObject {
                             }
                         })
                         self.displaySequenceOfContents.insert(contentsOf: newContents, at: 0)
-                        if let lastContentId = newContents.first {
+                        if let lastContentId = newContents.first?.id {
                             self.lastContentId = lastContentId
                             self.lastContentCreatedAt = self.downloadedContents[lastContentId]!.createdAt
                         }

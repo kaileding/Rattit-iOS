@@ -20,14 +20,15 @@ class QuestionPreviewView: UIView {
     static func instantiateFromXib() -> QuestionPreviewView {
         let questionPreviewView = Bundle.main.loadNibNamed("QuestionPreviewView", owner: self, options: nil)?.first as! QuestionPreviewView
         
-        questionPreviewView.contentPreviewLabel.text = ""
+        questionPreviewView.contentPreviewLabel.numberOfLines = 4
+        questionPreviewView.contentPreviewLabel.text = " "
         questionPreviewView.backgroundImageView.clipsToBounds = true
         questionPreviewView.backgroundImageView.contentMode = .scaleAspectFill
         
         return questionPreviewView
     }
     
-    func initializeData(title: String, words: String?, photo: Photo?) {
+    func initializeData(title: String, words: String, photo: Photo?) {
         self.questionTitleLabel.text = title
         self.contentPreviewLabel.text = words
         
@@ -43,13 +44,15 @@ class QuestionPreviewView: UIView {
                 layerMask.endPoint = CGPoint(x: 0.5, y: 1.0)
                 layerMask.frame = imageViewLayer.bounds
                 imageViewLayer.mask = layerMask
-                
+                self.sizeToFit()
             }, errorHandler: { (error) in
                 print("Unable to get Image for the question.")
                 self.hidePreviewImage()
+                self.sizeToFit()
             })
         } else {
             self.hidePreviewImage()
+            self.sizeToFit()
         }
     }
     

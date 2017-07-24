@@ -13,6 +13,7 @@ class Answer: MainContent {
     var createdBy: String?
     var createdAt: Date?
     var createdByInfo: RattitUser?
+    var dataFlowContentUnit: DataFlowContentUnit?
     
     var forQuestion: String!
     var words: String!
@@ -22,6 +23,7 @@ class Answer: MainContent {
     var rankScore: Int = 0
     
     // optional fields
+    var questionTitle: String? = nil
     var photos: [Photo]? = nil
     var hashTags: [String]? = nil
     var attachmentUrl: String? = nil
@@ -49,6 +51,7 @@ class Answer: MainContent {
         self.id = id
         self.createdBy = createdBy
         self.createdAt = createdAt
+        self.dataFlowContentUnit = DataFlowContentUnit(contentType: .answer, id: id, createdAt: createdAt)
         
         self.forQuestion = forQuestion
         self.words = words
@@ -56,6 +59,12 @@ class Answer: MainContent {
         self.disagreeNumber = disagreeNumber
         self.admirersNumber = admirersNumber
         self.rankScore = rankScore
+        
+        if let question = json["question"] as? [String: Any] {
+            if let questionTitle = question["title"] as? String {
+                self.questionTitle = questionTitle
+            }
+        }
         
         if let photosDataValues = json["photos"] as? [Any] {
             var tempPhotos: [Photo] = []
@@ -86,5 +95,6 @@ class Answer: MainContent {
         self.id = nil
         self.createdBy = createdBy
         self.createdAt = nil
+        self.dataFlowContentUnit = nil
     }
 }

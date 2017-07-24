@@ -20,12 +20,15 @@ class UserStateManager: NSObject {
     var dummyMyFollowers: [String] = [] // array of userIds
     var dummyMyFollowees: [String] = [] // array of userIds
     var dummyMyFriends: [String] = [] // array of userIds
-    var dummyMyMoments: [String] = [] // array of momentIds
     
-    var dummyUserInfoLoadMap: UInt8 = 0
+    var dummyMyMoments: [String] = [] // array of momentIds
+    var dummyMyQuestions: [String] = [] // array of questionIds
+    var dummyMyAnswers: [String] = [] // array of answerIds
+    
+    var dummyUserInfoLoadMap: UInt32 = 0
     var dummyUserInfoLoaded: Bool {
         get {
-            return (self.dummyUserInfoLoadMap == 31)
+            return (self.dummyUserInfoLoadMap == 127)
         }
     }
     
@@ -71,6 +74,22 @@ class UserStateManager: NSObject {
             UserStateManager.sharedInstance.dummyUserInfoLoadMap |= 16
         }) { (error) in
             print("== Unable to load moments of mine. \(error.localizedDescription)")
+        }
+        
+        QuestionManager.sharedInstance.getQuestionsCreatedByAUser(userId: self.dummyUserId, completion: { (questionGroup) in
+            
+            self.dummyMyQuestions = questionGroup
+            UserStateManager.sharedInstance.dummyUserInfoLoadMap |= 32
+        }) { (error) in
+            print("== Unable to load questions of mine. \(error.localizedDescription)")
+        }
+        
+        AnswerManager.sharedInstance.getAnswersCreatedByAUser(userId: self.dummyUserId, completion: { (answerGroup) in
+            
+            self.dummyMyAnswers = answerGroup
+            UserStateManager.sharedInstance.dummyUserInfoLoadMap |= 64
+        }) { (error) in
+            print("== Unable to load answers of mine. \(error.localizedDescription)")
         }
     }
     

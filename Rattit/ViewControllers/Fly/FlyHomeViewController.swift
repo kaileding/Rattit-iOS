@@ -80,10 +80,8 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
         let selfUser = UserStateManager.sharedInstance.dummyUser
         if let validUser = selfUser {
             self.flyHomeViewNavBarTitleView.initializeData(userName: "@"+validUser.userName, firstName: validUser.firstName)
-//            self.navigationItem.title = "@"+validUser.userName
         } else {
             self.flyHomeViewNavBarTitleView.initializeData(userName: "Rattit", firstName: "Rattit")
-//            self.navigationItem.title = "Rattit"
         }
         
         self.userProfileHeaderView.initializeData(userId: UserStateManager.sharedInstance.dummyUserId)
@@ -94,25 +92,25 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate {
         
         self.slidingTabMenuBarView.initializeSliderPostion(pos: self.currentPageIndex)
         
-        self.contentTableView1.initializeData(backgroundColor: UIColor(red: 0.2235, green: 0.5882, blue: 0, alpha: 1.0))
-        self.contentTableView2.initializeData(backgroundColor: UIColor(red: 0, green: 0.6, blue: 0.5373, alpha: 1.0))
-        self.contentTableView3.initializeData(backgroundColor: UIColor(red: 0.5569, green: 0, blue: 0.5412, alpha: 1.0))
+        self.contentTableView1.initializeData(contentType: .moment, backgroundColor: UIColor(red: 0.2235, green: 0.5882, blue: 0, alpha: 1.0))
+        self.contentTableView2.initializeData(contentType: .question, backgroundColor: UIColor(red: 0, green: 0.6, blue: 0.5373, alpha: 1.0))
+        self.contentTableView3.initializeData(contentType: .answer, backgroundColor: UIColor(red: 0.5569, green: 0, blue: 0.5412, alpha: 1.0))
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        print("\n in ViewDidAppear:")
-        print("self.view.frame is ", self.view.frame.debugDescription)
-        print("self.outerVisibleView.frame is ", self.outerVisibleView.frame.debugDescription)
-        print("self.userProfileHeaderView.frame is ", self.userProfileHeaderView.frame.debugDescription)
-        print("self.slideMenuBarView.frame is ", self.slidingTabMenuBarView.frame.debugDescription)
-        
-        print("self.currentPageIndex is ", self.currentPageIndex)
-        
-        print("self.contentTableView1.frame is ", self.contentTableView1.frame.debugDescription)
-        print("self.contentTableView2.frame is ", self.contentTableView2.frame.debugDescription)
-        print("self.contentTableView3.frame is ", self.contentTableView3.frame.debugDescription)
+//        print("\n in ViewDidAppear:")
+//        print("self.view.frame is ", self.view.frame.debugDescription)
+//        print("self.outerVisibleView.frame is ", self.outerVisibleView.frame.debugDescription)
+//        print("self.userProfileHeaderView.frame is ", self.userProfileHeaderView.frame.debugDescription)
+//        print("self.slideMenuBarView.frame is ", self.slidingTabMenuBarView.frame.debugDescription)
+//
+//        print("self.currentPageIndex is ", self.currentPageIndex)
+//
+//        print("self.contentTableView1.frame is ", self.contentTableView1.frame.debugDescription)
+//        print("self.contentTableView2.frame is ", self.contentTableView2.frame.debugDescription)
+//        print("self.contentTableView3.frame is ", self.contentTableView3.frame.debugDescription)
         
     }
 

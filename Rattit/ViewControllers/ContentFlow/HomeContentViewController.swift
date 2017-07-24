@@ -39,6 +39,10 @@ class HomeContentViewController: UIViewController {
         self.mainContentTable.delegate = self
         let momentCellNib = UINib(nibName: "MomentTableViewCell", bundle: nil)
         self.mainContentTable.register(momentCellNib, forCellReuseIdentifier: "MomentTableViewCell")
+        let questionCellNib = UINib(nibName: "QuestionTableViewCell", bundle: nil)
+        self.mainContentTable.register(questionCellNib, forCellReuseIdentifier: "QuestionTableViewCell")
+        let answerCellNib = UINib(nibName: "AnswerTableViewCell", bundle: nil)
+        self.mainContentTable.register(answerCellNib, forCellReuseIdentifier: "AnswerTableViewCell")
         self.mainContentTable.rowHeight = UITableViewAutomaticDimension
         self.mainContentTable.estimatedRowHeight = 65.0
     }
@@ -47,15 +51,25 @@ class HomeContentViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if !UserStateManager.initialContentLoaded {
-            MomentManager.sharedInstance.loadMomentsUpdatesFromServer(completion: { (hasNewMoments) in
-                print("ViewDidAppear, hasNewMoments = \(hasNewMoments)")
-                if (hasNewMoments) {
-                    UserStateManager.initialContentLoaded = true
-                    self.mainContentTable.reloadData()
-                }
-            }) { (error) in
-                print("viewDidAppear, failed to load from server.")
-            }
+//            MomentManager.sharedInstance.loadMomentsUpdatesFromServer(completion: { (hasNewMoments) in
+//                print("ViewDidAppear, hasNewMoments = \(hasNewMoments)")
+//                if (hasNewMoments) {
+//                    UserStateManager.initialContentLoaded = true
+//                    self.mainContentTable.reloadData()
+//                }
+//            }) { (error) in
+//                print("viewDidAppear, failed to load from server.")
+//            }
+            
+            DataFlowManager.sharedInstance.loadUnitsFromServer(completion: {
+                
+                print("HomeContentViewController.viewDidAppear(), load from server success.")
+                UserStateManager.initialContentLoaded = true
+                self.mainContentTable.reloadData()
+                
+            }, errorHandler: { (error) in
+                print("HomeContentViewController.viewDidAppear(), failed to load from server.")
+            })
         }
         
     }
@@ -84,16 +98,39 @@ extension HomeContentViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return MomentManager.sharedInstance.displaySequenceOfContents.count
+        return DataFlowManager.sharedInstance.allContentUnits.count
+//        return MomentManager.sharedInstance.displaySequenceOfContents.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MomentTableViewCell", for: indexPath) as! MomentTableViewCell
         
-        let displayMomentId = MomentManager.sharedInstance.displaySequenceOfContents[indexPath.row]
-        cell.initializeContent(moment: MomentManager.sharedInstance.downloadedContents[displayMomentId]!, sideLength: Double(self.view.frame.width))
+        let sideLength = Double(self.view.frame.width)
+        let dataUnit = DataFlowManager.sharedInstance.allContentUnits[indexPath.row]
+        switch dataUnit.contentType {
+        case .moment:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MomentTableViewCell", for: indexPath) as! MomentTableViewCell
+            let moment = MomentManager.sharedInstance.downloadedContents[dataUnit.id]!
+            cell.initializeContent(moment: moment, sideLength: sideLength)
+            return cell
+        case .question:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionTableViewCell", for: indexPath) as! QuestionTableViewCell
+            let question = QuestionManager.sharedInstance.downloadedContents[dataUnit.id]!
+            cell.initializeContent(question: question, sideLength: sideLength)
+            return cell
+        case .answer:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AnswerTableViewCell", for: indexPath) as! AnswerTableViewCell
+            let answer = AnswerManager.sharedInstance.downloadedContents[dataUnit.id]!
+            cell.initializeContent(answer: answer, sideLength: sideLength)
+            return cell
+        }
         
-        return cell
+        
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "MomentTableViewCell", for: indexPath) as! MomentTableViewCell
+//
+//        let displayMomentId = MomentManager.sharedInstance.displaySequenceOfContents[indexPath.row]
+//        cell.initializeContent(moment: MomentManager.sharedInstance.downloadedContents[displayMomentId.id]!, sideLength: Double(self.view.frame.width))
+//
+//        return cell
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {

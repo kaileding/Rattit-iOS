@@ -13,15 +13,16 @@ class Question: MainContent {
     var createdBy: String?
     var createdAt: Date?
     var createdByInfo: RattitUser?
+    var dataFlowContentUnit: DataFlowContentUnit?
     
     var title: String!
+    var words: String!
     var accessLevel: RattitContentAccessLevel = .levelPublic
     var interestsNumber: Int = 0
     var invitesNumber: Int = 0
     var pitysNumber: Int = 0
     
     // optional fields
-    var words: String? = nil
     var photos: [Photo]? = nil
     var hashTags: [String]? = nil
     var attachmentUrl: String? = nil
@@ -35,6 +36,7 @@ class Question: MainContent {
         guard let json = dataValue as? [String: Any],
             let id = json["id"] as? String,
             let title = json["title"] as? String,
+            let words = json["words"] as? String,
             let createdBy = json["createdBy"] as? String,
             let createdAtStr = json["createdAt"] as? String,
             let createdAt = createdAtStr.utcStringToDate,
@@ -49,16 +51,15 @@ class Question: MainContent {
         self.id = id
         self.createdBy = createdBy
         self.createdAt = createdAt
+        self.dataFlowContentUnit = DataFlowContentUnit(contentType: .question, id: id, createdAt: createdAt)
         
         self.title = title
+        self.words = words
         self.accessLevel = RattitContentAccessLevel(rawValue: accessLevel) ?? .levelPublic
         self.interestsNumber = interestsNumber
         self.invitesNumber = invitesNumber
         self.pitysNumber = pitysNumber
         
-        if let words = json["words"] as? String {
-            self.words = words
-        }
         if let photosDataValues = json["photos"] as? [Any] {
             var tempPhotos: [Photo] = []
             photosDataValues.forEach { (photoData) in
@@ -91,5 +92,6 @@ class Question: MainContent {
         self.id = nil
         self.createdBy = createdBy
         self.createdAt = nil
+        self.dataFlowContentUnit = nil
     }
 }

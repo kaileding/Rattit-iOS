@@ -12,6 +12,8 @@ class ContentDisplayTableView: UIView, UITableViewDelegate, UITableViewDataSourc
 
     @IBOutlet weak var contentTableView: UITableView!
     
+    var contentType: RattitContentType! = .moment
+    
 //    var resizeTopHeaderViewHeightDelegate: ResizeTableViewHeaderDelegate? = nil
     var parentVC: FlyHomeViewController? = nil
     var lastScrollOffset: CGPoint = CGPoint.zero
@@ -30,13 +32,19 @@ class ContentDisplayTableView: UIView, UITableViewDelegate, UITableViewDataSourc
         contentDisplayTableView.contentTableView.delegate = contentDisplayTableView
         contentDisplayTableView.contentTableView.estimatedRowHeight = 44.0
         contentDisplayTableView.contentTableView.rowHeight = UITableViewAutomaticDimension
+        
         let momentCellNib = UINib(nibName: "MomentTableViewCell", bundle: nil)
         contentDisplayTableView.contentTableView.register(momentCellNib, forCellReuseIdentifier: "MomentTableViewCell")
+        let questionCellNib = UINib(nibName: "QuestionTableViewCell", bundle: nil)
+        contentDisplayTableView.contentTableView.register(questionCellNib, forCellReuseIdentifier: "QuestionTableViewCell")
+        let answerCellNib = UINib(nibName: "AnswerTableViewCell", bundle: nil)
+        contentDisplayTableView.contentTableView.register(answerCellNib, forCellReuseIdentifier: "AnswerTableViewCell")
         
         return contentDisplayTableView
     }
     
-    func initializeData(backgroundColor: UIColor) {
+    func initializeData(contentType: RattitContentType, backgroundColor: UIColor) {
+        self.contentType = contentType
         self.contentTableView.backgroundColor = backgroundColor
         self.layoutIfNeeded()
         self.sizeToFit()
@@ -44,23 +52,51 @@ class ContentDisplayTableView: UIView, UITableViewDelegate, UITableViewDataSourc
     }
     
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return UserStateManager.sharedInstance.dummyMyMoments.count
-    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch self.contentType {
+        case .moment:
+            return UserStateManager.sharedInstance.dummyMyMoments.count
+        case .question:
+            return UserStateManager.sharedInstance.dummyMyQuestions.count
+        case .answer:
+            return UserStateManager.sharedInstance.dummyMyAnswers.count
+        default:
+            return 0
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MomentTableViewCell", for: indexPath) as! MomentTableViewCell
         
-        let displayMomentId = UserStateManager.sharedInstance.dummyMyMoments[indexPath.row]
-        cell.initializeContent(moment: MomentManager.sharedInstance.downloadedContents[displayMomentId]!, sideLength: Double(self.frame.width))
-        
-        print("tableView(:cellForRowAt:) func. self.frame.width is \(self.frame.width)")
-        
-        return cell
+        let sideLength = Double(self.frame.width)
+        switch self.contentType {
+        case .moment:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "MomentTableViewCell", for: indexPath) as! MomentTableViewCell
+            
+            let displayMomentId = UserStateManager.sharedInstance.dummyMyMoments[indexPath.row]
+            cell.initializeContent(moment: MomentManager.sharedInstance.downloadedContents[displayMomentId]!, sideLength: sideLength)
+            
+            return cell
+        case .question:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionTableViewCell", for: indexPath) as! QuestionTableViewCell
+            
+            let displayQuestionId = UserStateManager.sharedInstance.dummyMyQuestions[indexPath.row]
+            cell.initializeContent(question: QuestionManager.sharedInstance.downloadedContents[displayQuestionId]!, sideLength: sideLength)
+            
+            return cell
+        case .answer:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AnswerTableViewCell", for: indexPath) as! AnswerTableViewCell
+            
+            let displayAnswerId = UserStateManager.sharedInstance.dummyMyAnswers[indexPath.row]
+            cell.initializeContent(answer: AnswerManager.sharedInstance.downloadedContents[displayAnswerId]!, sideLength: sideLength)
+            
+            return cell
+        default:
+            return UITableViewCell()
+        }
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -98,4 +134,8 @@ class ContentDisplayTableView: UIView, UITableViewDelegate, UITableViewDataSourc
         }
     }
 
+}
+
+extension ContentDisplayTableView {
+    
 }

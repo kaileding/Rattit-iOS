@@ -169,18 +169,20 @@ class RattitUserManager: NSObject {
         let selfUserId = UserStateManager.sharedInstance.dummyUserId
         Network.sharedInstance.callRattitContentService(httpRequest: .unfollowAUser(targetUserId: targetUserId, byUser: selfUserId), completion: { (dataValue) in
             
-            guard let responseMessage = dataValue as? String, responseMessage == "OK" else {
-                DispatchQueue.main.async {
-                    errorHandler(RattitError.caseError(message: "unfollow user call response message is not OK."))
+            if let json = dataValue as? [String: Any], let success = json["success"] as? String {
+                if success == "OK" {
+                    
+                    DispatchQueue.main.async {
+                        if let targetUserIndex = UserStateManager.sharedInstance.dummyMyFollowees.index(of: targetUserId) {
+                            UserStateManager.sharedInstance.dummyMyFollowees.remove(at: targetUserIndex)
+                        }
+                        completion()
+                    }
+                    return
                 }
-                return
             }
-            
             DispatchQueue.main.async {
-                if let targetUserIndex = UserStateManager.sharedInstance.dummyMyFollowees.index(of: targetUserId) {
-                    UserStateManager.sharedInstance.dummyMyFollowees.remove(at: targetUserIndex)
-                }
-                completion()
+                errorHandler(RattitError.caseError(message: "unfollow user call response message is not OK."))
             }
         
         }) { (error) in

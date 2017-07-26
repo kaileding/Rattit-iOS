@@ -15,6 +15,7 @@ class ReusableFriendProfileViewController: UIViewController, UIGestureRecognizer
     @IBOutlet weak var slidingTabMenuBarView: SlidingTabMenuBarView!
     @IBOutlet weak var contentDisplayView: UIView!
     
+    var friendProfilePageRightBarButtonItemView: ReusableRightNavBarItemViewForProfileVC!
     var contentTableView1: ContentDisplayTableView = ContentDisplayTableView.instantiateFromXib()
     var contentTableView2: ContentDisplayTableView = ContentDisplayTableView.instantiateFromXib()
     var contentTableView3: ContentDisplayTableView = ContentDisplayTableView.instantiateFromXib()
@@ -29,6 +30,7 @@ class ReusableFriendProfileViewController: UIViewController, UIGestureRecognizer
     // vertical swipe
     @IBOutlet weak var profileHeaderTopConstraint: NSLayoutConstraint!
     var profileHeaderHeight: CGFloat = 0.0
+    var vSwipeStarted: Bool = false
     
     var segueDestContentType: RattitUserRelationshipType = .follower
     
@@ -75,8 +77,8 @@ class ReusableFriendProfileViewController: UIViewController, UIGestureRecognizer
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let friendProfilePageRightBarButtonItemView = ReusableRightNavBarItemViewForProfileVC.instantiateFromXib(userId: self.userId)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: friendProfilePageRightBarButtonItemView)
+        self.friendProfilePageRightBarButtonItemView = ReusableRightNavBarItemViewForProfileVC.instantiateFromXib(userId: self.userId)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: self.friendProfilePageRightBarButtonItemView)
         
         self.friendProfileHeaderView.initializeData(userId: self.userId)
         self.friendProfileHeaderView.sizeToFit()
@@ -213,23 +215,34 @@ extension ReusableFriendProfileViewController {
     }
     
     func resizeTableHeaderViewHeight(step: CGFloat) {
+        if !self.vSwipeStarted {
+            self.friendProfilePageRightBarButtonItemView.setStatus()
+            let isFollowingThisUser = UserStateManager.sharedInstance.dummyMyFollowees.contains(self.userId)
+//            print("in FriendProfileViewController, vSwipeStart: isFollowingThisUser is \(isFollowingThisUser)")
+            self.friendProfileHeaderView.followActionButtonView.initializeData(userId: self.userId, isFollowing: isFollowingThisUser)
+        }
+        self.vSwipeStarted = true
+            
         let targetConstantVal = self.profileHeaderTopConstraint.constant - step
-//        let targetRatio = targetConstantVal / (self.profileHeaderHeight)
+        let targetRatio = targetConstantVal / (self.profileHeaderHeight)
         //        print("targetConstantVal = \(targetConstantVal)")
         if targetConstantVal < -self.profileHeaderHeight {
             self.profileHeaderTopConstraint.constant = -self.profileHeaderHeight
-//            self.flyHomeViewNavBarTitleView.slideTitleViews(ratio: -1)
+            self.friendProfilePageRightBarButtonItemView.slideButtonViews(ratio: -1)
+            self.vSwipeStarted = false
         } else if targetConstantVal > 0 {
             self.profileHeaderTopConstraint.constant = 0
-//            self.flyHomeViewNavBarTitleView.slideTitleViews(ratio: 0)
+            self.friendProfilePageRightBarButtonItemView.slideButtonViews(ratio: 0)
+            self.vSwipeStarted = false
         } else {
             self.profileHeaderTopConstraint.constant = targetConstantVal
-//            self.flyHomeViewNavBarTitleView.slideTitleViews(ratio: targetRatio)
+            self.friendProfilePageRightBarButtonItemView.slideButtonViews(ratio: targetRatio)
         }
     }
     
     func continueVerticalSliding() {
-//        self.flyHomeViewNavBarTitleView.continueVerticalSliding()
+        self.vSwipeStarted = false
+        self.friendProfilePageRightBarButtonItemView.continueVerticalSliding()
         
         if self.profileHeaderTopConstraint.constant < -0.5*self.profileHeaderHeight
             && self.profileHeaderTopConstraint.constant > -self.profileHeaderHeight {

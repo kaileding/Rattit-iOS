@@ -10,5 +10,5 @@ import Foundation
 
 protocol ReusableUserCellDelegate: class {
     func tappedUserAvatarOfCell(userId: String)
-    func tappedFollowButtonOfCell(userId: String, toFollow: Bool)
+//    func tappedFollowButtonOfCell(userId: String, toFollow: Bool)
 }

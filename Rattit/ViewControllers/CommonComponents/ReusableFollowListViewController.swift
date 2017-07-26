@@ -1,64 +1,50 @@
 //
-//  FollowerFollowingViewController.swift
+//  ReusableFollowListViewController.swift
 //  Rattit
 //
-//  Created by DINGKaile on 7/6/17.
+//  Created by DINGKaile on 7/25/17.
 //  Copyright © 2017 KaileDing. All rights reserved.
 //
 
 import UIKit
 
-class FollowerFollowingViewController: UIViewController {
+class ReusableFollowListViewController: UIViewController {
     
-    @IBOutlet weak var contentTableView: UITableView!
-    
-    
+    @IBOutlet weak var followTable: UITableView!
     
     
+    var ownerId: String!
     var contentType: RattitUserRelationshipType = .follower
+    var navigationTitle: String!
     var usersList: [String] = [] // array of userIds
-    
-    
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
-        self.contentTableView.dataSource = self
-        self.contentTableView.delegate = self
-        self.contentTableView.estimatedRowHeight = 62.0
-        self.contentTableView.rowHeight = UITableViewAutomaticDimension
+        self.followTable.dataSource = self
+        self.followTable.delegate = self
+        self.followTable.estimatedRowHeight = 62.0
+        self.followTable.rowHeight = UITableViewAutomaticDimension
         
         let userCellNib = UINib(nibName: "ReusableUserTableViewCell", bundle: nil)
-        self.contentTableView.register(userCellNib, forCellReuseIdentifier: "ReusableUserTableViewCell")
+        self.followTable.register(userCellNib, forCellReuseIdentifier: "ReusableUserTableViewCell")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        switch self.contentType {
-        case .follower:
-            self.navigationItem.title = "My Followers"
-        case .followee:
-            self.navigationItem.title = "My Followings"
-        case .friends:
-            self.navigationItem.title = "My Friends"
-        }
-        
-        let selfUser = UserStateManager.sharedInstance.dummyUser
-        RattitUserManager.sharedInstance.getFollowersOrFolloweesOfUser(userId: selfUser!.id!, relationType: self.contentType, completion: { (totalNum, userGroupIds) in
+        self.navigationItem.title = self.navigationTitle
+        RattitUserManager.sharedInstance.getFollowersOrFolloweesOfUser(userId: self.ownerId, relationType: self.contentType, completion: { (totalNum, userGroupIds) in
             
             self.usersList = userGroupIds
-            self.contentTableView.reloadData()
+            self.followTable.reloadData()
         }) { (error) in
             print("Unable to get \(self.contentType.rawValue) from RattitUserManager.")
         }
         
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -77,10 +63,10 @@ class FollowerFollowingViewController: UIViewController {
 
 }
 
-extension FollowerFollowingViewController: UITableViewDataSource, UITableViewDelegate, ReusableUserCellDelegate {
+extension ReusableFollowListViewController: UITableViewDataSource, UITableViewDelegate, ReusableUserCellDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-         return 1
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -90,7 +76,7 @@ extension FollowerFollowingViewController: UITableViewDataSource, UITableViewDel
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableUserTableViewCell", for: indexPath) as! ReusableUserTableViewCell
         let userId = self.usersList[indexPath.row]
-        cell.initializeData(userId: userId, isFollowing: (indexPath.row / 2 == 0), parentVC: self)
+        cell.initializeData(userId: userId, parentVC: self)
         
         return cell
     }
@@ -100,10 +86,15 @@ extension FollowerFollowingViewController: UITableViewDataSource, UITableViewDel
     }
     
     func tappedUserAvatarOfCell(userId: String) {
-        print("tappedUserAvatarOfCell delegate func called.")
-    }
-    
-    func tappedFollowButtonOfCell(userId: String, toFollow: Bool) {
-        print("tappedFollowButtonOfCell delegate func called.")
+        print("in FollowerFollowingViewController, tappedUserAvatarOfCell() func called.")
+        let friendProfileVC = ReusableFriendProfileViewController(nibName: "ReusableFriendProfileViewController", bundle: nil)
+        
+        friendProfileVC.userId = userId
+        friendProfileVC.topLayoutGuideHeight = self.topLayoutGuide.length
+        friendProfileVC.bottomLayoutGuideHeight = self.bottomLayoutGuide.length
+        friendProfileVC.screenWidth = self.view.frame.width
+        
+        self.navigationItem.title = "Back"
+        self.navigationController?.pushViewController(friendProfileVC, animated: true)
     }
 }

@@ -1,21 +1,19 @@
 //
-//  FlyHomeViewController.swift
+//  ReusableFriendProfileViewController.swift
 //  Rattit
 //
-//  Created by DINGKaile on 7/4/17.
+//  Created by DINGKaile on 7/24/17.
 //  Copyright © 2017 KaileDing. All rights reserved.
 //
 
 import UIKit
 
-class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate, SlideTableHeaderDelegate {
+class ReusableFriendProfileViewController: UIViewController, UIGestureRecognizerDelegate, SlideTableHeaderDelegate {
     
-    @IBOutlet weak var outerVisibleView: UIView!
-    @IBOutlet weak var userProfileHeaderView: UserProfileHeaderView!
+    @IBOutlet weak var outerView: UIView!
+    @IBOutlet weak var friendProfileHeaderView: ReusableFriendProfileHeaderView!
     @IBOutlet weak var slidingTabMenuBarView: SlidingTabMenuBarView!
-    @IBOutlet weak var contentCanvasView: UIView!
-    
-    var flyHomeViewNavBarTitleView: FlyHomeViewNavBarTitleView = FlyHomeViewNavBarTitleView.instantiateFromXib()
+    @IBOutlet weak var contentDisplayView: UIView!
     
     var contentTableView1: ContentDisplayTableView = ContentDisplayTableView.instantiateFromXib()
     var contentTableView2: ContentDisplayTableView = ContentDisplayTableView.instantiateFromXib()
@@ -34,25 +32,28 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate, Slid
     
     var segueDestContentType: RattitUserRelationshipType = .follower
     
+    var topLayoutGuideHeight: CGFloat! = 0
+    var bottomLayoutGuideHeight: CGFloat! = 0
+    var screenWidth: CGFloat! = 320.0
+    
+    var userId: String!
+    var userObj: RattitUser? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.navigationItem.titleView = self.flyHomeViewNavBarTitleView
-        let flyHomePageRightBarButtonItemView = ReusableNavBarItemView.instantiateFromXib(buttonImageName: "settingIcon")
-        flyHomePageRightBarButtonItemView.setButtonExecutionBlock {
-            self.rightBarButtonPressed()
-        }
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: flyHomePageRightBarButtonItemView)
+        NSLayoutConstraint(item: self.outerView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: self.topLayoutGuideHeight).isActive = true
+        NSLayoutConstraint(item: self.outerView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: -self.bottomLayoutGuideHeight).isActive = true
         
-        self.userProfileHeaderView.setHandlerForFollowerViewTapping {
-            self.navigateToFollowListViewController(listContentTye: .follower)
+        self.friendProfileHeaderView.setHandlerForImageTappig {
+            self.tappedUserAvatarImage()
         }
-        self.userProfileHeaderView.setHandlerForFollowingViewTapping {
-            self.navigateToFollowListViewController(listContentTye: .followee)
+        self.friendProfileHeaderView.setHandlerForFollowerViewTapping {
+            self.tappedUserFollowersButton()
         }
-        self.userProfileHeaderView.setHandlerForFriendsViewTapping {
-            self.navigateToFollowListViewController(listContentTye: .friends)
+        self.friendProfileHeaderView.setHandlerForFollowingViewTapping {
+            self.tappedUserFollowingsButton()
         }
         
         self.slidingTabMenuBarView.setTabMenuTappingHandler { (destinationIndex) in
@@ -60,8 +61,8 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate, Slid
         }
         let hSwipeRecognizer = UIPanGestureRecognizer(target: self, action: #selector(hSwipeGestureRecognized(gestureRecognizer:)))
         hSwipeRecognizer.delegate = self
-        self.contentCanvasView.addGestureRecognizer(hSwipeRecognizer)
-        self.contentCanvasView.translatesAutoresizingMaskIntoConstraints = false
+        self.contentDisplayView.addGestureRecognizer(hSwipeRecognizer)
+        self.contentDisplayView.translatesAutoresizingMaskIntoConstraints = false
         self.setConstraintsToContentViews()
         
         self.contentTableView1.parentVC = self
@@ -74,42 +75,39 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate, Slid
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let selfUser = UserStateManager.sharedInstance.dummyUser
-        if let validUser = selfUser {
-            self.flyHomeViewNavBarTitleView.initializeData(userName: "@"+validUser.userName, firstName: validUser.firstName)
-        } else {
-            self.flyHomeViewNavBarTitleView.initializeData(userName: "Rattit", firstName: "Rattit")
+        let friendProfilePageRightBarButtonItemView = ReusableRightNavBarItemViewForProfileVC.instantiateFromXib(userId: self.userId)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: friendProfilePageRightBarButtonItemView)
+        
+        self.friendProfileHeaderView.initializeData(userId: self.userId)
+        self.friendProfileHeaderView.sizeToFit()
+        self.outerView.layoutIfNeeded()
+        self.view.layoutIfNeeded()
+        self.profileHeaderHeight = self.friendProfileHeaderView.frame.height
+        
+        self.contentTableView1.initializeData(userId: self.userId, contentType: .moment, sideLength: self.screenWidth)
+        self.contentTableView2.initializeData(userId: self.userId, contentType: .question, sideLength: self.screenWidth)
+        self.contentTableView3.initializeData(userId: self.userId, contentType: .answer, sideLength: self.screenWidth)
+        
+        RattitUserManager.sharedInstance.getRattitUserForId(id: self.userId, completion: { (user) in
+            
+            self.navigationItem.title = "@"+user.userName
+            self.userObj = user
+        }) { (error) in
+            print("Unable to get information about the user (id=\(self.userId)).")
         }
         
-        let selfUserId = UserStateManager.sharedInstance.dummyUserId
-        self.userProfileHeaderView.initializeData(userId: selfUserId)
-        self.userProfileHeaderView.sizeToFit()
-        self.outerVisibleView.layoutIfNeeded()
-        self.view.layoutIfNeeded()
-        self.profileHeaderHeight = self.userProfileHeaderView.frame.height
-        
-        self.slidingTabMenuBarView.initializeSliderPostion(pos: self.currentPageIndex)
-        
-        let screenWidth = self.view.frame.width
-        self.contentTableView1.initializeData(userId: selfUserId, contentType: .moment, sideLength: screenWidth)
-        self.contentTableView2.initializeData(userId: selfUserId, contentType: .question, sideLength: screenWidth)
-        self.contentTableView3.initializeData(userId: selfUserId, contentType: .answer, sideLength: screenWidth)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-//        print("\n in ViewDidAppear:")
+        self.slidingTabMenuBarView.initializeSliderPostion(pos: self.currentPageIndex)
+        
+//        print("FriendProfileViewController.viewDidAppear().")
 //        print("self.view.frame is ", self.view.frame.debugDescription)
-//        print("self.outerVisibleView.frame is ", self.outerVisibleView.frame.debugDescription)
-//        print("self.userProfileHeaderView.frame is ", self.userProfileHeaderView.frame.debugDescription)
-//        print("self.slideMenuBarView.frame is ", self.slidingTabMenuBarView.frame.debugDescription)
-//
-//        print("self.currentPageIndex is ", self.currentPageIndex)
-//
-//        print("self.contentTableView1.frame is ", self.contentTableView1.frame.debugDescription)
-//        print("self.contentTableView2.frame is ", self.contentTableView2.frame.debugDescription)
-//        print("self.contentTableView3.frame is ", self.contentTableView3.frame.debugDescription)
+//        print("self.outerView.frame is ", self.outerView.frame.debugDescription)
+//        print("self.friendProfileHeaderView.frame is ", self.friendProfileHeaderView.frame.debugDescription)
+//        print("self.topLayoutGuide.length is ", self.topLayoutGuide.length)
         
     }
 
@@ -117,40 +115,26 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate, Slid
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
 }
 
-extension FlyHomeViewController {
-    
-    // rightBarButtonPressed funciton
-    func rightBarButtonPressed() {
-        print("--- yes! rightBarButtonPressed() func.")
+extension ReusableFriendProfileViewController {
+    func tappedUserAvatarImage() {
+        print("in ReusableFriendProfileViewController, tappedUserAvatarImage() func called.")
     }
     
-    func navigateToFollowListViewController(listContentTye: RattitUserRelationshipType = .follower) {
-        
-        let selfUser = UserStateManager.sharedInstance.dummyUser
-        if let validUser = selfUser {
-            let followListVC = ReusableFollowListViewController(nibName: "ReusableFollowListViewController", bundle: nil)
-            followListVC.contentType = listContentTye
-            followListVC.ownerId = validUser.id!
-            switch listContentTye {
-            case .follower:
-                followListVC.navigationTitle = "My Followers"
-            case .followee:
-                followListVC.navigationTitle = "My Followings"
-            case .friends:
-                followListVC.navigationTitle = "My Friends"
-            }
-            
-            self.navigationController?.pushViewController(followListVC, animated: true)
-        }
+    func tappedUserFollowersButton() {
+        print("in ReusableFriendProfileViewController, tappedUserFollowersButton() func called.")
+    }
+    
+    func tappedUserFollowingsButton() {
+        print("in ReusableFriendProfileViewController, tappedUserFollowingsButton() func called.")
     }
     
     // PanGestureRecognizer function
     func hSwipeGestureRecognized(gestureRecognizer: UIPanGestureRecognizer) {
-        let translation = gestureRecognizer.translation(in: self.contentCanvasView)
-        let velocity = gestureRecognizer.velocity(in: self.contentCanvasView)
+        let translation = gestureRecognizer.translation(in: self.contentDisplayView)
+        let velocity = gestureRecognizer.velocity(in: self.contentDisplayView)
         
         let displacementX = self.hSwipeStartPoint.x - translation.x
         //        let displacementY = translation.y - self.hSwipeStartPoint.y
@@ -221,7 +205,7 @@ extension FlyHomeViewController {
             default:
                 break
             }
-            self.contentCanvasView.layoutIfNeeded()
+            self.contentDisplayView.layoutIfNeeded()
         }, completion: { (success) in
             self.firstContentViewLeadingConstraintStartConstant = self.firstContentViewLeadingConstraint.constant
             print("contentView continueHorizontalSliding animation complete success: \(success). Arrive at \(self.currentPageIndex)")
@@ -230,22 +214,22 @@ extension FlyHomeViewController {
     
     func resizeTableHeaderViewHeight(step: CGFloat) {
         let targetConstantVal = self.profileHeaderTopConstraint.constant - step
-        let targetRatio = targetConstantVal / (self.profileHeaderHeight)
+//        let targetRatio = targetConstantVal / (self.profileHeaderHeight)
         //        print("targetConstantVal = \(targetConstantVal)")
         if targetConstantVal < -self.profileHeaderHeight {
             self.profileHeaderTopConstraint.constant = -self.profileHeaderHeight
-            self.flyHomeViewNavBarTitleView.slideTitleViews(ratio: -1)
+//            self.flyHomeViewNavBarTitleView.slideTitleViews(ratio: -1)
         } else if targetConstantVal > 0 {
             self.profileHeaderTopConstraint.constant = 0
-            self.flyHomeViewNavBarTitleView.slideTitleViews(ratio: 0)
+//            self.flyHomeViewNavBarTitleView.slideTitleViews(ratio: 0)
         } else {
             self.profileHeaderTopConstraint.constant = targetConstantVal
-            self.flyHomeViewNavBarTitleView.slideTitleViews(ratio: targetRatio)
+//            self.flyHomeViewNavBarTitleView.slideTitleViews(ratio: targetRatio)
         }
     }
     
     func continueVerticalSliding() {
-        self.flyHomeViewNavBarTitleView.continueVerticalSliding()
+//        self.flyHomeViewNavBarTitleView.continueVerticalSliding()
         
         if self.profileHeaderTopConstraint.constant < -0.5*self.profileHeaderHeight
             && self.profileHeaderTopConstraint.constant > -self.profileHeaderHeight {
@@ -273,9 +257,9 @@ extension FlyHomeViewController {
         self.contentTableView1.translatesAutoresizingMaskIntoConstraints = false
         self.contentTableView2.translatesAutoresizingMaskIntoConstraints = false
         self.contentTableView3.translatesAutoresizingMaskIntoConstraints = false
-        self.contentCanvasView.addSubview(self.contentTableView1)
-        self.contentCanvasView.addSubview(self.contentTableView2)
-        self.contentCanvasView.addSubview(self.contentTableView3)
+        self.contentDisplayView.addSubview(self.contentTableView1)
+        self.contentDisplayView.addSubview(self.contentTableView2)
+        self.contentDisplayView.addSubview(self.contentTableView3)
         
         let tablesHSpacing = NSLayoutConstraint.constraints(withVisualFormat: "H:[t1(==t2)]-0-[t2]-0-[t3(==t2)]", options: .alignAllCenterY, metrics: nil, views: ["t1": self.contentTableView1, "t2": self.contentTableView2, "t3": self.contentTableView3])
         let tablesVSpacing1 = NSLayoutConstraint.constraints(withVisualFormat: "V:|-0-[t1]-0-|", metrics: nil, views: ["t1": self.contentTableView1])
@@ -285,11 +269,13 @@ extension FlyHomeViewController {
         NSLayoutConstraint.activate(tablesVSpacing1)
         NSLayoutConstraint.activate(tablesVSpacing2)
         NSLayoutConstraint.activate(tablesVSpacing3)
-        self.contentTableView1.widthAnchor.constraint(equalTo: self.contentCanvasView.widthAnchor, constant: 0.0).isActive = true
+        self.contentTableView1.widthAnchor.constraint(equalTo: self.contentDisplayView.widthAnchor, constant: 0.0).isActive = true
         
-        self.firstContentViewLeadingConstraint = self.contentTableView1.leadingAnchor.constraint(equalTo: self.contentCanvasView.leadingAnchor, constant: 0.0)
+        self.firstContentViewLeadingConstraint = self.contentTableView1.leadingAnchor.constraint(equalTo: self.contentDisplayView.leadingAnchor, constant: 0.0)
         self.firstContentViewLeadingConstraintStartConstant = 0.0
         self.firstContentViewLeadingConstraint.isActive = true
     }
     
 }
+
+

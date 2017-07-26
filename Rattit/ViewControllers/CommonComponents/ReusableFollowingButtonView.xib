@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.14"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReusableFollowingButtonView" customModule="Rattit" customModuleProvider="target">
+            <connections>
+                <outlet property="followingButton" destination="36O-if-JTf" id="SIn-p8-Ya3"/>
+                <outlet property="leftLabel" destination="hUu-cB-1SC" id="4cD-oc-xf7"/>
+                <outlet property="leftView" destination="YZf-xm-jX7" id="CXw-Gh-ZF1"/>
+                <outlet property="rightLabel" destination="zYX-FK-Ztl" id="EcF-iq-e9T"/>
+                <outlet property="rightView" destination="7Y6-sA-ROO" id="q8F-sW-C2x"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YZf-xm-jX7">
+                    <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Following" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="hUu-cB-1SC">
+                            <rect key="frame" x="8" y="7.5" width="57.5" height="16"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hUu-cB-1SC" secondAttribute="trailing" constant="3" id="32V-c4-YCn"/>
+                        <constraint firstItem="hUu-cB-1SC" firstAttribute="centerX" secondItem="YZf-xm-jX7" secondAttribute="centerX" id="KRS-6f-03g"/>
+                        <constraint firstItem="hUu-cB-1SC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YZf-xm-jX7" secondAttribute="leading" constant="3" id="dJA-Qw-T0S"/>
+                        <constraint firstItem="hUu-cB-1SC" firstAttribute="centerY" secondItem="YZf-xm-jX7" secondAttribute="centerY" id="wQs-Tl-mSG"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Y6-sA-ROO">
+                    <rect key="frame" x="72" y="0.0" width="72" height="30"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Follow" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="zYX-FK-Ztl">
+                            <rect key="frame" x="16.5" y="7" width="39" height="16"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="zYX-FK-Ztl" firstAttribute="centerX" secondItem="7Y6-sA-ROO" secondAttribute="centerX" id="Rf6-eC-PMF"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="zYX-FK-Ztl" secondAttribute="trailing" constant="3" id="szR-Nm-ViH"/>
+                        <constraint firstItem="zYX-FK-Ztl" firstAttribute="centerY" secondItem="7Y6-sA-ROO" secondAttribute="centerY" id="xQH-Ke-aAo"/>
+                        <constraint firstItem="zYX-FK-Ztl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7Y6-sA-ROO" secondAttribute="leading" constant="3" id="zKa-3M-bkL"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="36O-if-JTf">
+                    <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="36O-if-JTf" secondAttribute="trailing" id="1Cq-e1-IsZ"/>
+                <constraint firstItem="7Y6-sA-ROO" firstAttribute="leading" secondItem="YZf-xm-jX7" secondAttribute="trailing" id="1ki-Tw-9MY"/>
+                <constraint firstItem="7Y6-sA-ROO" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="54b-2p-ZAm"/>
+                <constraint firstItem="YZf-xm-jX7" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7LA-g2-fgP"/>
+                <constraint firstItem="YZf-xm-jX7" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="AC2-ed-xzs"/>
+                <constraint firstItem="7Y6-sA-ROO" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="DiJ-4i-G9Y"/>
+                <constraint firstAttribute="bottom" secondItem="36O-if-JTf" secondAttribute="bottom" id="Nfp-jn-ljR"/>
+                <constraint firstItem="YZf-xm-jX7" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="SlY-G9-VUD"/>
+                <constraint firstItem="7Y6-sA-ROO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Sni-7n-hjE"/>
+                <constraint firstItem="36O-if-JTf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="kIs-hW-91y"/>
+                <constraint firstAttribute="bottom" secondItem="YZf-xm-jX7" secondAttribute="bottom" id="kZj-e0-Pli"/>
+                <constraint firstItem="36O-if-JTf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="qZ9-rJ-6XO"/>
+                <constraint firstAttribute="bottom" secondItem="7Y6-sA-ROO" secondAttribute="bottom" id="vfH-ah-EV4"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+</document>

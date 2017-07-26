@@ -18,7 +18,6 @@
 		850779B21F03777D00598D60 /* ComposeContentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850779B11F03777D00598D60 /* ComposeContentDelegate.swift */; };
 		851FBC611F0A4564000DEB50 /* PickedUserTogetherWithView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851FBC601F0A4564000DEB50 /* PickedUserTogetherWithView.xib */; };
 		851FBC631F0A4580000DEB50 /* PickedUserTogetherWithView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851FBC621F0A4580000DEB50 /* PickedUserTogetherWithView.swift */; };
-		852113F01F0F5E7800830F13 /* FollowerFollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852113EF1F0F5E7800830F13 /* FollowerFollowingViewController.swift */; };
 		852113F41F0F7E7500830F13 /* StyleConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852113F31F0F7E7500830F13 /* StyleConstants.swift */; };
 		852113F71F0F89FA00830F13 /* ReusableUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852113F51F0F89FA00830F13 /* ReusableUserTableViewCell.swift */; };
 		852113F81F0F89FA00830F13 /* ReusableUserTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 852113F61F0F89FA00830F13 /* ReusableUserTableViewCell.xib */; };
@@ -56,6 +55,17 @@
 		856A82431F257BAC00D59ED6 /* AnswerOptionBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 856A82421F257BAC00D59ED6 /* AnswerOptionBar.xib */; };
 		856A82451F25BB1400D59ED6 /* AnswerPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856A82441F25BB1400D59ED6 /* AnswerPreviewView.swift */; };
 		856A82471F25BB2300D59ED6 /* AnswerPreviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 856A82461F25BB2300D59ED6 /* AnswerPreviewView.xib */; };
+		857197DD1F26528200D3C4FC /* ReusableFriendProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857197DC1F26528200D3C4FC /* ReusableFriendProfileHeaderView.swift */; };
+		857197DF1F26528F00D3C4FC /* ReusableFriendProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 857197DE1F26528F00D3C4FC /* ReusableFriendProfileHeaderView.xib */; };
+		857197E11F265C0B00D3C4FC /* ReusableFollowingButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857197E01F265C0B00D3C4FC /* ReusableFollowingButtonView.swift */; };
+		857197E31F265C1500D3C4FC /* ReusableFollowingButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 857197E21F265C1500D3C4FC /* ReusableFollowingButtonView.xib */; };
+		857197E61F26DAB100D3C4FC /* ReusableFriendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857197E41F26DAB100D3C4FC /* ReusableFriendProfileViewController.swift */; };
+		857197E71F26DAB100D3C4FC /* ReusableFriendProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 857197E51F26DAB100D3C4FC /* ReusableFriendProfileViewController.xib */; };
+		857197EA1F273A0B00D3C4FC /* ReusableFollowListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857197E81F273A0B00D3C4FC /* ReusableFollowListViewController.swift */; };
+		857197EB1F273A0B00D3C4FC /* ReusableFollowListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 857197E91F273A0B00D3C4FC /* ReusableFollowListViewController.xib */; };
+		857197ED1F28446300D3C4FC /* ReusableRightNavBarItemViewForProfileVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 857197EC1F28446300D3C4FC /* ReusableRightNavBarItemViewForProfileVC.xib */; };
+		857197EF1F28447400D3C4FC /* ReusableRightNavBarItemViewForProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857197EE1F28447400D3C4FC /* ReusableRightNavBarItemViewForProfileVC.swift */; };
+		857197F11F28688000D3C4FC /* SlideTableHeaderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 857197F01F28688000D3C4FC /* SlideTableHeaderDelegate.swift */; };
 		8582A6441EFE319600483CDD /* ReusableNavBarItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8582A6431EFE319600483CDD /* ReusableNavBarItemView.xib */; };
 		8582A6461EFE326000483CDD /* ReusableNavBarItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582A6451EFE326000483CDD /* ReusableNavBarItemView.swift */; };
 		8582A64C1EFE419F00483CDD /* ComposeImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8582A64B1EFE419F00483CDD /* ComposeImageViewController.swift */; };
@@ -137,7 +147,6 @@
 		850779B11F03777D00598D60 /* ComposeContentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeContentDelegate.swift; sourceTree = "<group>"; };
 		851FBC601F0A4564000DEB50 /* PickedUserTogetherWithView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickedUserTogetherWithView.xib; sourceTree = "<group>"; };
 		851FBC621F0A4580000DEB50 /* PickedUserTogetherWithView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickedUserTogetherWithView.swift; sourceTree = "<group>"; };
-		852113EF1F0F5E7800830F13 /* FollowerFollowingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerFollowingViewController.swift; sourceTree = "<group>"; };
 		852113F31F0F7E7500830F13 /* StyleConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleConstants.swift; sourceTree = "<group>"; };
 		852113F51F0F89FA00830F13 /* ReusableUserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableUserTableViewCell.swift; sourceTree = "<group>"; };
 		852113F61F0F89FA00830F13 /* ReusableUserTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusableUserTableViewCell.xib; sourceTree = "<group>"; };
@@ -178,6 +187,17 @@
 		856A82421F257BAC00D59ED6 /* AnswerOptionBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerOptionBar.xib; sourceTree = "<group>"; };
 		856A82441F25BB1400D59ED6 /* AnswerPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerPreviewView.swift; sourceTree = "<group>"; };
 		856A82461F25BB2300D59ED6 /* AnswerPreviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerPreviewView.xib; sourceTree = "<group>"; };
+		857197DC1F26528200D3C4FC /* ReusableFriendProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableFriendProfileHeaderView.swift; sourceTree = "<group>"; };
+		857197DE1F26528F00D3C4FC /* ReusableFriendProfileHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusableFriendProfileHeaderView.xib; sourceTree = "<group>"; };
+		857197E01F265C0B00D3C4FC /* ReusableFollowingButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableFollowingButtonView.swift; sourceTree = "<group>"; };
+		857197E21F265C1500D3C4FC /* ReusableFollowingButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusableFollowingButtonView.xib; sourceTree = "<group>"; };
+		857197E41F26DAB100D3C4FC /* ReusableFriendProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableFriendProfileViewController.swift; sourceTree = "<group>"; };
+		857197E51F26DAB100D3C4FC /* ReusableFriendProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusableFriendProfileViewController.xib; sourceTree = "<group>"; };
+		857197E81F273A0B00D3C4FC /* ReusableFollowListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableFollowListViewController.swift; sourceTree = "<group>"; };
+		857197E91F273A0B00D3C4FC /* ReusableFollowListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusableFollowListViewController.xib; sourceTree = "<group>"; };
+		857197EC1F28446300D3C4FC /* ReusableRightNavBarItemViewForProfileVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusableRightNavBarItemViewForProfileVC.xib; sourceTree = "<group>"; };
+		857197EE1F28447400D3C4FC /* ReusableRightNavBarItemViewForProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableRightNavBarItemViewForProfileVC.swift; sourceTree = "<group>"; };
+		857197F01F28688000D3C4FC /* SlideTableHeaderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideTableHeaderDelegate.swift; sourceTree = "<group>"; };
 		8582A6431EFE319600483CDD /* ReusableNavBarItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusableNavBarItemView.xib; sourceTree = "<group>"; };
 		8582A6451EFE326000483CDD /* ReusableNavBarItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableNavBarItemView.swift; sourceTree = "<group>"; };
 		8582A64B1EFE419F00483CDD /* ComposeImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeImageViewController.swift; sourceTree = "<group>"; };
@@ -468,6 +488,16 @@
 				852113F61F0F89FA00830F13 /* ReusableUserTableViewCell.xib */,
 				858773B51F22D8E2004BFE27 /* ReusableImageModalViewController.swift */,
 				858773B61F22D8E2004BFE27 /* ReusableImageModalViewController.xib */,
+				857197E01F265C0B00D3C4FC /* ReusableFollowingButtonView.swift */,
+				857197E21F265C1500D3C4FC /* ReusableFollowingButtonView.xib */,
+				857197DC1F26528200D3C4FC /* ReusableFriendProfileHeaderView.swift */,
+				857197DE1F26528F00D3C4FC /* ReusableFriendProfileHeaderView.xib */,
+				857197E41F26DAB100D3C4FC /* ReusableFriendProfileViewController.swift */,
+				857197E51F26DAB100D3C4FC /* ReusableFriendProfileViewController.xib */,
+				857197E81F273A0B00D3C4FC /* ReusableFollowListViewController.swift */,
+				857197E91F273A0B00D3C4FC /* ReusableFollowListViewController.xib */,
+				857197EE1F28447400D3C4FC /* ReusableRightNavBarItemViewForProfileVC.swift */,
+				857197EC1F28446300D3C4FC /* ReusableRightNavBarItemViewForProfileVC.xib */,
 			);
 			path = CommonComponents;
 			sourceTree = "<group>";
@@ -511,7 +541,6 @@
 			children = (
 				8587D1C11F0C9FEE009D18E9 /* Components */,
 				8587D1BF1F0C512B009D18E9 /* FlyHomeViewController.swift */,
-				852113EF1F0F5E7800830F13 /* FollowerFollowingViewController.swift */,
 			);
 			path = Fly;
 			sourceTree = "<group>";
@@ -552,6 +581,7 @@
 				859564B91EF68176000D0BC8 /* AskForSignInSignUpDelegate.swift */,
 				850779B11F03777D00598D60 /* ComposeContentDelegate.swift */,
 				852113F91F0F952000830F13 /* ReusableUserCellDelegate.swift */,
+				857197F01F28688000D3C4FC /* SlideTableHeaderDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -682,6 +712,7 @@
 				85F5C20B1F245A49007F0E8C /* QuestionOptionBar.xib in Resources */,
 				85541E251F0CE45400EC91A7 /* SlidingTabMenuBarView.xib in Resources */,
 				859564A61EF64CC7000D0BC8 /* Fly.storyboard in Resources */,
+				857197E31F265C1500D3C4FC /* ReusableFollowingButtonView.xib in Resources */,
 				8582A6561F0088BA00483CDD /* DevicePhotoCollectionViewCell.xib in Resources */,
 				855700E01F00C88D0084356E /* CapturedPhotoView.xib in Resources */,
 				8595649D1EF64C2C000D0BC8 /* ContentFlow.storyboard in Resources */,
@@ -692,9 +723,11 @@
 				859564A01EF64C5E000D0BC8 /* Search.storyboard in Resources */,
 				858773AA1F2298FE004BFE27 /* QuestionPreviewView.xib in Resources */,
 				8549F0D31EFC990600385F1E /* PhotoScrollView.xib in Resources */,
+				857197EB1F273A0B00D3C4FC /* ReusableFollowListViewController.xib in Resources */,
 				851FBC611F0A4564000DEB50 /* PickedUserTogetherWithView.xib in Resources */,
 				8582A6441EFE319600483CDD /* ReusableNavBarItemView.xib in Resources */,
 				85C16E3D1F21349100D609DE /* FlyHomeViewNavBarTitleView.xib in Resources */,
+				857197DF1F26528F00D3C4FC /* ReusableFriendProfileHeaderView.xib in Resources */,
 				85AC86CB1F1D2E440093D9A3 /* ContentDisplayTableView.xib in Resources */,
 				859564B01EF6654E000D0BC8 /* MomentTableViewCell.xib in Resources */,
 				852C397B1EF5ED7E00C66C16 /* LaunchScreen.storyboard in Resources */,
@@ -702,6 +735,7 @@
 				856A82431F257BAC00D59ED6 /* AnswerOptionBar.xib in Resources */,
 				858773B81F22D8E2004BFE27 /* ReusableImageModalViewController.xib in Resources */,
 				852C397A1EF5ED7700C66C16 /* Main.storyboard in Resources */,
+				857197ED1F28446300D3C4FC /* ReusableRightNavBarItemViewForProfileVC.xib in Resources */,
 				8549F0D71EFCB66E00385F1E /* MainContentHeaderView.xib in Resources */,
 				852113F81F0F89FA00830F13 /* ReusableUserTableViewCell.xib in Resources */,
 				858773B01F22A2DB004BFE27 /* ContentTitleWordsView.xib in Resources */,
@@ -711,6 +745,7 @@
 				859564B21EF66608000D0BC8 /* ContentFlowNavigationTitleView.xib in Resources */,
 				85C16E411F219C6C00D609DE /* QuestionTableViewCell.xib in Resources */,
 				8549F0DC1EFCCAF900385F1E /* MomentOptionBar.xib in Resources */,
+				857197E71F26DAB100D3C4FC /* ReusableFriendProfileViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -828,7 +863,6 @@
 				85F5C20D1F245F96007F0E8C /* QuestionManager.swift in Sources */,
 				858773A81F2298F4004BFE27 /* QuestionPreviewView.swift in Sources */,
 				856A82451F25BB1400D59ED6 /* AnswerPreviewView.swift in Sources */,
-				852113F01F0F5E7800830F13 /* FollowerFollowingViewController.swift in Sources */,
 				859564A91EF64DA0000D0BC8 /* HomeContentViewController.swift in Sources */,
 				85E21A351EFA624C00D4F961 /* MainContent.swift in Sources */,
 				8549F0DA1EFCB85400385F1E /* MainContentHeaderView.swift in Sources */,
@@ -854,9 +888,13 @@
 				8549F0D51EFC992400385F1E /* PhotoScrollView.swift in Sources */,
 				855700E21F00C8AB0084356E /* CapturedPhotoView.swift in Sources */,
 				852113F41F0F7E7500830F13 /* StyleConstants.swift in Sources */,
+				857197EA1F273A0B00D3C4FC /* ReusableFollowListViewController.swift in Sources */,
 				859B5F4D1F061F12009A8762 /* RattitLocationManager.swift in Sources */,
 				85F5C20F1F248242007F0E8C /* AnswerManager.swift in Sources */,
+				857197E61F26DAB100D3C4FC /* ReusableFriendProfileViewController.swift in Sources */,
 				858773BB1F22F81E004BFE27 /* NotificationObjects.swift in Sources */,
+				857197E11F265C0B00D3C4FC /* ReusableFollowingButtonView.swift in Sources */,
+				857197DD1F26528200D3C4FC /* ReusableFriendProfileHeaderView.swift in Sources */,
 				8582A64C1EFE419F00483CDD /* ComposeImageViewController.swift in Sources */,
 				85023FA71EF728D100E785FD /* MomentManager.swift in Sources */,
 				85023FA91EF72E2100E785FD /* NetworkConstants.swift in Sources */,
@@ -873,6 +911,7 @@
 				85E21A371EFA668C00D4F961 /* Question.swift in Sources */,
 				8549F0DE1EFCCB1900385F1E /* MomentOptionBar.swift in Sources */,
 				852C39791EF5E95400C66C16 /* UserStateManager.swift in Sources */,
+				857197EF1F28447400D3C4FC /* ReusableRightNavBarItemViewForProfileVC.swift in Sources */,
 				85C16E401F219C6C00D609DE /* QuestionTableViewCell.swift in Sources */,
 				859564B61EF675C7000D0BC8 /* AskForSignInSignUpView.swift in Sources */,
 				853A3D1D1EF69E4C008EA58E /* Moment.swift in Sources */,
@@ -883,6 +922,7 @@
 				8549F0CB1EFB877800385F1E /* Network.swift in Sources */,
 				85E21A3B1EFA701400D4F961 /* RattitCollection.swift in Sources */,
 				85F5C2131F248558007F0E8C /* BaseContentManager.swift in Sources */,
+				857197F11F28688000D3C4FC /* SlideTableHeaderDelegate.swift in Sources */,
 				859B5F4B1F0615AE009A8762 /* GoogleLocation.swift in Sources */,
 				85F058D51F0260D5008808CE /* ComposeContentManager.swift in Sources */,
 				85F5C2091F245A3D007F0E8C /* QuestionOptionBar.swift in Sources */,

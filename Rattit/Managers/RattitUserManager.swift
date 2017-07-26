@@ -136,4 +136,56 @@ class RattitUserManager: NSObject {
         }
     }
     
+    func followUsers(targetUserIds: [String], completion: @escaping () -> Void, errorHandler: @escaping (Error) -> Void) {
+        
+        let selfUserId = UserStateManager.sharedInstance.dummyUserId
+        Network.sharedInstance.callRattitContentService(httpRequest: .followUsers(targetUserIds: targetUserIds, byUser: selfUserId), completion: { (dataValue) in
+            
+            if let rows = dataValue as? [Any] {
+                rows.forEach({ (dataValue) in
+                    if let rattitUser = RattitUser(dataValue: dataValue) {
+                        self.cachedUsers[rattitUser.id!] = rattitUser
+                        if !UserStateManager.sharedInstance.dummyMyFollowees.contains(rattitUser.id!) {
+                            UserStateManager.sharedInstance.dummyMyFollowees.append(rattitUser.id!)
+                        }
+                    }
+                })
+                
+                DispatchQueue.main.async {
+                    completion()
+                }
+            } else {
+                DispatchQueue.main.async {
+                    errorHandler(RattitError.parseError(message: "dataValue unable to be parsed into array of users."))
+                }
+            }
+        }) { (error) in
+            errorHandler(error)
+        }
+    }
+    
+    func unfollowUser(targetUserId: String, completion: @escaping () -> Void, errorHandler: @escaping (Error) -> Void) {
+        
+        let selfUserId = UserStateManager.sharedInstance.dummyUserId
+        Network.sharedInstance.callRattitContentService(httpRequest: .unfollowAUser(targetUserId: targetUserId, byUser: selfUserId), completion: { (dataValue) in
+            
+            guard let responseMessage = dataValue as? String, responseMessage == "OK" else {
+                DispatchQueue.main.async {
+                    errorHandler(RattitError.caseError(message: "unfollow user call response message is not OK."))
+                }
+                return
+            }
+            
+            DispatchQueue.main.async {
+                if let targetUserIndex = UserStateManager.sharedInstance.dummyMyFollowees.index(of: targetUserId) {
+                    UserStateManager.sharedInstance.dummyMyFollowees.remove(at: targetUserIndex)
+                }
+                completion()
+            }
+        
+        }) { (error) in
+            errorHandler(error)
+        }
+    }
+    
 }

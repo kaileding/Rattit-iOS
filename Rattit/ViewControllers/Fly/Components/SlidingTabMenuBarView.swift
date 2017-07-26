@@ -56,6 +56,8 @@ class SlidingTabMenuBarView: UIView {
         self.menuTab2Button.addTarget(self, action: #selector(tabMenuButtonPressed(sender:)), for: .touchUpInside)
         self.menuTab3Button.addTarget(self, action: #selector(tabMenuButtonPressed(sender:)), for: .touchUpInside)
         
+        self.slidingBarView.alpha = 0
+        
         self.addSubview(slidingTabMenuBarView)
         
         slidingTabMenuBarView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0.0).isActive = true
@@ -117,6 +119,8 @@ class SlidingTabMenuBarView: UIView {
             self.layer.addSublayer(bottomBorder)
             self.bottomBorderAdded = true
         }
+        
+        self.slidingBarView.alpha = 1
     }
     
     func moveSlider(ratio: CGFloat) {

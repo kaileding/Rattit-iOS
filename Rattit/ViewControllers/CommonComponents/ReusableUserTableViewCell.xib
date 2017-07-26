@@ -38,18 +38,6 @@
                             <constraint firstAttribute="height" constant="44" id="Aia-FV-Cuu"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4kc-W8-cWp">
-                        <rect key="frame" x="247" y="8" width="65" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="nXp-Xi-Dyi"/>
-                            <constraint firstAttribute="width" constant="65" id="nkn-Gt-PHN"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
-                        <inset key="contentEdgeInsets" minX="4" minY="0.0" maxX="4" maxY="0.0"/>
-                        <state key="normal" title="Following">
-                            <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        </state>
-                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NEt-mX-Vqs">
                         <rect key="frame" x="60" y="57" width="33" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -63,27 +51,35 @@
                             <constraint firstAttribute="height" constant="44" id="zbm-TS-dwm"/>
                         </constraints>
                     </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DVo-72-dbA" customClass="ReusableFollowingButtonView" customModule="Rattit" customModuleProvider="target">
+                        <rect key="frame" x="239" y="8" width="65" height="20"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="nAc-MW-rnG"/>
+                            <constraint firstAttribute="width" constant="65" id="uDO-EX-Iib"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="DVo-72-dbA" secondAttribute="trailing" constant="8" id="3VD-DS-XuJ"/>
                     <constraint firstItem="CHb-BH-L5u" firstAttribute="top" secondItem="mQE-SZ-W1E" secondAttribute="bottom" constant="6" id="5Kg-yR-AZh"/>
                     <constraint firstItem="NEt-mX-Vqs" firstAttribute="top" secondItem="CHb-BH-L5u" secondAttribute="bottom" constant="6" id="7kC-jB-ifp"/>
-                    <constraint firstAttribute="trailing" secondItem="4kc-W8-cWp" secondAttribute="trailing" constant="8" id="ATH-MY-he3"/>
                     <constraint firstItem="VM6-Vd-Teh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="GCF-GB-rbw"/>
-                    <constraint firstItem="4kc-W8-cWp" firstAttribute="top" secondItem="mQE-SZ-W1E" secondAttribute="top" id="GD6-6H-VLq"/>
                     <constraint firstItem="VM6-Vd-Teh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="IqA-96-Sbj"/>
                     <constraint firstItem="NEt-mX-Vqs" firstAttribute="leading" secondItem="VM6-Vd-Teh" secondAttribute="trailing" constant="8" id="Lkz-aG-hhT"/>
                     <constraint firstItem="mQE-SZ-W1E" firstAttribute="leading" secondItem="VM6-Vd-Teh" secondAttribute="trailing" constant="8" id="N0w-B0-nVr"/>
                     <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="NEt-mX-Vqs" secondAttribute="trailing" constant="8" id="Pet-Xg-73f"/>
                     <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="NEt-mX-Vqs" secondAttribute="bottom" constant="4" id="RbS-gt-By3"/>
+                    <constraint firstItem="DVo-72-dbA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mQE-SZ-W1E" secondAttribute="trailing" constant="8" id="V3i-5b-JgT"/>
                     <constraint firstItem="CHb-BH-L5u" firstAttribute="leading" secondItem="VM6-Vd-Teh" secondAttribute="trailing" constant="8" id="VIz-Fd-zRn"/>
+                    <constraint firstItem="DVo-72-dbA" firstAttribute="top" secondItem="mQE-SZ-W1E" secondAttribute="top" id="gsb-mq-IJ5"/>
                     <constraint firstItem="7fC-WN-CJp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="jv2-dm-DeU"/>
                     <constraint firstItem="7fC-WN-CJp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="mob-5n-IuB"/>
-                    <constraint firstItem="4kc-W8-cWp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mQE-SZ-W1E" secondAttribute="trailing" constant="8" id="sWC-kH-bF7"/>
                     <constraint firstItem="mQE-SZ-W1E" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="yZi-Iw-fim"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="followButton" destination="4kc-W8-cWp" id="TxP-jp-NjY"/>
+                <outlet property="followButtonView" destination="DVo-72-dbA" id="dfp-PP-Y4w"/>
                 <outlet property="userAvatarImageButton" destination="7fC-WN-CJp" id="ffT-4n-CPI"/>
                 <outlet property="userAvatarImageView" destination="VM6-Vd-Teh" id="7eB-il-j0f"/>
                 <outlet property="userFullNameLabel" destination="CHb-BH-L5u" id="iCS-v7-a04"/>

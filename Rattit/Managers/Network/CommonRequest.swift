@@ -190,5 +190,19 @@ struct CommonRequest {
         return CommonRequest(urlPath: "/users/\(userId)/friends", method: .get)
     }
     
+    // follow users
+    static func followUsers(targetUserIds: [String], byUser: String) -> CommonRequest {
+        var followUsersRequest = CommonRequest(urlPath: "/users/\(byUser)/followees", method: .post)
+        followUsersRequest.parameters = ["followees": targetUserIds]
+        followUsersRequest.endcoding = JSONEncoding.default
+        
+        return followUsersRequest
+    }
+    
+    // unfollow a user
+    static func unfollowAUser(targetUserId: String, byUser: String) -> CommonRequest {
+        return CommonRequest(urlPath: "/users/\(byUser)/followees/\(targetUserId)", method: .delete)
+    }
+    
 }
 

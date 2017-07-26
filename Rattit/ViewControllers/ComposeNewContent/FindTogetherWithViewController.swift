@@ -84,7 +84,7 @@ extension FindTogetherWithViewController: UITableViewDataSource, UITableViewDele
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableUserTableViewCell") as! ReusableUserTableViewCell
         let userToShow = Array(RattitUserManager.sharedInstance.cachedUsers.values)[indexPath.row]
-        cell.initializeData(userId: userToShow.id!, isFollowing: (indexPath.row / 2 == 0), parentVC: self)
+        cell.initializeData(userId: userToShow.id!, parentVC: self)
         return cell
     }
     
@@ -109,12 +109,12 @@ extension FindTogetherWithViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tappedUserAvatarOfCell(userId: String) {
-        print("tappedUserAvatarOfCell delegate func called.")
+        print("in FindTogetherWithViewController, tappedUserAvatarOfCell() func called.")
     }
     
-    func tappedFollowButtonOfCell(userId: String, toFollow: Bool) {
-        print("tappedFollowButtonOfCell delegate func called.")
-    }
+//    func tappedFollowButtonOfCell(userId: String, toFollow: Bool) {
+//        print("tappedFollowButtonOfCell delegate func called.")
+//    }
     
 }
 

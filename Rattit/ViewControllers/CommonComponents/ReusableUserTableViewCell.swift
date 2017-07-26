@@ -17,11 +17,14 @@ class ReusableUserTableViewCell: UITableViewCell {
     @IBOutlet weak var userFullNameLabel: UILabel!
     @IBOutlet weak var userManifestoLabel: UILabel!
     
-    @IBOutlet weak var followButton: UIButton!
+    @IBOutlet weak var followButtonView: ReusableFollowingButtonView!
+    
+    
+//    @IBOutlet weak var followButton: UIButton!
     
     var userId: String? = nil
     var parentVC: ReusableUserCellDelegate? = nil
-    var isFollowing: Bool = false
+//    var isFollowing: Bool = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,12 +36,12 @@ class ReusableUserTableViewCell: UITableViewCell {
         
         self.userAvatarImageButton.addTarget(self, action: #selector(avatarImageTapped), for: .touchUpInside)
         
-        self.followButton.layer.borderWidth = 1.0
-        self.followButton.layer.borderColor = RattitStyleColors.clickableButtonBlue.cgColor
-        self.followButton.layer.cornerRadius = 2.0
-        self.followButton.clipsToBounds = true
-        self.followButton.backgroundColor = RattitStyleColors.backgroundGray
-        self.followButton.addTarget(self, action: #selector(followButtonPressed), for: .touchUpInside)
+//        self.followButton.layer.borderWidth = 1.0
+//        self.followButton.layer.borderColor = RattitStyleColors.clickableButtonBlue.cgColor
+//        self.followButton.layer.cornerRadius = 2.0
+//        self.followButton.clipsToBounds = true
+//        self.followButton.backgroundColor = RattitStyleColors.backgroundGray
+//        self.followButton.addTarget(self, action: #selector(followButtonPressed), for: .touchUpInside)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -47,10 +50,9 @@ class ReusableUserTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func initializeData(userId: String, isFollowing: Bool, parentVC: ReusableUserCellDelegate!) {
+    func initializeData(userId: String, parentVC: ReusableUserCellDelegate!) {
         self.userId = userId
         self.parentVC = parentVC
-        self.isFollowing = isFollowing
         
         RattitUserManager.sharedInstance.getRattitUserAvatarImage(userId: userId, completion: { (image) in
             self.userAvatarImageView.image = image
@@ -66,17 +68,19 @@ class ReusableUserTableViewCell: UITableViewCell {
             print("Unable to get user. Error is \(error.localizedDescription)")
         }
         
-        if isFollowing {
-            self.followButton.backgroundColor = RattitStyleColors.backgroundGray
-            self.followButton.setTitle("Following", for: .normal)
-            self.followButton.setTitleColor(UIColor.darkGray, for: .normal)
-            self.followButton.layer.borderWidth = 0.0
-        } else {
-            self.followButton.backgroundColor = UIColor.clear
-            self.followButton.setTitle("Follow", for: .normal)
-            self.followButton.setTitleColor(RattitStyleColors.clickableButtonBlue, for: .normal)
-            self.followButton.layer.borderWidth = 1.0
-        }
+        let isFollowingThisUser = UserStateManager.sharedInstance.dummyMyFollowees.contains(userId)
+        self.followButtonView.initializeData(userId: userId, isFollowing: isFollowingThisUser)
+//        if isFollowing {
+//            self.followButton.backgroundColor = RattitStyleColors.backgroundGray
+//            self.followButton.setTitle("Following", for: .normal)
+//            self.followButton.setTitleColor(UIColor.darkGray, for: .normal)
+//            self.followButton.layer.borderWidth = 0.0
+//        } else {
+//            self.followButton.backgroundColor = UIColor.clear
+//            self.followButton.setTitle("Follow", for: .normal)
+//            self.followButton.setTitleColor(RattitStyleColors.clickableButtonBlue, for: .normal)
+//            self.followButton.layer.borderWidth = 1.0
+//        }
     }
     
     func avatarImageTapped() {
@@ -90,8 +94,8 @@ class ReusableUserTableViewCell: UITableViewCell {
     func followButtonPressed() {
         print("followButtonPressed. userId = \(self.userId!), username = \(self.userNameLabel.text!)")
         
-        if self.parentVC != nil {
-            self.parentVC!.tappedFollowButtonOfCell(userId: self.userId!, toFollow: !self.isFollowing)
-        }
+//        if self.parentVC != nil {
+//            self.parentVC!.tappedFollowButtonOfCell(userId: self.userId!, toFollow: !self.isFollowing)
+//        }
     }
 }

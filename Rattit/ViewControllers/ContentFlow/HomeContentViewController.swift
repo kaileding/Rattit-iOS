@@ -51,16 +51,6 @@ class HomeContentViewController: UIViewController {
         super.viewDidAppear(animated)
         
         if !UserStateManager.initialContentLoaded {
-//            MomentManager.sharedInstance.loadMomentsUpdatesFromServer(completion: { (hasNewMoments) in
-//                print("ViewDidAppear, hasNewMoments = \(hasNewMoments)")
-//                if (hasNewMoments) {
-//                    UserStateManager.initialContentLoaded = true
-//                    self.mainContentTable.reloadData()
-//                }
-//            }) { (error) in
-//                print("viewDidAppear, failed to load from server.")
-//            }
-            
             DataFlowManager.sharedInstance.loadUnitsFromServer(completion: {
                 
                 print("HomeContentViewController.viewDidAppear(), load from server success.")
@@ -110,27 +100,19 @@ extension HomeContentViewController: UITableViewDataSource, UITableViewDelegate 
         case .moment:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MomentTableViewCell", for: indexPath) as! MomentTableViewCell
             let moment = MomentManager.sharedInstance.downloadedContents[dataUnit.id]!
-            cell.initializeContent(moment: moment, sideLength: sideLength)
+            cell.initializeContent(moment: moment, sideLength: sideLength, tableController: self)
             return cell
         case .question:
             let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionTableViewCell", for: indexPath) as! QuestionTableViewCell
             let question = QuestionManager.sharedInstance.downloadedContents[dataUnit.id]!
-            cell.initializeContent(question: question, sideLength: sideLength)
+            cell.initializeContent(question: question, sideLength: sideLength, tableController: self)
             return cell
         case .answer:
             let cell = tableView.dequeueReusableCell(withIdentifier: "AnswerTableViewCell", for: indexPath) as! AnswerTableViewCell
             let answer = AnswerManager.sharedInstance.downloadedContents[dataUnit.id]!
-            cell.initializeContent(answer: answer, sideLength: sideLength)
+            cell.initializeContent(answer: answer, sideLength: sideLength, tableController: self)
             return cell
         }
-        
-        
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "MomentTableViewCell", for: indexPath) as! MomentTableViewCell
-//
-//        let displayMomentId = MomentManager.sharedInstance.displaySequenceOfContents[indexPath.row]
-//        cell.initializeContent(moment: MomentManager.sharedInstance.downloadedContents[displayMomentId.id]!, sideLength: Double(self.view.frame.width))
-//
-//        return cell
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -145,6 +127,25 @@ extension HomeContentViewController: UITableViewDataSource, UITableViewDelegate 
         }
     }
     
+}
+
+extension HomeContentViewController: ReusableUserCellDelegate {
+    func tappedUserAvatarOfCell(userId: String) {
+        print("in HomeContentViewController, tappedUserAvatarOfCell() func called.")
+        
+        if userId == UserStateManager.sharedInstance.dummyUserId { // it is selfUser
+            self.tabBarController?.selectedIndex = 3
+        } else { // it is other user
+            let friendProfileVC = ReusableFriendProfileViewController(nibName: "ReusableFriendProfileViewController", bundle: nil)
+            
+            friendProfileVC.userId = userId
+            friendProfileVC.topLayoutGuideHeight = self.topLayoutGuide.length
+            friendProfileVC.bottomLayoutGuideHeight = self.bottomLayoutGuide.length
+            friendProfileVC.screenWidth = self.view.frame.width
+            
+            self.navigationController?.pushViewController(friendProfileVC, animated: true)
+        }
+    }
 }
 
 extension HomeContentViewController {

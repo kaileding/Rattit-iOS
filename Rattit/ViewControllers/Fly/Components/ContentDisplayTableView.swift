@@ -12,14 +12,19 @@ class ContentDisplayTableView: UIView, UITableViewDelegate, UITableViewDataSourc
 
     @IBOutlet weak var contentTableView: UITableView!
     
+    var userId: String!
+    var contentIds: [String] = []
     var contentType: RattitContentType! = .moment
+    var sideLength: CGFloat! = 320.0
     
 //    var resizeTopHeaderViewHeightDelegate: ResizeTableViewHeaderDelegate? = nil
-    var parentVC: FlyHomeViewController? = nil
+    var parentVC: SlideTableHeaderDelegate? = nil
     var lastScrollOffset: CGPoint = CGPoint.zero
     
     static func instantiateFromXib() -> ContentDisplayTableView {
         let contentDisplayTableView = Bundle.main.loadNibNamed("ContentDisplayTableView", owner: self, options: nil)?.first as! ContentDisplayTableView
+        
+        contentDisplayTableView.backgroundColor = UIColor.clear
         
         contentDisplayTableView.translatesAutoresizingMaskIntoConstraints = false
         contentDisplayTableView.contentTableView.translatesAutoresizingMaskIntoConstraints = false
@@ -32,6 +37,8 @@ class ContentDisplayTableView: UIView, UITableViewDelegate, UITableViewDataSourc
         contentDisplayTableView.contentTableView.delegate = contentDisplayTableView
         contentDisplayTableView.contentTableView.estimatedRowHeight = 44.0
         contentDisplayTableView.contentTableView.rowHeight = UITableViewAutomaticDimension
+        contentDisplayTableView.contentTableView.backgroundColor = UIColor.clear
+        contentDisplayTableView.contentTableView.separatorStyle = .none
         
         let momentCellNib = UINib(nibName: "MomentTableViewCell", bundle: nil)
         contentDisplayTableView.contentTableView.register(momentCellNib, forCellReuseIdentifier: "MomentTableViewCell")
@@ -43,12 +50,42 @@ class ContentDisplayTableView: UIView, UITableViewDelegate, UITableViewDataSourc
         return contentDisplayTableView
     }
     
-    func initializeData(contentType: RattitContentType, backgroundColor: UIColor) {
+    func initializeData(userId: String, contentType: RattitContentType, sideLength: CGFloat) {
+        self.userId = userId
         self.contentType = contentType
-        self.contentTableView.backgroundColor = backgroundColor
+        self.sideLength = sideLength
         self.layoutIfNeeded()
         self.sizeToFit()
-        self.contentTableView.reloadData()
+        
+        switch contentType {
+        case .moment:
+            MomentManager.sharedInstance.getMomentsCreatedByAUser(userId: userId, completion: { (momentIds) in
+                
+                self.contentIds = momentIds
+                self.contentTableView.reloadData()
+            }, errorHandler: { (error) in
+                print("unable to get moments for user id=\(userId)")
+            })
+            
+        case .question:
+            QuestionManager.sharedInstance.getQuestionsCreatedByAUser(userId: userId, completion: { (questionIds) in
+                
+                self.contentIds = questionIds
+                self.contentTableView.reloadData()
+            }, errorHandler: { (error) in
+                print("unable to get questions for user id=\(userId)")
+            })
+            
+        case .answer:
+            AnswerManager.sharedInstance.getAnswersCreatedByAUser(userId: userId, completion: { (answerIds) in
+                
+                self.contentIds = answerIds
+                self.contentTableView.reloadData()
+            }, errorHandler: { (error) in
+                print("unable to get answers for user id=\(userId)")
+            })
+        }
+//        self.contentTableView.reloadData()
     }
     
     
@@ -57,41 +94,44 @@ class ContentDisplayTableView: UIView, UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch self.contentType {
-        case .moment:
-            return UserStateManager.sharedInstance.dummyMyMoments.count
-        case .question:
-            return UserStateManager.sharedInstance.dummyMyQuestions.count
-        case .answer:
-            return UserStateManager.sharedInstance.dummyMyAnswers.count
-        default:
-            return 0
-        }
+//        switch self.contentType {
+//        case .moment:
+//            return UserStateManager.sharedInstance.dummyMyMoments.count
+//        case .question:
+//            return UserStateManager.sharedInstance.dummyMyQuestions.count
+//        case .answer:
+//            return UserStateManager.sharedInstance.dummyMyAnswers.count
+//        default:
+//            return 0
+//        }
+        return self.contentIds.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let sideLength = Double(self.frame.width)
         switch self.contentType {
         case .moment:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MomentTableViewCell", for: indexPath) as! MomentTableViewCell
             
-            let displayMomentId = UserStateManager.sharedInstance.dummyMyMoments[indexPath.row]
-            cell.initializeContent(moment: MomentManager.sharedInstance.downloadedContents[displayMomentId]!, sideLength: sideLength)
+//            let displayMomentId = UserStateManager.sharedInstance.dummyMyMoments[indexPath.row]
+            let displayMomentId = self.contentIds[indexPath.row]
+            cell.initializeContent(moment: MomentManager.sharedInstance.downloadedContents[displayMomentId]!, sideLength: Double(self.sideLength), tableController: self)
             
             return cell
         case .question:
             let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionTableViewCell", for: indexPath) as! QuestionTableViewCell
             
-            let displayQuestionId = UserStateManager.sharedInstance.dummyMyQuestions[indexPath.row]
-            cell.initializeContent(question: QuestionManager.sharedInstance.downloadedContents[displayQuestionId]!, sideLength: sideLength)
+//            let displayQuestionId = UserStateManager.sharedInstance.dummyMyQuestions[indexPath.row]
+            let displayQuestionId = self.contentIds[indexPath.row]
+            cell.initializeContent(question: QuestionManager.sharedInstance.downloadedContents[displayQuestionId]!, sideLength: Double(self.sideLength), tableController: self)
             
             return cell
         case .answer:
             let cell = tableView.dequeueReusableCell(withIdentifier: "AnswerTableViewCell", for: indexPath) as! AnswerTableViewCell
             
-            let displayAnswerId = UserStateManager.sharedInstance.dummyMyAnswers[indexPath.row]
-            cell.initializeContent(answer: AnswerManager.sharedInstance.downloadedContents[displayAnswerId]!, sideLength: sideLength)
+//            let displayAnswerId = UserStateManager.sharedInstance.dummyMyAnswers[indexPath.row]
+            let displayAnswerId = self.contentIds[indexPath.row]
+            cell.initializeContent(answer: AnswerManager.sharedInstance.downloadedContents[displayAnswerId]!, sideLength: Double(self.sideLength), tableController: self)
             
             return cell
         default:
@@ -136,6 +176,8 @@ class ContentDisplayTableView: UIView, UITableViewDelegate, UITableViewDataSourc
 
 }
 
-extension ContentDisplayTableView {
-    
+extension ContentDisplayTableView: ReusableUserCellDelegate {
+    func tappedUserAvatarOfCell(userId: String) {
+        print("in ContentDisplayTableView, tappedUserAvatarOfCell() func called.")
+    }
 }

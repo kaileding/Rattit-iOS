@@ -57,9 +57,9 @@ class AnswerTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func initializeContent(answer: Answer, sideLength: Double) {
+    func initializeContent(answer: Answer, sideLength: Double, tableController: ReusableUserCellDelegate) {
         
-        self.answerHeaderView.initializeData(mainContent: answer as MainContent, actionStr: "answered")
+        self.answerHeaderView.initializeData(mainContent: answer as MainContent, actionStr: "answered", tableController: tableController)
         let answerPhoto = answer.photos?.first
         self.answerPreviewView.initializeData(title: answer.questionTitle, words: answer.words, photo: answerPhoto)
         self.answerOptionBar.initializeData(answer: answer)

@@ -40,7 +40,8 @@ class HomeTabBarViewController: UITabBarController, UITabBarControllerDelegate {
         
         NotificationCenter.default.addObserver(self, selector: #selector(signUpOrSignInSuccess), name: NSNotification.Name(SignInSignUpNotificationName.successfulSignUpWithEmail.rawValue), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showUpSignInAlert), name: NSNotification.Name(SignInSignUpNotificationName.needsToSignInOrSignUp.rawValue), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(showUpComposeImageVC), name: NSNotification.Name(ContentOperationNotificationName.composeImage.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showUpComposeImageVC), name: NSNotification.Name(ContentOperationNotificationName.composeMoment.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(showUpComposeTextVC), name: NSNotification.Name(ContentOperationNotificationName.composeQuestion.rawValue), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(showImagesModalVC(_:)), name: NSNotification.Name(ContentOperationNotificationName.showImagesModal.rawValue), object: nil)
     }
     
@@ -128,6 +129,12 @@ extension HomeTabBarViewController {
         let contentSB = UIStoryboard.init(name: "ContentFlow", bundle: nil)
         let composeImageNavigationVC = contentSB.instantiateViewController(withIdentifier: "ComposeImageNavigationVC") as UIViewController
         self.present(composeImageNavigationVC, animated: true, completion: nil)
+    }
+    
+    func showUpComposeTextVC() {
+        let contentSB = UIStoryboard.init(name: "ContentFlow", bundle: nil)
+        let composeQuestionNavigationVC = contentSB.instantiateViewController(withIdentifier: "ComposeTextNavigationVC") as UIViewController
+        self.present(composeQuestionNavigationVC, animated: true, completion: nil)
     }
     
     func showImagesModalVC(_ notification: NSNotification) {

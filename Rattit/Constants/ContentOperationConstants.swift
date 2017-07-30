@@ -9,8 +9,8 @@
 import Foundation
 
 public enum ContentOperationNotificationName: String {
-    case composeImage = "ComposeImageNotification"
     case composeMoment = "ComposeMomentNotification"
+    case composeQuestion = "ComposeQuestionNotification"
     case showImagesModal = "ShowModalToDisplayArrayOfImagesNotification"
 }
 

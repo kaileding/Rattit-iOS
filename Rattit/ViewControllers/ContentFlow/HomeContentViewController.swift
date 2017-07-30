@@ -156,7 +156,7 @@ extension HomeContentViewController {
             NotificationCenter.default.post(name: NSNotification.Name(SignInSignUpNotificationName.needsToSignInOrSignUp.rawValue), object: nil)
             print("Sent out needsToSignInOrSignUp notification.")
         } else if UserStateManager.userIsLoggedIn || UserStateManager.userRefusedToLogin {
-            NotificationCenter.default.post(name: NSNotification.Name(ContentOperationNotificationName.composeImage.rawValue), object: nil, userInfo: nil)
+            NotificationCenter.default.post(name: NSNotification.Name(ContentOperationNotificationName.composeMoment.rawValue), object: nil, userInfo: nil)
         }
     }
     
@@ -166,6 +166,8 @@ extension HomeContentViewController {
         if (!UserStateManager.userIsLoggedIn && !UserStateManager.userRefusedToLogin && !UserStateManager.showingSignInAlert) {
             NotificationCenter.default.post(name: NSNotification.Name(SignInSignUpNotificationName.needsToSignInOrSignUp.rawValue), object: nil)
             print("Sent out needsToSignInOrSignUp notification.")
+        } else if UserStateManager.userIsLoggedIn || UserStateManager.userRefusedToLogin {
+            NotificationCenter.default.post(name: NSNotification.Name(ContentOperationNotificationName.composeQuestion.rawValue), object: nil, userInfo: nil)
         }
     }
 }

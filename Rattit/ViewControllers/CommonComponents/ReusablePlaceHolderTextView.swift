@@ -34,6 +34,7 @@ class ReusablePlaceHolderTextView: UIView {
     
     func setTextView(placeHolder: String, hasTextHandler: @escaping () -> Void, noTextHandler: @escaping () -> Void) {
         
+        self.textView.text = placeHolder
         self.placeHolderText = placeHolder
         self.hasTextHandler = hasTextHandler
         self.noTextHandler = noTextHandler
@@ -61,7 +62,9 @@ extension ReusablePlaceHolderTextView: UITextViewDelegate {
         let currentText = textView.text
         let newText = currentText?.replacingCharacters(in: Range<String.Index>(range, in: currentText!)!, with: text)
         
-        if newText!.isEmpty {
+//        print("newText is ", newText!, ", text is ", text)
+        
+        if newText == nil || newText!.isEmpty {
             textView.text = self.placeHolderText
             textView.textColor = UIColor.lightGray
             textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
@@ -73,9 +76,9 @@ extension ReusablePlaceHolderTextView: UITextViewDelegate {
             if textView.textColor == UIColor.lightGray && !text.isEmpty {
                 textView.text = nil
                 textView.textColor = UIColor.black
-            }
-            if self.hasTextHandler != nil {
-                self.hasTextHandler!()
+                if self.hasTextHandler != nil {
+                    self.hasTextHandler!()
+                }
             }
         }
         

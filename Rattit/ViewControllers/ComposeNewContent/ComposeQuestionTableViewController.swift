@@ -11,7 +11,7 @@ import UIKit
 class ComposeQuestionTableViewController: UITableViewController {
     
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var wordsTextView: UITextView!
+    @IBOutlet weak var placeHolderTextView: ReusablePlaceHolderTextView!
     @IBOutlet weak var imageScrollView: UIScrollView!
     
     @IBOutlet weak var locationLabelCell: UITableViewCell!
@@ -22,30 +22,14 @@ class ComposeQuestionTableViewController: UITableViewController {
     
     @IBOutlet weak var locationRatingCell: UITableViewCell!
     
-    @IBOutlet weak var star1ImageView: UIImageView!
-    @IBOutlet weak var star2ImageView: UIImageView!
-    @IBOutlet weak var star3ImageView: UIImageView!
-    @IBOutlet weak var star4ImageView: UIImageView!
-    @IBOutlet weak var star5ImageView: UIImageView!
-    
-    let emptyStarImage = UIImage(named: "ratingStar")?.withRenderingMode(.alwaysTemplate)
-    let filledStarImage = UIImage(named: "ratingStarFilled")?.withRenderingMode(.alwaysTemplate)
-    var locationRatingValue: Int = 0
-    var ratingValueForLocation: RattitLocation? = nil
+    @IBOutlet weak var ratingStarsView: ReusableRatingStarsView!
     
     @IBOutlet weak var separatorCell: UITableViewCell!
-    
-//    @IBOutlet weak var togetherWithCell: UITableViewCell!
-//
-//    @IBOutlet weak var togetherWithIconImageView: UIImageView!
-//    @IBOutlet weak var togetherWithLabel: UILabel!
-//    @IBOutlet weak var togetherWithLabelArrowImageView: UIImageView!
     
     @IBOutlet weak var shareToIconImageView: UIImageView!
     @IBOutlet weak var shareToLabel: UILabel!
     @IBOutlet weak var shareToLabelArrowImageView: UIImageView!
     @IBOutlet weak var shareToSelectedLabel: UILabel!
-    
     
     @IBOutlet weak var shareToAllCell: UITableViewCell!
     @IBOutlet weak var shareToAllCheckImageView: UIImageView!
@@ -69,6 +53,8 @@ class ComposeQuestionTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: 30.0)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelComposingQuestion))
         let composeTextRightBarButtonItemView = ReusableNavBarItemView.instantiateFromXib(buttonImageName: "planeTab")
         composeTextRightBarButtonItemView.barItemButton.tintColor = UIColor.lightGray
         composeTextRightBarButtonItemView.setButtonExecutionBlock {
@@ -76,27 +62,19 @@ class ComposeQuestionTableViewController: UITableViewController {
         }
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: composeTextRightBarButtonItemView)
         
-        //        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: UIBarButtonItemStyle.done, target: self, action: #selector(completeTextAndPost))
-        
-        self.wordsTextView.delegate = self
-        self.wordsTextView.text = "Say something"
-        self.wordsTextView.textColor = UIColor.lightGray
+        self.titleTextField.delegate = self
+        self.placeHolderTextView.setTextView(placeHolder: "Say something more", hasTextHandler: {
+            if self.titleTextField.text != nil && !self.titleTextField.text!.isEmpty {
+                self.enablePostButton()
+            }
+        }) {
+            self.disablePostButton()
+        }
         
         self.locationIconImageView.image = UIImage(named: "locationIcon")?.withRenderingMode(.alwaysTemplate)
         self.locationIconImageView.tintColor = UIColor.lightGray
         self.locationLabelArrowImageView.image = UIImage(named: "rightArrow")?.withRenderingMode(.alwaysTemplate)
         self.locationLabelArrowImageView.tintColor = UIColor.lightGray
-        
-        self.star1ImageView.image = self.emptyStarImage
-        self.star1ImageView.tintColor = RattitStyleColors.ratingStarGold
-        self.star2ImageView.image = self.emptyStarImage
-        self.star2ImageView.tintColor = RattitStyleColors.ratingStarGold
-        self.star3ImageView.image = self.emptyStarImage
-        self.star3ImageView.tintColor = RattitStyleColors.ratingStarGold
-        self.star4ImageView.image = self.emptyStarImage
-        self.star4ImageView.tintColor = RattitStyleColors.ratingStarGold
-        self.star5ImageView.image = self.emptyStarImage
-        self.star5ImageView.tintColor = RattitStyleColors.ratingStarGold
         
         self.shareToIconImageView.image = UIImage(named: "globe")?.withRenderingMode(.alwaysTemplate)
         self.shareToIconImageView.tintColor = UIColor.lightGray
@@ -113,12 +91,11 @@ class ComposeQuestionTableViewController: UITableViewController {
         self.tableView.tableFooterView = UIView()
         self.tableView.backgroundColor = RattitStyleColors.backgroundGray
         
-        if self.titleTextField.text == nil || self.wordsTextView.textColor == UIColor.lightGray {
-            self.navigationItem.rightBarButtonItem?.isEnabled = false
+        if self.titleTextField.text == nil || self.titleTextField.text!.isEmpty || self.placeHolderTextView.getCurrentText() == "" {
+            self.disablePostButton()
         } else {
-            self.navigationItem.rightBarButtonItem?.isEnabled = true
+            self.enablePostButton()
         }
-        
         
         self.showSelectedImagesOnScrollView()
         
@@ -138,14 +115,18 @@ class ComposeQuestionTableViewController: UITableViewController {
             self.locationIconImageView.tintColor = UIColor.lightGray
             self.locationLabel.text = "Location"
             self.locationLabelArrowImageView.isHidden = false
-//            self.noStarButtonPressed()
+            self.ratingStarsView.setRatingStars(rating: 0, touchHandler: { (newRating) in
+                ComposeContentManager.sharedInstance.pickedPlaceRatingValue = newRating
+            })
         } else {
             self.locationIconImageView.tintColor = UIColor(red: 0, green: 0.7176, blue: 0.5255, alpha: 1.0)
             self.locationLabel.text = ComposeContentManager.sharedInstance.pickedPlaceFromGoogle!.name
             self.locationLabelArrowImageView.isHidden = true
             
-                
-//            ComposeContentManager.sharedInstance.pickedPlaceRatingValue
+            let currentRatingValue = ComposeContentManager.sharedInstance.pickedPlaceRatingValue
+            self.ratingStarsView.setRatingStars(rating: currentRatingValue, touchHandler: { (newRating) in
+                ComposeContentManager.sharedInstance.pickedPlaceRatingValue = newRating
+            })
         }
         
         self.locationLabelCell.separatorInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, self.view.frame.width)
@@ -154,10 +135,6 @@ class ComposeQuestionTableViewController: UITableViewController {
         
         self.tableView.reloadData()
         self.displaySelectedShareToCellAndCollapseOptions()
-        
-        ComposeContentManager.sharedInstance.imagesOfPickedUsersForTogether.forEach({ (pickedUserImageView) in
-            pickedUserImageView.removeFromSuperview()
-        })
         
     }
     
@@ -191,25 +168,23 @@ class ComposeQuestionTableViewController: UITableViewController {
         
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 1 { // selected Location row
-            performSegue(withIdentifier: "FromComposeTextToLocationPicker", sender: self)
+            performSegue(withIdentifier: "FromComposeQuestionToLocationPicker", sender: self)
         } else if indexPath.row == 4 {
-            performSegue(withIdentifier: "FromComposeTextToTogetherWithFinder", sender: self)
-        } else if indexPath.row == 5 {
             if self.shareToOptionsOpen {
                 self.displaySelectedShareToCellAndCollapseOptions()
             } else {
                 self.openShareToOptions()
             }
-        } else if indexPath.row == 6 {
+        } else if indexPath.row == 5 {
             ComposeContentManager.sharedInstance.shareToLevel = .levelPublic
             self.displaySelectedShareToCellAndCollapseOptions()
-        } else if indexPath.row == 7 {
+        } else if indexPath.row == 6 {
             ComposeContentManager.sharedInstance.shareToLevel = .levelFollowers
             self.displaySelectedShareToCellAndCollapseOptions()
-        } else if indexPath.row == 8 {
+        } else if indexPath.row == 7 {
             ComposeContentManager.sharedInstance.shareToLevel = .levelFriends
             self.displaySelectedShareToCellAndCollapseOptions()
-        } else if indexPath.row == 9 {
+        } else if indexPath.row == 8 {
             ComposeContentManager.sharedInstance.shareToLevel = .levelSelf
             self.displaySelectedShareToCellAndCollapseOptions()
         }
@@ -223,7 +198,7 @@ class ComposeQuestionTableViewController: UITableViewController {
             return (ComposeContentManager.sharedInstance.pickedPlaceFromGoogle == nil) ? 0.0 : 44.0
         } else if indexPath.row == 3 {
             return 18.0
-        } else if [6, 7, 8, 9].contains(indexPath.row) {
+        } else if [5, 6, 7, 8].contains(indexPath.row) {
             return self.shareToOptionsOpen ? 44.0 : 0.0
         } else {
             return 44.0
@@ -231,10 +206,15 @@ class ComposeQuestionTableViewController: UITableViewController {
     }
     
     
+    func cancelComposingQuestion() {
+        print("cancelComposingQuestion() func called.")
+        ComposeContentManager.sharedInstance.pickedPlaceFromGoogle = nil
+        self.dismiss(animated: true, completion: nil)
+    }
     
     func completeTextAndPost() {
         
-        ComposeContentManager.sharedInstance.postNewMoment(title: self.titleTextField.text!, words: self.wordsTextView.text, completion: {
+        ComposeContentManager.sharedInstance.postNewMoment(title: self.titleTextField.text!, words: self.placeHolderTextView.getCurrentText(), completion: {
             
             self.dismiss(animated: true, completion: nil)
         }, errorHandler: {
@@ -243,6 +223,24 @@ class ComposeQuestionTableViewController: UITableViewController {
         })
     }
     
+}
+
+extension ComposeQuestionTableViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let currentText = textField.text
+        let newText = currentText?.replacingCharacters(in: Range<String.Index>(range, in: currentText!)!, with: string)
+        if newText != nil && !newText!.isEmpty && self.placeHolderTextView.getCurrentText() != "" {
+            self.enablePostButton()
+        } else {
+            self.disablePostButton()
+        }
+        
+        return true
+    }
+}
+
+extension ComposeQuestionTableViewController {
     
     func showSelectedImagesOnScrollView() {
         self.selectedImages = ComposeContentManager.sharedInstance.getSelectedImages()
@@ -312,49 +310,18 @@ class ComposeQuestionTableViewController: UITableViewController {
         self.shareToOptionsOpen = true
         self.tableView.reloadData()
     }
+    
+    func enablePostButton() {
+        self.navigationItem.rightBarButtonItem?.isEnabled = true
+        (self.navigationItem.rightBarButtonItem?.customView as! ReusableNavBarItemView).barItemButton.tintColor = RattitStyleColors.clickableButtonBlue
+    }
+    
+    func disablePostButton() {
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        (self.navigationItem.rightBarButtonItem?.customView as! ReusableNavBarItemView).barItemButton.tintColor = UIColor.lightGray
+    }
+    
 }
 
-extension ComposeQuestionTableViewController: UITextViewDelegate {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
-            textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
-        }
-    }
-    
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        
-        let currentText = textView.text
-        let newText = currentText?.replacingCharacters(in: Range<String.Index>(range, in: currentText!)!, with: text)
-        
-        if self.titleTextField.text == nil || self.titleTextField.text!.isEmpty {
-            self.navigationItem.rightBarButtonItem?.isEnabled = false
-            (self.navigationItem.rightBarButtonItem?.customView as! ReusableNavBarItemView).barItemButton.tintColor = UIColor.lightGray
-        } else {
-            self.navigationItem.rightBarButtonItem?.isEnabled = true
-            (self.navigationItem.rightBarButtonItem?.customView as! ReusableNavBarItemView).barItemButton.tintColor = RattitStyleColors.clickableButtonBlue
-        }
-        if newText!.isEmpty {
-            textView.text = "Say something"
-            textView.textColor = UIColor.lightGray
-            textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
-            
-            self.navigationItem.rightBarButtonItem?.isEnabled = false
-            (self.navigationItem.rightBarButtonItem?.customView as! ReusableNavBarItemView).barItemButton.tintColor = UIColor.lightGray
-            
-            return false
-        } else if textView.textColor == UIColor.lightGray && !text.isEmpty {
-            textView.text = nil
-            textView.textColor = UIColor.black
-        }
-        
-        return true
-    }
-    
-    func textViewDidChangeSelection(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
-            textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
-        }
-    }
-    
-}
+
 

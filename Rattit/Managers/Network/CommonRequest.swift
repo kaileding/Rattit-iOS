@@ -148,6 +148,24 @@ struct CommonRequest {
         return postNewMomentContentRequest
     }
     
+    // post new answert to a question
+    static func postNewAnswerToQuestion(bodyDic: [String: Any]) -> CommonRequest {
+        var postNewAnswerToQuestionRequest = CommonRequest(urlPath: "/answers", method: .post)
+        postNewAnswerToQuestionRequest.parameters = bodyDic
+        postNewAnswerToQuestionRequest.endcoding = JSONEncoding.default
+        postNewAnswerToQuestionRequest.HTTPHeaders["user_id"] = UserStateManager.sharedInstance.dummyUserId
+        return postNewAnswerToQuestionRequest
+    }
+    
+    // post new question content
+    static func postNewQuestionContent(bodyDic: [String: Any]) -> CommonRequest {
+        var postNewQuestionContentRequest = CommonRequest(urlPath: "/questions", method: .post)
+        postNewQuestionContentRequest.parameters = bodyDic
+        postNewQuestionContentRequest.endcoding = JSONEncoding.default
+        postNewQuestionContentRequest.HTTPHeaders["user_id"] = UserStateManager.sharedInstance.dummyUserId
+        return postNewQuestionContentRequest
+    }
+    
     // cast a vote to a certain moment
     static func castVoteToAMoment(momentId: String, voteType: RattitMomentVoteType, commit: Bool) -> CommonRequest {
         var castVoteToAMomentRequest = CommonRequest(urlPath: "/moments/\(momentId)/voters/\(UserStateManager.sharedInstance.dummyUserId)", method: .patch)

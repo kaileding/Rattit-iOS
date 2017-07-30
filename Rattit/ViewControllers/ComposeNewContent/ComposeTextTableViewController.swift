@@ -11,7 +11,7 @@ import UIKit
 class ComposeTextTableViewController: UITableViewController {
     
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var wordsTextView: UITextView!
+    @IBOutlet weak var placeHolderTextView: ReusablePlaceHolderTextView!
     @IBOutlet weak var imageScrollView: UIScrollView!
     
     @IBOutlet weak var locationLabelCell: UITableViewCell!
@@ -23,9 +23,6 @@ class ComposeTextTableViewController: UITableViewController {
     @IBOutlet weak var locationRatingCell: UITableViewCell!
     
     @IBOutlet weak var ratingStarsView: ReusableRatingStarsView!
-    
-    var locationRatingValue: Int = 0
-    var ratingValueForLocation: RattitLocation? = nil
     
     @IBOutlet weak var separatorCell: UITableViewCell!
     
@@ -70,11 +67,14 @@ class ComposeTextTableViewController: UITableViewController {
         }
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: composeTextRightBarButtonItemView)
         
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: UIBarButtonItemStyle.done, target: self, action: #selector(completeTextAndPost))
-        
-        self.wordsTextView.delegate = self
-        self.wordsTextView.text = "Say something"
-        self.wordsTextView.textColor = UIColor.lightGray
+        self.titleTextField.delegate = self
+        self.placeHolderTextView.setTextView(placeHolder: "Say something", hasTextHandler: {
+            if self.titleTextField.text != nil && !self.titleTextField.text!.isEmpty {
+                self.enablePostButton()
+            }
+        }) {
+            self.disablePostButton()
+        }
         
         self.locationIconImageView.image = UIImage(named: "locationIcon")?.withRenderingMode(.alwaysTemplate)
         self.locationIconImageView.tintColor = UIColor.lightGray
@@ -101,12 +101,11 @@ class ComposeTextTableViewController: UITableViewController {
         self.tableView.tableFooterView = UIView()
         self.tableView.backgroundColor = RattitStyleColors.backgroundGray
         
-        if self.titleTextField.text == nil || self.wordsTextView.textColor == UIColor.lightGray {
-            self.navigationItem.rightBarButtonItem?.isEnabled = false
+        if self.titleTextField.text == nil || self.titleTextField.text!.isEmpty || self.placeHolderTextView.getCurrentText() == "" {
+            self.disablePostButton()
         } else {
-            self.navigationItem.rightBarButtonItem?.isEnabled = true
+            self.enablePostButton()
         }
-        
         
         self.showSelectedImagesOnScrollView()
         
@@ -231,7 +230,7 @@ class ComposeTextTableViewController: UITableViewController {
     
     func completeTextAndPost() {
         
-        ComposeContentManager.sharedInstance.postNewMoment(title: self.titleTextField.text!, words: self.wordsTextView.text, completion: {
+        ComposeContentManager.sharedInstance.postNewMoment(title: self.titleTextField.text!, words: self.placeHolderTextView.getCurrentText(), completion: {
             
             self.dismiss(animated: true, completion: nil)
         }, errorHandler: {
@@ -242,49 +241,19 @@ class ComposeTextTableViewController: UITableViewController {
     
 }
 
-
-extension ComposeTextTableViewController: UITextViewDelegate {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
-            textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
-        }
-    }
-    
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+extension ComposeTextTableViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        let currentText = textView.text
-        let newText = currentText?.replacingCharacters(in: Range<String.Index>(range, in: currentText!)!, with: text)
-        
-        if self.titleTextField.text == nil || self.titleTextField.text!.isEmpty {
-            self.navigationItem.rightBarButtonItem?.isEnabled = false
-            (self.navigationItem.rightBarButtonItem?.customView as! ReusableNavBarItemView).barItemButton.tintColor = UIColor.lightGray
+        let currentText = textField.text
+        let newText = currentText?.replacingCharacters(in: Range<String.Index>(range, in: currentText!)!, with: string)
+        if newText != nil && !newText!.isEmpty && self.placeHolderTextView.getCurrentText() != "" {
+            self.enablePostButton()
         } else {
-            self.navigationItem.rightBarButtonItem?.isEnabled = true
-            (self.navigationItem.rightBarButtonItem?.customView as! ReusableNavBarItemView).barItemButton.tintColor = RattitStyleColors.clickableButtonBlue
-        }
-        if newText!.isEmpty {
-            textView.text = "Say something"
-            textView.textColor = UIColor.lightGray
-            textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
-            
-            self.navigationItem.rightBarButtonItem?.isEnabled = false
-            (self.navigationItem.rightBarButtonItem?.customView as! ReusableNavBarItemView).barItemButton.tintColor = UIColor.lightGray
-            
-            return false
-        } else if textView.textColor == UIColor.lightGray && !text.isEmpty {
-            textView.text = nil
-            textView.textColor = UIColor.black
+            self.disablePostButton()
         }
         
         return true
     }
-    
-    func textViewDidChangeSelection(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
-            textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
-        }
-    }
-    
 }
 
 extension ComposeTextTableViewController {
@@ -382,6 +351,15 @@ extension ComposeTextTableViewController {
         self.tableView.reloadData()
     }
     
+    func enablePostButton() {
+        self.navigationItem.rightBarButtonItem?.isEnabled = true
+        (self.navigationItem.rightBarButtonItem?.customView as! ReusableNavBarItemView).barItemButton.tintColor = RattitStyleColors.clickableButtonBlue
+    }
+    
+    func disablePostButton() {
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        (self.navigationItem.rightBarButtonItem?.customView as! ReusableNavBarItemView).barItemButton.tintColor = UIColor.lightGray
+    }
 }
 
 

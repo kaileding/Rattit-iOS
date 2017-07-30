@@ -1,5 +1,5 @@
 //
-//  CapturedPhotoView.swift
+//  ReusableCapturedPhotoView.swift
 //  Rattit
 //
 //  Created by DINGKaile on 6/25/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CapturedPhotoView: UIView {
+class ReusableCapturedPhotoView: UIView {
     
     @IBOutlet weak var capturedPhotoImageView: UIImageView!
     
@@ -19,16 +19,11 @@ class CapturedPhotoView: UIView {
     var cancelButtonLeadingConstraint: NSLayoutConstraint? = nil
     var confirmButtonLeadingConstraint: NSLayoutConstraint? = nil
     
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
+    var cancelButtonHandler: (() -> Void)? = nil
+    var confirmButtonHandler: ((UIImage) -> Void)? = nil
     
-    static func instantiateFromXib() -> CapturedPhotoView {
-        let capturedPhotoView = Bundle.main.loadNibNamed("CapturedPhotoView", owner: self, options: nil)?.first as! CapturedPhotoView
+    static func instantiateFromXib() -> ReusableCapturedPhotoView {
+        let capturedPhotoView = Bundle.main.loadNibNamed("ReusableCapturedPhotoView", owner: self, options: nil)?.first as! ReusableCapturedPhotoView
         
         capturedPhotoView.translatesAutoresizingMaskIntoConstraints = false
         capturedPhotoView.imageSurfaceButton.translatesAutoresizingMaskIntoConstraints = false
@@ -127,22 +122,27 @@ class CapturedPhotoView: UIView {
     
     func cancelButtonPressed() {
         print("cancelButtonPressed func.")
+        if self.cancelButtonHandler != nil {
+            self.cancelButtonHandler!()
+        }
         self.removeFromSuperview()
     }
     
     func confirmButtonPressed() {
         print("confirmButtonPressed func. Prepare to upload image file.")
-        
-        self.saveImageToDeviceLibrary()
+        if let photoFile = self.capturedPhotoImageView.image, self.confirmButtonHandler != nil {
+            self.confirmButtonHandler!(photoFile)
+        }
+//        self.saveImageToDeviceLibrary()
         self.removeFromSuperview()
     }
     
-    func saveImageToDeviceLibrary() {
-        if let photoFile = self.capturedPhotoImageView.image {
-            ComposeContentManager.sharedInstance.insertNewPhotoToCollection(newImage: photoFile)
-            UIImageWriteToSavedPhotosAlbum(photoFile, self, #selector(writeToLibrary), nil)
-        }
-    }
+//    func saveImageToDeviceLibrary() {
+//        if let photoFile = self.capturedPhotoImageView.image {
+//            ComposeContentManager.sharedInstance.insertNewPhotoToCollection(newImage: photoFile)
+//            UIImageWriteToSavedPhotosAlbum(photoFile, self, #selector(writeToLibrary), nil)
+//        }
+//    }
     
     func writeToLibrary(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         if let error = error {

@@ -214,7 +214,7 @@ class ComposeQuestionTableViewController: UITableViewController {
     
     func completeTextAndPost() {
         
-        ComposeContentManager.sharedInstance.postNewMoment(title: self.titleTextField.text!, words: self.placeHolderTextView.getCurrentText(), completion: {
+        ComposeContentManager.sharedInstance.postNewQuestion(title: self.titleTextField.text!, words: self.placeHolderTextView.getCurrentText(), completion: {
             
             self.dismiss(animated: true, completion: nil)
         }, errorHandler: {
@@ -245,7 +245,7 @@ extension ComposeQuestionTableViewController {
     func showSelectedImagesOnScrollView() {
         self.selectedImages = ComposeContentManager.sharedInstance.getSelectedImages()
         let imageCount = self.selectedImages.count
-        let canvasFrame = CGRect(x: 0.0, y: 0.0, width: 44.0*Double(imageCount), height: 44.0)
+        let canvasFrame = CGRect(x: 0.0, y: 0.0, width: 44.0*Double(imageCount+1), height: 44.0)
         let canvasView = UIView(frame: canvasFrame)
         
         //        print("self.selectedImages.count = \(self.selectedImages.count)")
@@ -259,7 +259,17 @@ extension ComposeQuestionTableViewController {
             imageView.image = image
             canvasView.addSubview(imageView)
         }
-        self.imageScrollView.contentSize = CGSize(width: 44.0*Double(imageCount), height: 44.0)
+        
+        let buttonFrame = CGRect(x: 44.0*Double(imageCount)+2.0, y: 2.0, width: 40.0, height: 40.0)
+        let buttonView = UIButton(frame: buttonFrame)
+        buttonView.setImage(UIImage(named: "plus")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        buttonView.tintColor = UIColor.lightGray
+        buttonView.clipsToBounds = true
+        buttonView.contentMode = .scaleAspectFill
+        buttonView.addTarget(self, action: #selector(tapToAddImages), for: .touchUpInside)
+        canvasView.addSubview(buttonView)
+        
+        self.imageScrollView.contentSize = CGSize(width: 44.0*Double(imageCount+1), height: 44.0)
         self.imageScrollView.addSubview(canvasView)
         //        print("self.imageScrollView.frame is \(self.imageScrollView.frame.debugDescription)")
     }
@@ -321,6 +331,9 @@ extension ComposeQuestionTableViewController {
         (self.navigationItem.rightBarButtonItem?.customView as! ReusableNavBarItemView).barItemButton.tintColor = UIColor.lightGray
     }
     
+    func tapToAddImages() {
+        print("tapToAddImages() func called.")
+    }
 }
 
 

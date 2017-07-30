@@ -128,12 +128,14 @@ extension HomeTabBarViewController {
     func showUpComposeImageVC() {
         let contentSB = UIStoryboard.init(name: "ContentFlow", bundle: nil)
         let composeImageNavigationVC = contentSB.instantiateViewController(withIdentifier: "ComposeImageNavigationVC") as UIViewController
+        ComposeContentManager.sharedInstance.indexOfCheckedPhotos = []
         self.present(composeImageNavigationVC, animated: true, completion: nil)
     }
     
     func showUpComposeTextVC() {
         let contentSB = UIStoryboard.init(name: "ContentFlow", bundle: nil)
         let composeQuestionNavigationVC = contentSB.instantiateViewController(withIdentifier: "ComposeTextNavigationVC") as UIViewController
+        ComposeContentManager.sharedInstance.indexOfCheckedPhotos = []
         self.present(composeQuestionNavigationVC, animated: true, completion: nil)
     }
     

@@ -164,53 +164,69 @@ class ComposeContentManager {
     }
     
     func postNewQuestion(title: String, words: String, completion: @escaping () -> Void, errorHandler: @escaping () -> Void) {
-        print("postNewMoment, title=\(title), words=\(words)")
+        print("postNewQuestion, title=\(title), words=\(words)")
         
-        var newMomentDic = [String: Any]()
-        newMomentDic["title"] = title as Any
-        newMomentDic["words"] = words as Any
-        newMomentDic["access_level"] = self.shareToLevel.rawValue as Any
-        newMomentDic["together_with"] = self.pickedUsersForTogether as Any
-        newMomentDic["hash_tags"] = ["iPhoneTesting"] as Any
+        var newQuestionDic = [String: Any]()
+        newQuestionDic["title"] = title as Any
+        newQuestionDic["words"] = words as Any
+        newQuestionDic["access_level"] = self.shareToLevel.rawValue as Any
+        newQuestionDic["hash_tags"] = ["iPhoneTesting"] as Any
         
         if self.pickedPlaceFromGoogle != nil {
-            newMomentDic["google_place"] = self.pickedPlaceFromGoogle!.wrapIntoLocationPostObj() as Any
+            newQuestionDic["google_place"] = self.pickedPlaceFromGoogle!.wrapIntoLocationPostObj() as Any
         }
         
-        self.publicUrlsOfCheckedPhotos.removeAll()
-        let numberOfCheckedPhotos = self.indexOfCheckedPhotos.count
-        let stubPublicUrlObj: [String: Any] = ["image_url": "",
-                                               "height": 500,
-                                               "width": 500]
-        self.publicUrlsOfCheckedPhotos = Array(repeating: stubPublicUrlObj, count: numberOfCheckedPhotos)
-        self.indexOfCheckedPhotos.enumerated().forEach({ (offset, indexVal) in
-            let imageChosen = self.imageOfPhotosOnDevice[indexVal]
-            ComposeContentManager.uploadOneImageToServer(rawImage: imageChosen, gotImageUrl: { (imageUrl) in
-                
-                self.publicUrlsOfCheckedPhotos[offset]["image_url"] = imageUrl
-                if !self.publicUrlsOfCheckedPhotos.contains(where: { (publicUrlObj) -> Bool in
-                    return (publicUrlObj["image_url"] as! String).count == 0
-                }) {
-                    print("got publicUrls of all checked images.")
-                    print("self.publicUrlsOfCheckedPhotos is ", self.publicUrlsOfCheckedPhotos.description)
-                    newMomentDic["photos"] = self.publicUrlsOfCheckedPhotos as Any
+        
+        if self.indexOfCheckedPhotos.count > 0 {
+            self.publicUrlsOfCheckedPhotos.removeAll()
+            let numberOfCheckedPhotos = self.indexOfCheckedPhotos.count
+            let stubPublicUrlObj: [String: Any] = ["image_url": "",
+                                                   "height": 500,
+                                                   "width": 500]
+            self.publicUrlsOfCheckedPhotos = Array(repeating: stubPublicUrlObj, count: numberOfCheckedPhotos)
+            self.indexOfCheckedPhotos.enumerated().forEach({ (offset, indexVal) in
+                let imageChosen = self.imageOfPhotosOnDevice[indexVal]
+                ComposeContentManager.uploadOneImageToServer(rawImage: imageChosen, gotImageUrl: { (imageUrl) in
                     
-                    Network.sharedInstance.callRattitContentService(httpRequest: .postNewMomentContent(bodyDic: newMomentDic), completion: { (dataValue) in
-                        print("successfully published new moment.")
+                    self.publicUrlsOfCheckedPhotos[offset]["image_url"] = imageUrl
+                    if !self.publicUrlsOfCheckedPhotos.contains(where: { (publicUrlObj) -> Bool in
+                        return (publicUrlObj["image_url"] as! String).count == 0
+                    }) {
+                        print("got publicUrls of all checked images.")
+                        print("self.publicUrlsOfCheckedPhotos is ", self.publicUrlsOfCheckedPhotos.description)
+                        newQuestionDic["photos"] = self.publicUrlsOfCheckedPhotos as Any
                         
-                        DispatchQueue.main.async {
-                            completion()
-                        }
-                    }, errorHandler: { (error) in
-                        print("publishing new Moment got failure: \(error.localizedDescription)")
-                        DispatchQueue.main.async {
-                            errorHandler()
-                        }
-                    })
-                }
-                
+                    Network.sharedInstance.callRattitContentService(httpRequest: .postNewQuestionContent(bodyDic: newQuestionDic), completion: { (dataValue) in
+                            print("successfully published new question.")
+                            
+                            DispatchQueue.main.async {
+                                completion()
+                            }
+                        }, errorHandler: { (error) in
+                            print("publishing new Question got failure: \(error.localizedDescription)")
+                            DispatchQueue.main.async {
+                                errorHandler()
+                            }
+                        })
+                    }
+                    
+                })
             })
-        })
+        } else {
+         Network.sharedInstance.callRattitContentService(httpRequest: .postNewQuestionContent(bodyDic: newQuestionDic), completion: { (dataValue) in
+                print("successfully published new question.")
+                
+                DispatchQueue.main.async {
+                    completion()
+                }
+            }, errorHandler: { (error) in
+                print("publishing new Question got failure: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    errorHandler()
+                }
+            })
+        }
+        
     }
     
     // utilities

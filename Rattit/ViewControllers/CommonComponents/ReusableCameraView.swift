@@ -1,8 +1,8 @@
 //
-//  ComposeImageViewController.swift
+//  ReusableCameraView.swift
 //  Rattit
 //
-//  Created by DINGKaile on 6/23/17.
+//  Created by DINGKaile on 7/30/17.
 //  Copyright © 2017 KaileDing. All rights reserved.
 //
 
@@ -10,18 +10,13 @@ import UIKit
 import AVFoundation
 import Photos
 
-class ComposeImageViewController: UIViewController {
+class ReusableCameraView: UIView {
     
     @IBOutlet weak var photoPreviewView: UIView!
-    
     var photoCaptureImageView: ReusableCapturedPhotoView! = ReusableCapturedPhotoView.instantiateFromXib()
-    
     @IBOutlet weak var shutterButton: UIButton!
     @IBOutlet weak var rotateCameraButton: UIButton!
     @IBOutlet weak var changeFlashButton: UIButton!
-    
-    @IBOutlet weak var photoCollectionView: UICollectionView!
-    
     
     var avCaptureSession: AVCaptureSession = AVCaptureSession()
     var stillImageOutput: AVCapturePhotoOutput?
@@ -33,23 +28,23 @@ class ComposeImageViewController: UIViewController {
     var backCameraInput: AVCaptureInput? = nil
     var captureInitializationDone: Bool = false
     
-    
     let shutterButtonImage = UIImage(named: "shutterButton")?.withRenderingMode(.alwaysTemplate)
     let rotateButtonImage = UIImage(named: "180rotate")?.withRenderingMode(.alwaysTemplate)
     let flashAutoButtonImage = UIImage(named: "flashAuto")?.withRenderingMode(.alwaysTemplate)
     let flashNoButtonImage = UIImage(named: "flashNo")?.withRenderingMode(.alwaysTemplate)
     let flashYesButtonImage = UIImage(named: "flashYes")?.withRenderingMode(.alwaysTemplate)
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        self.photoPreviewView.backgroundColor = UIColor.darkGray
+    override func awakeFromNib() {
+        let reusableCameraView = Bundle.main.loadNibNamed("ReusableCameraView", owner: self, options: nil)?.first as! UIView
         
-        self.navigationController?.navigationBar.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: 30.0)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelComposingImage))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.plain, target: self, action: #selector(confirmImagePickingAndGoNext))
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        reusableCameraView.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(reusableCameraView)
+        reusableCameraView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0.0).isActive = true
+        reusableCameraView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0.0).isActive = true
+        reusableCameraView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0.0).isActive = true
+        reusableCameraView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0.0).isActive = true
+        
+        self.photoPreviewView.backgroundColor = UIColor.darkGray
         
         self.shutterButton.setImage(shutterButtonImage, for: .normal)
         self.shutterButton.tintColor = UIColor.white
@@ -63,72 +58,55 @@ class ComposeImageViewController: UIViewController {
         self.changeFlashButton.tintColor = UIColor.white
         self.changeFlashButton.addTarget(self, action: #selector(changeFlashButtonPressed), for: .touchUpInside)
         
-        self.photoCollectionView.delegate = self
-        self.photoCollectionView.dataSource = self
-        let photoCellNib = UINib(nibName: "DevicePhotoCollectionViewCell", bundle: nil)
-        self.photoCollectionView.register(photoCellNib, forCellWithReuseIdentifier: "photoCollectionCell")
-        
-        ComposeContentManager.sharedInstance.updateSelectedPhotoDelegate = self
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    func initializeCameraCapture(confirmCaptureHandler: @escaping (UIImage) -> Void) {
+        self.photoCaptureImageView.confirmButtonHandler = confirmCaptureHandler
         
-//        ComposeContentManager.sharedInstance.indexOfCheckedPhotos = []
+        self.initializeCameraPreview()
+        self.attachCameraInput()
+        self.avCaptureSession.startRunning()
         
-        let photoCollectionFlowLayout = UICollectionViewFlowLayout()
-        let totalWidth = self.view.frame.width
-        print("------ in viewWillAppear, totalWidth = \(totalWidth)")
-        photoCollectionFlowLayout.itemSize = CGSize(width: 0.25*totalWidth, height: 0.25*totalWidth)
-        photoCollectionFlowLayout.minimumInteritemSpacing = 0.0
-        photoCollectionFlowLayout.minimumLineSpacing = 0.0
-        photoCollectionFlowLayout.scrollDirection = .vertical
-        self.photoCollectionView.setCollectionViewLayout(photoCollectionFlowLayout, animated: false)
-        self.photoCollectionView.reloadData()
-        if ComposeContentManager.sharedInstance.hasAtLeastOneImageChecked() {
-            self.navigationItem.rightBarButtonItem?.isEnabled = true
-        } else {
-            self.navigationItem.rightBarButtonItem?.isEnabled = false
-        }
-        
-        RattitLocationManager.sharedInstance.updateCurrentLocation()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if !self.captureInitializationDone {
-            self.initializeCameraPreview()
-            self.attachCameraInput()
-            self.avCaptureSession.startRunning()
-            self.captureInitializationDone = true
-        }
         if !self.avCaptureSession.isRunning {
             self.avCaptureSession.startRunning()
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    func stopCameraCapture() {
         
         self.avCaptureSession.stopRunning()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+extension ReusableCameraView: AVCapturePhotoCaptureDelegate {
+    
+    func capture(_ output: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+        
+        if photoSampleBuffer != nil {
+            if let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer!, previewPhotoSampleBuffer: nil) {
+                if let capturedImage = UIImage(data: imageData) {
+                    print("===== success got the image. image.size is ", capturedImage.size.debugDescription)
+                    
+                    self.photoCaptureImageView.removeFromSuperview()
+                    self.photoPreviewView.addSubview(self.photoCaptureImageView)
+                    self.photoCaptureImageView.translatesAutoresizingMaskIntoConstraints = false
+                    self.photoCaptureImageView.leadingAnchor.constraint(equalTo: self.photoPreviewView.leadingAnchor, constant: 0.0).isActive = true
+                    self.photoCaptureImageView.trailingAnchor.constraint(equalTo: self.photoPreviewView.trailingAnchor, constant: 0.0).isActive = true
+                    self.photoCaptureImageView.topAnchor.constraint(equalTo: self.photoPreviewView.topAnchor, constant: 0.0).isActive = true
+                    self.photoCaptureImageView.bottomAnchor.constraint(equalTo: self.photoPreviewView.bottomAnchor, constant: 0.0).isActive = true
+                    self.photoCaptureImageView.layoutIfNeeded()
+                    self.photoCaptureImageView.initializeContent(image: capturedImage)
+                    self.photoCaptureImageView.sizeToFit()
+                    
+                }
+                
+            }
+        }
     }
-    */
+}
+
+extension ReusableCameraView {
     
     func initializeCameraPreview() {
         self.avCaptureSession.sessionPreset = AVCaptureSessionPresetPhoto
@@ -180,20 +158,6 @@ class ComposeImageViewController: UIViewController {
                 print("--- cannot add frontCameraInput.")
             }
         }
-    }
-    
-    
-    
-    func cancelComposingImage() {
-        print("cancelComposingImage() func called.")
-        ComposeContentManager.sharedInstance.pickedPlaceFromGoogle = nil
-        self.dismiss(animated: true, completion: nil)
-    }
-    
-    func confirmImagePickingAndGoNext() {
-        print("confirmImagePickingAndGoNext() func called.")
-        
-        performSegue(withIdentifier: "FromComposeImageToComposeText", sender: self)
     }
     
     func shutterButtonPressed() {
@@ -264,64 +228,4 @@ class ComposeImageViewController: UIViewController {
     }
     
 }
-
-extension ComposeImageViewController: AVCapturePhotoCaptureDelegate {
-    
-    func capture(_ output: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
-        
-        if photoSampleBuffer != nil {
-            if let imageData = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: photoSampleBuffer!, previewPhotoSampleBuffer: nil) {
-                if let capturedImage = UIImage(data: imageData) {
-                    print("===== success got the image. image.size is ", capturedImage.size.debugDescription)
-                    
-                    self.photoCaptureImageView.removeFromSuperview()
-                    self.photoPreviewView.addSubview(self.photoCaptureImageView)
-                    self.photoCaptureImageView.translatesAutoresizingMaskIntoConstraints = false
-                    self.photoCaptureImageView.leadingAnchor.constraint(equalTo: self.photoPreviewView.leadingAnchor, constant: 0.0).isActive = true
-                    self.photoCaptureImageView.trailingAnchor.constraint(equalTo: self.photoPreviewView.trailingAnchor, constant: 0.0).isActive = true
-                    self.photoCaptureImageView.topAnchor.constraint(equalTo: self.photoPreviewView.topAnchor, constant: 0.0).isActive = true
-                    self.photoCaptureImageView.bottomAnchor.constraint(equalTo: self.photoPreviewView.bottomAnchor, constant: 0.0).isActive = true
-                    self.photoCaptureImageView.layoutIfNeeded()
-                    self.photoCaptureImageView.initializeContent(image: capturedImage)
-                    self.photoCaptureImageView.sizeToFit()
-                    
-                }
-                
-            }
-        }
-    }
-}
-
-extension ComposeImageViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return ComposeContentManager.sharedInstance.imageOfPhotosOnDevice.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cellView = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCollectionCell", for: indexPath) as! DevicePhotoCollectionViewCell
-        
-        cellView.initializeData(assetIndex: indexPath.row)
-        
-        return cellView
-    }
-    
-}
-
-extension ComposeImageViewController: ComposeContentUpdateSelectedPhotosDelegate {
-    func updatePhotoCollectionCells() {
-        self.photoCollectionView.reloadData()
-        if ComposeContentManager.sharedInstance.hasAtLeastOneImageChecked() {
-            self.navigationItem.rightBarButtonItem?.isEnabled = true
-        } else {
-            self.navigationItem.rightBarButtonItem?.isEnabled = false
-        }
-    }
-}
-
-
 

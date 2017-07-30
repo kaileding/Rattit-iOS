@@ -51,7 +51,7 @@ class DataFlowManager: NSObject {
             print("in DataFlowManager, Totally got \(self.allContentUnits.count) content units.")
             
             self.allContentUnits.sort(by: { (left, right) -> Bool in
-                return left.createdAt.compare(right.createdAt) == .orderedAscending
+                return left.createdAt.compare(right.createdAt) == .orderedDescending
             })
             
             completion()

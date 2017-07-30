@@ -1,8 +1,8 @@
 //
-//  ComposeImageViewController.swift
+//  ReusableImagePickerViewController.swift
 //  Rattit
 //
-//  Created by DINGKaile on 6/23/17.
+//  Created by DINGKaile on 7/30/17.
 //  Copyright © 2017 KaileDing. All rights reserved.
 //
 
@@ -10,7 +10,9 @@ import UIKit
 import AVFoundation
 import Photos
 
-class ComposeImageViewController: UIViewController {
+class ReusableImagePickerViewController: UIViewController {
+    
+    @IBOutlet weak var outerView: UIView!
     
     @IBOutlet weak var photoPreviewView: UIView!
     
@@ -33,22 +35,32 @@ class ComposeImageViewController: UIViewController {
     var backCameraInput: AVCaptureInput? = nil
     var captureInitializationDone: Bool = false
     
-    
     let shutterButtonImage = UIImage(named: "shutterButton")?.withRenderingMode(.alwaysTemplate)
     let rotateButtonImage = UIImage(named: "180rotate")?.withRenderingMode(.alwaysTemplate)
     let flashAutoButtonImage = UIImage(named: "flashAuto")?.withRenderingMode(.alwaysTemplate)
     let flashNoButtonImage = UIImage(named: "flashNo")?.withRenderingMode(.alwaysTemplate)
     let flashYesButtonImage = UIImage(named: "flashYes")?.withRenderingMode(.alwaysTemplate)
     
+    var topLayoutGuideHeight: CGFloat! = 0
+    var bottomLayoutGuideHeight: CGFloat! = 0
+    var screenWidth: CGFloat! = 320.0
+    var leftBarButtonTitle: String = "Cancel"
+    var rightBarButtonTitle: String = "Next"
+    var cancelIsPopingNavController: Bool = false
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+        NSLayoutConstraint(item: self.outerView, attribute: .top, relatedBy: .equal, toItem: self.view, attribute: .top, multiplier: 1.0, constant: self.topLayoutGuideHeight).isActive = true
+        NSLayoutConstraint(item: self.outerView, attribute: .bottom, relatedBy: .equal, toItem: self.view, attribute: .bottom, multiplier: 1.0, constant: -self.bottomLayoutGuideHeight).isActive = true
+        
         self.photoPreviewView.backgroundColor = UIColor.darkGray
         
-        self.navigationController?.navigationBar.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: 30.0)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelComposingImage))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.plain, target: self, action: #selector(confirmImagePickingAndGoNext))
+//        self.navigationController?.navigationBar.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: 30.0)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: self.leftBarButtonTitle, style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelComposingImage))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: self.rightBarButtonTitle, style: UIBarButtonItemStyle.plain, target: self, action: #selector(confirmImagePickingAndGoNext))
         self.navigationItem.rightBarButtonItem?.isEnabled = false
         
         self.shutterButton.setImage(shutterButtonImage, for: .normal)
@@ -74,7 +86,7 @@ class ComposeImageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        ComposeContentManager.sharedInstance.indexOfCheckedPhotos = []
+        //        ComposeContentManager.sharedInstance.indexOfCheckedPhotos = []
         
         let photoCollectionFlowLayout = UICollectionViewFlowLayout()
         let totalWidth = self.view.frame.width
@@ -113,22 +125,22 @@ class ComposeImageViewController: UIViewController {
         
         self.avCaptureSession.stopRunning()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
     
     func initializeCameraPreview() {
         self.avCaptureSession.sessionPreset = AVCaptureSessionPresetPhoto
@@ -186,14 +198,18 @@ class ComposeImageViewController: UIViewController {
     
     func cancelComposingImage() {
         print("cancelComposingImage() func called.")
-        ComposeContentManager.sharedInstance.pickedPlaceFromGoogle = nil
-        self.dismiss(animated: true, completion: nil)
+//        if self.cancelIsPopingNavController {
+//            self.navigationController?.popViewController(animated: true)
+//        } else {
+//            ComposeContentManager.sharedInstance.pickedPlaceFromGoogle = nil
+//            self.dismiss(animated: true, completion: nil)
+//        }
     }
     
     func confirmImagePickingAndGoNext() {
         print("confirmImagePickingAndGoNext() func called.")
         
-        performSegue(withIdentifier: "FromComposeImageToComposeText", sender: self)
+//        performSegue(withIdentifier: "FromComposeImageToComposeText", sender: self)
     }
     
     func shutterButtonPressed() {
@@ -265,7 +281,7 @@ class ComposeImageViewController: UIViewController {
     
 }
 
-extension ComposeImageViewController: AVCapturePhotoCaptureDelegate {
+extension ReusableImagePickerViewController: AVCapturePhotoCaptureDelegate {
     
     func capture(_ output: AVCapturePhotoOutput, didFinishProcessingPhotoSampleBuffer photoSampleBuffer: CMSampleBuffer?, previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
         
@@ -292,7 +308,7 @@ extension ComposeImageViewController: AVCapturePhotoCaptureDelegate {
     }
 }
 
-extension ComposeImageViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension ReusableImagePickerViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -312,7 +328,7 @@ extension ComposeImageViewController: UICollectionViewDelegate, UICollectionView
     
 }
 
-extension ComposeImageViewController: ComposeContentUpdateSelectedPhotosDelegate {
+extension ReusableImagePickerViewController: ComposeContentUpdateSelectedPhotosDelegate {
     func updatePhotoCollectionCells() {
         self.photoCollectionView.reloadData()
         if ComposeContentManager.sharedInstance.hasAtLeastOneImageChecked() {
@@ -322,6 +338,3 @@ extension ComposeImageViewController: ComposeContentUpdateSelectedPhotosDelegate
         }
     }
 }
-
-
-

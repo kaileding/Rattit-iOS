@@ -51,7 +51,7 @@ class ReusableFollowingButtonView: UIView {
         reusableFollowingButtonView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 0.0).isActive = true
     }
     
-    static func instantiateFromXib(buttonImageName: String) -> ReusableFollowingButtonView {
+    static func instantiateFromXib() -> ReusableFollowingButtonView {
         let reusableFollowingButtonView = Bundle.main.loadNibNamed("ReusableFollowingButtonView", owner: self, options: nil)?.first as! ReusableFollowingButtonView
         
         reusableFollowingButtonView.leftView.backgroundColor = UIColor.cyan

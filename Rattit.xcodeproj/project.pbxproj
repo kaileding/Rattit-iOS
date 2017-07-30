@@ -100,6 +100,9 @@
 		859B5F4D1F061F12009A8762 /* RattitLocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859B5F4C1F061F12009A8762 /* RattitLocationManager.swift */; };
 		85AC86C91F1D2DFA0093D9A3 /* ContentDisplayTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AC86C81F1D2DFA0093D9A3 /* ContentDisplayTableView.swift */; };
 		85AC86CB1F1D2E440093D9A3 /* ContentDisplayTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85AC86CA1F1D2E440093D9A3 /* ContentDisplayTableView.xib */; };
+		85BB89241F2D6ADF000F1CFD /* ComposeQuestionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB89231F2D6ADF000F1CFD /* ComposeQuestionTableViewController.swift */; };
+		85BB89261F2D6E94000F1CFD /* ReusableRatingStarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85BB89251F2D6E94000F1CFD /* ReusableRatingStarsView.swift */; };
+		85BB89281F2D6E9E000F1CFD /* ReusableRatingStarsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85BB89271F2D6E9E000F1CFD /* ReusableRatingStarsView.xib */; };
 		85C16E3B1F21347300D609DE /* FlyHomeViewNavBarTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C16E3A1F21347300D609DE /* FlyHomeViewNavBarTitleView.swift */; };
 		85C16E3D1F21349100D609DE /* FlyHomeViewNavBarTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85C16E3C1F21349100D609DE /* FlyHomeViewNavBarTitleView.xib */; };
 		85C16E401F219C6C00D609DE /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C16E3E1F219C6C00D609DE /* QuestionTableViewCell.swift */; };
@@ -232,6 +235,9 @@
 		859B5F4C1F061F12009A8762 /* RattitLocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RattitLocationManager.swift; sourceTree = "<group>"; };
 		85AC86C81F1D2DFA0093D9A3 /* ContentDisplayTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentDisplayTableView.swift; sourceTree = "<group>"; };
 		85AC86CA1F1D2E440093D9A3 /* ContentDisplayTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContentDisplayTableView.xib; sourceTree = "<group>"; };
+		85BB89231F2D6ADF000F1CFD /* ComposeQuestionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeQuestionTableViewController.swift; sourceTree = "<group>"; };
+		85BB89251F2D6E94000F1CFD /* ReusableRatingStarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableRatingStarsView.swift; sourceTree = "<group>"; };
+		85BB89271F2D6E9E000F1CFD /* ReusableRatingStarsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusableRatingStarsView.xib; sourceTree = "<group>"; };
 		85C16E3A1F21347300D609DE /* FlyHomeViewNavBarTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlyHomeViewNavBarTitleView.swift; sourceTree = "<group>"; };
 		85C16E3C1F21349100D609DE /* FlyHomeViewNavBarTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FlyHomeViewNavBarTitleView.xib; sourceTree = "<group>"; };
 		85C16E3E1F219C6C00D609DE /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
@@ -498,6 +504,8 @@
 				857197E91F273A0B00D3C4FC /* ReusableFollowListViewController.xib */,
 				857197EE1F28447400D3C4FC /* ReusableRightNavBarItemViewForProfileVC.swift */,
 				857197EC1F28446300D3C4FC /* ReusableRightNavBarItemViewForProfileVC.xib */,
+				85BB89251F2D6E94000F1CFD /* ReusableRatingStarsView.swift */,
+				85BB89271F2D6E9E000F1CFD /* ReusableRatingStarsView.xib */,
 			);
 			path = CommonComponents;
 			sourceTree = "<group>";
@@ -510,6 +518,7 @@
 				8533DF351F041AD10026C437 /* ComposeTextTableViewController.swift */,
 				859B5F481F060FF0009A8762 /* LocationPickingViewController.swift */,
 				8503D21B1F07871D0053D639 /* FindTogetherWithViewController.swift */,
+				85BB89231F2D6ADF000F1CFD /* ComposeQuestionTableViewController.swift */,
 			);
 			path = ComposeNewContent;
 			sourceTree = "<group>";
@@ -713,6 +722,7 @@
 				85541E251F0CE45400EC91A7 /* SlidingTabMenuBarView.xib in Resources */,
 				859564A61EF64CC7000D0BC8 /* Fly.storyboard in Resources */,
 				857197E31F265C1500D3C4FC /* ReusableFollowingButtonView.xib in Resources */,
+				85BB89281F2D6E9E000F1CFD /* ReusableRatingStarsView.xib in Resources */,
 				8582A6561F0088BA00483CDD /* DevicePhotoCollectionViewCell.xib in Resources */,
 				855700E01F00C88D0084356E /* CapturedPhotoView.xib in Resources */,
 				8595649D1EF64C2C000D0BC8 /* ContentFlow.storyboard in Resources */,
@@ -885,6 +895,7 @@
 				8587D1C31F0CA02F009D18E9 /* UserProfileHeaderView.swift in Sources */,
 				853851301EF4FBF600A8B2B5 /* AppDelegate.swift in Sources */,
 				8587D1C01F0C512B009D18E9 /* FlyHomeViewController.swift in Sources */,
+				85BB89241F2D6ADF000F1CFD /* ComposeQuestionTableViewController.swift in Sources */,
 				8549F0D51EFC992400385F1E /* PhotoScrollView.swift in Sources */,
 				855700E21F00C8AB0084356E /* CapturedPhotoView.swift in Sources */,
 				852113F41F0F7E7500830F13 /* StyleConstants.swift in Sources */,
@@ -893,6 +904,7 @@
 				85F5C20F1F248242007F0E8C /* AnswerManager.swift in Sources */,
 				857197E61F26DAB100D3C4FC /* ReusableFriendProfileViewController.swift in Sources */,
 				858773BB1F22F81E004BFE27 /* NotificationObjects.swift in Sources */,
+				85BB89261F2D6E94000F1CFD /* ReusableRatingStarsView.swift in Sources */,
 				857197E11F265C0B00D3C4FC /* ReusableFollowingButtonView.swift in Sources */,
 				857197DD1F26528200D3C4FC /* ReusableFriendProfileHeaderView.swift in Sources */,
 				8582A64C1EFE419F00483CDD /* ComposeImageViewController.swift in Sources */,

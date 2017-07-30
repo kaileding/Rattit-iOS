@@ -1,14 +1,14 @@
 //
-//  ComposeTextTableViewController.swift
+//  ComposeQuestionTableViewController.swift
 //  Rattit
 //
-//  Created by DINGKaile on 6/28/17.
+//  Created by DINGKaile on 7/29/17.
 //  Copyright © 2017 KaileDing. All rights reserved.
 //
 
 import UIKit
 
-class ComposeTextTableViewController: UITableViewController {
+class ComposeQuestionTableViewController: UITableViewController {
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var wordsTextView: UITextView!
@@ -35,11 +35,11 @@ class ComposeTextTableViewController: UITableViewController {
     
     @IBOutlet weak var separatorCell: UITableViewCell!
     
-    @IBOutlet weak var togetherWithCell: UITableViewCell!
-    
-    @IBOutlet weak var togetherWithIconImageView: UIImageView!
-    @IBOutlet weak var togetherWithLabel: UILabel!
-    @IBOutlet weak var togetherWithLabelArrowImageView: UIImageView!
+//    @IBOutlet weak var togetherWithCell: UITableViewCell!
+//
+//    @IBOutlet weak var togetherWithIconImageView: UIImageView!
+//    @IBOutlet weak var togetherWithLabel: UILabel!
+//    @IBOutlet weak var togetherWithLabelArrowImageView: UIImageView!
     
     @IBOutlet weak var shareToIconImageView: UIImageView!
     @IBOutlet weak var shareToLabel: UILabel!
@@ -76,7 +76,7 @@ class ComposeTextTableViewController: UITableViewController {
         }
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: composeTextRightBarButtonItemView)
         
-//        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: UIBarButtonItemStyle.done, target: self, action: #selector(completeTextAndPost))
+        //        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: UIBarButtonItemStyle.done, target: self, action: #selector(completeTextAndPost))
         
         self.wordsTextView.delegate = self
         self.wordsTextView.text = "Say something"
@@ -97,12 +97,6 @@ class ComposeTextTableViewController: UITableViewController {
         self.star4ImageView.tintColor = RattitStyleColors.ratingStarGold
         self.star5ImageView.image = self.emptyStarImage
         self.star5ImageView.tintColor = RattitStyleColors.ratingStarGold
-        
-        
-        self.togetherWithIconImageView.image = UIImage(named: "togetherWith")?.withRenderingMode(.alwaysTemplate)
-        self.togetherWithIconImageView.tintColor = UIColor.lightGray
-        self.togetherWithLabelArrowImageView.image = UIImage(named: "rightArrow")?.withRenderingMode(.alwaysTemplate)
-        self.togetherWithLabelArrowImageView.tintColor = UIColor.lightGray
         
         self.shareToIconImageView.image = UIImage(named: "globe")?.withRenderingMode(.alwaysTemplate)
         self.shareToIconImageView.tintColor = UIColor.lightGray
@@ -144,28 +138,14 @@ class ComposeTextTableViewController: UITableViewController {
             self.locationIconImageView.tintColor = UIColor.lightGray
             self.locationLabel.text = "Location"
             self.locationLabelArrowImageView.isHidden = false
-            self.noStarButtonPressed()
+//            self.noStarButtonPressed()
         } else {
             self.locationIconImageView.tintColor = UIColor(red: 0, green: 0.7176, blue: 0.5255, alpha: 1.0)
             self.locationLabel.text = ComposeContentManager.sharedInstance.pickedPlaceFromGoogle!.name
             self.locationLabelArrowImageView.isHidden = true
             
-            switch ComposeContentManager.sharedInstance.pickedPlaceRatingValue {
-            case 0:
-                self.noStarButtonPressed()
-            case 1:
-                self.star1ButtonPressed()
-            case 2:
-                self.star2ButtonPressed()
-            case 3:
-                self.star3ButtonPressed()
-            case 4:
-                self.star4ButtonPressed()
-            case 5:
-                self.star5ButtonPressed()
-            default:
-                self.noStarButtonPressed()
-            }
+                
+//            ComposeContentManager.sharedInstance.pickedPlaceRatingValue
         }
         
         self.locationLabelCell.separatorInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, self.view.frame.width)
@@ -178,18 +158,10 @@ class ComposeTextTableViewController: UITableViewController {
         ComposeContentManager.sharedInstance.imagesOfPickedUsersForTogether.forEach({ (pickedUserImageView) in
             pickedUserImageView.removeFromSuperview()
         })
-        ComposeContentManager.sharedInstance.imagesOfPickedUsersForTogether.removeAll()
-        if ComposeContentManager.sharedInstance.pickedUsersForTogether.isEmpty {
-            self.togetherWithLabelArrowImageView.isHidden = false
-            self.togetherWithIconImageView.tintColor = UIColor.lightGray
-        } else {
-            self.togetherWithLabelArrowImageView.isHidden = true
-            self.togetherWithIconImageView.tintColor = UIColor(red: 0, green: 0.5098, blue: 0.7882, alpha: 1.0)
-            self.showSelectedUsersOnTogetherWithCell()
-        }
         
     }
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -198,11 +170,13 @@ class ComposeTextTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        // #warning Incomplete implementation, return the number of rows
+        return 9
     }
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -257,6 +231,7 @@ class ComposeTextTableViewController: UITableViewController {
     }
     
     
+    
     func completeTextAndPost() {
         
         ComposeContentManager.sharedInstance.postNewMoment(title: self.titleTextField.text!, words: self.wordsTextView.text, completion: {
@@ -269,47 +244,77 @@ class ComposeTextTableViewController: UITableViewController {
     }
     
     
-    
-    @IBAction func tapGestureInLocationRatingCell(_ sender: UITapGestureRecognizer) {
-        let tapPoint = sender.location(in: self.locationRatingCell.contentView)
-        let width = self.tableView.frame.width
-//        print("TAP - tapPoint.x = \(tapPoint.x)")
+    func showSelectedImagesOnScrollView() {
+        self.selectedImages = ComposeContentManager.sharedInstance.getSelectedImages()
+        let imageCount = self.selectedImages.count
+        let canvasFrame = CGRect(x: 0.0, y: 0.0, width: 44.0*Double(imageCount), height: 44.0)
+        let canvasView = UIView(frame: canvasFrame)
         
-        if tapPoint.x < (0.5*width - 54.0) {
-            self.star1ButtonPressed()
-        } else if tapPoint.x < (0.5*width - 18.0) {
-            self.star2ButtonPressed()
-        } else if tapPoint.x < (0.5*width + 18.0) {
-            self.star3ButtonPressed()
-        } else if tapPoint.x < (0.5*width + 54.0) {
-            self.star4ButtonPressed()
-        } else {
-            self.star5ButtonPressed()
+        //        print("self.selectedImages.count = \(self.selectedImages.count)")
+        //        print("canvasView.frame is \(canvasFrame.debugDescription)")
+        
+        self.selectedImages.enumerated().forEach { (offset, image) in
+            let imageViewFrame = CGRect(x: 44.0*Double(offset)+2.0, y: 2.0, width: 40.0, height: 40.0)
+            let imageView = UIImageView(frame: imageViewFrame)
+            imageView.clipsToBounds = true
+            imageView.contentMode = .scaleAspectFill
+            imageView.image = image
+            canvasView.addSubview(imageView)
         }
+        self.imageScrollView.contentSize = CGSize(width: 44.0*Double(imageCount), height: 44.0)
+        self.imageScrollView.addSubview(canvasView)
+        //        print("self.imageScrollView.frame is \(self.imageScrollView.frame.debugDescription)")
     }
     
-    @IBAction func panGestureInLocationRatingCell(_ sender: UIPanGestureRecognizer) {
-        let panPoint = sender.location(in: self.locationRatingCell.contentView)
-        let width = self.tableView.frame.width
-//        print("PAN - panPoint.x = \(panPoint.x)")
-        
-        if panPoint.x < (0.5*width - 54.0) {
-            self.star1ButtonPressed()
-        } else if panPoint.x < (0.5*width - 18.0) {
-            self.star2ButtonPressed()
-        } else if panPoint.x < (0.5*width + 18.0) {
-            self.star3ButtonPressed()
-        } else if panPoint.x < (0.5*width + 54.0) {
-            self.star4ButtonPressed()
-        } else {
-            self.star5ButtonPressed()
+    func displaySelectedShareToCellAndCollapseOptions() {
+        //        print("displaySelectedShareToCellAndCollapseOptions(). ")
+        self.shareToSelectedLabel.isHidden = false
+        self.shareToLabelArrowImageView.isHidden = true
+        switch ComposeContentManager.sharedInstance.shareToLevel {
+        case .levelPublic:
+            self.shareToSelectedLabel.text = "All"
+            self.shareToIconImageView.tintColor = UIColor.black
+        case .levelFollowers:
+            self.shareToSelectedLabel.text = "Followers"
+            self.shareToIconImageView.tintColor = UIColor.black
+        case .levelFriends:
+            self.shareToSelectedLabel.text = "Friends"
+            self.shareToIconImageView.tintColor = UIColor.black
+        case .levelSelf:
+            self.shareToSelectedLabel.text = "Private"
+            self.shareToIconImageView.tintColor = UIColor.lightGray
         }
+        
+        self.shareToOptionsOpen = false
+        self.tableView.reloadData()
     }
     
+    func openShareToOptions() {
+        //        print("openShareToOptions(). ")
+        self.shareToSelectedLabel.isHidden = true
+        self.shareToLabelArrowImageView.isHidden = false
+        
+        self.shareToAllCheckImageView.isHidden = true
+        self.shareToFollowersCheckImageView.isHidden = true
+        self.shareToFriendsCheckImageView.isHidden = true
+        self.shareToPrivateCheckImageView.isHidden = true
+        switch ComposeContentManager.sharedInstance.shareToLevel {
+        case .levelPublic:
+            self.shareToAllCheckImageView.isHidden = false
+        case .levelFollowers:
+            self.shareToFollowersCheckImageView.isHidden = false
+        case .levelFriends:
+            self.shareToFriendsCheckImageView.isHidden = false
+        case .levelSelf:
+            self.shareToPrivateCheckImageView.isHidden = false
+        }
+        
+        self.shareToOptionsOpen = true
+        self.tableView.reloadData()
+    }
 }
 
-
-extension ComposeTextTableViewController: UITextViewDelegate {
+extension ComposeQuestionTableViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
@@ -352,162 +357,4 @@ extension ComposeTextTableViewController: UITextViewDelegate {
     }
     
 }
-
-extension ComposeTextTableViewController {
-    
-    func showSelectedImagesOnScrollView() {
-        self.selectedImages = ComposeContentManager.sharedInstance.getSelectedImages()
-        let imageCount = self.selectedImages.count
-        let canvasFrame = CGRect(x: 0.0, y: 0.0, width: 44.0*Double(imageCount), height: 44.0)
-        let canvasView = UIView(frame: canvasFrame)
-        
-        //        print("self.selectedImages.count = \(self.selectedImages.count)")
-        //        print("canvasView.frame is \(canvasFrame.debugDescription)")
-        
-        self.selectedImages.enumerated().forEach { (offset, image) in
-            let imageViewFrame = CGRect(x: 44.0*Double(offset)+2.0, y: 2.0, width: 40.0, height: 40.0)
-            let imageView = UIImageView(frame: imageViewFrame)
-            imageView.clipsToBounds = true
-            imageView.contentMode = .scaleAspectFill
-            imageView.image = image
-            canvasView.addSubview(imageView)
-        }
-        self.imageScrollView.contentSize = CGSize(width: 44.0*Double(imageCount), height: 44.0)
-        self.imageScrollView.addSubview(canvasView)
-        //        print("self.imageScrollView.frame is \(self.imageScrollView.frame.debugDescription)")
-    }
-    
-    func showSelectedUsersOnTogetherWithCell() {
-        let userAvatarStartingX = Double(self.togetherWithLabel.frame.maxX + 8.0)
-        let totalWidth = Double(self.view.frame.width)
-        ComposeContentManager.sharedInstance.pickedUsersForTogether.enumerated().forEach({ (offset, userId) in
-            
-            if (userAvatarStartingX+25.0*Double(offset)+30.0) < totalWidth {
-                
-                let avatarFrame = CGRect(x: userAvatarStartingX+25.0*Double(offset), y: 7.0, width: 30.0, height: 30.0)
-                let userAvatar = UIImageView()
-                self.togetherWithCell.contentView.addSubview(userAvatar)
-                userAvatar.frame = avatarFrame
-                userAvatar.layer.cornerRadius = 15.0
-                userAvatar.clipsToBounds = true
-                userAvatar.contentMode = .scaleAspectFill
-                RattitUserManager.sharedInstance.getRattitUserAvatarImage(userId: userId, completion: { (image) in
-                    userAvatar.image = image
-                }, errorHandler: { (error) in
-                    print("RattitUserManager.getRattitUserAvatarImage failed for userId = \(userId)")
-                })
-                ComposeContentManager.sharedInstance.imagesOfPickedUsersForTogether.append(userAvatar)
-            }
-        })
-    }
-    
-    func noStarButtonPressed() {
-        print("no stars are touched.")
-        self.star1ImageView.image = self.emptyStarImage
-        self.star2ImageView.image = self.emptyStarImage
-        self.star3ImageView.image = self.emptyStarImage
-        self.star4ImageView.image = self.emptyStarImage
-        self.star5ImageView.image = self.emptyStarImage
-        ComposeContentManager.sharedInstance.pickedPlaceRatingValue = 0
-    }
-    
-    func star1ButtonPressed() {
-        print("star-1-ButtonPressed.")
-        self.star1ImageView.image = self.filledStarImage
-        self.star2ImageView.image = self.emptyStarImage
-        self.star3ImageView.image = self.emptyStarImage
-        self.star4ImageView.image = self.emptyStarImage
-        self.star5ImageView.image = self.emptyStarImage
-        ComposeContentManager.sharedInstance.pickedPlaceRatingValue = 1
-    }
-    
-    func star2ButtonPressed() {
-        print("star-2-ButtonPressed.")
-        self.star1ImageView.image = self.filledStarImage
-        self.star2ImageView.image = self.filledStarImage
-        self.star3ImageView.image = self.emptyStarImage
-        self.star4ImageView.image = self.emptyStarImage
-        self.star5ImageView.image = self.emptyStarImage
-        ComposeContentManager.sharedInstance.pickedPlaceRatingValue = 2
-    }
-    
-    func star3ButtonPressed() {
-        print("star-3-ButtonPressed.")
-        self.star1ImageView.image = self.filledStarImage
-        self.star2ImageView.image = self.filledStarImage
-        self.star3ImageView.image = self.filledStarImage
-        self.star4ImageView.image = self.emptyStarImage
-        self.star5ImageView.image = self.emptyStarImage
-        ComposeContentManager.sharedInstance.pickedPlaceRatingValue = 3
-    }
-    
-    func star4ButtonPressed() {
-        print("star-4-ButtonPressed.")
-        self.star1ImageView.image = self.filledStarImage
-        self.star2ImageView.image = self.filledStarImage
-        self.star3ImageView.image = self.filledStarImage
-        self.star4ImageView.image = self.filledStarImage
-        self.star5ImageView.image = self.emptyStarImage
-        ComposeContentManager.sharedInstance.pickedPlaceRatingValue = 4
-    }
-    
-    func star5ButtonPressed() {
-        print("star-5-ButtonPressed.")
-        self.star1ImageView.image = self.filledStarImage
-        self.star2ImageView.image = self.filledStarImage
-        self.star3ImageView.image = self.filledStarImage
-        self.star4ImageView.image = self.filledStarImage
-        self.star5ImageView.image = self.filledStarImage
-        ComposeContentManager.sharedInstance.pickedPlaceRatingValue = 5
-    }
-    
-    func displaySelectedShareToCellAndCollapseOptions() {
-//        print("displaySelectedShareToCellAndCollapseOptions(). ")
-        self.shareToSelectedLabel.isHidden = false
-        self.shareToLabelArrowImageView.isHidden = true
-        switch ComposeContentManager.sharedInstance.shareToLevel {
-        case .levelPublic:
-            self.shareToSelectedLabel.text = "All"
-            self.shareToIconImageView.tintColor = UIColor.black
-        case .levelFollowers:
-            self.shareToSelectedLabel.text = "Followers"
-            self.shareToIconImageView.tintColor = UIColor.black
-        case .levelFriends:
-            self.shareToSelectedLabel.text = "Friends"
-            self.shareToIconImageView.tintColor = UIColor.black
-        case .levelSelf:
-            self.shareToSelectedLabel.text = "Private"
-            self.shareToIconImageView.tintColor = UIColor.lightGray
-        }
-        
-        self.shareToOptionsOpen = false
-        self.tableView.reloadData()
-    }
-    
-    func openShareToOptions() {
-//        print("openShareToOptions(). ")
-        self.shareToSelectedLabel.isHidden = true
-        self.shareToLabelArrowImageView.isHidden = false
-        
-        self.shareToAllCheckImageView.isHidden = true
-        self.shareToFollowersCheckImageView.isHidden = true
-        self.shareToFriendsCheckImageView.isHidden = true
-        self.shareToPrivateCheckImageView.isHidden = true
-        switch ComposeContentManager.sharedInstance.shareToLevel {
-        case .levelPublic:
-            self.shareToAllCheckImageView.isHidden = false
-        case .levelFollowers:
-            self.shareToFollowersCheckImageView.isHidden = false
-        case .levelFriends:
-            self.shareToFriendsCheckImageView.isHidden = false
-        case .levelSelf:
-            self.shareToPrivateCheckImageView.isHidden = false
-        }
-        
-        self.shareToOptionsOpen = true
-        self.tableView.reloadData()
-    }
-    
-}
-
 

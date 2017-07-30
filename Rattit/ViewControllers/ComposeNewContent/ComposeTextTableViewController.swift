@@ -22,14 +22,8 @@ class ComposeTextTableViewController: UITableViewController {
     
     @IBOutlet weak var locationRatingCell: UITableViewCell!
     
-    @IBOutlet weak var star1ImageView: UIImageView!
-    @IBOutlet weak var star2ImageView: UIImageView!
-    @IBOutlet weak var star3ImageView: UIImageView!
-    @IBOutlet weak var star4ImageView: UIImageView!
-    @IBOutlet weak var star5ImageView: UIImageView!
+    @IBOutlet weak var ratingStarsView: ReusableRatingStarsView!
     
-    let emptyStarImage = UIImage(named: "ratingStar")?.withRenderingMode(.alwaysTemplate)
-    let filledStarImage = UIImage(named: "ratingStarFilled")?.withRenderingMode(.alwaysTemplate)
     var locationRatingValue: Int = 0
     var ratingValueForLocation: RattitLocation? = nil
     
@@ -87,18 +81,6 @@ class ComposeTextTableViewController: UITableViewController {
         self.locationLabelArrowImageView.image = UIImage(named: "rightArrow")?.withRenderingMode(.alwaysTemplate)
         self.locationLabelArrowImageView.tintColor = UIColor.lightGray
         
-        self.star1ImageView.image = self.emptyStarImage
-        self.star1ImageView.tintColor = RattitStyleColors.ratingStarGold
-        self.star2ImageView.image = self.emptyStarImage
-        self.star2ImageView.tintColor = RattitStyleColors.ratingStarGold
-        self.star3ImageView.image = self.emptyStarImage
-        self.star3ImageView.tintColor = RattitStyleColors.ratingStarGold
-        self.star4ImageView.image = self.emptyStarImage
-        self.star4ImageView.tintColor = RattitStyleColors.ratingStarGold
-        self.star5ImageView.image = self.emptyStarImage
-        self.star5ImageView.tintColor = RattitStyleColors.ratingStarGold
-        
-        
         self.togetherWithIconImageView.image = UIImage(named: "togetherWith")?.withRenderingMode(.alwaysTemplate)
         self.togetherWithIconImageView.tintColor = UIColor.lightGray
         self.togetherWithLabelArrowImageView.image = UIImage(named: "rightArrow")?.withRenderingMode(.alwaysTemplate)
@@ -144,28 +126,18 @@ class ComposeTextTableViewController: UITableViewController {
             self.locationIconImageView.tintColor = UIColor.lightGray
             self.locationLabel.text = "Location"
             self.locationLabelArrowImageView.isHidden = false
-            self.noStarButtonPressed()
+            self.ratingStarsView.setRatingStars(rating: 0, touchHandler: { (newRating) in
+                ComposeContentManager.sharedInstance.pickedPlaceRatingValue = newRating
+            })
         } else {
             self.locationIconImageView.tintColor = UIColor(red: 0, green: 0.7176, blue: 0.5255, alpha: 1.0)
             self.locationLabel.text = ComposeContentManager.sharedInstance.pickedPlaceFromGoogle!.name
             self.locationLabelArrowImageView.isHidden = true
             
-            switch ComposeContentManager.sharedInstance.pickedPlaceRatingValue {
-            case 0:
-                self.noStarButtonPressed()
-            case 1:
-                self.star1ButtonPressed()
-            case 2:
-                self.star2ButtonPressed()
-            case 3:
-                self.star3ButtonPressed()
-            case 4:
-                self.star4ButtonPressed()
-            case 5:
-                self.star5ButtonPressed()
-            default:
-                self.noStarButtonPressed()
-            }
+            let currentRatingValue = ComposeContentManager.sharedInstance.pickedPlaceRatingValue
+            self.ratingStarsView.setRatingStars(rating: currentRatingValue, touchHandler: { (newRating) in
+                ComposeContentManager.sharedInstance.pickedPlaceRatingValue = newRating
+            })
         }
         
         self.locationLabelCell.separatorInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, self.view.frame.width)
@@ -268,44 +240,6 @@ class ComposeTextTableViewController: UITableViewController {
         })
     }
     
-    
-    
-    @IBAction func tapGestureInLocationRatingCell(_ sender: UITapGestureRecognizer) {
-        let tapPoint = sender.location(in: self.locationRatingCell.contentView)
-        let width = self.tableView.frame.width
-//        print("TAP - tapPoint.x = \(tapPoint.x)")
-        
-        if tapPoint.x < (0.5*width - 54.0) {
-            self.star1ButtonPressed()
-        } else if tapPoint.x < (0.5*width - 18.0) {
-            self.star2ButtonPressed()
-        } else if tapPoint.x < (0.5*width + 18.0) {
-            self.star3ButtonPressed()
-        } else if tapPoint.x < (0.5*width + 54.0) {
-            self.star4ButtonPressed()
-        } else {
-            self.star5ButtonPressed()
-        }
-    }
-    
-    @IBAction func panGestureInLocationRatingCell(_ sender: UIPanGestureRecognizer) {
-        let panPoint = sender.location(in: self.locationRatingCell.contentView)
-        let width = self.tableView.frame.width
-//        print("PAN - panPoint.x = \(panPoint.x)")
-        
-        if panPoint.x < (0.5*width - 54.0) {
-            self.star1ButtonPressed()
-        } else if panPoint.x < (0.5*width - 18.0) {
-            self.star2ButtonPressed()
-        } else if panPoint.x < (0.5*width + 18.0) {
-            self.star3ButtonPressed()
-        } else if panPoint.x < (0.5*width + 54.0) {
-            self.star4ButtonPressed()
-        } else {
-            self.star5ButtonPressed()
-        }
-    }
-    
 }
 
 
@@ -399,66 +333,6 @@ extension ComposeTextTableViewController {
                 ComposeContentManager.sharedInstance.imagesOfPickedUsersForTogether.append(userAvatar)
             }
         })
-    }
-    
-    func noStarButtonPressed() {
-        print("no stars are touched.")
-        self.star1ImageView.image = self.emptyStarImage
-        self.star2ImageView.image = self.emptyStarImage
-        self.star3ImageView.image = self.emptyStarImage
-        self.star4ImageView.image = self.emptyStarImage
-        self.star5ImageView.image = self.emptyStarImage
-        ComposeContentManager.sharedInstance.pickedPlaceRatingValue = 0
-    }
-    
-    func star1ButtonPressed() {
-        print("star-1-ButtonPressed.")
-        self.star1ImageView.image = self.filledStarImage
-        self.star2ImageView.image = self.emptyStarImage
-        self.star3ImageView.image = self.emptyStarImage
-        self.star4ImageView.image = self.emptyStarImage
-        self.star5ImageView.image = self.emptyStarImage
-        ComposeContentManager.sharedInstance.pickedPlaceRatingValue = 1
-    }
-    
-    func star2ButtonPressed() {
-        print("star-2-ButtonPressed.")
-        self.star1ImageView.image = self.filledStarImage
-        self.star2ImageView.image = self.filledStarImage
-        self.star3ImageView.image = self.emptyStarImage
-        self.star4ImageView.image = self.emptyStarImage
-        self.star5ImageView.image = self.emptyStarImage
-        ComposeContentManager.sharedInstance.pickedPlaceRatingValue = 2
-    }
-    
-    func star3ButtonPressed() {
-        print("star-3-ButtonPressed.")
-        self.star1ImageView.image = self.filledStarImage
-        self.star2ImageView.image = self.filledStarImage
-        self.star3ImageView.image = self.filledStarImage
-        self.star4ImageView.image = self.emptyStarImage
-        self.star5ImageView.image = self.emptyStarImage
-        ComposeContentManager.sharedInstance.pickedPlaceRatingValue = 3
-    }
-    
-    func star4ButtonPressed() {
-        print("star-4-ButtonPressed.")
-        self.star1ImageView.image = self.filledStarImage
-        self.star2ImageView.image = self.filledStarImage
-        self.star3ImageView.image = self.filledStarImage
-        self.star4ImageView.image = self.filledStarImage
-        self.star5ImageView.image = self.emptyStarImage
-        ComposeContentManager.sharedInstance.pickedPlaceRatingValue = 4
-    }
-    
-    func star5ButtonPressed() {
-        print("star-5-ButtonPressed.")
-        self.star1ImageView.image = self.filledStarImage
-        self.star2ImageView.image = self.filledStarImage
-        self.star3ImageView.image = self.filledStarImage
-        self.star4ImageView.image = self.filledStarImage
-        self.star5ImageView.image = self.filledStarImage
-        ComposeContentManager.sharedInstance.pickedPlaceRatingValue = 5
     }
     
     func displaySelectedShareToCellAndCollapseOptions() {

@@ -247,59 +247,18 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ratingStar" translatesAutoresizingMaskIntoConstraints="NO" id="age-py-DoO">
-                                                    <rect key="frame" x="105" y="11" width="20" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="Ay2-rW-hA6"/>
-                                                        <constraint firstAttribute="width" constant="20" id="r8v-ot-fnO"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ratingStar" translatesAutoresizingMaskIntoConstraints="NO" id="2G9-Wt-JpB">
-                                                    <rect key="frame" x="141" y="11" width="20" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="20" id="6ta-co-Obo"/>
-                                                        <constraint firstAttribute="height" constant="20" id="XcW-SA-zPF"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ratingStar" translatesAutoresizingMaskIntoConstraints="NO" id="JQy-Gu-2Qu">
-                                                    <rect key="frame" x="177" y="11" width="20" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="20" id="WEt-nM-zVi"/>
-                                                        <constraint firstAttribute="height" constant="20" id="gDi-wl-Isv"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ratingStar" translatesAutoresizingMaskIntoConstraints="NO" id="0hz-t8-L74">
-                                                    <rect key="frame" x="213" y="11" width="20" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="fzs-pZ-YDU"/>
-                                                        <constraint firstAttribute="width" constant="20" id="p8n-aR-l3h"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ratingStar" translatesAutoresizingMaskIntoConstraints="NO" id="adH-NJ-hFT">
-                                                    <rect key="frame" x="249" y="11" width="20" height="20"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="Dhs-jr-f7z"/>
-                                                        <constraint firstAttribute="width" constant="20" id="UfZ-1g-bxd"/>
-                                                    </constraints>
-                                                </imageView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qsz-pD-AIN" customClass="ReusableRatingStarsView" customModule="Rattit" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" red="0.93724584580000003" green="0.93726044890000004" blue="0.95671778919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
-                                                <constraint firstItem="0hz-t8-L74" firstAttribute="centerY" secondItem="vo5-NR-wjW" secondAttribute="centerY" id="1ZT-qp-Kcv"/>
-                                                <constraint firstItem="age-py-DoO" firstAttribute="centerY" secondItem="vo5-NR-wjW" secondAttribute="centerY" id="8Ak-oy-1mc"/>
-                                                <constraint firstItem="2G9-Wt-JpB" firstAttribute="centerY" secondItem="vo5-NR-wjW" secondAttribute="centerY" id="MQH-Ef-qhA"/>
-                                                <constraint firstItem="2G9-Wt-JpB" firstAttribute="leading" secondItem="age-py-DoO" secondAttribute="trailing" constant="16" id="UlC-D9-H4p"/>
-                                                <constraint firstItem="adH-NJ-hFT" firstAttribute="centerY" secondItem="vo5-NR-wjW" secondAttribute="centerY" id="YLU-rS-bKx"/>
-                                                <constraint firstItem="JQy-Gu-2Qu" firstAttribute="centerY" secondItem="vo5-NR-wjW" secondAttribute="centerY" id="bRu-L1-XQV"/>
-                                                <constraint firstItem="JQy-Gu-2Qu" firstAttribute="leading" secondItem="2G9-Wt-JpB" secondAttribute="trailing" constant="16" id="hPE-J3-zUC"/>
-                                                <constraint firstItem="0hz-t8-L74" firstAttribute="leading" secondItem="JQy-Gu-2Qu" secondAttribute="trailing" constant="16" id="jtU-uw-Ouv"/>
-                                                <constraint firstItem="adH-NJ-hFT" firstAttribute="leading" secondItem="0hz-t8-L74" secondAttribute="trailing" constant="16" id="qin-Y5-0tE"/>
-                                                <constraint firstItem="JQy-Gu-2Qu" firstAttribute="centerX" secondItem="vo5-NR-wjW" secondAttribute="centerX" id="sJu-Ui-ZIq"/>
+                                                <constraint firstAttribute="trailing" secondItem="Qsz-pD-AIN" secondAttribute="trailing" id="Mai-sy-Gwn"/>
+                                                <constraint firstItem="Qsz-pD-AIN" firstAttribute="top" secondItem="vo5-NR-wjW" secondAttribute="top" id="PgT-cI-9pQ"/>
+                                                <constraint firstItem="Qsz-pD-AIN" firstAttribute="leading" secondItem="vo5-NR-wjW" secondAttribute="leading" id="YsE-CX-LvE"/>
+                                                <constraint firstAttribute="bottom" secondItem="Qsz-pD-AIN" secondAttribute="bottom" id="nAh-E0-9nD"/>
                                             </constraints>
-                                            <connections>
-                                                <outletCollection property="gestureRecognizers" destination="jT4-jD-xKt" appends="YES" id="85O-af-thd"/>
-                                                <outletCollection property="gestureRecognizers" destination="e2S-kG-QtI" appends="YES" id="VAW-jH-Y4S"/>
-                                            </connections>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.93724584580000003" green="0.93726044890000004" blue="0.95671778919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <gestureRecognizers/>
@@ -532,6 +491,7 @@
                         <outlet property="locationLabelArrowImageView" destination="U4x-Wg-e5b" id="QzW-t5-2MV"/>
                         <outlet property="locationLabelCell" destination="aZ3-rV-yrm" id="Pf7-v4-M67"/>
                         <outlet property="locationRatingCell" destination="AuJ-bK-lFk" id="fdr-rj-Tda"/>
+                        <outlet property="ratingStarsView" destination="Qsz-pD-AIN" id="W4e-ZM-QWc"/>
                         <outlet property="separatorCell" destination="wlm-9Q-iAq" id="w2A-MA-5C2"/>
                         <outlet property="shareToAllCell" destination="7pi-d3-zJo" id="nQh-WU-Tl3"/>
                         <outlet property="shareToAllCheckImageView" destination="BSW-p3-fiW" id="ebN-Vr-LaK"/>
@@ -545,11 +505,6 @@
                         <outlet property="shareToPrivateCell" destination="fVr-l1-2ly" id="CWG-sl-uKi"/>
                         <outlet property="shareToPrivateCheckImageView" destination="JuR-hS-i1u" id="yyR-yt-33H"/>
                         <outlet property="shareToSelectedLabel" destination="juG-2u-8nR" id="Apx-NV-vCN"/>
-                        <outlet property="star1ImageView" destination="age-py-DoO" id="xf6-Gk-QZM"/>
-                        <outlet property="star2ImageView" destination="2G9-Wt-JpB" id="BZX-Rn-N61"/>
-                        <outlet property="star3ImageView" destination="JQy-Gu-2Qu" id="OO0-E8-Paj"/>
-                        <outlet property="star4ImageView" destination="0hz-t8-L74" id="Uya-e4-xbt"/>
-                        <outlet property="star5ImageView" destination="adH-NJ-hFT" id="rIe-mv-xGV"/>
                         <outlet property="titleTextField" destination="PQL-FM-bhX" id="Loe-lC-LHJ"/>
                         <outlet property="togetherWithCell" destination="Jcx-T8-XP4" id="Vnx-wd-CXK"/>
                         <outlet property="togetherWithIconImageView" destination="JhP-oP-Fr7" id="0wB-i3-Kg9"/>
@@ -561,18 +516,6 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="21G-L5-WPD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="e2S-kG-QtI">
-                    <connections>
-                        <action selector="tapGestureInLocationRatingCell:" destination="S4C-lk-MeK" id="8Iz-4Y-Ev7"/>
-                        <outlet property="delegate" destination="vo5-NR-wjW" id="Adq-PT-SoY"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="jT4-jD-xKt">
-                    <connections>
-                        <action selector="panGestureInLocationRatingCell:" destination="S4C-lk-MeK" id="szX-jd-Kfi"/>
-                        <outlet property="delegate" destination="vo5-NR-wjW" id="YVq-8X-lj2"/>
-                    </connections>
-                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1704.8" y="957.57121439280365"/>
         </scene>
@@ -792,7 +735,6 @@
         <image name="flashAuto" width="25" height="25"/>
         <image name="globe" width="20" height="20"/>
         <image name="locationIcon" width="20" height="20"/>
-        <image name="ratingStar" width="20" height="20"/>
         <image name="rightArrow" width="20" height="20"/>
         <image name="shutterButton" width="30" height="30"/>
         <image name="togetherWith" width="20" height="20"/>

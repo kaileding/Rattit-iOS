@@ -51,6 +51,8 @@
 		85541E271F0CE46000EC91A7 /* SlidingTabMenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85541E261F0CE46000EC91A7 /* SlidingTabMenuBarView.swift */; };
 		855700E01F00C88D0084356E /* CapturedPhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855700DF1F00C88D0084356E /* CapturedPhotoView.xib */; };
 		855700E21F00C8AB0084356E /* CapturedPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855700E11F00C8AB0084356E /* CapturedPhotoView.swift */; };
+		855EBEEE1F2D7FED00E6797F /* ReusablePlaceHolderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855EBEED1F2D7FED00E6797F /* ReusablePlaceHolderTextView.swift */; };
+		855EBEF01F2D802C00E6797F /* ReusablePlaceHolderTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855EBEEF1F2D802C00E6797F /* ReusablePlaceHolderTextView.xib */; };
 		856A82411F257B9F00D59ED6 /* AnswerOptionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856A82401F257B9F00D59ED6 /* AnswerOptionBar.swift */; };
 		856A82431F257BAC00D59ED6 /* AnswerOptionBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 856A82421F257BAC00D59ED6 /* AnswerOptionBar.xib */; };
 		856A82451F25BB1400D59ED6 /* AnswerPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856A82441F25BB1400D59ED6 /* AnswerPreviewView.swift */; };
@@ -186,6 +188,8 @@
 		85541E261F0CE46000EC91A7 /* SlidingTabMenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingTabMenuBarView.swift; sourceTree = "<group>"; };
 		855700DF1F00C88D0084356E /* CapturedPhotoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CapturedPhotoView.xib; sourceTree = "<group>"; };
 		855700E11F00C8AB0084356E /* CapturedPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturedPhotoView.swift; sourceTree = "<group>"; };
+		855EBEED1F2D7FED00E6797F /* ReusablePlaceHolderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusablePlaceHolderTextView.swift; sourceTree = "<group>"; };
+		855EBEEF1F2D802C00E6797F /* ReusablePlaceHolderTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusablePlaceHolderTextView.xib; sourceTree = "<group>"; };
 		856A82401F257B9F00D59ED6 /* AnswerOptionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerOptionBar.swift; sourceTree = "<group>"; };
 		856A82421F257BAC00D59ED6 /* AnswerOptionBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerOptionBar.xib; sourceTree = "<group>"; };
 		856A82441F25BB1400D59ED6 /* AnswerPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerPreviewView.swift; sourceTree = "<group>"; };
@@ -506,6 +510,8 @@
 				857197EC1F28446300D3C4FC /* ReusableRightNavBarItemViewForProfileVC.xib */,
 				85BB89251F2D6E94000F1CFD /* ReusableRatingStarsView.swift */,
 				85BB89271F2D6E9E000F1CFD /* ReusableRatingStarsView.xib */,
+				855EBEED1F2D7FED00E6797F /* ReusablePlaceHolderTextView.swift */,
+				855EBEEF1F2D802C00E6797F /* ReusablePlaceHolderTextView.xib */,
 			);
 			path = CommonComponents;
 			sourceTree = "<group>";
@@ -726,6 +732,7 @@
 				8582A6561F0088BA00483CDD /* DevicePhotoCollectionViewCell.xib in Resources */,
 				855700E01F00C88D0084356E /* CapturedPhotoView.xib in Resources */,
 				8595649D1EF64C2C000D0BC8 /* ContentFlow.storyboard in Resources */,
+				855EBEF01F2D802C00E6797F /* ReusablePlaceHolderTextView.xib in Resources */,
 				852C395C1EF5C8F400C66C16 /* GoogleService-Info.plist in Resources */,
 				852C39711EF5D81A00C66C16 /* SignIn.storyboard in Resources */,
 				8538513A1EF4FBF600A8B2B5 /* Assets.xcassets in Resources */,
@@ -943,6 +950,7 @@
 				85F5C2071F2412F9007F0E8C /* UIImageViewExtensions.swift in Sources */,
 				85023FAC1EF76D4700E785FD /* StringExtensions.swift in Sources */,
 				8582A6551F0088BA00483CDD /* DevicePhotoCollectionViewCell.swift in Sources */,
+				855EBEEE1F2D7FED00E6797F /* ReusablePlaceHolderTextView.swift in Sources */,
 				8549F0C81EFB844B00385F1E /* DateExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -333,6 +333,7 @@ extension ComposeQuestionTableViewController {
     
     func tapToAddImages() {
         print("tapToAddImages() func called.")
+        performSegue(withIdentifier: "FromComposeQuestionToImagePicker", sender: self)
     }
 }
 

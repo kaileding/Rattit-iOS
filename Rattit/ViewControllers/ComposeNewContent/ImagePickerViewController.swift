@@ -1,30 +1,27 @@
 //
-//  ComposeImageViewController.swift
+//  ImagePickerViewController.swift
 //  Rattit
 //
-//  Created by DINGKaile on 6/23/17.
+//  Created by DINGKaile on 7/30/17.
 //  Copyright © 2017 KaileDing. All rights reserved.
 //
 
 import UIKit
-import AVFoundation
-import Photos
 
-class ComposeImageViewController: UIViewController {
+class ImagePickerViewController: UIViewController {
     
     @IBOutlet weak var cameraPreviewView: ReusableCameraView!
     
     @IBOutlet weak var photoCollectionView: UICollectionView!
     
+    var originalSelectedImages: [Int] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
-        self.navigationController?.navigationBar.frame = CGRect(x: 0.0, y: 0.0, width: self.view.frame.width, height: 30.0)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(cancelComposingImage))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Next", style: UIBarButtonItemStyle.plain, target: self, action: #selector(confirmImagePickingAndGoNext))
-        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "OK", style: UIBarButtonItemStyle.plain, target: self, action: #selector(confirmImagePickingAndGoNext))
         
         self.photoCollectionView.delegate = self
         self.photoCollectionView.dataSource = self
@@ -37,6 +34,8 @@ class ComposeImageViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.originalSelectedImages = ComposeContentManager.sharedInstance.indexOfCheckedPhotos
+        
         let photoCollectionFlowLayout = UICollectionViewFlowLayout()
         let totalWidth = self.view.frame.width
         print("------ in viewWillAppear, totalWidth = \(totalWidth)")
@@ -46,11 +45,6 @@ class ComposeImageViewController: UIViewController {
         photoCollectionFlowLayout.scrollDirection = .vertical
         self.photoCollectionView.setCollectionViewLayout(photoCollectionFlowLayout, animated: false)
         self.photoCollectionView.reloadData()
-        if ComposeContentManager.sharedInstance.hasAtLeastOneImageChecked() {
-            self.navigationItem.rightBarButtonItem?.isEnabled = true
-        } else {
-            self.navigationItem.rightBarButtonItem?.isEnabled = false
-        }
         
         RattitLocationManager.sharedInstance.updateCurrentLocation()
     }
@@ -61,7 +55,15 @@ class ComposeImageViewController: UIViewController {
         self.cameraPreviewView.initializeCameraCapture { (capturedImage) in
             print("The capturedImage is ", capturedImage.debugDescription)
             ComposeContentManager.sharedInstance.insertNewPhotoToCollection(newImage: capturedImage)
+            self.originalSelectedImages = self.originalSelectedImages.map({ (indexVal) -> Int in
+                return indexVal + 1
+            })
         }
+        
+        print("ImagePickerVC, viewDidAppear() func: ")
+        print("self.view.frame is ", self.view.frame.debugDescription)
+        print("cameraPreviewView.frame is ", self.cameraPreviewView.frame.debugDescription)
+        print("photoCollectionView.frame is ", self.photoCollectionView.frame.debugDescription)
     }
     
     override func didReceiveMemoryWarning() {
@@ -73,19 +75,18 @@ class ComposeImageViewController: UIViewController {
     func cancelComposingImage() {
         print("cancelComposingImage() func called.")
         ComposeContentManager.sharedInstance.pickedPlaceFromGoogle = nil
-        self.dismiss(animated: true, completion: nil)
+        ComposeContentManager.sharedInstance.indexOfCheckedPhotos = self.originalSelectedImages
+        self.navigationController?.popViewController(animated: true)
     }
     
     func confirmImagePickingAndGoNext() {
         print("confirmImagePickingAndGoNext() func called.")
-        
-        performSegue(withIdentifier: "FromComposeImageToComposeText", sender: self)
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
 
-
-extension ComposeImageViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension ImagePickerViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -105,16 +106,12 @@ extension ComposeImageViewController: UICollectionViewDelegate, UICollectionView
     
 }
 
-extension ComposeImageViewController: ComposeContentUpdateSelectedPhotosDelegate {
+extension ImagePickerViewController: ComposeContentUpdateSelectedPhotosDelegate {
     func updatePhotoCollectionCells() {
         self.photoCollectionView.reloadData()
-        if ComposeContentManager.sharedInstance.hasAtLeastOneImageChecked() {
-            self.navigationItem.rightBarButtonItem?.isEnabled = true
-        } else {
-            self.navigationItem.rightBarButtonItem?.isEnabled = false
-        }
     }
 }
+
 
 
 

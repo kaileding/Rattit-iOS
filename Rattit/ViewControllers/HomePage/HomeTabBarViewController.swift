@@ -57,6 +57,10 @@ class HomeTabBarViewController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        AppInfoManager.screenWidth = self.view.frame.width
+        AppInfoManager.screenHeight = self.view.frame.height
+        AppInfoManager.tabBarHeight = self.tabBar.frame.height
+        
         if (self.blurContentEffectView == nil) {
             let blurContentEffect = UIBlurEffect(style: .dark)
             self.blurContentEffectView = UIVisualEffectView(effect: blurContentEffect)

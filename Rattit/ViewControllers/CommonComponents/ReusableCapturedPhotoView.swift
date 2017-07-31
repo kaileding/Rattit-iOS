@@ -132,15 +132,15 @@ class ReusableCapturedPhotoView: UIView {
         print("confirmButtonPressed func. Prepare to upload image file.")
         if let photoFile = self.capturedPhotoImageView.image, self.confirmButtonHandler != nil {
             self.confirmButtonHandler!(photoFile)
+            UIImageWriteToSavedPhotosAlbum(photoFile, self, #selector(writeToLibrary), nil)
         }
-//        self.saveImageToDeviceLibrary()
         self.removeFromSuperview()
     }
     
 //    func saveImageToDeviceLibrary() {
 //        if let photoFile = self.capturedPhotoImageView.image {
 //            ComposeContentManager.sharedInstance.insertNewPhotoToCollection(newImage: photoFile)
-//            UIImageWriteToSavedPhotosAlbum(photoFile, self, #selector(writeToLibrary), nil)
+//
 //        }
 //    }
     
@@ -151,5 +151,5 @@ class ReusableCapturedPhotoView: UIView {
             print("Save to device library successfully.")
         }
     }
-
+    
 }

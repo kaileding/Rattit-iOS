@@ -51,6 +51,7 @@
 		85541E271F0CE46000EC91A7 /* SlidingTabMenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85541E261F0CE46000EC91A7 /* SlidingTabMenuBarView.swift */; };
 		855700E01F00C88D0084356E /* ReusableCapturedPhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855700DF1F00C88D0084356E /* ReusableCapturedPhotoView.xib */; };
 		855700E21F00C8AB0084356E /* ReusableCapturedPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855700E11F00C8AB0084356E /* ReusableCapturedPhotoView.swift */; };
+		855C8CF81F2EBA44002CB301 /* AppInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C8CF71F2EBA44002CB301 /* AppInfoManager.swift */; };
 		855EBEEE1F2D7FED00E6797F /* ReusablePlaceHolderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855EBEED1F2D7FED00E6797F /* ReusablePlaceHolderTextView.swift */; };
 		855EBEF01F2D802C00E6797F /* ReusablePlaceHolderTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855EBEEF1F2D802C00E6797F /* ReusablePlaceHolderTextView.xib */; };
 		855EBEF31F2E910B00E6797F /* ReusableImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855EBEF11F2E910B00E6797F /* ReusableImagePickerViewController.swift */; };
@@ -192,6 +193,7 @@
 		85541E261F0CE46000EC91A7 /* SlidingTabMenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingTabMenuBarView.swift; sourceTree = "<group>"; };
 		855700DF1F00C88D0084356E /* ReusableCapturedPhotoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusableCapturedPhotoView.xib; sourceTree = "<group>"; };
 		855700E11F00C8AB0084356E /* ReusableCapturedPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCapturedPhotoView.swift; sourceTree = "<group>"; };
+		855C8CF71F2EBA44002CB301 /* AppInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoManager.swift; sourceTree = "<group>"; };
 		855EBEED1F2D7FED00E6797F /* ReusablePlaceHolderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusablePlaceHolderTextView.swift; sourceTree = "<group>"; };
 		855EBEEF1F2D802C00E6797F /* ReusablePlaceHolderTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusablePlaceHolderTextView.xib; sourceTree = "<group>"; };
 		855EBEF11F2E910B00E6797F /* ReusableImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableImagePickerViewController.swift; sourceTree = "<group>"; };
@@ -388,12 +390,13 @@
 			path = HomePage;
 			sourceTree = "<group>";
 		};
-		852C39771EF5E90700C66C16 /* UserInfo */ = {
+		852C39771EF5E90700C66C16 /* AppManager */ = {
 			isa = PBXGroup;
 			children = (
 				852C39781EF5E95400C66C16 /* UserStateManager.swift */,
+				855C8CF71F2EBA44002CB301 /* AppInfoManager.swift */,
 			);
-			path = UserInfo;
+			path = AppManager;
 			sourceTree = "<group>";
 		};
 		853851231EF4FBF500A8B2B5 = {
@@ -425,7 +428,7 @@
 				853A3D1B1EF69E35008EA58E /* Models */,
 				859564BC1EF6829E000D0BC8 /* Constants */,
 				859564B81EF68156000D0BC8 /* Protocols */,
-				852C39771EF5E90700C66C16 /* UserInfo */,
+				852C39771EF5E90700C66C16 /* AppManager */,
 				852C39601EF5D68700C66C16 /* Storyboards */,
 				852C395F1EF5D67A00C66C16 /* ViewControllers */,
 				8538512F1EF4FBF600A8B2B5 /* AppDelegate.swift */,
@@ -945,6 +948,7 @@
 				8549F0DE1EFCCB1900385F1E /* MomentOptionBar.swift in Sources */,
 				852C39791EF5E95400C66C16 /* UserStateManager.swift in Sources */,
 				857197EF1F28447400D3C4FC /* ReusableRightNavBarItemViewForProfileVC.swift in Sources */,
+				855C8CF81F2EBA44002CB301 /* AppInfoManager.swift in Sources */,
 				85C16E401F219C6C00D609DE /* QuestionTableViewCell.swift in Sources */,
 				855EBEF61F2E9BB700E6797F /* ReusableCameraView.swift in Sources */,
 				859564B61EF675C7000D0BC8 /* AskForSignInSignUpView.swift in Sources */,

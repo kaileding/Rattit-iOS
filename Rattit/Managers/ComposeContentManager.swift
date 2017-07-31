@@ -6,7 +6,7 @@
 //  Copyright © 2017 KaileDing. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import Photos
 
 class ComposeContentManager {

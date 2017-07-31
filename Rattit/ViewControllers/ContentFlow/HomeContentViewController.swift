@@ -50,6 +50,8 @@ class HomeContentViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        AppInfoManager.navBarHeight = self.navigationController!.navigationBar.frame.height
+        
         if !UserStateManager.initialContentLoaded {
             DataFlowManager.sharedInstance.loadUnitsFromServer(completion: {
                 

@@ -63,9 +63,12 @@ class ReusableCameraView: UIView {
     func initializeCameraCapture(confirmCaptureHandler: @escaping (UIImage) -> Void) {
         self.photoCaptureImageView.confirmButtonHandler = confirmCaptureHandler
         
-        self.initializeCameraPreview()
-        self.attachCameraInput()
-        self.avCaptureSession.startRunning()
+        if !self.captureInitializationDone {
+            self.initializeCameraPreview()
+            self.attachCameraInput()
+            self.avCaptureSession.startRunning()
+            self.captureInitializationDone = true
+        }
         
         if !self.avCaptureSession.isRunning {
             self.avCaptureSession.startRunning()

@@ -57,9 +57,9 @@ class QuestionTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func initializeContent(question: Question, sideLength: Double, tableController: ReusableUserCellDelegate) {
+    func initializeContent(question: Question, sideLength: Double, flowDelegate: ContentFlowDelegate) {
         
-        self.questionHeaderView.initializeData(mainContent: question as MainContent, actionStr: "asked", tableController: tableController)
+        self.questionHeaderView.initializeData(mainContent: question as MainContent, actionStr: "asked", flowDelegate: flowDelegate)
         let questionPhoto = question.photos?.first
         self.questionPreviewView.initializeData(title: question.title, words: question.words, photo: questionPhoto)
         self.questionOptionBar.initializeData(question: question)

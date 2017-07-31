@@ -67,6 +67,9 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate, Slid
         self.contentTableView1.parentVC = self
         self.contentTableView2.parentVC = self
         self.contentTableView3.parentVC = self
+        self.contentTableView1.flowDelegate = self
+        self.contentTableView2.flowDelegate = self
+        self.contentTableView3.flowDelegate = self
         
         self.currentPageIndex = 1
     }
@@ -118,6 +121,21 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate, Slid
         // Dispose of any resources that can be recreated.
     }
     
+}
+
+extension FlyHomeViewController: ContentFlowDelegate {
+    func tappedUserAvatarOfCell(userId: String) {
+        print("FlyHomeViewController.tappedUserAvatarOfCell() func. Do nothing.")
+    }
+    
+    func aContentCellIsSelected(contentId: String, contentType: RattitContentType) {
+        if contentType == .moment {
+            let contentFlowSB: UIStoryboard = UIStoryboard(name: "ContentFlow", bundle: nil)
+            let momentDetailsVC = contentFlowSB.instantiateViewController(withIdentifier: "MomentDetailsViewController") as! MomentDetailsViewController
+            momentDetailsVC.momentId = contentId
+            self.navigationController?.pushViewController(momentDetailsVC, animated: true)
+        }
+    }
 }
 
 extension FlyHomeViewController {

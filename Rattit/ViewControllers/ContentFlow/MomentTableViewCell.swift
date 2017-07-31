@@ -70,10 +70,10 @@ class MomentTableViewCell: UITableViewCell {
         
     }
     
-    func initializeContent(moment: Moment, sideLength: Double, tableController: ReusableUserCellDelegate) {
+    func initializeContent(moment: Moment, sideLength: Double, contentDelegate: ContentFlowDelegate) {
         
-        self.momentHeaderView.initializeData(mainContent: moment as MainContent, actionStr: "shared", tableController: tableController)
-        self.momentTitleWordsView.initializeData(title: moment.title, words: moment.words)
+        self.momentHeaderView.initializeData(mainContent: moment as MainContent, actionStr: "shared", flowDelegate: contentDelegate)
+        self.momentTitleWordsView.initializeData(momentId: moment.id!, flowDelegate: contentDelegate)
         self.momentOptionBar.initializeData(moment: moment)
         
         if let photos = moment.photos, photos.count > 0 {

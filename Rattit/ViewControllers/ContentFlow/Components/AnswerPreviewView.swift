@@ -33,9 +33,9 @@ class AnswerPreviewView: UIView {
         self.answerContentLabel.text = words
         
         if photo != nil {
+            self.showPreviewImage()
             GalleryManager.getImageFromUrl(imageUrl: photo!.imageUrl, completion: { (image) in
                 
-                self.showPreviewImage()
                 self.backgroundImageView.image = image
                 let imageViewLayer = self.backgroundImageView.layer
                 let layerMask = CAGradientLayer()
@@ -66,7 +66,7 @@ extension AnswerPreviewView {
     func showPreviewImage() {
         self.backgroundImageView.isHidden = false
         self.answerContentLabelTopConstraint?.isActive = false
-        self.answerContentLabelTopConstraint = NSLayoutConstraint(item: self.answerContentLabel, attribute: NSLayoutAttribute.top, relatedBy: .equal, toItem: self.backgroundImageView, attribute: NSLayoutAttribute.bottom, multiplier: 1.0, constant: -10.0)
+        self.answerContentLabelTopConstraint = NSLayoutConstraint(item: self.answerContentLabel, attribute: .top, relatedBy: .equal, toItem: self.backgroundImageView, attribute: .bottom, multiplier: 1.0, constant: -10.0)
         self.answerContentLabelTopConstraint!.isActive = true
     }
     

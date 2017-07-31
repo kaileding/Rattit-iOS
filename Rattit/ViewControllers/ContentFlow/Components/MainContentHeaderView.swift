@@ -21,7 +21,7 @@ class MainContentHeaderView: UIView {
     let threeSolidDotsImage: UIImage! = UIImage(named: "threeSolidDots")?.withRenderingMode(.alwaysTemplate)
     
     var userId: String? = nil
-    var tableController: ReusableUserCellDelegate? = nil
+    var flowDelegate: ContentFlowDelegate? = nil
     
     static func instantiateFromXib() -> MainContentHeaderView {
         let mainContentHeaderView = Bundle.main.loadNibNamed("MainContentHeaderView", owner: self, options: nil)?.first as! MainContentHeaderView
@@ -40,7 +40,7 @@ class MainContentHeaderView: UIView {
         return mainContentHeaderView
     }
     
-    func initializeData(mainContent: MainContent, actionStr: String, tableController: ReusableUserCellDelegate) {
+    func initializeData(mainContent: MainContent, actionStr: String, flowDelegate: ContentFlowDelegate) {
         if let createdBy = mainContent.createdBy {
             RattitUserManager.sharedInstance.getRattitUserAvatarImage(userId: createdBy, completion: { (avatarImage) in
                 self.avatarImageView.image = avatarImage
@@ -61,13 +61,13 @@ class MainContentHeaderView: UIView {
         self.userId = mainContent.createdBy
         self.timeStampLabel.text = mainContent.createdAt?.dateToPostTimeDescription
         self.ActionLabel.text = actionStr
-        self.tableController = tableController
+        self.flowDelegate = flowDelegate
     }
     
     func avatarButtonPressed() {
         print("##--- avatarButtonPressed for user: ", self.userNameLabel.text!)
-        if self.tableController != nil && self.userId != nil {
-            self.tableController!.tappedUserAvatarOfCell(userId: self.userId!)
+        if self.flowDelegate != nil && self.userId != nil {
+            self.flowDelegate!.tappedUserAvatarOfCell(userId: self.userId!)
         }
     }
     

@@ -16,6 +16,9 @@ class RattitStyleColors {
     static let ratingStarGold = UIColor(red: 0.5882, green: 0.4588, blue: 0, alpha: 1.0)
     static let bookmarkDarkBlue = UIColor(red: 0.11, green: 0.27, blue: 0.53, alpha: 1.0)
     static let marrsGreen = UIColor(red: 0, green: 0.6078, blue: 0.6078, alpha: 1.0)
+    static let likeRed = UIColor(red: 0.7686, green: 0, blue: 0.2941, alpha: 1.0)
+    static let interestFireRed = UIColor(red: 0.9176, green: 0.3373, blue: 0, alpha: 1.0)
+    
 }
     
 

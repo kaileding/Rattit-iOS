@@ -123,6 +123,12 @@
 		85E21A3F1EFB4C4900D4F961 /* CommentForAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E21A3E1EFB4C4900D4F961 /* CommentForAnswer.swift */; };
 		85E21A411EFB4E7D00D4F961 /* RattitLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E21A401EFB4E7D00D4F961 /* RattitLocation.swift */; };
 		85E21A431EFB5A3400D4F961 /* RattitUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E21A421EFB5A3400D4F961 /* RattitUserManager.swift */; };
+		85E349621F2EFBFC00E1CED8 /* MomentDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E349611F2EFBFC00E1CED8 /* MomentDetailsViewController.swift */; };
+		85E349641F2EFC1600E1CED8 /* QuestionDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E349631F2EFC1600E1CED8 /* QuestionDetailsViewController.swift */; };
+		85E349661F2EFC2500E1CED8 /* AnswerDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E349651F2EFC2500E1CED8 /* AnswerDetailsViewController.swift */; };
+		85E349691F2EFECE00E1CED8 /* MomentDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E349671F2EFECE00E1CED8 /* MomentDetailsTableViewCell.swift */; };
+		85E3496A1F2EFECE00E1CED8 /* MomentDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 85E349681F2EFECE00E1CED8 /* MomentDetailsTableViewCell.xib */; };
+		85E3496C1F2F147500E1CED8 /* ContentFlowDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E3496B1F2F147500E1CED8 /* ContentFlowDelegate.swift */; };
 		85F058D51F0260D5008808CE /* ComposeContentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F058D41F0260D5008808CE /* ComposeContentManager.swift */; };
 		85F5C2071F2412F9007F0E8C /* UIImageViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F5C2061F2412F9007F0E8C /* UIImageViewExtensions.swift */; };
 		85F5C2091F245A3D007F0E8C /* QuestionOptionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F5C2081F245A3D007F0E8C /* QuestionOptionBar.swift */; };
@@ -264,6 +270,12 @@
 		85E21A3E1EFB4C4900D4F961 /* CommentForAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentForAnswer.swift; sourceTree = "<group>"; };
 		85E21A401EFB4E7D00D4F961 /* RattitLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RattitLocation.swift; sourceTree = "<group>"; };
 		85E21A421EFB5A3400D4F961 /* RattitUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RattitUserManager.swift; sourceTree = "<group>"; };
+		85E349611F2EFBFC00E1CED8 /* MomentDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentDetailsViewController.swift; sourceTree = "<group>"; };
+		85E349631F2EFC1600E1CED8 /* QuestionDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDetailsViewController.swift; sourceTree = "<group>"; };
+		85E349651F2EFC2500E1CED8 /* AnswerDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerDetailsViewController.swift; sourceTree = "<group>"; };
+		85E349671F2EFECE00E1CED8 /* MomentDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		85E349681F2EFECE00E1CED8 /* MomentDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MomentDetailsTableViewCell.xib; sourceTree = "<group>"; };
+		85E3496B1F2F147500E1CED8 /* ContentFlowDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentFlowDelegate.swift; sourceTree = "<group>"; };
 		85F058D41F0260D5008808CE /* ComposeContentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeContentManager.swift; sourceTree = "<group>"; };
 		85F5C2061F2412F9007F0E8C /* UIImageViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtensions.swift; sourceTree = "<group>"; };
 		85F5C2081F245A3D007F0E8C /* QuestionOptionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionOptionBar.swift; sourceTree = "<group>"; };
@@ -598,6 +610,11 @@
 				85C16E3F1F219C6C00D609DE /* QuestionTableViewCell.xib */,
 				85C16E421F219C8C00D609DE /* AnswerTableViewCell.swift */,
 				85C16E431F219C8C00D609DE /* AnswerTableViewCell.xib */,
+				85E349611F2EFBFC00E1CED8 /* MomentDetailsViewController.swift */,
+				85E349631F2EFC1600E1CED8 /* QuestionDetailsViewController.swift */,
+				85E349651F2EFC2500E1CED8 /* AnswerDetailsViewController.swift */,
+				85E349671F2EFECE00E1CED8 /* MomentDetailsTableViewCell.swift */,
+				85E349681F2EFECE00E1CED8 /* MomentDetailsTableViewCell.xib */,
 			);
 			path = ContentFlow;
 			sourceTree = "<group>";
@@ -609,6 +626,7 @@
 				850779B11F03777D00598D60 /* ComposeContentDelegate.swift */,
 				852113F91F0F952000830F13 /* ReusableUserCellDelegate.swift */,
 				857197F01F28688000D3C4FC /* SlideTableHeaderDelegate.swift */,
+				85E3496B1F2F147500E1CED8 /* ContentFlowDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -756,6 +774,7 @@
 				857197EB1F273A0B00D3C4FC /* ReusableFollowListViewController.xib in Resources */,
 				851FBC611F0A4564000DEB50 /* PickedUserTogetherWithView.xib in Resources */,
 				8582A6441EFE319600483CDD /* ReusableNavBarItemView.xib in Resources */,
+				85E3496A1F2EFECE00E1CED8 /* MomentDetailsTableViewCell.xib in Resources */,
 				85C16E3D1F21349100D609DE /* FlyHomeViewNavBarTitleView.xib in Resources */,
 				857197DF1F26528F00D3C4FC /* ReusableFriendProfileHeaderView.xib in Resources */,
 				85AC86CB1F1D2E440093D9A3 /* ContentDisplayTableView.xib in Resources */,
@@ -907,6 +926,7 @@
 				85E21A431EFB5A3400D4F961 /* RattitUserManager.swift in Sources */,
 				85541E271F0CE46000EC91A7 /* SlidingTabMenuBarView.swift in Sources */,
 				8503D21C1F07871D0053D639 /* FindTogetherWithViewController.swift in Sources */,
+				85E3496C1F2F147500E1CED8 /* ContentFlowDelegate.swift in Sources */,
 				8533DF361F041AD10026C437 /* ComposeTextTableViewController.swift in Sources */,
 				859564AF1EF6654E000D0BC8 /* MomentTableViewCell.swift in Sources */,
 				852113F71F0F89FA00830F13 /* ReusableUserTableViewCell.swift in Sources */,
@@ -919,6 +939,7 @@
 				8549F0D51EFC992400385F1E /* PhotoScrollView.swift in Sources */,
 				855700E21F00C8AB0084356E /* ReusableCapturedPhotoView.swift in Sources */,
 				852113F41F0F7E7500830F13 /* StyleConstants.swift in Sources */,
+				85E349641F2EFC1600E1CED8 /* QuestionDetailsViewController.swift in Sources */,
 				857197EA1F273A0B00D3C4FC /* ReusableFollowListViewController.swift in Sources */,
 				859B5F4D1F061F12009A8762 /* RattitLocationManager.swift in Sources */,
 				85F5C20F1F248242007F0E8C /* AnswerManager.swift in Sources */,
@@ -929,9 +950,11 @@
 				857197DD1F26528200D3C4FC /* ReusableFriendProfileHeaderView.swift in Sources */,
 				8582A64C1EFE419F00483CDD /* ComposeImageViewController.swift in Sources */,
 				85023FA71EF728D100E785FD /* MomentManager.swift in Sources */,
+				85E349691F2EFECE00E1CED8 /* MomentDetailsTableViewCell.swift in Sources */,
 				85023FA91EF72E2100E785FD /* NetworkConstants.swift in Sources */,
 				85023FA41EF71F2700E785FD /* DataModelConstants.swift in Sources */,
 				8582A64E1EFF30FF00483CDD /* ContentOperationConstants.swift in Sources */,
+				85E349621F2EFBFC00E1CED8 /* MomentDetailsViewController.swift in Sources */,
 				853851381EF4FBF600A8B2B5 /* Rattit.xcdatamodeld in Sources */,
 				85E21A3D1EFA73E000D4F961 /* CommentForMoment.swift in Sources */,
 				859564BE1EF682CF000D0BC8 /* SignInSignOutConstants.swift in Sources */,
@@ -964,6 +987,7 @@
 				8582A6461EFE326000483CDD /* ReusableNavBarItemView.swift in Sources */,
 				8549F0CF1EFBBF5D00385F1E /* RattitErrorExtensions.swift in Sources */,
 				85F5C2071F2412F9007F0E8C /* UIImageViewExtensions.swift in Sources */,
+				85E349661F2EFC2500E1CED8 /* AnswerDetailsViewController.swift in Sources */,
 				85023FAC1EF76D4700E785FD /* StringExtensions.swift in Sources */,
 				8582A6551F0088BA00483CDD /* DevicePhotoCollectionViewCell.swift in Sources */,
 				855EBEEE1F2D7FED00E6797F /* ReusablePlaceHolderTextView.swift in Sources */,

@@ -66,7 +66,7 @@ class MomentOptionBar: UIView {
                 }, completion: { (success) in
                     self.likeImage.frame = CGRect(x: 12.0, y: 12.0, width: 0.0, height: 0.0)
                     self.likeImage.image = self.reusableLikedImage
-                    self.likeImage.tintColor = UIColor.red
+                    self.likeImage.tintColor = RattitStyleColors.likeRed
                     UIView.animate(withDuration: 0.2, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 2.0, options: [.curveEaseIn], animations: {
                         self.likeImage.frame = CGRect(x: 2.0, y: 2.0, width: 20.0, height: 20.0)
                     }, completion: nil)

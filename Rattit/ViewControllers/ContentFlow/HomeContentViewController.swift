@@ -102,23 +102,24 @@ extension HomeContentViewController: UITableViewDataSource, UITableViewDelegate 
         case .moment:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MomentTableViewCell", for: indexPath) as! MomentTableViewCell
             let moment = MomentManager.sharedInstance.downloadedContents[dataUnit.id]!
-            cell.initializeContent(moment: moment, sideLength: sideLength, tableController: self)
+            cell.initializeContent(moment: moment, sideLength: sideLength, contentDelegate: self)
             return cell
         case .question:
             let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionTableViewCell", for: indexPath) as! QuestionTableViewCell
             let question = QuestionManager.sharedInstance.downloadedContents[dataUnit.id]!
-            cell.initializeContent(question: question, sideLength: sideLength, tableController: self)
+            cell.initializeContent(question: question, sideLength: sideLength, flowDelegate: self)
             return cell
         case .answer:
             let cell = tableView.dequeueReusableCell(withIdentifier: "AnswerTableViewCell", for: indexPath) as! AnswerTableViewCell
             let answer = AnswerManager.sharedInstance.downloadedContents[dataUnit.id]!
-            cell.initializeContent(answer: answer, sideLength: sideLength, tableController: self)
+            cell.initializeContent(answer: answer, sideLength: sideLength, flowDelegate: self)
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         self.mainContentTable.deselectRow(at: indexPath, animated: false)
+        print("tableView willSelectRowAt ", indexPath.debugDescription)
         return nil
     }
     
@@ -131,7 +132,7 @@ extension HomeContentViewController: UITableViewDataSource, UITableViewDelegate 
     
 }
 
-extension HomeContentViewController: ReusableUserCellDelegate {
+extension HomeContentViewController: ContentFlowDelegate {
     func tappedUserAvatarOfCell(userId: String) {
         print("in HomeContentViewController, tappedUserAvatarOfCell() func called.")
         
@@ -146,6 +147,16 @@ extension HomeContentViewController: ReusableUserCellDelegate {
             friendProfileVC.screenWidth = self.view.frame.width
             
             self.navigationController?.pushViewController(friendProfileVC, animated: true)
+        }
+    }
+    
+    func aContentCellIsSelected(contentId: String, contentType: RattitContentType) {
+        print("aContentCellIsSelected() func.")
+        if contentType == .moment {
+            let contentFlowSB: UIStoryboard = UIStoryboard(name: "ContentFlow", bundle: nil)
+            let momentDetailsVC = contentFlowSB.instantiateViewController(withIdentifier: "MomentDetailsViewController") as! MomentDetailsViewController
+            momentDetailsVC.momentId = contentId
+            self.navigationController?.pushViewController(momentDetailsVC, animated: true)
         }
     }
 }

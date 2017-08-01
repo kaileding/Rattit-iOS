@@ -51,6 +51,8 @@
 		85541E271F0CE46000EC91A7 /* SlidingTabMenuBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85541E261F0CE46000EC91A7 /* SlidingTabMenuBarView.swift */; };
 		855700E01F00C88D0084356E /* ReusableCapturedPhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855700DF1F00C88D0084356E /* ReusableCapturedPhotoView.xib */; };
 		855700E21F00C8AB0084356E /* ReusableCapturedPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855700E11F00C8AB0084356E /* ReusableCapturedPhotoView.swift */; };
+		855C4DF61F30DE7D0080468D /* QuestionDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C4DF41F30DE7D0080468D /* QuestionDetailsTableViewCell.swift */; };
+		855C4DF71F30DE7D0080468D /* QuestionDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855C4DF51F30DE7D0080468D /* QuestionDetailsTableViewCell.xib */; };
 		855C8CF81F2EBA44002CB301 /* AppInfoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C8CF71F2EBA44002CB301 /* AppInfoManager.swift */; };
 		855C8CFA1F2EC060002CB301 /* ImagePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855C8CF91F2EC060002CB301 /* ImagePickerViewController.swift */; };
 		855EBEEE1F2D7FED00E6797F /* ReusablePlaceHolderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855EBEED1F2D7FED00E6797F /* ReusablePlaceHolderTextView.swift */; };
@@ -198,6 +200,8 @@
 		85541E261F0CE46000EC91A7 /* SlidingTabMenuBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlidingTabMenuBarView.swift; sourceTree = "<group>"; };
 		855700DF1F00C88D0084356E /* ReusableCapturedPhotoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusableCapturedPhotoView.xib; sourceTree = "<group>"; };
 		855700E11F00C8AB0084356E /* ReusableCapturedPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCapturedPhotoView.swift; sourceTree = "<group>"; };
+		855C4DF41F30DE7D0080468D /* QuestionDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionDetailsTableViewCell.swift; sourceTree = "<group>"; };
+		855C4DF51F30DE7D0080468D /* QuestionDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionDetailsTableViewCell.xib; sourceTree = "<group>"; };
 		855C8CF71F2EBA44002CB301 /* AppInfoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfoManager.swift; sourceTree = "<group>"; };
 		855C8CF91F2EC060002CB301 /* ImagePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerViewController.swift; sourceTree = "<group>"; };
 		855EBEED1F2D7FED00E6797F /* ReusablePlaceHolderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusablePlaceHolderTextView.swift; sourceTree = "<group>"; };
@@ -615,6 +619,8 @@
 				85E349651F2EFC2500E1CED8 /* AnswerDetailsViewController.swift */,
 				85E349671F2EFECE00E1CED8 /* MomentDetailsTableViewCell.swift */,
 				85E349681F2EFECE00E1CED8 /* MomentDetailsTableViewCell.xib */,
+				855C4DF41F30DE7D0080468D /* QuestionDetailsTableViewCell.swift */,
+				855C4DF51F30DE7D0080468D /* QuestionDetailsTableViewCell.xib */,
 			);
 			path = ContentFlow;
 			sourceTree = "<group>";
@@ -792,6 +798,7 @@
 				85C16E451F219C8C00D609DE /* AnswerTableViewCell.xib in Resources */,
 				8587D1C51F0CA03C009D18E9 /* UserProfileHeaderView.xib in Resources */,
 				859564B21EF66608000D0BC8 /* ContentFlowNavigationTitleView.xib in Resources */,
+				855C4DF71F30DE7D0080468D /* QuestionDetailsTableViewCell.xib in Resources */,
 				85C16E411F219C6C00D609DE /* QuestionTableViewCell.xib in Resources */,
 				8549F0DC1EFCCAF900385F1E /* MomentOptionBar.xib in Resources */,
 				857197E71F26DAB100D3C4FC /* ReusableFriendProfileViewController.xib in Resources */,
@@ -948,6 +955,7 @@
 				85BB89261F2D6E94000F1CFD /* ReusableRatingStarsView.swift in Sources */,
 				857197E11F265C0B00D3C4FC /* ReusableFollowingButtonView.swift in Sources */,
 				857197DD1F26528200D3C4FC /* ReusableFriendProfileHeaderView.swift in Sources */,
+				855C4DF61F30DE7D0080468D /* QuestionDetailsTableViewCell.swift in Sources */,
 				8582A64C1EFE419F00483CDD /* ComposeImageViewController.swift in Sources */,
 				85023FA71EF728D100E785FD /* MomentManager.swift in Sources */,
 				85E349691F2EFECE00E1CED8 /* MomentDetailsTableViewCell.swift in Sources */,

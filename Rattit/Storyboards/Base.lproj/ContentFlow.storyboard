@@ -479,7 +479,7 @@
         <!--Question Details View Controller-->
         <scene sceneID="kPv-ZF-MMR">
             <objects>
-                <viewController id="I7M-LY-kbV" customClass="QuestionDetailsViewController" customModule="Rattit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QuestionDetailsViewController" id="I7M-LY-kbV" customClass="QuestionDetailsViewController" customModule="Rattit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9eK-k8-dwu"/>
                         <viewControllerLayoutGuide type="bottom" id="daa-EJ-1c5"/>
@@ -501,6 +501,9 @@
                             <constraint firstItem="Bzv-PM-Nff" firstAttribute="leading" secondItem="JDt-Jd-Kja" secondAttribute="leading" id="wVz-ms-rw8"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="dataTableView" destination="Bzv-PM-Nff" id="gIo-Jh-bER"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ur3-1P-q0c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -509,7 +512,7 @@
         <!--Answer Details View Controller-->
         <scene sceneID="CVN-5v-w8q">
             <objects>
-                <viewController id="zA2-TI-9jj" customClass="AnswerDetailsViewController" customModule="Rattit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AnswerDetailsViewController" id="zA2-TI-9jj" customClass="AnswerDetailsViewController" customModule="Rattit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YEi-Mc-YZI"/>
                         <viewControllerLayoutGuide type="bottom" id="hPa-JT-y4n"/>

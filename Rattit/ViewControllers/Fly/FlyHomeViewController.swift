@@ -134,6 +134,11 @@ extension FlyHomeViewController: ContentFlowDelegate {
             let momentDetailsVC = contentFlowSB.instantiateViewController(withIdentifier: "MomentDetailsViewController") as! MomentDetailsViewController
             momentDetailsVC.momentId = contentId
             self.navigationController?.pushViewController(momentDetailsVC, animated: true)
+        } else if contentType == .question {
+            let contentFlowSB: UIStoryboard = UIStoryboard(name: "ContentFlow", bundle: nil)
+            let questionDetailsVC = contentFlowSB.instantiateViewController(withIdentifier: "QuestionDetailsViewController") as! QuestionDetailsViewController
+            questionDetailsVC.questionId = contentId
+            self.navigationController?.pushViewController(questionDetailsVC, animated: true)
         }
     }
 }

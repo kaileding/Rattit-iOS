@@ -1,34 +1,36 @@
 //
-//  MomentDetailsTableViewCell.swift
+//  QuestionDetailsTableViewCell.swift
 //  Rattit
 //
-//  Created by DINGKaile on 7/30/17.
+//  Created by DINGKaile on 8/1/17.
 //  Copyright © 2017 KaileDing. All rights reserved.
 //
 
 import UIKit
 
-class MomentDetailsTableViewCell: UITableViewCell {
+class QuestionDetailsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var avatarImageView: UIImageView!
     
     @IBOutlet weak var fullNameLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
     
-    @IBOutlet weak var momentTitleLabel: UILabel!
-    @IBOutlet weak var momentWordsLabel: UILabel!
+    @IBOutlet weak var questionTitleLabel: UILabel!
+    @IBOutlet weak var questionWordsLabel: UILabel!
     
     @IBOutlet weak var photoSetView: UIView!
     
     @IBOutlet weak var dateLabel: UILabel!
     
     @IBOutlet weak var optionBarView: UIView!
-    @IBOutlet weak var likeImageView: UIImageView!
-    @IBOutlet weak var likeImageButton: UIButton!
-    @IBOutlet weak var likeLabel: UILabel!
-    @IBOutlet weak var commentsImageView: UIImageView!
-    @IBOutlet weak var commentsImageButton: UIButton!
-    @IBOutlet weak var commentsLabel: UILabel!
+    @IBOutlet weak var interestImageView: UIImageView!
+    @IBOutlet weak var interestImageButton: UIButton!
+    @IBOutlet weak var interestLabel: UILabel!
+    @IBOutlet weak var answerImageView: UIImageView!
+    @IBOutlet weak var answerImageButton: UIButton!
+    @IBOutlet weak var answerLabel: UILabel!
+    @IBOutlet weak var inviteImageView: UIImageView!
+    @IBOutlet weak var inviteImageButton: UIButton!
     @IBOutlet weak var bookmarkImageView: UIImageView!
     @IBOutlet weak var bookmarkImageButton: UIButton!
     
@@ -36,8 +38,9 @@ class MomentDetailsTableViewCell: UITableViewCell {
     @IBOutlet weak var photoSetViewHeightConstraint: NSLayoutConstraint!
     
     var userId: String? = nil
-    var momentId: String? = nil
-    var momentPhotos: [Photo] = []
+    var questionId: String? = nil
+    var questionPhotos: [Photo] = []
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -49,9 +52,9 @@ class MomentDetailsTableViewCell: UITableViewCell {
         self.photoSetViewHeightConstraint.constant = 0
     }
     
-    func initializeData(moment: Moment) {
+    func initializeData(question: Question) {
         
-        if let createdBy = moment.createdBy {
+        if let createdBy = question.createdBy {
             self.userId = createdBy
             RattitUserManager.sharedInstance.getRattitUserAvatarImage(userId: createdBy, completion: { (avatarImage) in
                 self.avatarImageView.image = avatarImage
@@ -70,22 +73,22 @@ class MomentDetailsTableViewCell: UITableViewCell {
             })
         }
         
-        self.momentId = moment.id
-        self.momentTitleLabel.text = moment.title
-        self.momentWordsLabel.text = moment.words
-        self.dateLabel.text = moment.createdAt?.dateToPostTimeAbsDescription
+        self.questionId = question.id
+        self.questionTitleLabel.text = question.title
+        self.questionWordsLabel.text = question.words
+        self.dateLabel.text = question.createdAt?.dateToPostTimeAbsDescription
         
-        if moment.likersNumber == 0 {
-            self.likeLabel.text = "LIKE"
+        if question.interestsNumber == 0 {
+            self.interestLabel.text = "INTEREST"
         } else {
-            self.likeLabel.text = "\(moment.likersNumber)"
+            self.interestLabel.text = "\(question.interestsNumber)"
         }
         
-        if let photos = moment.photos, photos.count > 0 {
-            self.momentPhotos = photos
+        if let photos = question.photos, photos.count > 0 {
+            self.questionPhotos = photos
             self.setupImagesInView(photos: photos)
         } else {
-            self.momentPhotos = []
+            self.questionPhotos = []
             self.photoSetViewHeightConstraint.constant = 0
             self.photoSetView.subviews.forEach({ (subView) in
                 subView.removeFromSuperview()
@@ -93,7 +96,7 @@ class MomentDetailsTableViewCell: UITableViewCell {
         }
         
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -102,7 +105,7 @@ class MomentDetailsTableViewCell: UITableViewCell {
     
 }
 
-extension MomentDetailsTableViewCell {
+extension QuestionDetailsTableViewCell {
     
     func setupImagesInView(photos: [Photo]) {
         var sideLength: CGFloat = AppInfoManager.screenWidth
@@ -149,7 +152,8 @@ extension MomentDetailsTableViewCell {
     
     func tapImageButton(imageBtn: UIButton) {
         print("tapImageButton() func. imageBtn.tag=\(imageBtn.tag)")
-        let modalContentInfo = ObjectForShowImagesModal(photos: self.momentPhotos, startIndex: imageBtn.tag)
+        let modalContentInfo = ObjectForShowImagesModal(photos: self.questionPhotos, startIndex: imageBtn.tag)
         NotificationCenter.default.post(name: NSNotification.Name(ContentOperationNotificationName.showImagesModal.rawValue), object: modalContentInfo, userInfo: nil)
     }
 }
+

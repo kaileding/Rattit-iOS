@@ -37,13 +37,13 @@ class AnswerPreviewView: UIView {
             GalleryManager.getImageFromUrl(imageUrl: photo!.imageUrl, completion: { (image) in
                 
                 self.backgroundImageView.image = image
-                let imageViewLayer = self.backgroundImageView.layer
-                let layerMask = CAGradientLayer()
-                layerMask.colors = [UIColor.black.cgColor, UIColor.clear.cgColor]
-                layerMask.startPoint = CGPoint(x: 0.5, y: 0.5)
-                layerMask.endPoint = CGPoint(x: 0.5, y: 1.0)
-                layerMask.frame = imageViewLayer.bounds
-                imageViewLayer.mask = layerMask
+//                let imageViewLayer = self.backgroundImageView.layer
+//                let layerMask = CAGradientLayer()
+//                layerMask.colors = [UIColor.black.cgColor, UIColor.clear.cgColor]
+//                layerMask.startPoint = CGPoint(x: 0.5, y: 0.5)
+//                layerMask.endPoint = CGPoint(x: 0.5, y: 1.0)
+//                layerMask.frame = imageViewLayer.bounds
+//                imageViewLayer.mask = layerMask
                 self.sizeToFit()
             }, errorHandler: { (error) in
                 print("Unable to get Image for the question.")
@@ -66,7 +66,7 @@ extension AnswerPreviewView {
     func showPreviewImage() {
         self.backgroundImageView.isHidden = false
         self.answerContentLabelTopConstraint?.isActive = false
-        self.answerContentLabelTopConstraint = NSLayoutConstraint(item: self.answerContentLabel, attribute: .top, relatedBy: .equal, toItem: self.backgroundImageView, attribute: .bottom, multiplier: 1.0, constant: -10.0)
+        self.answerContentLabelTopConstraint = NSLayoutConstraint(item: self.answerContentLabel, attribute: .top, relatedBy: .equal, toItem: self.backgroundImageView, attribute: .bottom, multiplier: 1.0, constant: 4.0)
         self.answerContentLabelTopConstraint!.isActive = true
     }
     

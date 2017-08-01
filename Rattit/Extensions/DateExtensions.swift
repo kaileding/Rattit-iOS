@@ -10,7 +10,7 @@ import Foundation
 
 extension Date {
     
-    //MARK:DateToUTCString
+    //MARK: DateToUTCString
     var dateToUtcString: String {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone(abbreviation: "UTC")
@@ -20,6 +20,7 @@ extension Date {
         return utcString
     }
     
+    // MARK: DateToPostTimeRelativeToCurrentTime
     var dateToPostTimeDescription: String {
         let components: Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second]
         let timeDiff = Calendar.current.dateComponents(components, from: self, to: Date())
@@ -47,5 +48,13 @@ extension Date {
             dateFormatter.dateFormat = "MM/dd/yyyy"
             return dateFormatter.string(from: self)
         }
+    }
+    
+    // MARK: DateToPostTimeAbsoluteAtLocalTime
+    var dateToPostTimeAbsDescription: String {
+        let components: Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second]
+        let timeComponents = Calendar.current.dateComponents(components, from: self)
+        
+        return "\(timeComponents.hour!):\(timeComponents.minute!):\(timeComponents.second!) \(timeComponents.month!)/\(timeComponents.day!)/\(timeComponents.year!)"
     }
 }

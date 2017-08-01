@@ -34,23 +34,31 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PnQ-Dj-QGQ">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="176"/>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="5sA-PC-uYc" secondAttribute="trailing" constant="16" id="AD7-qb-L5m"/>
+                <constraint firstItem="PnQ-Dj-QGQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="BJ3-NW-vKQ"/>
                 <constraint firstItem="5sA-PC-uYc" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="DUs-p8-4Y2"/>
                 <constraint firstAttribute="bottom" secondItem="5sA-PC-uYc" secondAttribute="bottom" constant="8" id="Es7-js-RK5"/>
+                <constraint firstItem="PnQ-Dj-QGQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="LAD-sS-OqU"/>
+                <constraint firstAttribute="trailing" secondItem="PnQ-Dj-QGQ" secondAttribute="trailing" id="Sxa-Yf-EYF"/>
                 <constraint firstItem="T4p-fh-App" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="YuF-CB-KUd"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="T4p-fh-App" secondAttribute="trailing" constant="16" id="aNA-bM-G1b"/>
                 <constraint firstItem="T4p-fh-App" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="gAe-K9-nZP"/>
                 <constraint firstItem="2TG-j5-l3D" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="h5S-7f-Abd"/>
                 <constraint firstAttribute="trailing" secondItem="2TG-j5-l3D" secondAttribute="trailing" id="i3D-fE-0pb"/>
                 <constraint firstItem="2TG-j5-l3D" firstAttribute="top" secondItem="T4p-fh-App" secondAttribute="bottom" constant="6" id="idu-v9-KLF"/>
+                <constraint firstAttribute="bottom" secondItem="PnQ-Dj-QGQ" secondAttribute="bottom" id="pPd-aj-tVD"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="backgroundImageView" destination="2TG-j5-l3D" id="s4M-Il-Ch9"/>
                 <outlet property="contentPreviewLabel" destination="5sA-PC-uYc" id="2U7-YV-BNG"/>
+                <outlet property="previewButton" destination="PnQ-Dj-QGQ" id="Evo-8e-6iX"/>
                 <outlet property="questionTitleLabel" destination="T4p-fh-App" id="fIT-qB-Ve2"/>
             </connections>
             <point key="canvasLocation" x="35.5" y="152"/>

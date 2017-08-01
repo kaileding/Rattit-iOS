@@ -9,13 +9,24 @@
 import UIKit
 
 class QuestionDetailsViewController: UIViewController {
-
+    
+    @IBOutlet weak var dataTableView: UITableView!
+    
+    
+    var questionId: String? = nil
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
+        self.dataTableView.dataSource = self
+        self.dataTableView.delegate = self
+        let questionDetailsCellNib = UINib(nibName: "QuestionDetailsTableViewCell", bundle: nil)
+        self.dataTableView.register(questionDetailsCellNib, forCellReuseIdentifier: "QuestionDetailsTableViewCell")
+        self.dataTableView.rowHeight = UITableViewAutomaticDimension
+        self.dataTableView.estimatedRowHeight = 65.0
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -33,3 +44,28 @@ class QuestionDetailsViewController: UIViewController {
     */
 
 }
+
+extension QuestionDetailsViewController: UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if questionId == nil {
+            return 0
+        } else {
+            return 1
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionDetailsTableViewCell", for: indexPath) as! QuestionDetailsTableViewCell
+        
+        let question = QuestionManager.sharedInstance.downloadedContents[self.questionId!]
+        cell.initializeData(question: question!)
+        
+        return cell
+    }
+}
+
+

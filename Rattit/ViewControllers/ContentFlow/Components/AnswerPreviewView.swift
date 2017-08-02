@@ -13,8 +13,11 @@ class AnswerPreviewView: UIView {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var questionTitleLabel: UILabel!
     @IBOutlet weak var answerContentLabel: UILabel!
+    @IBOutlet weak var answerPriviewButton: UIButton!
     
     var answerContentLabelTopConstraint: NSLayoutConstraint? = nil
+    var answerId: String!
+    var flowDelegate: ContentFlowDelegate? = nil
     
     
     static func instantiateFromXib() -> AnswerPreviewView {
@@ -24,26 +27,29 @@ class AnswerPreviewView: UIView {
         answerPreviewView.answerContentLabel.text = " "
         answerPreviewView.backgroundImageView.clipsToBounds = true
         answerPreviewView.backgroundImageView.contentMode = .scaleAspectFill
+        answerPreviewView.answerPriviewButton.addTarget(answerPreviewView, action: #selector(preViewButtonPressed), for: .touchUpInside)
         
         return answerPreviewView
     }
     
-    func initializeData(title: String?, words: String, photo: Photo?) {
-        self.questionTitleLabel.text = title
-        self.answerContentLabel.text = words
+    func initializeData(answer: Answer, flowDelegate: ContentFlowDelegate) {
         
-        if photo != nil {
+        self.answerId = answer.id!
+        self.flowDelegate = flowDelegate
+        self.questionTitleLabel.text = answer.questionTitle
+        self.answerContentLabel.text = answer.words
+        if let photo = answer.photos?.first {
             self.showPreviewImage()
-            GalleryManager.getImageFromUrl(imageUrl: photo!.imageUrl, completion: { (image) in
+            GalleryManager.getImageFromUrl(imageUrl: photo.imageUrl, completion: { (image) in
                 
                 self.backgroundImageView.image = image
-//                let imageViewLayer = self.backgroundImageView.layer
-//                let layerMask = CAGradientLayer()
-//                layerMask.colors = [UIColor.black.cgColor, UIColor.clear.cgColor]
-//                layerMask.startPoint = CGPoint(x: 0.5, y: 0.5)
-//                layerMask.endPoint = CGPoint(x: 0.5, y: 1.0)
-//                layerMask.frame = imageViewLayer.bounds
-//                imageViewLayer.mask = layerMask
+                //                let imageViewLayer = self.backgroundImageView.layer
+                //                let layerMask = CAGradientLayer()
+                //                layerMask.colors = [UIColor.black.cgColor, UIColor.clear.cgColor]
+                //                layerMask.startPoint = CGPoint(x: 0.5, y: 0.5)
+                //                layerMask.endPoint = CGPoint(x: 0.5, y: 1.0)
+                //                layerMask.frame = imageViewLayer.bounds
+                //                imageViewLayer.mask = layerMask
                 self.sizeToFit()
             }, errorHandler: { (error) in
                 print("Unable to get Image for the question.")
@@ -75,5 +81,11 @@ extension AnswerPreviewView {
         self.answerContentLabelTopConstraint?.isActive = false
         self.answerContentLabelTopConstraint = self.answerContentLabel.topAnchor.constraint(equalTo: self.questionTitleLabel.bottomAnchor, constant: 8.0)
         self.answerContentLabelTopConstraint!.isActive = true
+    }
+    
+    func preViewButtonPressed() {
+        if self.flowDelegate != nil {
+            self.flowDelegate?.aContentCellIsSelected(contentId: self.answerId, contentType: .answer)
+        }
     }
 }

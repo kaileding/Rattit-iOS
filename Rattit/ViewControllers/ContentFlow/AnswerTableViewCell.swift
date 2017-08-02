@@ -60,8 +60,7 @@ class AnswerTableViewCell: UITableViewCell {
     func initializeContent(answer: Answer, sideLength: Double, flowDelegate: ContentFlowDelegate) {
         
         self.answerHeaderView.initializeData(mainContent: answer as MainContent, actionStr: "answered", flowDelegate: flowDelegate)
-        let answerPhoto = answer.photos?.first
-        self.answerPreviewView.initializeData(title: answer.questionTitle, words: answer.words, photo: answerPhoto)
+        self.answerPreviewView.initializeData(answer: answer, flowDelegate: flowDelegate)
         self.answerOptionBar.initializeData(answer: answer)
         
         self.answerPreviewView.sizeToFit()

@@ -16,6 +16,9 @@ class ReusableImageModalViewController: UIViewController, UIGestureRecognizerDel
     
     @IBOutlet weak var canvasViewWidthConstraint: NSLayoutConstraint!
     
+    @IBOutlet var singleTapGestureRecognizer: UITapGestureRecognizer!
+    @IBOutlet var doubleTapGestureRecognizer: UITapGestureRecognizer!
+    
     var screenWidth: CGFloat = 0.0
     var screenHeight: CGFloat = 0.0
     var screenSize: CGSize {
@@ -46,6 +49,8 @@ class ReusableImageModalViewController: UIViewController, UIGestureRecognizerDel
         self.imageScrollView.delegate = self
         self.pinchGestureRecognizer.addTarget(self, action: #selector(pinchGestureRecognized(_:)))
         self.pinchGestureRecognizer.delegate = self
+        
+        self.singleTapGestureRecognizer.require(toFail: self.doubleTapGestureRecognizer)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -136,7 +141,6 @@ class ReusableImageModalViewController: UIViewController, UIGestureRecognizerDel
                 
                 self.currentSingleScrollView!.scrollRectToVisible(rectToShow, animated: false)
             }
-            self.currentSingleScrollView = nil
             self.startScaleFingerPosInImageView = nil
             self.startScaleFingerPosInScrollView = nil
         }
@@ -146,6 +150,18 @@ class ReusableImageModalViewController: UIViewController, UIGestureRecognizerDel
     @IBAction func tapGestureRecognized(_ sender: UITapGestureRecognizer) {
         self.dismiss(animated: false, completion: nil)
     }
+    
+    @IBAction func doubleTapGestureRecognized(_ sender: UITapGestureRecognizer) {
+        UIView.animate(withDuration: 0.2, animations: {
+            self.currentImageView!.fitIntoRect(rectSize: self.screenSize)
+            self.currentSingleScrollView!.contentSize = self.screenSize
+        })
+        self.startScaleFingerPosInImageView = nil
+        self.startScaleFingerPosInScrollView = nil
+        
+    }
+    
+    
 }
 
 extension ReusableImageModalViewController {
@@ -197,6 +213,7 @@ extension ReusableImageModalViewController {
         print("startRectToShow is ", startRectToShow.debugDescription)
         self.imageScrollView.scrollRectToVisible(startRectToShow, animated: false)
         self.currentIndex = self.startIndex
+        self.pageControlIndicator.currentPage = self.currentIndex
         self.currentImageView = self.photoImages[self.currentIndex]
         self.currentImageView?.addGestureRecognizer(self.pinchGestureRecognizer)
     }

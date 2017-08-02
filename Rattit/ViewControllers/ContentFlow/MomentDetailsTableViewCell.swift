@@ -116,7 +116,11 @@ extension MomentDetailsTableViewCell {
             sideLength = (AppInfoManager.screenWidth-15.0)/2.0
             numPerRow = 2
             self.photoSetViewHeightConstraint.constant = sideLength+10.0
-        } else {
+        } else if photos.count == 4 {
+            sideLength = (AppInfoManager.screenWidth-15.0)/2.0
+            numPerRow = 2
+            self.photoSetViewHeightConstraint.constant = 2.0*sideLength+15.0
+        }  else {
             sideLength = (AppInfoManager.screenWidth-20.0)/3.0
             numPerRow = 3
             if photos.count%3 == 0 {
@@ -130,7 +134,7 @@ extension MomentDetailsTableViewCell {
             
             let imageBtnFrame = CGRect(x: 5.0+(sideLength+5.0)*CGFloat(offset%numPerRow), y: 5.0+(sideLength+5.0)*CGFloat(offset/numPerRow), width: sideLength, height: sideLength)
             let imageBtn = UIButton(frame: imageBtnFrame)
-            imageBtn.backgroundColor = UIColor.red
+            imageBtn.backgroundColor = RattitStyleColors.backgroundGray
             imageBtn.layer.cornerRadius = 3.0
             imageBtn.clipsToBounds = true
             imageBtn.tag = offset
@@ -139,7 +143,12 @@ extension MomentDetailsTableViewCell {
             
             GalleryManager.getImageFromUrl(imageUrl: photo.imageUrl, completion: { (image) in
                 
-                imageBtn.setBackgroundImage(image, for: .normal)
+                imageBtn.contentHorizontalAlignment = .fill
+                imageBtn.contentVerticalAlignment = .fill
+                imageBtn.contentMode = .scaleAspectFill
+                imageBtn.setImage(image.withAlignmentRectInsets(UIEdgeInsets.zero), for: .normal)
+                imageBtn.imageView?.contentMode = .scaleAspectFill
+                imageBtn.imageEdgeInsets = UIEdgeInsets.zero
             }, errorHandler: { (error) in
                 print("unable to get image, error is ", error.localizedDescription)
             })

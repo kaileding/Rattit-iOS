@@ -70,17 +70,6 @@ class ReusableUserTableViewCell: UITableViewCell {
         
         let isFollowingThisUser = UserStateManager.sharedInstance.dummyMyFollowees.contains(userId)
         self.followButtonView.initializeData(userId: userId, isFollowing: isFollowingThisUser)
-//        if isFollowing {
-//            self.followButton.backgroundColor = RattitStyleColors.backgroundGray
-//            self.followButton.setTitle("Following", for: .normal)
-//            self.followButton.setTitleColor(UIColor.darkGray, for: .normal)
-//            self.followButton.layer.borderWidth = 0.0
-//        } else {
-//            self.followButton.backgroundColor = UIColor.clear
-//            self.followButton.setTitle("Follow", for: .normal)
-//            self.followButton.setTitleColor(RattitStyleColors.clickableButtonBlue, for: .normal)
-//            self.followButton.layer.borderWidth = 1.0
-//        }
     }
     
     func avatarImageTapped() {

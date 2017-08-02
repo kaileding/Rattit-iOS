@@ -139,6 +139,11 @@ extension ReusableFriendProfileViewController: ContentFlowDelegate {
             let questionDetailsVC = contentFlowSB.instantiateViewController(withIdentifier: "QuestionDetailsViewController") as! QuestionDetailsViewController
             questionDetailsVC.questionId = contentId
             self.navigationController?.pushViewController(questionDetailsVC, animated: true)
+        } else if contentType == .answer {
+            let contentFlowSB: UIStoryboard = UIStoryboard(name: "ContentFlow", bundle: nil)
+            let answerDetailsVC = contentFlowSB.instantiateViewController(withIdentifier: "AnswerDetailsViewController") as! AnswerDetailsViewController
+            answerDetailsVC.answerId = contentId
+            self.navigationController?.pushViewController(answerDetailsVC, animated: true)
         }
     }
 }

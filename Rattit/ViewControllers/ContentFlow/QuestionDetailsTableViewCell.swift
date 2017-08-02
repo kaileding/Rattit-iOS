@@ -119,6 +119,10 @@ extension QuestionDetailsTableViewCell {
             sideLength = (AppInfoManager.screenWidth-15.0)/2.0
             numPerRow = 2
             self.photoSetViewHeightConstraint.constant = sideLength+10.0
+        } else if photos.count == 4 {
+            sideLength = (AppInfoManager.screenWidth-15.0)/2.0
+            numPerRow = 2
+            self.photoSetViewHeightConstraint.constant = 2.0*sideLength+15.0
         } else {
             sideLength = (AppInfoManager.screenWidth-20.0)/3.0
             numPerRow = 3
@@ -142,7 +146,12 @@ extension QuestionDetailsTableViewCell {
             
             GalleryManager.getImageFromUrl(imageUrl: photo.imageUrl, completion: { (image) in
                 
-                imageBtn.setBackgroundImage(image, for: .normal)
+                imageBtn.contentHorizontalAlignment = .fill
+                imageBtn.contentVerticalAlignment = .fill
+                imageBtn.contentMode = .scaleAspectFill
+                imageBtn.setImage(image.withAlignmentRectInsets(UIEdgeInsets.zero), for: .normal)
+                imageBtn.imageView?.contentMode = .scaleAspectFill
+                imageBtn.imageEdgeInsets = UIEdgeInsets.zero
             }, errorHandler: { (error) in
                 print("unable to get image, error is ", error.localizedDescription)
             })

@@ -23,14 +23,14 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Answer Words" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4j-6B-VI2">
-                    <rect key="frame" x="16" y="147.5" width="105" height="19.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <rect key="frame" x="16" y="147.5" width="103.5" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title of Question?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xz2-ek-hKk">
-                    <rect key="frame" x="16" y="8" width="133.5" height="19.5"/>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                    <rect key="frame" x="16" y="8" width="131" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>

@@ -152,10 +152,12 @@ class ReusableImageModalViewController: UIViewController, UIGestureRecognizerDel
     }
     
     @IBAction func doubleTapGestureRecognized(_ sender: UITapGestureRecognizer) {
-        UIView.animate(withDuration: 0.2, animations: {
-            self.currentImageView!.fitIntoRect(rectSize: self.screenSize)
-            self.currentSingleScrollView!.contentSize = self.screenSize
-        })
+        if self.currentImageView != nil && self.currentSingleScrollView != nil {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.currentImageView!.fitIntoRect(rectSize: self.screenSize)
+                self.currentSingleScrollView!.contentSize = self.screenSize
+            })
+        }
         self.startScaleFingerPosInImageView = nil
         self.startScaleFingerPosInScrollView = nil
         

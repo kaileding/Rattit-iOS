@@ -59,6 +59,8 @@
 		855EBEF01F2D802C00E6797F /* ReusablePlaceHolderTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855EBEEF1F2D802C00E6797F /* ReusablePlaceHolderTextView.xib */; };
 		855EBEF61F2E9BB700E6797F /* ReusableCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855EBEF51F2E9BB600E6797F /* ReusableCameraView.swift */; };
 		855EBEF81F2E9BC600E6797F /* ReusableCameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855EBEF71F2E9BC600E6797F /* ReusableCameraView.xib */; };
+		8564FDE11F31C64100900D52 /* AnswerDetailsVCNavTitleBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8564FDE01F31C64100900D52 /* AnswerDetailsVCNavTitleBarView.swift */; };
+		8564FDE31F31C65500900D52 /* AnswerDetailsVCNavTitleBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8564FDE21F31C65500900D52 /* AnswerDetailsVCNavTitleBarView.xib */; };
 		856A82411F257B9F00D59ED6 /* AnswerOptionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856A82401F257B9F00D59ED6 /* AnswerOptionBar.swift */; };
 		856A82431F257BAC00D59ED6 /* AnswerOptionBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 856A82421F257BAC00D59ED6 /* AnswerOptionBar.xib */; };
 		856A82451F25BB1400D59ED6 /* AnswerPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856A82441F25BB1400D59ED6 /* AnswerPreviewView.swift */; };
@@ -208,6 +210,8 @@
 		855EBEEF1F2D802C00E6797F /* ReusablePlaceHolderTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusablePlaceHolderTextView.xib; sourceTree = "<group>"; };
 		855EBEF51F2E9BB600E6797F /* ReusableCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCameraView.swift; sourceTree = "<group>"; };
 		855EBEF71F2E9BC600E6797F /* ReusableCameraView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusableCameraView.xib; sourceTree = "<group>"; };
+		8564FDE01F31C64100900D52 /* AnswerDetailsVCNavTitleBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerDetailsVCNavTitleBarView.swift; sourceTree = "<group>"; };
+		8564FDE21F31C65500900D52 /* AnswerDetailsVCNavTitleBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerDetailsVCNavTitleBarView.xib; sourceTree = "<group>"; };
 		856A82401F257B9F00D59ED6 /* AnswerOptionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerOptionBar.swift; sourceTree = "<group>"; };
 		856A82421F257BAC00D59ED6 /* AnswerOptionBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerOptionBar.xib; sourceTree = "<group>"; };
 		856A82441F25BB1400D59ED6 /* AnswerPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerPreviewView.swift; sourceTree = "<group>"; };
@@ -621,6 +625,8 @@
 				85E349681F2EFECE00E1CED8 /* MomentDetailsTableViewCell.xib */,
 				855C4DF41F30DE7D0080468D /* QuestionDetailsTableViewCell.swift */,
 				855C4DF51F30DE7D0080468D /* QuestionDetailsTableViewCell.xib */,
+				8564FDE01F31C64100900D52 /* AnswerDetailsVCNavTitleBarView.swift */,
+				8564FDE21F31C65500900D52 /* AnswerDetailsVCNavTitleBarView.xib */,
 			);
 			path = ContentFlow;
 			sourceTree = "<group>";
@@ -784,6 +790,7 @@
 				85C16E3D1F21349100D609DE /* FlyHomeViewNavBarTitleView.xib in Resources */,
 				857197DF1F26528F00D3C4FC /* ReusableFriendProfileHeaderView.xib in Resources */,
 				85AC86CB1F1D2E440093D9A3 /* ContentDisplayTableView.xib in Resources */,
+				8564FDE31F31C65500900D52 /* AnswerDetailsVCNavTitleBarView.xib in Resources */,
 				859564B01EF6654E000D0BC8 /* MomentTableViewCell.xib in Resources */,
 				852C397B1EF5ED7E00C66C16 /* LaunchScreen.storyboard in Resources */,
 				856A82471F25BB2300D59ED6 /* AnswerPreviewView.xib in Resources */,
@@ -942,6 +949,7 @@
 				8587D1C31F0CA02F009D18E9 /* UserProfileHeaderView.swift in Sources */,
 				853851301EF4FBF600A8B2B5 /* AppDelegate.swift in Sources */,
 				8587D1C01F0C512B009D18E9 /* FlyHomeViewController.swift in Sources */,
+				8564FDE11F31C64100900D52 /* AnswerDetailsVCNavTitleBarView.swift in Sources */,
 				85BB89241F2D6ADF000F1CFD /* ComposeQuestionTableViewController.swift in Sources */,
 				8549F0D51EFC992400385F1E /* PhotoScrollView.swift in Sources */,
 				855700E21F00C8AB0084356E /* ReusableCapturedPhotoView.swift in Sources */,

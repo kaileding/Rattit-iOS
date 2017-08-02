@@ -26,29 +26,30 @@ class MomentTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // UI Initialization code
+        self.backgroundColor = RattitStyleColors.backgroundGray
         
         let margins = self.contentView.layoutMarginsGuide
         // setup momentHeaderView
         self.momentHeaderView.translatesAutoresizingMaskIntoConstraints = false
         self.momentHeaderView.removeFromSuperview()
         self.contentView.addSubview(self.momentHeaderView)
-        self.momentHeaderView?.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
-        self.momentHeaderView?.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
-        self.momentHeaderView?.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
+        self.momentHeaderView?.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor).isActive = true
+        self.momentHeaderView?.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
+        self.momentHeaderView?.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
         
         // setup momentTitleWordsView
         self.momentTitleWordsView.translatesAutoresizingMaskIntoConstraints = false
         self.momentTitleWordsView.removeFromSuperview()
         self.contentView.addSubview(self.momentTitleWordsView)
         
-        self.momentTitleWordsView.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: -8.0).isActive = true
-        self.momentTitleWordsView.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 8.0).isActive = true
+        self.momentTitleWordsView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: -8.0).isActive = true
+        self.momentTitleWordsView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 8.0).isActive = true
         self.titleWordsViewTopToHeaderViewConstraint = NSLayoutConstraint(item: self.momentTitleWordsView, attribute: .top, relatedBy: .equal, toItem: self.momentHeaderView, attribute: .bottomMargin, multiplier: 1.0, constant: 10.0)
         
         // setup momentPhotoScrollView
         self.momentPhotoScrollView.translatesAutoresizingMaskIntoConstraints = false
         self.photoScrollViewTopToHeaderViewConstraint = NSLayoutConstraint(item: self.momentPhotoScrollView, attribute: .top, relatedBy: .equal, toItem: self.momentHeaderView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
-        self.photoScrollViewBottomToTitleWordsViewConstraint = NSLayoutConstraint(item: self.momentPhotoScrollView, attribute: .bottom, relatedBy: .equal, toItem: self.momentTitleWordsView, attribute: .top, multiplier: 1.0, constant: -8.0)
+        self.photoScrollViewBottomToTitleWordsViewConstraint = NSLayoutConstraint(item: self.momentPhotoScrollView, attribute: .bottom, relatedBy: .equal, toItem: self.momentTitleWordsView, attribute: .top, multiplier: 1.0, constant: 0.0)
         
         // setup momentOptionBar
         self.momentOptionBar.translatesAutoresizingMaskIntoConstraints = false
@@ -57,7 +58,7 @@ class MomentTableViewCell: UITableViewCell {
         self.momentOptionBar.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: -8.0).isActive = true
         self.momentOptionBar.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 8.0).isActive = true
         self.momentOptionBar.topAnchor.constraint(equalTo: self.momentTitleWordsView.bottomAnchor, constant: 0.0).isActive = true
-        self.momentOptionBar.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 0.0).isActive = true
+        self.momentOptionBar.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -8.0).isActive = true
         let momentOptionBarHeightConstraint = self.momentOptionBar.heightAnchor.constraint(equalToConstant: 38.0)
         momentOptionBarHeightConstraint.priority = 999
         momentOptionBarHeightConstraint.isActive = true

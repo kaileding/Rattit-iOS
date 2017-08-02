@@ -19,15 +19,16 @@ class AnswerTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.backgroundColor = RattitStyleColors.backgroundGray
         
         let margins = self.contentView.layoutMarginsGuide
         // setup questionHeaderView
         self.answerHeaderView.translatesAutoresizingMaskIntoConstraints = false
         self.answerHeaderView.removeFromSuperview()
         self.contentView.addSubview(self.answerHeaderView)
-        self.answerHeaderView?.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
-        self.answerHeaderView?.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
-        self.answerHeaderView?.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
+        self.answerHeaderView?.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor).isActive = true
+        self.answerHeaderView?.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
+        self.answerHeaderView?.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
         
         // setup questionPreviewView
         self.answerPreviewView.translatesAutoresizingMaskIntoConstraints = false
@@ -45,7 +46,7 @@ class AnswerTableViewCell: UITableViewCell {
         self.answerOptionBar.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: -8.0).isActive = true
         self.answerOptionBar.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 8.0).isActive = true
         self.answerOptionBar.topAnchor.constraint(equalTo: self.answerPreviewView.bottomAnchor, constant: 0.0).isActive = true
-        self.answerOptionBar.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 0.0).isActive = true
+        self.answerOptionBar.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -8.0).isActive = true
         let answerOptionBarHeightConstraint = self.answerOptionBar.heightAnchor.constraint(equalToConstant: 38.0)
         answerOptionBarHeightConstraint.priority = 999
         answerOptionBarHeightConstraint.isActive = true

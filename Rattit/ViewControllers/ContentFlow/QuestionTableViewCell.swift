@@ -19,15 +19,16 @@ class QuestionTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.backgroundColor = RattitStyleColors.backgroundGray
         
         let margins = self.contentView.layoutMarginsGuide
         // setup questionHeaderView
         self.questionHeaderView.translatesAutoresizingMaskIntoConstraints = false
         self.questionHeaderView.removeFromSuperview()
         self.contentView.addSubview(self.questionHeaderView)
-        self.questionHeaderView?.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
-        self.questionHeaderView?.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
-        self.questionHeaderView?.topAnchor.constraint(equalTo: margins.topAnchor).isActive = true
+        self.questionHeaderView?.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor).isActive = true
+        self.questionHeaderView?.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor).isActive = true
+        self.questionHeaderView?.topAnchor.constraint(equalTo: self.contentView.topAnchor).isActive = true
         
         // setup questionPreviewView
         self.questionPreviewView.translatesAutoresizingMaskIntoConstraints = false
@@ -45,7 +46,7 @@ class QuestionTableViewCell: UITableViewCell {
         self.questionOptionBar.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: -8.0).isActive = true
         self.questionOptionBar.trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: 8.0).isActive = true
         self.questionOptionBar.topAnchor.constraint(equalTo: self.questionPreviewView.bottomAnchor, constant: 0.0).isActive = true
-        self.questionOptionBar.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: 0.0).isActive = true
+        self.questionOptionBar.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -8.0).isActive = true
         let questionOptionBarHeightConstraint = self.questionOptionBar.heightAnchor.constraint(equalToConstant: 38.0)
         questionOptionBarHeightConstraint.priority = 999
         questionOptionBarHeightConstraint.isActive = true

@@ -38,7 +38,7 @@ class ContentDisplayTableView: UIView, UITableViewDelegate, UITableViewDataSourc
         contentDisplayTableView.contentTableView.delegate = contentDisplayTableView
         contentDisplayTableView.contentTableView.estimatedRowHeight = 44.0
         contentDisplayTableView.contentTableView.rowHeight = UITableViewAutomaticDimension
-        contentDisplayTableView.contentTableView.backgroundColor = UIColor.clear
+        contentDisplayTableView.contentTableView.backgroundColor = RattitStyleColors.backgroundGray
         contentDisplayTableView.contentTableView.separatorStyle = .none
         
         let momentCellNib = UINib(nibName: "MomentTableViewCell", bundle: nil)

@@ -16,14 +16,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KdI-kD-6cf">
-                    <rect key="frame" x="16" y="4" width="42" height="19.5"/>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                    <rect key="frame" x="16" y="4" width="40.5" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GQK-4v-r7D">
-                    <rect key="frame" x="16" y="29.5" width="39.5" height="19.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <rect key="frame" x="16" y="29.5" width="39" height="19.5"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -31,7 +31,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="H2r-LK-mF3" secondAttribute="bottom" id="2nd-aI-5s9"/>
                 <constraint firstItem="GQK-4v-r7D" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="49K-0i-pgK"/>

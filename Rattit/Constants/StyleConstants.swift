@@ -10,6 +10,7 @@ import UIKit
 
 class RattitStyleColors {
     static let backgroundGray = UIColor(red: 0.9255, green: 0.9255, blue: 0.9255, alpha: 1.0)
+    static let textBackgroundGray = UIColor(red: 0.9686, green: 0.9725, blue: 0.9804, alpha: 1.0)
     static let clickableButtonBlue = UIColor(red: 0, green: 0.478431, blue: 1, alpha: 1.0)
     static let navBarItemBlack = UIColor(red: 0.26, green: 0.26, blue: 0.26, alpha: 1.0)
     static let checkGreen = UIColor(red: 0, green: 0.5569, blue: 0.2039, alpha: 1.0)

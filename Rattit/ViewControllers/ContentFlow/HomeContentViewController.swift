@@ -13,15 +13,12 @@ class HomeContentViewController: UIViewController {
     @IBOutlet weak var mainContentView: UIView!
     @IBOutlet weak var mainContentTable: UITableView!
     
-    
+    let contentFlowNavItemTitleView = Bundle.main.loadNibNamed("ContentFlowNavigationTitleView", owner: self, options: nil)?.first as! UIView
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        let contentFlowNavItemTitleView = Bundle.main.loadNibNamed("ContentFlowNavigationTitleView", owner: self, options: nil)?.first as! UIView
-        self.navigationItem.titleView = contentFlowNavItemTitleView
-        
         let contentFlowLeftNavBarItemView = ReusableNavBarItemView.instantiateFromXib(buttonImageName: "camera")
         contentFlowLeftNavBarItemView.setButtonExecutionBlock {
             self.leftBarButtonPressed()
@@ -45,6 +42,12 @@ class HomeContentViewController: UIViewController {
         self.mainContentTable.register(answerCellNib, forCellReuseIdentifier: "AnswerTableViewCell")
         self.mainContentTable.rowHeight = UITableViewAutomaticDimension
         self.mainContentTable.estimatedRowHeight = 65.0
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationItem.titleView = self.contentFlowNavItemTitleView
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -156,16 +159,19 @@ extension HomeContentViewController: ContentFlowDelegate {
             let contentFlowSB: UIStoryboard = UIStoryboard(name: "ContentFlow", bundle: nil)
             let momentDetailsVC = contentFlowSB.instantiateViewController(withIdentifier: "MomentDetailsViewController") as! MomentDetailsViewController
             momentDetailsVC.momentId = contentId
+            self.navigationItem.title = ""
             self.navigationController?.pushViewController(momentDetailsVC, animated: true)
         } else if contentType == .question {
             let contentFlowSB: UIStoryboard = UIStoryboard(name: "ContentFlow", bundle: nil)
             let questionDetailsVC = contentFlowSB.instantiateViewController(withIdentifier: "QuestionDetailsViewController") as! QuestionDetailsViewController
             questionDetailsVC.questionId = contentId
+            self.navigationItem.title = ""
             self.navigationController?.pushViewController(questionDetailsVC, animated: true)
         } else if contentType == .answer {
             let contentFlowSB: UIStoryboard = UIStoryboard(name: "ContentFlow", bundle: nil)
             let answerDetailsVC = contentFlowSB.instantiateViewController(withIdentifier: "AnswerDetailsViewController") as! AnswerDetailsViewController
             answerDetailsVC.answerId = contentId
+            self.navigationItem.title = ""
             self.navigationController?.pushViewController(answerDetailsVC, animated: true)
         }
     }

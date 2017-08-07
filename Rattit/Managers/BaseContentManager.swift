@@ -23,9 +23,9 @@ class BaseContentManager<T: MainContent>: NSObject {
     var getContentsNoLaterThanRequest: CommonRequest!
     var getContentsCreatedByUserRequest: CommonRequest!
     
-    func loadContentsFromServer(completion: @escaping () -> Void, errorHandler: @escaping (Error) -> Void) {
+    func loadContentsFromServer(completion: @escaping ([String: Any]) -> Void, errorHandler: @escaping (Error) -> Void) {
         
-        Network.sharedInstance.callRattitContentService(httpRequest: self.getAllContentsRequest, completion: { (dataValue) in
+        Network.shared.callContentAPI(httpRequest: self.getAllContentsRequest, completion: { (dataValue) in
             
             if let responseBody = dataValue as? [String: Any], let count = responseBody["count"] as? Int, let rows = responseBody["rows"] as? [Any] {
                 
@@ -52,7 +52,7 @@ class BaseContentManager<T: MainContent>: NSObject {
                 
                 DispatchQueue.main.async {
                     self.lastRefreshTime = Date()
-                    completion()
+                    completion(responseBody)
                 }
             } else {
                 DispatchQueue.main.async {
@@ -70,7 +70,7 @@ class BaseContentManager<T: MainContent>: NSObject {
         
         if (self.lastContentCreatedAt != nil) {
             
-            Network.sharedInstance.callRattitContentService(httpRequest: self.getContentsNoEarlierThanRequest, completion: { (dataValue) in
+            Network.shared.callContentAPI(httpRequest: self.getContentsNoEarlierThanRequest, completion: { (dataValue) in
                 
                 if let responseBody = dataValue as? [String: Any], let count = responseBody["count"] as? Int, let rows = responseBody["rows"] as? [Any] {
                     
@@ -112,7 +112,7 @@ class BaseContentManager<T: MainContent>: NSObject {
             
         } else {
             print("lastContentCreatedAt = nil, so loadContentsFromServer() func called.")
-            self.loadContentsFromServer(completion: {
+            self.loadContentsFromServer(completion: { (dataBody) in
                 completion(true)
             }, errorHandler: errorHandler)
         }
@@ -121,7 +121,7 @@ class BaseContentManager<T: MainContent>: NSObject {
     
     func getContentsCreatedByAUser(completion: @escaping ([String]) -> Void, errorHandler: @escaping (Error) -> Void) {
         
-        Network.sharedInstance.callRattitContentService(httpRequest: self.getContentsCreatedByUserRequest, completion: { (dataValue) in
+        Network.shared.callContentAPI(httpRequest: self.getContentsCreatedByUserRequest, completion: { (dataValue) in
             
             if let responseBody = dataValue as? [String: Any], let count = responseBody["count"] as? Int, let rows = responseBody["rows"] as? [Any] {
                 
@@ -147,6 +147,19 @@ class BaseContentManager<T: MainContent>: NSObject {
             errorHandler(error)
         }
         
+    }
+    
+    func parseResultsToContentArray(responseBody: Any, resultsHandler: @escaping ([Any]) -> Void, errorHandler: @escaping (Error) -> Void) {
+        
+        if let jsonBody = responseBody as? [String: Any], let count = jsonBody["count"] as? Int, let rows = jsonBody["rows"] as? [Any] {
+            
+            print("Got \(count) content units from server.")
+            resultsHandler(rows)
+        } else {
+            DispatchQueue.main.async {
+                errorHandler(RattitError.parseError(message: "Unable to parse response data from getting contents."))
+            }
+        }
     }
     
 }

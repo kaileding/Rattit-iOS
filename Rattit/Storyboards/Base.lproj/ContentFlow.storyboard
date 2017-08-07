@@ -74,7 +74,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ce0-32-pJ0">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ce0-32-pJ0">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -82,7 +82,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ce0-32-pJ0" secondAttribute="trailing" id="CLD-7u-c2G"/>
-                            <constraint firstItem="7uY-yQ-qxb" firstAttribute="top" secondItem="ce0-32-pJ0" secondAttribute="bottom" id="Q2s-2a-I9t"/>
+                            <constraint firstAttribute="bottom" secondItem="ce0-32-pJ0" secondAttribute="bottom" id="Q2s-2a-I9t"/>
                             <constraint firstItem="ce0-32-pJ0" firstAttribute="leading" secondItem="9XW-xe-Oh6" secondAttribute="leading" id="j7h-OS-AX3"/>
                             <constraint firstItem="ce0-32-pJ0" firstAttribute="top" secondItem="9XW-xe-Oh6" secondAttribute="top" id="wTe-tm-l9n"/>
                         </constraints>

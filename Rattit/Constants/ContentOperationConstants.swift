@@ -12,6 +12,7 @@ public enum ContentOperationNotificationName: String {
     case composeMoment = "ComposeMomentNotification"
     case composeQuestion = "ComposeQuestionNotification"
     case showImagesModal = "ShowModalToDisplayArrayOfImagesNotification"
+    case keyboardFrameDidChange = "keyBoardFrameDidChangeNotification"
 }
 
 public enum followVCContentType: Int {

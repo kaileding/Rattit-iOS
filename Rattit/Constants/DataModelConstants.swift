@@ -25,6 +25,8 @@ public enum RattitContentType: String {
     case moment = "moment"
     case question = "question"
     case answer = "answer"
+    case momentComment = "momentComment"
+    case answerComment = "answerComment"
 }
 
 public enum RattitMomentVoteType: String {
@@ -43,6 +45,15 @@ public enum RattitAnswerVoteType: String {
     case typeAgree = "agree"
     case typeDisagree = "disagree"
     case typeAdmire = "admire"
+}
+
+public enum RattitMomentCommentVoteType: String {
+    case like = "like"
+    case dislike = "dislike"
+}
+
+public enum RattitAnswerCommentVoteType: String {
+    case like = "like"
 }
 
 public enum RattitUserRelationshipType: String {

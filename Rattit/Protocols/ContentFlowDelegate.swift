@@ -12,3 +12,8 @@ protocol ContentFlowDelegate: class {
     func tappedUserAvatarOfCell(userId: String)
     func aContentCellIsSelected(contentId: String, contentType: RattitContentType)
 }
+
+protocol CommentFlowDelegate: class {
+    func tappedUserAvatarOfCell(userId: String)
+    func anImageOfCellIsTapped(infoToShowImageModal: ObjectForShowImagesModal)
+}

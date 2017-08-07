@@ -19,7 +19,7 @@ class RattitUserManager: NSObject {
     
     func getAllRattitUsers(completion: @escaping () -> Void, errorHandler: @escaping (Error) -> Void) {
         
-        Network.sharedInstance.callRattitContentService(httpRequest: .GetUsers, completion: { (dataValue) in
+        Network.shared.callContentAPI(httpRequest: .GetUsers, completion: { (dataValue) in
             
             if let json = dataValue as? [String: Any], let count = json["count"] as? Int, let rows = json["rows"] as? [Any] {
                 print("RattitUserManager.getAllRattitUsers() got \(count) users.")
@@ -49,7 +49,7 @@ class RattitUserManager: NSObject {
         if let foundUser = self.cachedUsers[id] {
             completion(foundUser)
         } else {
-            Network.sharedInstance.callRattitContentService(httpRequest: .getUserWithId(id: id), completion: { (dataValue) in
+            Network.shared.callContentAPI(httpRequest: .getUserWithId(id: id), completion: { (dataValue) in
                 
                 if let parsedUser = RattitUser(dataValue: dataValue) {
                     self.cachedUsers[id] = parsedUser
@@ -77,7 +77,7 @@ class RattitUserManager: NSObject {
                 if let avatarImage = self.cachedAvatars[avatarUrl] {
                     completion(avatarImage)
                 } else {
-                    Network.sharedInstance.callS3ToLoadImage(imageUrl: avatarUrl, completion: { (imageData) in
+                    Network.shared.callS3ToLoadImage(imageUrl: avatarUrl, completion: { (imageData) in
                         if let avatarImage = UIImage(data: imageData) {
                             self.cachedAvatars[avatarUrl] = avatarImage
                             completion(avatarImage)
@@ -110,7 +110,7 @@ class RattitUserManager: NSObject {
             contentRequest = CommonRequest.getFriendsOfAUser(userId: userId)
         }
         
-        Network.sharedInstance.callRattitContentService(httpRequest: contentRequest, completion: { (dataValue) in
+        Network.shared.callContentAPI(httpRequest: contentRequest, completion: { (dataValue) in
             
             if let json = dataValue as? [String: Any], let count = json["count"] as? Int, let rows = json["rows"] as? [Any] {
                 print("RattitUserManager.getFollowersOfUser() got \(count) users.")
@@ -139,7 +139,7 @@ class RattitUserManager: NSObject {
     func followUsers(targetUserIds: [String], completion: @escaping () -> Void, errorHandler: @escaping (Error) -> Void) {
         
         let selfUserId = UserStateManager.sharedInstance.dummyUserId
-        Network.sharedInstance.callRattitContentService(httpRequest: .followUsers(targetUserIds: targetUserIds, byUser: selfUserId), completion: { (dataValue) in
+        Network.shared.callContentAPI(httpRequest: .followUsers(targetUserIds: targetUserIds, byUser: selfUserId), completion: { (dataValue) in
             
             if let rows = dataValue as? [Any] {
                 rows.forEach({ (dataValue) in
@@ -167,7 +167,7 @@ class RattitUserManager: NSObject {
     func unfollowUser(targetUserId: String, completion: @escaping () -> Void, errorHandler: @escaping (Error) -> Void) {
         
         let selfUserId = UserStateManager.sharedInstance.dummyUserId
-        Network.sharedInstance.callRattitContentService(httpRequest: .unfollowAUser(targetUserId: targetUserId, byUser: selfUserId), completion: { (dataValue) in
+        Network.shared.callContentAPI(httpRequest: .unfollowAUser(targetUserId: targetUserId, byUser: selfUserId), completion: { (dataValue) in
             
             if let json = dataValue as? [String: Any], let success = json["success"] as? String {
                 if success == "OK" {

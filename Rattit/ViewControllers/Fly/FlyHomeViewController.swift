@@ -77,6 +77,8 @@ class FlyHomeViewController: UIViewController, UIGestureRecognizerDelegate, Slid
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.tabBarController?.tabBar.isHidden = false
+        
         let selfUser = UserStateManager.sharedInstance.dummyUser
         if let validUser = selfUser {
             self.flyHomeViewNavBarTitleView.initializeData(userName: "@"+validUser.userName, firstName: validUser.firstName)

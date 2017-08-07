@@ -11,9 +11,9 @@ import Alamofire
 
 class Network {
     
-    static let sharedInstance: Network = Network()
+    static let shared: Network = Network()
     
-    func callRattitContentService(httpRequest: CommonRequest, completion: @escaping (Any) -> Void, errorHandler: @escaping (Error) -> Void) {
+    func callContentAPI(httpRequest: CommonRequest, completion: @escaping (Any) -> Void, errorHandler: @escaping (Error) -> Void) {
         
         request(httpRequest.baseUrl+httpRequest.urlPath,
                 method: httpRequest.method,

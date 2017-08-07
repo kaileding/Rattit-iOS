@@ -22,13 +22,16 @@ class UserStateManager: NSObject {
     var dummyMyFriends: [String] = [] // array of userIds
     
     var dummyMyMoments: [String] = [] // array of momentIds
+    var dummyMyVotesToMoments: [String: [VoteForMoment]] = [:] // momentId: [VoteForMoment]
     var dummyMyQuestions: [String] = [] // array of questionIds
+    var dummyMyVotesToQuestions: [String: [VoteForQuestion]] = [:] // questionId: [VoteForQuestion]
     var dummyMyAnswers: [String] = [] // array of answerIds
+    var dummyMyVotesToAnswers: [String: [VoteForAnswer]] = [:] // answerId: [VoteForAnswer]
     
     var dummyUserInfoLoadMap: UInt32 = 0
     var dummyUserInfoLoaded: Bool {
         get {
-            return (self.dummyUserInfoLoadMap == 127)
+            return (self.dummyUserInfoLoadMap == 1023)
         }
     }
     
@@ -91,6 +94,55 @@ class UserStateManager: NSObject {
         }) { (error) in
             print("== Unable to load answers of mine. \(error.localizedDescription)")
         }
+        
+        MomentManager.sharedInstance.getVotesToMomentCreatedByAUser(userId: self.dummyUserId, completion: { (votesForMoments) in
+            
+            self.dummyMyVotesToMoments.removeAll()
+            votesForMoments.forEach({ (voteForMoments) in
+                if self.dummyMyVotesToMoments[voteForMoments.momentId] != nil {
+                    self.dummyMyVotesToMoments[voteForMoments.momentId]!.append(voteForMoments)
+                } else {
+                    self.dummyMyVotesToMoments[voteForMoments.momentId] = [voteForMoments]
+                }
+            })
+            UserStateManager.sharedInstance.dummyUserInfoLoadMap |= 128
+            
+        }) { (error) in
+            print("== Unable to load votes to moments of mine. \(error.localizedDescription)")
+        }
+        
+        QuestionManager.sharedInstance.getVotesToQuestionCreatedByAUser(userId: self.dummyUserId, completion: { (votesForQuestions) in
+            
+            self.dummyMyVotesToQuestions.removeAll()
+            votesForQuestions.forEach({ (voteForQuestions) in
+                if self.dummyMyVotesToQuestions[voteForQuestions.questionId] != nil {
+                    self.dummyMyVotesToQuestions[voteForQuestions.questionId]!.append(voteForQuestions)
+                } else {
+                    self.dummyMyVotesToQuestions[voteForQuestions.questionId] = [voteForQuestions]
+                }
+            })
+            UserStateManager.sharedInstance.dummyUserInfoLoadMap |= 256
+            
+        }) { (error) in
+            print("== Unable to load votes to questions of mine. \(error.localizedDescription)")
+        }
+        
+        AnswerManager.sharedInstance.getVotesToAnswerCreatedByAUser(userId: self.dummyUserId, completion: { (votesForAnswers) in
+            
+            self.dummyMyVotesToAnswers.removeAll()
+            votesForAnswers.forEach({ (voteForAnswers) in
+                if self.dummyMyVotesToAnswers[voteForAnswers.answerId] != nil {
+                    self.dummyMyVotesToAnswers[voteForAnswers.answerId]!.append(voteForAnswers)
+                } else {
+                    self.dummyMyVotesToAnswers[voteForAnswers.answerId] = [voteForAnswers]
+                }
+            })
+            UserStateManager.sharedInstance.dummyUserInfoLoadMap |= 512
+            
+        }) { (error) in
+            print("== Unable to load votes to answers of mine. \(error.localizedDescription)")
+        }
+        
     }
     
 }

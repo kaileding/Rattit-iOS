@@ -34,6 +34,7 @@ class HomeContentViewController: UIViewController {
         
         self.mainContentTable.dataSource = self
         self.mainContentTable.delegate = self
+        self.mainContentTable.backgroundColor = RattitStyleColors.backgroundGray
         let momentCellNib = UINib(nibName: "MomentTableViewCell", bundle: nil)
         self.mainContentTable.register(momentCellNib, forCellReuseIdentifier: "MomentTableViewCell")
         let questionCellNib = UINib(nibName: "QuestionTableViewCell", bundle: nil)
@@ -46,6 +47,8 @@ class HomeContentViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        self.tabBarController?.tabBar.isHidden = false
         
         self.navigationItem.titleView = self.contentFlowNavItemTitleView
     }
@@ -117,6 +120,8 @@ extension HomeContentViewController: UITableViewDataSource, UITableViewDelegate 
             let answer = AnswerManager.sharedInstance.downloadedContents[dataUnit.id]!
             cell.initializeContent(answer: answer, sideLength: sideLength, flowDelegate: self)
             return cell
+        default:
+            return UITableViewCell()
         }
     }
     
@@ -146,7 +151,8 @@ extension HomeContentViewController: ContentFlowDelegate {
             
             friendProfileVC.userId = userId
             friendProfileVC.topLayoutGuideHeight = self.topLayoutGuide.length
-            friendProfileVC.bottomLayoutGuideHeight = self.bottomLayoutGuide.length
+            friendProfileVC.bottomLayoutGuideHeight = 0
+//                self.bottomLayoutGuide.length
             friendProfileVC.screenWidth = self.view.frame.width
             
             self.navigationController?.pushViewController(friendProfileVC, animated: true)

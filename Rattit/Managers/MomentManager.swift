@@ -16,7 +16,9 @@ class MomentManager: BaseContentManager<Moment> {
     func loadMomentsFromServer(completion: @escaping () -> Void, errorHandler: @escaping (Error) -> Void) {
         
         self.getAllContentsRequest = CommonRequest.GetMoments
-        self.loadContentsFromServer(completion: completion, errorHandler: errorHandler)
+        self.loadContentsFromServer(completion: { (dataBody) in
+            completion()
+        }, errorHandler: errorHandler)
     }
     
     func loadMomentsUpdatesFromServer(completion: @escaping (Bool) -> Void, errorHandler: @escaping (Error) -> Void) {
@@ -39,7 +41,7 @@ class MomentManager: BaseContentManager<Moment> {
     
     func castVoteToAMoment(momentId: String, voteType: RattitMomentVoteType, commit: Bool, completion: @escaping () -> Void, errorHandler: @escaping () -> Void) {
         
-        Network.sharedInstance.callRattitContentService(httpRequest: .castVoteToAMoment(momentId: momentId, voteType: voteType, commit: commit), completion: { (dataValue) in
+        Network.shared.callContentAPI(httpRequest: .castVoteToAMoment(momentId: momentId, voteType: voteType, commit: commit), completion: { (dataValue) in
             
             if let moment = Moment(dataValue: dataValue) {
                 self.downloadedContents[moment.id!] = moment
@@ -51,6 +53,33 @@ class MomentManager: BaseContentManager<Moment> {
             print("Failed to cast vote to moment. Error is \(error.localizedDescription)")
             DispatchQueue.main.async {
                 errorHandler()
+            }
+        }
+    }
+    
+    func getVotesToMomentCreatedByAUser(userId: String, completion: @escaping ([VoteForMoment]) -> Void, errorHandler: @escaping (Error) -> Void) {
+        
+        Network.shared.callContentAPI(httpRequest: .getVotesOfAUserForMoments(userId: userId), completion: { (dataValue) in
+            
+            self.parseResultsToContentArray(responseBody: dataValue, resultsHandler: { (rows) in
+                
+                var votesOfUser: [VoteForMoment] = []
+                rows.forEach({ (dataValue) in
+                    if let vote = VoteForMoment(dataValue: dataValue) {
+                        votesOfUser.append(vote)
+                    }
+                })
+                
+                DispatchQueue.main.async {
+                    completion(votesOfUser)
+                }
+                
+            }, errorHandler: errorHandler)
+            
+        }) { (error) in
+            print("Unable to get votes of moments created by a user, error is ", error.localizedDescription)
+            DispatchQueue.main.async {
+                errorHandler(error)
             }
         }
     }

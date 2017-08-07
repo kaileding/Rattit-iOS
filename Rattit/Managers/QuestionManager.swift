@@ -16,7 +16,9 @@ class QuestionManager: BaseContentManager<Question> {
     func loadQuestionsFromServer(completion: @escaping () -> Void, errorHandler: @escaping (Error) -> Void) {
         
         self.getAllContentsRequest = CommonRequest.GetQuestions
-        self.loadContentsFromServer(completion: completion, errorHandler: errorHandler)
+        self.loadContentsFromServer(completion: { (dataBody) in
+            completion()
+        }, errorHandler: errorHandler)
     }
     
     func loadQuestionsUpdatesFromServer(completion: @escaping (Bool) -> Void, errorHandler: @escaping (Error) -> Void) {
@@ -39,7 +41,7 @@ class QuestionManager: BaseContentManager<Question> {
     
     func castVoteToAQuestion(questionId: String, voteType: RattitQuestionVoteType, commit: Bool, completion: @escaping () -> Void, errorHandler: @escaping () -> Void) {
         
-        Network.sharedInstance.callRattitContentService(httpRequest: .castVoteToAQuestion(questionId: questionId, voteType: voteType, commit: commit), completion: { (dataValue) in
+        Network.shared.callContentAPI(httpRequest: .castVoteToAQuestion(questionId: questionId, voteType: voteType, commit: commit), completion: { (dataValue) in
             
             if let question = Question(dataValue: dataValue) {
                 self.downloadedContents[question.id!] = question
@@ -51,6 +53,33 @@ class QuestionManager: BaseContentManager<Question> {
             print("Failed to cast vote to question. Error is \(error.localizedDescription)")
             DispatchQueue.main.async {
                 errorHandler()
+            }
+        }
+    }
+    
+    func getVotesToQuestionCreatedByAUser(userId: String, completion: @escaping ([VoteForQuestion]) -> Void, errorHandler: @escaping (Error) -> Void) {
+        
+        Network.shared.callContentAPI(httpRequest: .getVotesOfAUserForQuestions(userId: userId), completion: { (dataValue) in
+            
+            self.parseResultsToContentArray(responseBody: dataValue, resultsHandler: { (rows) in
+                
+                var votesOfUser: [VoteForQuestion] = []
+                rows.forEach({ (dataValue) in
+                    if let vote = VoteForQuestion(dataValue: dataValue) {
+                        votesOfUser.append(vote)
+                    }
+                })
+                
+                DispatchQueue.main.async {
+                    completion(votesOfUser)
+                }
+                
+            }, errorHandler: errorHandler)
+            
+        }) { (error) in
+            print("Unable to get votes of questions created by a user, error is ", error.localizedDescription)
+            DispatchQueue.main.async {
+                errorHandler(error)
             }
         }
     }

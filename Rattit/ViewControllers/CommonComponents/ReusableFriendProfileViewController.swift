@@ -80,6 +80,8 @@ class ReusableFriendProfileViewController: UIViewController, UIGestureRecognizer
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.tabBarController?.tabBar.isHidden = true
+        
         self.friendProfilePageRightBarButtonItemView = ReusableRightNavBarItemViewForProfileVC.instantiateFromXib(userId: self.userId)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: self.friendProfilePageRightBarButtonItemView)
         

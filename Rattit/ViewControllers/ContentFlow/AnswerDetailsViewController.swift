@@ -43,6 +43,8 @@ class AnswerDetailsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.tabBarController?.tabBar.isHidden = true
+        
         if let answerId = self.answerId, let answer = AnswerManager.sharedInstance.downloadedContents[answerId] {
             self.navBarTitleView.initializeData(questionId: answer.forQuestion)
             
@@ -101,7 +103,8 @@ extension AnswerDetailsViewController {
             
             friendProfileVC.userId = self.userId
             friendProfileVC.topLayoutGuideHeight = self.topLayoutGuide.length
-            friendProfileVC.bottomLayoutGuideHeight = self.bottomLayoutGuide.length
+            friendProfileVC.bottomLayoutGuideHeight = 0
+//                self.bottomLayoutGuide.length
             friendProfileVC.screenWidth = self.view.frame.width
             
             self.navigationController?.pushViewController(friendProfileVC, animated: true)

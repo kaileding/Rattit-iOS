@@ -85,6 +85,8 @@ class ContentDisplayTableView: UIView, UITableViewDelegate, UITableViewDataSourc
             }, errorHandler: { (error) in
                 print("unable to get answers for user id=\(userId)")
             })
+        default:
+            break
         }
 //        self.contentTableView.reloadData()
     }

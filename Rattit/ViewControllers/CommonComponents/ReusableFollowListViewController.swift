@@ -91,7 +91,8 @@ extension ReusableFollowListViewController: UITableViewDataSource, UITableViewDe
         
         friendProfileVC.userId = userId
         friendProfileVC.topLayoutGuideHeight = self.topLayoutGuide.length
-        friendProfileVC.bottomLayoutGuideHeight = self.bottomLayoutGuide.length
+        friendProfileVC.bottomLayoutGuideHeight = 0
+//            self.bottomLayoutGuide.length
         friendProfileVC.screenWidth = self.view.frame.width
         
         self.navigationItem.title = "Back"

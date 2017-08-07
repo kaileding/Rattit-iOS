@@ -35,7 +35,7 @@ class RattitLocationManager: NSObject {
             let currentLongitude = self.currentLocation!.coordinate.longitude
             let currentLatitude = self.currentLocation!.coordinate.latitude
             
-            Network.sharedInstance.callRattitContentService(httpRequest: .getNearbyPlacesFromGoogle(latitude: currentLatitude, longitude: currentLongitude, withinDistance: 300.0, type: "Restaurant"), completion: { (dataValue) in
+            Network.shared.callContentAPI(httpRequest: .getNearbyPlacesFromGoogle(latitude: currentLatitude, longitude: currentLongitude, withinDistance: 300.0, type: "Restaurant"), completion: { (dataValue) in
                 
                 if let responseBody = dataValue as? [String: Any], let results = responseBody["results"] as? [Any] {
                     if let nextPageToken = responseBody["next_page_token"] as? String {

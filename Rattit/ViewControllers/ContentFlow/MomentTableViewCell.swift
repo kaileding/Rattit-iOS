@@ -44,7 +44,7 @@ class MomentTableViewCell: UITableViewCell {
         
         self.momentTitleWordsView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: -8.0).isActive = true
         self.momentTitleWordsView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 8.0).isActive = true
-        self.titleWordsViewTopToHeaderViewConstraint = NSLayoutConstraint(item: self.momentTitleWordsView, attribute: .top, relatedBy: .equal, toItem: self.momentHeaderView, attribute: .bottomMargin, multiplier: 1.0, constant: 10.0)
+        self.titleWordsViewTopToHeaderViewConstraint = NSLayoutConstraint(item: self.momentTitleWordsView, attribute: .top, relatedBy: .equal, toItem: self.momentHeaderView, attribute: .bottom, multiplier: 1.0, constant: 0.0)
         
         // setup momentPhotoScrollView
         self.momentPhotoScrollView.translatesAutoresizingMaskIntoConstraints = false

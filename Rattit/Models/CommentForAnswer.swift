@@ -8,18 +8,21 @@
 
 import Foundation
 
-struct CommentForAnswer {
-    var id: String? = nil
+class CommentForAnswer: MainContent {
+    var id: String?
+    var createdBy: String?
+    var createdAt: Date?
+    var createdByInfo: RattitUser?
+    var dataFlowContentUnit: DataFlowContentUnit?
+    
     var forAnswer: String!
     var words: String!
     var likedBy: [String] = []
-    var createdBy: String!
-    var createdAt: Date? = nil
     
     // optional fields
     var forComment: String? = nil
     
-    init?(dataValue: Any) {
+    required init?(dataValue: Any) {
         guard let json = dataValue as? [String: Any],
             let id = json["id"] as? String,
             let forAnswer = json["for_answer"] as? String,
@@ -33,14 +36,21 @@ struct CommentForAnswer {
         }
         
         self.id = id
+        self.createdBy = createdBy
+        self.createdAt = createdAt
+        self.dataFlowContentUnit = DataFlowContentUnit(contentType: .answerComment, id: id, createdAt: createdAt)
+        
         self.forAnswer = forAnswer
         self.words = words
         self.likedBy = likedBy
-        self.createdBy = createdBy
-        self.createdAt = createdAt
         
         if let forComment = json["for_comment"] as? String {
             self.forComment = forComment
+        }
+        
+        // additional information
+        if let rattitUserObj = json["rattit_user"] {
+            self.createdByInfo = RattitUser(dataValue: rattitUserObj)
         }
     }
     
@@ -48,6 +58,10 @@ struct CommentForAnswer {
         self.forAnswer = forAnswer
         self.words = words
         self.createdBy = createdBy
+        self.id = nil
+        self.createdBy = createdBy
+        self.createdAt = nil
+        self.dataFlowContentUnit = nil
     }
     
 }

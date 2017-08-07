@@ -27,6 +27,7 @@ class AnswerPreviewView: UIView {
         answerPreviewView.answerContentLabel.text = " "
         answerPreviewView.backgroundImageView.clipsToBounds = true
         answerPreviewView.backgroundImageView.contentMode = .scaleAspectFill
+        answerPreviewView.backgroundImageView.backgroundColor = UIColor.lightGray
         answerPreviewView.answerPriviewButton.addTarget(answerPreviewView, action: #selector(preViewButtonPressed), for: .touchUpInside)
         
         return answerPreviewView

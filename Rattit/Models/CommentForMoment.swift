@@ -8,21 +8,24 @@
 
 import Foundation
 
-struct CommentForMoment {
-    var id: String? = nil
+class CommentForMoment: MainContent {
+    var id: String?
+    var createdBy: String?
+    var createdAt: Date?
+    var createdByInfo: RattitUser?
+    var dataFlowContentUnit: DataFlowContentUnit?
+    
     var forMoment: String!
     var words: String!
     var likedBy: [String] = []
     var dislikedBy: [String] = []
-    var createdBy: String!
-    var createdAt: Date? = nil
     
     // optional fields
     var forComment: String? = nil
     var photos: [Photo]? = nil
     var hashTags: [String]? = nil
     
-    init?(dataValue: Any) {
+    required init?(dataValue: Any) {
         guard let json = dataValue as? [String: Any],
             let id = json["id"] as? String,
             let forMoment = json["for_moment"] as? String,
@@ -37,12 +40,14 @@ struct CommentForMoment {
         }
         
         self.id = id
+        self.createdBy = createdBy
+        self.createdAt = createdAt
+        self.dataFlowContentUnit = DataFlowContentUnit(contentType: .momentComment, id: id, createdAt: createdAt)
+        
         self.forMoment = forMoment
         self.words = words
         self.likedBy = likedBy
         self.dislikedBy = dislikedBy
-        self.createdBy = createdBy
-        self.createdAt = createdAt
         
         if let forComment = json["for_comment"] as? String {
             self.forComment = forComment
@@ -60,12 +65,20 @@ struct CommentForMoment {
             self.hashTags = hashTags
         }
         
+        // additional information
+        if let rattitUserObj = json["rattit_user"] {
+            self.createdByInfo = RattitUser(dataValue: rattitUserObj)
+        }
     }
     
     init(forMoment: String, words: String, createdBy: String) {
         self.forMoment = forMoment
         self.words = words
         self.createdBy = createdBy
+        self.id = nil
+        self.createdBy = createdBy
+        self.createdAt = nil
+        self.dataFlowContentUnit = nil
     }
     
 }

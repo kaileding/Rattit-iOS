@@ -50,6 +50,7 @@ class PhotoScrollView: UIView {
                 let photoImageView = UIImageView(frame: imageFrame)
                 photoImageView.contentMode = .scaleAspectFill
                 photoImageView.clipsToBounds = true
+                photoImageView.backgroundColor = UIColor.lightGray
                 self.canvasView.addSubview(photoImageView)
                 
                 GalleryManager.getImageFromUrl(imageUrl: photo.imageUrl, completion: { (image) in

@@ -144,7 +144,7 @@ class ComposeContentManager {
                     print("self.publicUrlsOfCheckedPhotos is ", self.publicUrlsOfCheckedPhotos.description)
                     newMomentDic["photos"] = self.publicUrlsOfCheckedPhotos as Any
                     
-                    Network.sharedInstance.callRattitContentService(httpRequest: .postNewMomentContent(bodyDic: newMomentDic), completion: { (dataValue) in
+                    Network.shared.callContentAPI(httpRequest: .postNewMomentContent(bodyDic: newMomentDic), completion: { (dataValue) in
                         print("successfully published new moment.")
                         
                         DispatchQueue.main.async {
@@ -195,8 +195,7 @@ class ComposeContentManager {
                         print("got publicUrls of all checked images.")
                         print("self.publicUrlsOfCheckedPhotos is ", self.publicUrlsOfCheckedPhotos.description)
                         newQuestionDic["photos"] = self.publicUrlsOfCheckedPhotos as Any
-                        
-                    Network.sharedInstance.callRattitContentService(httpRequest: .postNewQuestionContent(bodyDic: newQuestionDic), completion: { (dataValue) in
+                    Network.shared.callContentAPI(httpRequest: .postNewQuestionContent(bodyDic: newQuestionDic), completion: { (dataValue) in
                             print("successfully published new question.")
                             
                             DispatchQueue.main.async {
@@ -213,7 +212,7 @@ class ComposeContentManager {
                 })
             })
         } else {
-         Network.sharedInstance.callRattitContentService(httpRequest: .postNewQuestionContent(bodyDic: newQuestionDic), completion: { (dataValue) in
+         Network.shared.callContentAPI(httpRequest: .postNewQuestionContent(bodyDic: newQuestionDic), completion: { (dataValue) in
                 print("successfully published new question.")
                 
                 DispatchQueue.main.async {

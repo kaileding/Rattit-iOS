@@ -14,6 +14,13 @@
 		85023FA71EF728D100E785FD /* MomentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85023FA61EF728D100E785FD /* MomentManager.swift */; };
 		85023FA91EF72E2100E785FD /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85023FA81EF72E2100E785FD /* NetworkConstants.swift */; };
 		85023FAC1EF76D4700E785FD /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85023FAB1EF76D4700E785FD /* StringExtensions.swift */; };
+		8502C5D11F34EFE5001117D0 /* ReusableGrowingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8502C5D01F34EFE5001117D0 /* ReusableGrowingTextView.swift */; };
+		8502C5D31F34FC40001117D0 /* ReusableGrowingTextInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8502C5D21F34FC40001117D0 /* ReusableGrowingTextInputBar.swift */; };
+		8502C5D71F3520EF001117D0 /* ReusableKeyboardObservingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8502C5D61F3520EF001117D0 /* ReusableKeyboardObservingView.swift */; };
+		8502C5D91F35230D001117D0 /* ReusableGrowingTextInputBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8502C5D81F35230D001117D0 /* ReusableGrowingTextInputBarDelegate.swift */; };
+		8502C5DB1F37E602001117D0 /* VoteForMoment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8502C5DA1F37E602001117D0 /* VoteForMoment.swift */; };
+		8502C5DD1F37E611001117D0 /* VoteForQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8502C5DC1F37E611001117D0 /* VoteForQuestion.swift */; };
+		8502C5DF1F37E61E001117D0 /* VoteForAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8502C5DE1F37E61E001117D0 /* VoteForAnswer.swift */; };
 		8503D21C1F07871D0053D639 /* FindTogetherWithViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8503D21B1F07871D0053D639 /* FindTogetherWithViewController.swift */; };
 		850779B21F03777D00598D60 /* ComposeContentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850779B11F03777D00598D60 /* ComposeContentDelegate.swift */; };
 		851FBC611F0A4564000DEB50 /* PickedUserTogetherWithView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 851FBC601F0A4564000DEB50 /* PickedUserTogetherWithView.xib */; };
@@ -59,6 +66,14 @@
 		855EBEF01F2D802C00E6797F /* ReusablePlaceHolderTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855EBEEF1F2D802C00E6797F /* ReusablePlaceHolderTextView.xib */; };
 		855EBEF61F2E9BB700E6797F /* ReusableCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 855EBEF51F2E9BB600E6797F /* ReusableCameraView.swift */; };
 		855EBEF81F2E9BC600E6797F /* ReusableCameraView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 855EBEF71F2E9BC600E6797F /* ReusableCameraView.xib */; };
+		8563C8091F323824006FFE13 /* MomentCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8563C8071F323824006FFE13 /* MomentCommentTableViewCell.swift */; };
+		8563C80A1F323824006FFE13 /* MomentCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8563C8081F323824006FFE13 /* MomentCommentTableViewCell.xib */; };
+		8563C80D1F323858006FFE13 /* MomentCommentReplyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8563C80B1F323858006FFE13 /* MomentCommentReplyTableViewCell.swift */; };
+		8563C80E1F323858006FFE13 /* MomentCommentReplyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8563C80C1F323858006FFE13 /* MomentCommentReplyTableViewCell.xib */; };
+		8563C8151F32CFE4006FFE13 /* AnswerBriefTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8563C8141F32CF62006FFE13 /* AnswerBriefTableViewCell.xib */; };
+		8563C8161F32CFE8006FFE13 /* AnswerBriefTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8563C8131F32CF62006FFE13 /* AnswerBriefTableViewCell.swift */; };
+		8563C8181F32D6DB006FFE13 /* MomentCommentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8563C8171F32D6DB006FFE13 /* MomentCommentManager.swift */; };
+		8563C81A1F32D6F1006FFE13 /* AnswerCommentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8563C8191F32D6F1006FFE13 /* AnswerCommentManager.swift */; };
 		8564FDE11F31C64100900D52 /* AnswerDetailsVCNavTitleBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8564FDE01F31C64100900D52 /* AnswerDetailsVCNavTitleBarView.swift */; };
 		8564FDE31F31C65500900D52 /* AnswerDetailsVCNavTitleBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8564FDE21F31C65500900D52 /* AnswerDetailsVCNavTitleBarView.xib */; };
 		856A82411F257B9F00D59ED6 /* AnswerOptionBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 856A82401F257B9F00D59ED6 /* AnswerOptionBar.swift */; };
@@ -162,6 +177,13 @@
 		85023FA61EF728D100E785FD /* MomentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentManager.swift; sourceTree = "<group>"; };
 		85023FA81EF72E2100E785FD /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
 		85023FAB1EF76D4700E785FD /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		8502C5D01F34EFE5001117D0 /* ReusableGrowingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableGrowingTextView.swift; sourceTree = "<group>"; };
+		8502C5D21F34FC40001117D0 /* ReusableGrowingTextInputBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableGrowingTextInputBar.swift; sourceTree = "<group>"; };
+		8502C5D61F3520EF001117D0 /* ReusableKeyboardObservingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableKeyboardObservingView.swift; sourceTree = "<group>"; };
+		8502C5D81F35230D001117D0 /* ReusableGrowingTextInputBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableGrowingTextInputBarDelegate.swift; sourceTree = "<group>"; };
+		8502C5DA1F37E602001117D0 /* VoteForMoment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteForMoment.swift; sourceTree = "<group>"; };
+		8502C5DC1F37E611001117D0 /* VoteForQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteForQuestion.swift; sourceTree = "<group>"; };
+		8502C5DE1F37E61E001117D0 /* VoteForAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteForAnswer.swift; sourceTree = "<group>"; };
 		8503D21B1F07871D0053D639 /* FindTogetherWithViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindTogetherWithViewController.swift; sourceTree = "<group>"; };
 		850779B11F03777D00598D60 /* ComposeContentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeContentDelegate.swift; sourceTree = "<group>"; };
 		851FBC601F0A4564000DEB50 /* PickedUserTogetherWithView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PickedUserTogetherWithView.xib; sourceTree = "<group>"; };
@@ -210,6 +232,14 @@
 		855EBEEF1F2D802C00E6797F /* ReusablePlaceHolderTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusablePlaceHolderTextView.xib; sourceTree = "<group>"; };
 		855EBEF51F2E9BB600E6797F /* ReusableCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableCameraView.swift; sourceTree = "<group>"; };
 		855EBEF71F2E9BC600E6797F /* ReusableCameraView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReusableCameraView.xib; sourceTree = "<group>"; };
+		8563C8071F323824006FFE13 /* MomentCommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCommentTableViewCell.swift; sourceTree = "<group>"; };
+		8563C8081F323824006FFE13 /* MomentCommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MomentCommentTableViewCell.xib; sourceTree = "<group>"; };
+		8563C80B1F323858006FFE13 /* MomentCommentReplyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCommentReplyTableViewCell.swift; sourceTree = "<group>"; };
+		8563C80C1F323858006FFE13 /* MomentCommentReplyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MomentCommentReplyTableViewCell.xib; sourceTree = "<group>"; };
+		8563C8131F32CF62006FFE13 /* AnswerBriefTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerBriefTableViewCell.swift; sourceTree = "<group>"; };
+		8563C8141F32CF62006FFE13 /* AnswerBriefTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerBriefTableViewCell.xib; sourceTree = "<group>"; };
+		8563C8171F32D6DB006FFE13 /* MomentCommentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MomentCommentManager.swift; sourceTree = "<group>"; };
+		8563C8191F32D6F1006FFE13 /* AnswerCommentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerCommentManager.swift; sourceTree = "<group>"; };
 		8564FDE01F31C64100900D52 /* AnswerDetailsVCNavTitleBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerDetailsVCNavTitleBarView.swift; sourceTree = "<group>"; };
 		8564FDE21F31C65500900D52 /* AnswerDetailsVCNavTitleBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerDetailsVCNavTitleBarView.xib; sourceTree = "<group>"; };
 		856A82401F257B9F00D59ED6 /* AnswerOptionBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerOptionBar.swift; sourceTree = "<group>"; };
@@ -332,6 +362,8 @@
 				85F058D41F0260D5008808CE /* ComposeContentManager.swift */,
 				859B5F4C1F061F12009A8762 /* RattitLocationManager.swift */,
 				85F5C2101F2482C9007F0E8C /* DataFlowManager.swift */,
+				8563C8171F32D6DB006FFE13 /* MomentCommentManager.swift */,
+				8563C8191F32D6F1006FFE13 /* AnswerCommentManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -481,6 +513,9 @@
 				85E21A3E1EFB4C4900D4F961 /* CommentForAnswer.swift */,
 				85E21A401EFB4E7D00D4F961 /* RattitLocation.swift */,
 				859B5F4A1F0615AE009A8762 /* GoogleLocation.swift */,
+				8502C5DA1F37E602001117D0 /* VoteForMoment.swift */,
+				8502C5DC1F37E611001117D0 /* VoteForQuestion.swift */,
+				8502C5DE1F37E61E001117D0 /* VoteForAnswer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -545,6 +580,9 @@
 				855EBEF71F2E9BC600E6797F /* ReusableCameraView.xib */,
 				855700E11F00C8AB0084356E /* ReusableCapturedPhotoView.swift */,
 				855700DF1F00C88D0084356E /* ReusableCapturedPhotoView.xib */,
+				8502C5D01F34EFE5001117D0 /* ReusableGrowingTextView.swift */,
+				8502C5D61F3520EF001117D0 /* ReusableKeyboardObservingView.swift */,
+				8502C5D21F34FC40001117D0 /* ReusableGrowingTextInputBar.swift */,
 			);
 			path = CommonComponents;
 			sourceTree = "<group>";
@@ -627,6 +665,12 @@
 				855C4DF51F30DE7D0080468D /* QuestionDetailsTableViewCell.xib */,
 				8564FDE01F31C64100900D52 /* AnswerDetailsVCNavTitleBarView.swift */,
 				8564FDE21F31C65500900D52 /* AnswerDetailsVCNavTitleBarView.xib */,
+				8563C8071F323824006FFE13 /* MomentCommentTableViewCell.swift */,
+				8563C8081F323824006FFE13 /* MomentCommentTableViewCell.xib */,
+				8563C80B1F323858006FFE13 /* MomentCommentReplyTableViewCell.swift */,
+				8563C80C1F323858006FFE13 /* MomentCommentReplyTableViewCell.xib */,
+				8563C8131F32CF62006FFE13 /* AnswerBriefTableViewCell.swift */,
+				8563C8141F32CF62006FFE13 /* AnswerBriefTableViewCell.xib */,
 			);
 			path = ContentFlow;
 			sourceTree = "<group>";
@@ -639,6 +683,7 @@
 				852113F91F0F952000830F13 /* ReusableUserCellDelegate.swift */,
 				857197F01F28688000D3C4FC /* SlideTableHeaderDelegate.swift */,
 				85E3496B1F2F147500E1CED8 /* ContentFlowDelegate.swift */,
+				8502C5D81F35230D001117D0 /* ReusableGrowingTextInputBarDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -779,6 +824,7 @@
 				852C395C1EF5C8F400C66C16 /* GoogleService-Info.plist in Resources */,
 				852C39711EF5D81A00C66C16 /* SignIn.storyboard in Resources */,
 				8538513A1EF4FBF600A8B2B5 /* Assets.xcassets in Resources */,
+				8563C80A1F323824006FFE13 /* MomentCommentTableViewCell.xib in Resources */,
 				859564A31EF64CB2000D0BC8 /* Love.storyboard in Resources */,
 				859564A01EF64C5E000D0BC8 /* Search.storyboard in Resources */,
 				858773AA1F2298FE004BFE27 /* QuestionPreviewView.xib in Resources */,
@@ -792,6 +838,7 @@
 				85AC86CB1F1D2E440093D9A3 /* ContentDisplayTableView.xib in Resources */,
 				8564FDE31F31C65500900D52 /* AnswerDetailsVCNavTitleBarView.xib in Resources */,
 				859564B01EF6654E000D0BC8 /* MomentTableViewCell.xib in Resources */,
+				8563C80E1F323858006FFE13 /* MomentCommentReplyTableViewCell.xib in Resources */,
 				852C397B1EF5ED7E00C66C16 /* LaunchScreen.storyboard in Resources */,
 				856A82471F25BB2300D59ED6 /* AnswerPreviewView.xib in Resources */,
 				856A82431F257BAC00D59ED6 /* AnswerOptionBar.xib in Resources */,
@@ -808,6 +855,7 @@
 				855C4DF71F30DE7D0080468D /* QuestionDetailsTableViewCell.xib in Resources */,
 				85C16E411F219C6C00D609DE /* QuestionTableViewCell.xib in Resources */,
 				8549F0DC1EFCCAF900385F1E /* MomentOptionBar.xib in Resources */,
+				8563C8151F32CFE4006FFE13 /* AnswerBriefTableViewCell.xib in Resources */,
 				857197E71F26DAB100D3C4FC /* ReusableFriendProfileViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -923,9 +971,11 @@
 				853A3D1F1EF69F1C008EA58E /* Photo.swift in Sources */,
 				859564BA1EF68176000D0BC8 /* AskForSignInSignUpDelegate.swift in Sources */,
 				859564AB1EF64E7A000D0BC8 /* HomeTabBarViewController.swift in Sources */,
+				8502C5DF1F37E61E001117D0 /* VoteForAnswer.swift in Sources */,
 				85F5C20D1F245F96007F0E8C /* QuestionManager.swift in Sources */,
 				858773A81F2298F4004BFE27 /* QuestionPreviewView.swift in Sources */,
 				856A82451F25BB1400D59ED6 /* AnswerPreviewView.swift in Sources */,
+				8563C80D1F323858006FFE13 /* MomentCommentReplyTableViewCell.swift in Sources */,
 				859564A91EF64DA0000D0BC8 /* HomeContentViewController.swift in Sources */,
 				85E21A351EFA624C00D4F961 /* MainContent.swift in Sources */,
 				8549F0DA1EFCB85400385F1E /* MainContentHeaderView.swift in Sources */,
@@ -952,6 +1002,7 @@
 				8564FDE11F31C64100900D52 /* AnswerDetailsVCNavTitleBarView.swift in Sources */,
 				85BB89241F2D6ADF000F1CFD /* ComposeQuestionTableViewController.swift in Sources */,
 				8549F0D51EFC992400385F1E /* PhotoScrollView.swift in Sources */,
+				8563C81A1F32D6F1006FFE13 /* AnswerCommentManager.swift in Sources */,
 				855700E21F00C8AB0084356E /* ReusableCapturedPhotoView.swift in Sources */,
 				852113F41F0F7E7500830F13 /* StyleConstants.swift in Sources */,
 				85E349641F2EFC1600E1CED8 /* QuestionDetailsViewController.swift in Sources */,
@@ -962,12 +1013,16 @@
 				858773BB1F22F81E004BFE27 /* NotificationObjects.swift in Sources */,
 				85BB89261F2D6E94000F1CFD /* ReusableRatingStarsView.swift in Sources */,
 				857197E11F265C0B00D3C4FC /* ReusableFollowingButtonView.swift in Sources */,
+				8502C5D71F3520EF001117D0 /* ReusableKeyboardObservingView.swift in Sources */,
 				857197DD1F26528200D3C4FC /* ReusableFriendProfileHeaderView.swift in Sources */,
 				855C4DF61F30DE7D0080468D /* QuestionDetailsTableViewCell.swift in Sources */,
+				8502C5D91F35230D001117D0 /* ReusableGrowingTextInputBarDelegate.swift in Sources */,
 				8582A64C1EFE419F00483CDD /* ComposeImageViewController.swift in Sources */,
 				85023FA71EF728D100E785FD /* MomentManager.swift in Sources */,
 				85E349691F2EFECE00E1CED8 /* MomentDetailsTableViewCell.swift in Sources */,
 				85023FA91EF72E2100E785FD /* NetworkConstants.swift in Sources */,
+				8563C8161F32CFE8006FFE13 /* AnswerBriefTableViewCell.swift in Sources */,
+				8502C5D31F34FC40001117D0 /* ReusableGrowingTextInputBar.swift in Sources */,
 				85023FA41EF71F2700E785FD /* DataModelConstants.swift in Sources */,
 				8582A64E1EFF30FF00483CDD /* ContentOperationConstants.swift in Sources */,
 				85E349621F2EFBFC00E1CED8 /* MomentDetailsViewController.swift in Sources */,
@@ -975,6 +1030,7 @@
 				85E21A3D1EFA73E000D4F961 /* CommentForMoment.swift in Sources */,
 				859564BE1EF682CF000D0BC8 /* SignInSignOutConstants.swift in Sources */,
 				85E21A411EFB4E7D00D4F961 /* RattitLocation.swift in Sources */,
+				8502C5DB1F37E602001117D0 /* VoteForMoment.swift in Sources */,
 				85AC86C91F1D2DFA0093D9A3 /* ContentDisplayTableView.swift in Sources */,
 				859B5F491F060FF0009A8762 /* LocationPickingViewController.swift in Sources */,
 				85F5C2151F24AA9A007F0E8C /* DataFlowObjects.swift in Sources */,
@@ -983,6 +1039,7 @@
 				8549F0DE1EFCCB1900385F1E /* MomentOptionBar.swift in Sources */,
 				852C39791EF5E95400C66C16 /* UserStateManager.swift in Sources */,
 				857197EF1F28447400D3C4FC /* ReusableRightNavBarItemViewForProfileVC.swift in Sources */,
+				8563C8091F323824006FFE13 /* MomentCommentTableViewCell.swift in Sources */,
 				855C8CF81F2EBA44002CB301 /* AppInfoManager.swift in Sources */,
 				85C16E401F219C6C00D609DE /* QuestionTableViewCell.swift in Sources */,
 				855EBEF61F2E9BB700E6797F /* ReusableCameraView.swift in Sources */,
@@ -990,12 +1047,15 @@
 				853A3D1D1EF69E4C008EA58E /* Moment.swift in Sources */,
 				858773B71F22D8E2004BFE27 /* ReusableImageModalViewController.swift in Sources */,
 				855C8CFA1F2EC060002CB301 /* ImagePickerViewController.swift in Sources */,
+				8502C5D11F34EFE5001117D0 /* ReusableGrowingTextView.swift in Sources */,
 				852C39761EF5DD7C00C66C16 /* EmailSignUpViewController.swift in Sources */,
 				852113FA1F0F952000830F13 /* ReusableUserCellDelegate.swift in Sources */,
 				8549F0D11EFBC78E00385F1E /* GalleryManager.swift in Sources */,
 				8549F0CB1EFB877800385F1E /* Network.swift in Sources */,
 				85E21A3B1EFA701400D4F961 /* RattitCollection.swift in Sources */,
 				85F5C2131F248558007F0E8C /* BaseContentManager.swift in Sources */,
+				8563C8181F32D6DB006FFE13 /* MomentCommentManager.swift in Sources */,
+				8502C5DD1F37E611001117D0 /* VoteForQuestion.swift in Sources */,
 				857197F11F28688000D3C4FC /* SlideTableHeaderDelegate.swift in Sources */,
 				859B5F4B1F0615AE009A8762 /* GoogleLocation.swift in Sources */,
 				85F058D51F0260D5008808CE /* ComposeContentManager.swift in Sources */,

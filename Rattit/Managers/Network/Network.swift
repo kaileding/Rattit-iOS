@@ -68,7 +68,6 @@ class Network {
                headers: ["Content-Type": fileType])
             .uploadProgress(queue: utilityQueue,
                             closure: { (progress) in
-                                
 //                                print("upload progress: \(progress.fractionCompleted*100.0)%")
                                 
         }).responseJSON { (jsonResponse) in
